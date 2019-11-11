@@ -1,0 +1,66 @@
+//- Menu listing
+    User: +menuNav(selected, menus, 'ul', 'menu123', 'nav', 'li', 'nav-item' , 'item-link' , 'ul', 'submenu-123', 'submenu', 'li' , 'sub-nav-item', 'sub-nav-link')
+    
+    - selected:         [string]    active/current value
+    - menus:            [array]     array data menu listing
+    - wrap:             [string]    wrapper menu selector: div, nav, ul...
+    - wrapId:           [string]    "id" attributes wrapper
+    - wrapClass:        [string]    "class" attributes wrapper
+    - item:             [string]    item selector: div, li ...
+    - itemClass:        [string]    "class" attributes item
+    - linkClass:        [string]    "class" attributes link
+    - wrapChild:        [string]    wrapper children menu selector: div, nav, ul...
+    - wrapChildId:      [string]    "id" attributes children
+    - wrapChildClass:   [string]    "class" attributes children
+    - itemChild:        [string]    children item selector: div, li ...
+    - itemChildClass:   [string]    "class" attributes children item
+    - linkChildClass:   [string]    "class" attributes children link
+
+mixin menuNav(selected, menus, wrap, wrapId,  wrapClass, item, itemClass , linkClass , wrapChild, wrapChildId, wrapChildClass, itemChild , itemChildClass, linkChildClass)
+    - idramdom = 'navbar-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    - selected = typeof selected != "undefined" ? selected : ''
+
+    - wrap = typeof wrap != "undefined" ? wrap : 'ul'
+    - wrap = wrap != "" ? wrap : 'ul'
+    - wrapId = typeof wrapId != "undefined" ? wrapId : ''
+    - wrapClass = typeof wrapClass != "undefined" ? wrapClass : ''
+
+    - item = typeof item != "undefined" ? item : 'li'
+    - item = item != "" ? item : 'li'
+    - itemClass = typeof wrap != "undefined" ? itemClass : ''
+    - linkClass = typeof linkClass != "undefined" ? linkClass : ''
+
+    - wrapChild = typeof wrapChild != "undefined" ? wrapChild : 'ul'
+    - wrapChild = wrapChild != '' ? wrapChild : 'ul'
+    - wrapChildId = typeof wrapChildId != "undefined" ? wrapChildId : ''
+    - wrapChildClass = typeof wrapChildClass != "undefined" ? wrapChildClass : ''
+
+    - itemChild = typeof itemChild != "undefined" ? itemChild : 'li'
+    - itemChild = itemChild != "" ? itemChild : 'li'
+    - itemChildClass = typeof itemChildClass != "undefined" ? itemChildClass : ''
+    - linkChildClass = typeof linkChildClass != "undefined" ? linkChildClass : ''
+
+    #{wrap}(class=wrapClass id=(wrapId !='')?wrapId:idramdom)
+        each menu in menus      
+            - var current = false
+
+            if selected === menu.key 
+                - current = true
+            if typeof menu.child == typeof []
+                if menu.child.length > 0
+                    each menuChild in menu.child       
+                        if selected === menuChild.key
+                            - current = true
+
+            if current
+                #{item}(class= itemClass + " active")
+                    a(href=menu.url, title=menu.title, class=linkClass)= menu.title
+                    if typeof menu.child == typeof []
+                        if menu.child.length > 0
+                            +menuNav(selected, menu.child, wrapChild, wrapChildId, wrapChildClass, itemChild, itemChildClass, linkChildClass)
+            else
+                #{item}(class= itemClass)
+                    a(href=menu.url, title=menu.title, class=linkClass)= menu.title
+                    if typeof menu.child == typeof []
+                        if menu.child.length > 0
+                            +menuNav(selected, menu.child, wrapChild, wrapChildId, wrapChildClass, itemChild, itemChildClass, linkChildClass)

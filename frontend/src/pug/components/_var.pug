@@ -1,0 +1,95 @@
+-
+    var url = '/'
+    var language       = 'vi';
+    var mainActive     = 'home';
+    var imgPath        = url + 'images/'
+    var imgPathTheme   = url + 'assets/images/'
+    var logo           = imgPath + 'logo.png'
+    var title          = '3forcom.com'
+
+-
+    var mainMenu = [
+        {'key': 'home',     'title': 'Home',            'url': '/'},
+        {'key': 'docs',     'title': 'Documentation',   'url': '/docs'},
+        //- {'key': 'build',    'title': 'Build pages',     'url': '/build'}
+    ]
+-
+    var slideMenu = [
+        {'key': 'docs',     'title':'Getting started',  'url':'/docs',                          'child':[
+            {'key': 'docs',             'title':'Introduction',     'url':'/docs'},
+            {'key': 'contents',         'title':'Contents',         'url':'/docs/getting-started/contents.html'},
+            {'key': 'sass',             'title':'Sass',             'url':'/docs/getting-started/sass.html'},
+            {'key': 'browsers-devices', 'title':'Browsers and devices', 'url':'/docs/getting-started/browsers-devices.html'}
+        ]},
+        {'key': 'overview',     'title':'Layout',  'url':'/docs/layout/index.html',                          'child':[
+            {'key': 'overview',         'title':'Overview',         'url':'/docs/layout/index.html'},
+            {'key': 'grid',             'title':'Grid system',      'url':'/docs/layout/grid.html'},
+            {'key': 'media-object',     'title':'Media object',     'url':'/docs/layout/media-object.html'},
+            {'key': 'utilities-for-layout','title':'Utilities for layout','url':'/docs/layout/utilities-for-layout.html'},
+        ]},
+        {'key': 'reboot',     'title':'Content',  'url':'/docs/content/index.html',                          'child':[
+            {'key': 'reboot',           'title':'Reboot',           'url':'/docs/content/index.html'},
+            {'key': 'typography',       'title':'Typography',       'url':'/docs/content/typography.html'},
+            {'key': 'code',             'title':'Code',             'url':'/docs/content/code.html'},
+            {'key': 'images',           'title':'Images',           'url':'/docs/content/images.html'},
+            {'key': 'tables',           'title':'Tables',           'url':'/docs/content/tables.html'},
+            {'key': 'figures',          'title':'Figures',          'url':'/docs/content/figures.html'},
+        ]},
+        {'key': 'alerts',   'title':'Components',       'url':'/docs/components/alerts.html',   'child':[
+            {'key': 'alerts',           'title':'Alerts',           'url':'/docs/components/alerts.html'},
+            {'key': 'badges',           'title':'Badge',            'url':'/docs/components/badges.html'},
+            {'key': 'breadcrumb',       'title':'Breadcrumb',       'url':'/docs/components/breadcrumb.html'},
+            {'key': 'buttons',          'title':'Buttons',          'url':'/docs/components/buttons.html'},
+            {'key': 'button-group',     'title':'Button group',     'url':'/docs/components/button-group.html'},
+            {'key': 'cards',            'title':'Card',             'url':'/docs/components/cards.html'},
+            {'key': 'collapse',         'title':'Collapse',         'url':'/docs/components/collapse.html'},
+            {'key': 'dropdowns',        'title':'Dropdowns',        'url':'/docs/components/dropdowns.html'},
+            {'key': 'forms',            'title':'Forms',            'url':'/docs/components/forms.html'},
+            {'key': 'input-group',      'title':'Input group',      'url':'/docs/components/input-group.html'},
+            {'key': 'list-group',       'title':'List group',       'url':'/docs/components/list-group.html'},
+            {'key': 'modal',            'title':'Modal',            'url':'/docs/components/modal.html'},
+            {'key': 'navs',             'title':'Navs',             'url':'/docs/components/navs.html'},
+            {'key': 'navbar',           'title':'Navbar',           'url':'/docs/components/navbar.html'},
+            {'key': 'pagination',       'title':'Pagination',       'url':'/docs/components/pagination.html'},
+            {'key': 'popovers',         'title':'Popovers',         'url':'/docs/components/popovers.html'},
+            {'key': 'progress',         'title':'Progress',         'url':'/docs/components/progress.html'},
+            {'key': 'scrollspy',        'title':'Scrollspy',        'url':'/docs/components/scrollspy.html'},
+            {'key': 'tooltips',         'title':'Tooltips',         'url':'/docs/components/tooltips.html'}
+        ]},
+        {'key': 'borders',   'title':'Utilities',   'url':'/docs/utilities/borders.html',                          'child':[
+            {'key': 'borders',          'title':'Borders',          'url':'/docs/utilities/borders.html'},
+            {'key': 'clearfix',         'title':'Clearfix',         'url':'/docs/utilities/clearfix.html'},
+            {'key': 'close-icon',       'title':'Close icon',       'url':'/docs/utilities/close-icon.html'},
+            {'key': 'colors',           'title':'Colors',           'url':'/docs/utilities/colors.html'},
+            {'key': 'display',          'title':'Display',          'url':'/docs/utilities/display.html'},
+            {'key': 'embed',            'title':'Embed',            'url':'/docs/utilities/embed.html'},
+            {'key': 'flex',             'title':'Flex',             'url':'/docs/utilities/flex.html'},
+            {'key': 'float',            'title':'Float',            'url':'/docs/utilities/float.html'},
+            {'key': 'image-replacement','title':'Image replacement','url':'/docs/utilities/image-replacement.html'},
+            {'key': 'position',         'title':'Position',         'url':'/docs/utilities/position.html'},
+            {'key': 'screenreaders',    'title':'Screenreaders',    'url':'/docs/utilities/screenreaders.html'},
+            {'key': 'shadows',          'title':'Shadows',          'url':'/docs/utilities/shadows.html'},
+            {'key': 'sizing',           'title':'Sizing',           'url':'/docs/utilities/sizing.html'},
+            {'key': 'spacing',          'title':'Spacing',          'url':'/docs/utilities/spacing.html'},
+            {'key': 'text',             'title':'Text',             'url':'/docs/utilities/text.html'},
+            {'key': 'vertical-align',   'title':'Vertical align',   'url':'/docs/utilities/vertical-align.html'},
+            {'key': 'visibility',       'title':'Visibility',       'url':'/docs/utilities/visibility.html'},
+        ]},
+        {'key': 'approach',     'title':'Extend',  'url':'/docs/extend/index.html',                          'child':[
+            {'key': 'approach',         'title':'Approach',         'url':'/docs/extend/index.html'},
+            {'key': 'icons',            'title':'Icons',            'url':'/docs/extend/icons.html'},
+            {'key': 'selectbox',        'title':'Selectbox UI',     'url':'/docs/extend/selectbox.html'},
+            {'key': 'range',            'title':'Range UI',         'url':'/docs/extend/range.html'},
+            {'key': 'checkbox',         'title':'Checkbox/Radio UI','url':'/docs/extend/checkbox-radio.html'},
+            {'key': 'file',             'title':'File browser',     'url':'/docs/extend/file-browser.html'},
+            {'key': 'datepicker',       'title':'Datepicker',       'url':'/docs/extend/datepicker.html'},
+            {'key': 'validate',         'title':'Validate',         'url':'/docs/extend/validate.html'},
+            {'key': 'notify',           'title':'Notify',           'url':'/docs/extend/notify.html'},
+            {'key': 'waypoint',         'title':'Waypoint',         'url':'/docs/extend/waypoint.html'},
+            {'key': 'parallax',         'title':'Parallax ',        'url':'/docs/extend/parallax.html'},
+            {'key': 'scroll',           'title':'Scroll',           'url':'/docs/extend/scroll.html'},
+            {'key': 'slick',            'title':'Slick',            'url':'/docs/extend/slick.html'},
+            {'key': 'slick-lightbox',   'title':'Slick Lightbox',   'url':'/docs/extend/slick-lightbox.html'},
+            {'key': 'lazy',             'title':'Lazy load',        'url':'/docs/extend/lazy.html'},
+        ]},
+    ]       

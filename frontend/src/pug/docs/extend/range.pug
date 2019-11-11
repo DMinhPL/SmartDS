@@ -1,0 +1,29 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'range';
+    - title = "Component - Range UI"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#getting-started') Getting Started
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#basic-usage') Basic usage
+        li.toc-entry.toc-h2
+            a(href='#example') Example
+
+block content 
+    h1.bd-title#content Range UI
+    p.bd-lead Ion.RangeSlider 2.2.0. jQuery-plugin 
+    | Easy, flexible and responsive range slider with skin support
+
+    h2#getting-started Getting Started
+    h3#basic-usage Basic usage
+    p Start without params
+    .bd-example
+        input.form-control-range.range-ui(type='range')
+    figure.highlight
+        pre
+            code.css.
+                input.form-control-range.range-ui(type='range')

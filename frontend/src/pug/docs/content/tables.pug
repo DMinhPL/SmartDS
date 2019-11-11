@@ -1,0 +1,392 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'tables';
+    - title = "Layout - Tables"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#examples') Examples
+        li.toc-entry.toc-h2
+            a(href='#table-head-options') Table head options
+        li.toc-entry.toc-h2
+            a(href='#striped-rows') Striped rows
+        li.toc-entry.toc-h2
+            a(href='#bordered-table') Bordered table
+        li.toc-entry.toc-h2
+            a(href='#borderless-table') Borderless table
+        li.toc-entry.toc-h2
+            a(href='#hoverable-rows') Hoverable rows
+        li.toc-entry.toc-h2
+            a(href='#small-table') Small table
+        li.toc-entry.toc-h2
+            a(href='#contextual-classes') Contextual classes
+        li.toc-entry.toc-h2
+            a(href='#captions') Captions
+        li.toc-entry.toc-h2
+            a(href='#colspan') Colspan
+        li.toc-entry.toc-h2
+            a(href='#responsive-tables') Responsive tables
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#always-responsive') Always responsive
+                li.toc-entry.toc-h3
+                    a(href='#breakpoint-specific') Breakpoint specific
+
+
+block content 
+    h1.bd-title#content Tables
+    p.bd-lead Documentation and examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.
+    
+    h2#examples Examples
+    p
+        | Due to the widespread use of tables across third-party widgets like calendars and date pickers, we’ve designed our tables to be 
+        strong opt-in
+        | . Just add the base class 
+        code.highlighter-rouge .table
+        |  to any 
+        code.highlighter-rouge &lt;table&gt;
+        | , then extend with custom styles or our various included modifier classes.
+    p
+        | Using the most basic table markup, here’s how 
+        code.highlighter-rouge .table
+        | -based tables look in Bootstrap. 
+        strong All table styles are inherited in Bootstrap 4
+        | , meaning any nested tables will be styled in the same manner as the parent.
+    .bd-example
+        -
+            var head =  ['#','First','Last','Handle']
+            var data = [
+                        ['1','Mark','Otto','@mdo'],
+                        ['2','Jacob','Thornton','@fat'],
+                        ['3','Larry','the Bird','@twitter']
+                       ]
+        +table(head,data,'','','','head')
+    figure.highlight
+        pre
+            code.js.
+                //- Table mixins
+                //- @mixin +table(header, data, type,typehead, typerow, typecol, itemrow, itemcol, responsive)
+                //- @param {array} header: data header - ['head 1', 'head 2', '...']
+                //- @param {array} data: data content - [['col 1', 'col 2', '...'], ['col 1', 'col 2', '...'],['...', '...', '...']]
+                //- @param {string} type: type of table
+                //- @param {string} typehead: type of header 
+                //- @param {string} typerow: type of row 
+                //- @param {string} typecol: type of col
+                //- @param {number} itemrow: number type of row (0, 1, 2, 3, ... 'all')
+                //- @param {number} itemcol: number type of col
+                //- @param {boolean} responsive: responsive table: '', 'sm', 'md', 'lg', 'xl'
+
+                -
+                    var head =  ['#','First','Last','Handle']
+                    var data = [
+                                ['1','Mark','Otto','@mdo'],
+                                ['2','Jacob','Thornton','@fat'],
+                                ['3','Larry','the Bird','@twitter']
+                            ]
+                +table(head,data,'','','','head')
+    p
+        | You can also invert the colors—with light text on dark backgrounds—with 
+        code.highlighter-rouge .table-dark
+        | .
+    .bd-example
+        +table-dark(head,data)
+        
+    figure.highlight
+        pre
+            code.js.
+                -
+                    var head =  ['#','First','Last','Handle']
+                    var data = [
+                                ['1','Mark','Otto','@mdo'],
+                                ['2','Jacob','Thornton','@fat'],
+                                ['3','Larry','the Bird','@twitter']
+
+                +table-dark(head,data)
+
+    h2#table-head-options Table head options
+    p
+        | Similar to tables and dark tables, use the modifier classes 
+        code.highlighter-rouge .thead-light
+        |  or 
+        code.highlighter-rouge .thead-dark
+        |  to make 
+        code.highlighter-rouge &lt;thead&gt;
+        | s appear light or dark gray.
+    .bd-example
+        +table-thead-dark(head,data)
+        +table-thead-light(head,data)
+        
+    figure.highlight
+        pre
+            code.js.
+                -
+                    var head =  ['#','First','Last','Handle']
+                    var data = [
+                                ['1','Mark','Otto','@mdo'],
+                                ['2','Jacob','Thornton','@fat'],
+                                ['3','Larry','the Bird','@twitter']
+
+                +table-thead-dark(head,data)
+                +table-thead-light(head,data)
+    h2#striped-rows Striped rows
+    p
+        | Use 
+        code.highlighter-rouge .table-striped
+        |  to add zebra-striping to any table row within the 
+        code.highlighter-rouge &lt;tbody&gt;
+        | .
+    .bd-example
+        +table-striped(head,data)
+    figure.highlight
+        pre
+            code.js.
+                +table-striped(head,data)
+    .bd-example
+        +table-striped(head,data,'table-dark')
+    figure.highlight
+        pre
+            code.js.
+                +table-striped(head,data)
+    h2#bordered-table Bordered table
+    p
+        | Add 
+        code.highlighter-rouge .table-bordered
+        |  for borders on all sides of the table and cells.
+    .bd-example
+        +table-bordered(head,data)
+    figure.highlight
+        pre
+            code.js.
+                +table-bordered(head,data)
+    .bd-example
+        +table-bordered(head,data,'table-dark')
+    figure.highlight
+        pre
+            code.js.
+                +table-bordered(head,data,'table-dark')
+    h2#borderless-table Borderless table
+    p
+        | Add 
+        code.highlighter-rouge .table-borderless
+        |  for a table without borders.
+    .bd-example
+        +table-borderless(head,data)
+    figure.highlight
+        pre
+            code.js.
+                +table-borderless(head,data);
+    p
+        code.highlighter-rouge .table-borderless
+        |  can also be used on dark tables.
+    .bd-example
+        +table-borderless(head,data,'table-dark')
+    figure.highlight
+        pre
+            code.js.
+                +table-borderless(head,data,'table-dark');
+    h2#hoverable-rows Hoverable rows
+    p
+        | Add 
+        code.highlighter-rouge .table-hover
+        |  to enable a hover state on table rows within a 
+        code.highlighter-rouge &lt;tbody&gt;
+        | .
+    .bd-example
+        +table-hover(head,data)
+    figure.highlight
+        pre
+            code.js.
+                +table-hover(head,data)
+    .bd-example
+        +table-hover(head,data,'table-dark')
+    figure.highlight
+        pre
+            code.js.
+                +table-hover(head,data,'table-dark')
+    h2#small-table Small table
+    p
+        | Add 
+        code.highlighter-rouge .table-sm
+        |  to make tables more compact by cutting cell padding in half.
+    .bd-example
+        +table-sm(head,data)
+    figure.highlight
+        pre
+            code.js.
+                +table-sm(head,data)
+    .bd-example
+        +table-sm(head,data,'table-dark')
+    figure.highlight
+        pre
+            code.js.
+                +table-sm(head,data,'table-dark')
+    h2#contextual-classes Contextual classes
+    p Use contextual classes to color table rows or individual cells.
+    .bd-example
+        +table(['Class','Heading','Heading'])
+            +row(['Active','Cell','Cell'],'table-active','head')
+            +row(['Default','Cell','Cell'],'','head')
+            +row(['Primary','Cell','Cell'],'table-primary','head')
+            +row(['Secondary','Cell','Cell'],'table-secondary','head')
+            +row(['Success','Cell','Cell'],'table-success','head')
+            +row(['Danger','Cell','Cell'],'table-danger','head')
+            +row(['Warning','Cell','Cell'],'table-warning','head')
+            +row(['Info','Cell','Cell'],'table-info','head')
+            +row(['Light','Cell','Cell'],'table-light','head')
+            +row(['Dark','Cell','Cell'],'table-dark','head')
+    figure.highlight
+        pre
+            code.js.
+                +table(['Class','Heading','Heading'])
+                    +row(['Active','Cell','Cell'],'table-active','head')
+                    +row(['Default','Cell','Cell'],'','head')
+                    +row(['Primary','Cell','Cell'],'table-primary','head')
+                    +row(['Secondary','Cell','Cell'],'table-secondary','head')
+                    +row(['Success','Cell','Cell'],'table-success','head')
+                    +row(['Danger','Cell','Cell'],'table-danger','head')
+                    +row(['Warning','Cell','Cell'],'table-warning','head')
+                    +row(['Info','Cell','Cell'],'table-info','head')
+                    +row(['Light','Cell','Cell'],'table-light','head')
+                    +row(['Dark','Cell','Cell'],'table-dark','head')
+    p
+        | Regular table background variants are not available with the dark table, however, you may use 
+        a(href='/docs/utilities/colors/') text or background utilities
+        |  to achieve similar styles.
+    .bd-example
+        +table(['#','Heading','Heading'],'','table-dark')
+            +row(['1','Cell','Cell'],'bg-primary','head')
+            +row(['2','Cell','Cell'],'','head')
+            +row(['3','Cell','Cell'],'bg-success','head')
+            +row(['4','Cell','Cell'],'','head')
+            +row(['5','Cell','Cell'],'bg-danger','head')
+            +row(['6','Cell','Cell'],'','head')
+            +row(['7','Cell','Cell'],'bg-warning','head')
+            +row(['8','Cell','Cell'],'','head')
+            +row(['9','Cell','Cell'],'bg-info','head')
+    figure.highlight
+        pre
+            code.js.
+                +table(['#','Heading','Heading'],'','table-dark')
+                    +row(['1','Cell','Cell'],'bg-primary','head')
+                    +row(['2','Cell','Cell'],'','head')
+                    +row(['3','Cell','Cell'],'bg-success','head')
+                    +row(['4','Cell','Cell'],'','head')
+                    +row(['5','Cell','Cell'],'bg-danger','head')
+                    +row(['6','Cell','Cell'],'','head')
+                    +row(['7','Cell','Cell'],'bg-warning','head')
+                    +row(['8','Cell','Cell'],'','head')
+                    +row(['9','Cell','Cell'],'bg-info','head')
+    .bd-callout.bd-callout-warning
+        h5#conveying-meaning-to-assistive-technologies Conveying meaning to assistive technologies
+        p
+            | Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the 
+            code.highlighter-rouge .sr-only
+            |  class.
+    p
+        | Create responsive tables by wrapping any 
+        code.highlighter-rouge .table
+        |  with 
+        code.highlighter-rouge .table-responsive{-sm|-md|-lg|-xl}
+        | , making the table scroll horizontally at each 
+        code.highlighter-rouge max-width
+        |  breakpoint of up to (but not including) 576px, 768px, 992px, and 1120px, respectively.
+    .bd-callout.bd-callout-info
+        p
+            | Note that since browsers do not currently support 
+            a(href='https://www.w3.org/TR/mediaqueries-4/#range-context') range context queries
+            | , we work around the limitations of 
+            a(href='https://www.w3.org/TR/mediaqueries-4/#mq-min-max')
+                code.highlighter-rouge min-
+                |  and 
+                code.highlighter-rouge max-
+                |  prefixes
+            |  and viewports with fractional widths (which can occur under certain conditions on high-dpi devices, for instance) by using values with higher precision for these comparisons.
+    h2#captions Captions
+    p
+        | A 
+        code.highlighter-rouge &lt;caption&lt;
+        |  functions like a heading for a table. It helps users with screen readers to find a table and understand what it’s about and decide if they want to read it.
+    .bd-example
+        +table(head,data)
+            caption List of users
+    figure.highlight
+        pre
+            code.js.
+                +table(head,data)
+                    caption List of users
+
+    h2#colspan Colspan
+    .bd-example
+        +table(head,'','table-dark')
+            +row(['1','Cell','Cell','Cell','Cell'],'bg-primary','head')
+            +row(['2','Cell','Cell','Cell','Cell'],'','head')
+            +row(['3','Cell','Cell','Cell','Cell'],'bg-success','head')
+            +row('','','head')
+                +col('6', 'head', 3)
+                +col('Cell')
+                +col('Cell')
+            +row(['5','Cell','Cell','Cell','Cell'],'bg-danger','head')
+            +row('','','head')
+                +col('6', 'head')
+                +col('Cell', '', 2)
+                +col('Cell')
+                +col('Cell')
+                
+    figure.highlight
+        pre
+            code.js.
+                +table(head,data)
+                    caption List of users
+
+    h2#responsive-tables Responsive tables
+    p
+        | Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports by wrapping a 
+        code.highlighter-rouge .table
+        |  with 
+        code.highlighter-rouge .table-responsive
+        | . Or, pick a maximum breakpoint with which to have a responsive table up to by using 
+        code.highlighter-rouge .table-responsive{-sm|-md|-lg|-xl}
+        | .
+    .bd-callout.bd-callout-warning
+        h5#vertical-clippingtruncation Vertical clipping/truncation
+        p
+            | Responsive tables make use of 
+            code.highlighter-rouge overflow-y: hidden
+            | , which clips off any content that goes beyond the bottom or top edges of the table. In particular, this can clip off dropdown menus and other third-party widgets.
+    h3#always-responsive Always responsive
+    p
+        | Across every breakpoint, use 
+        code.highlighter-rouge .table-responsive
+        |  for horizontally scrolling tables.
+    .bd-example
+        -
+            var head =  ['#','Heading','Heading','Heading','Heading','Heading','Heading','Heading','Heading','Heading']
+            var data = [
+                        ['1', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell'],
+                        ['2', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell'],
+                        ['3', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell', 'Cell']
+            ]
+        +table-responsive('',head,data,'','','','head')
+    figure.highlight
+        pre
+            code.js.
+                +table-responsive('',head,data)
+
+    h3#breakpoint-specific Breakpoint specific
+    p
+        | Use 
+        code.highlighter-rouge .table-responsive{-sm|-md|-lg|-xl}
+        |  as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not scroll horizontally.
+    .bd-example
+        +table-responsive('sm',head,data,'','','','head')
+        +table-responsive('md',head,data,'','','','head')
+        +table-responsive('lg',head,data,'','','','head')
+        +table-responsive('xl',head,data,'','','','head')
+    figure.highlight
+        pre
+            code.js.
+                +table-responsive('sm',head,data,'','','','head')
+                +table-responsive('md',head,data,'','','','head')
+                +table-responsive('lg',head,data,'','','','head')
+                +table-responsive('xl',head,data,'','','','head')

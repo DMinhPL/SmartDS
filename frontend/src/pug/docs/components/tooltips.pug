@@ -1,0 +1,525 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'tooltips';
+    - title = "Component - Tooltips"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#overview') Overview
+        li.toc-entry.toc-h2
+            a(href='#example-enable-tooltips-everywhere') Example: Enable tooltips everywhere
+        li.toc-entry.toc-h2
+            a(href='#examples') Examples
+        li.toc-entry.toc-h2
+            a(href='#usage') Usage
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#markup') Markup
+                li.toc-entry.toc-h3
+                    a(href='#disabled-elements') Disabled elements
+                li.toc-entry.toc-h3
+                    a(href='#options') Options
+                    ul
+                        li.toc-entry.toc-h4
+                            a(href='#data-attributes-for-individual-tooltips') Data attributes for individual tooltips
+                li.toc-entry.toc-h3
+                    a(href='#methods') Methods
+                    ul
+                        li.toc-entry.toc-h4
+                            a(href='#asynchronous-methods-and-transitions') Asynchronous methods and transitions
+                        li.toc-entry.toc-h4
+                            a(href='#tooltipoptions') $().tooltip(options)
+                        li.toc-entry.toc-h4
+                            a(href='#tooltipshow') .tooltip('show')
+                        li.toc-entry.toc-h4
+                            a(href='#tooltiphide') .tooltip('hide')
+                        li.toc-entry.toc-h4
+                            a(href='#tooltiptoggle') .tooltip('toggle')
+                        li.toc-entry.toc-h4
+                            a(href='#tooltipdispose') .tooltip('dispose')
+                        li.toc-entry.toc-h4
+                            a(href='#tooltipenable') .tooltip('enable')
+                        li.toc-entry.toc-h4
+                            a(href='#tooltipdisable') .tooltip('disable')
+                        li.toc-entry.toc-h4
+                            a(href='#tooltiptoggleenabled') .tooltip('toggleEnabled')
+                        li.toc-entry.toc-h4
+                            a(href='#tooltipupdate') .tooltip('update')
+                li.toc-entry.toc-h3
+                    a(href='#events') Events
+block content 
+    h1.bd-title#content Tooltips
+    p.bd-lead Documentation and examples for adding custom Bootstrap tooltips with CSS and JavaScript using CSS3 for animations and data-attributes for local title storage.
+    
+    h2#overview Overview
+    p Things to know when using the tooltip plugin:
+    ul
+        li
+            | Tooltips rely on the 3rd party library 
+            a(href='https://popper.js.org/') Popper.js
+            |  for positioning. You must include 
+            a(href='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js') popper.min.js
+            |  before bootstrap.js or use 
+            code.highlighter-rouge bootstrap.bundle.min.js
+            |  / 
+            code.highlighter-rouge bootstrap.bundle.js
+            |  which contains Popper.js in order for tooltips to work!
+        li
+            | If you’re building our JavaScript from source, it 
+            a(href='/docs/4.1/getting-started/javascript/#util')
+                | requires 
+                code.highlighter-rouge util.js
+            | .
+        li
+            | Tooltips are opt-in for performance reasons, so 
+            strong you must initialize them yourself
+            | .
+        li Tooltips with zero-length titles are never displayed.
+        li
+            | Specify 
+            code.highlighter-rouge container: 'body'
+            |  to avoid rendering problems in more complex components (like our input groups, button groups, etc).
+        li Triggering tooltips on hidden elements will not work.
+        li
+            | Tooltips for 
+            code.highlighter-rouge .disabled
+            |  or 
+            code.highlighter-rouge disabled
+            |  elements must be triggered on a wrapper element.
+        li
+            | When triggered from hyperlinks that span multiple lines, tooltips will be centered. Use 
+            code.highlighter-rouge white-space: nowrap;
+            |  on your 
+            code.highlighter-rouge &gl;a&lt;
+            | s to avoid this behavior.
+        li
+            | Tooltips must be hidden before their corresponding elements have been removed from the DOM.
+    p Got all that? Great, let’s see how they work with some examples.
+    h2#example-enable-tooltips-everywhere Example: Enable tooltips everywhere
+    p
+        | One way to initialize all tooltips on a page would be to select them by their 
+        code.highlighter-rouge data-toggle
+        |  attribute:
+
+
+    figure.highlight
+        pre
+            code.js
+                | $(function () {
+                |     $('[data-toggle="tooltip"]').tooltip()
+                | })
+
+    h2#examples Examples
+    p Hover over the links below to see tooltips:
+    .bd-example.tooltip-demo
+        p.muted
+            | Tight pants next level keffiyeh 
+            a(href='#', data-toggle='tooltip', title='Default tooltip') you probably
+            |  haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel 
+            a(href='#', data-toggle='tooltip', title='Another tooltip') have a
+            |  terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan 
+            a(href='#', data-toggle='tooltip', title='Another one here too') whatever keytar
+            | , scenester farm-to-table banksy Austin 
+            a(href='#', data-toggle='tooltip', title='The last tip!') twitter handle
+            |  freegan cred raw denim single-origin coffee viral.
+    p
+        | Hover over the buttons below to see the four tooltips directions: top, right, bottom, and left.
+    .bd-example.tooltip-demo
+        .bd-example-tooltips
+            button.btn.btn-secondary(type='button', data-toggle='tooltip', data-placement='top', title='Tooltip on top') Tooltip on top
+            button.btn.btn-secondary(type='button', data-toggle='tooltip', data-placement='right', title='Tooltip on right') Tooltip on right
+            button.btn.btn-secondary(type='button', data-toggle='tooltip', data-placement='bottom', title='Tooltip on bottom') Tooltip on bottom
+            button.btn.btn-secondary(type='button', data-toggle='tooltip', data-placement='left', title='Tooltip on left') Tooltip on left
+            button.btn.btn-secondary(type='button', data-toggle='tooltip', data-html='true', title='<em>Tooltip</em> <u>with</u> <b>HTML</b>') Tooltip with HTML
+
+    figure.highlight
+        pre
+            code.css
+                | button.btn.btn-secondary(type='button', data-toggle='tooltip', data-placement='top', title='Tooltip on top') Tooltip on top
+                | button.btn.btn-secondary(type='button', data-toggle='tooltip', data-placement='right', title='Tooltip on right') Tooltip on right
+                | button.btn.btn-secondary(type='button', data-toggle='tooltip', data-placement='bottom', title='Tooltip on bottom') Tooltip on bottom
+                | button.btn.btn-secondary(type='button', data-toggle='tooltip', data-placement='left', title='Tooltip on left') Tooltip on left
+                | button.btn.btn-secondary(type='button', data-toggle='tooltip', data-html='true', title='&lt;em&gt;Tooltip&lt;/em&gt; &lt;u&gt;with&lt;/u&gt; &lt;b&gt;HTML&lt;/b&gt;') Tooltip with HTML
+
+    p And with custom HTML added:
+    figure.highlight
+        pre
+            code.css
+                | button.btn.btn-secondary(type='button', data-toggle='tooltip', data-html='true', title='&lt;em&gt;Tooltip&lt;/em&gt; &lt;u&gt;with&lt;/u&gt; &lt;b&gt;HTML&lt;/b&gt;')
+                |     | Tooltip with HTML 
+    
+    h2#usage Usage
+    p
+        | The tooltip plugin generates content and markup on demand, and by default places tooltips after their trigger element.
+    p Trigger the tooltip via JavaScript:
+    figure.highlight
+        pre
+            code.js
+                | $('#example').tooltip(options)
+    
+    h3#markup Markup
+    p
+        | The required markup for a tooltip is only a 
+        code.highlighter-rouge data
+        |  attribute and 
+        code.highlighter-rouge title
+        |  on the HTML element you wish to have a tooltip. The generated markup of a tooltip is rather simple, though it does require a position (by default, set to 
+        code.highlighter-rouge top
+        |  by the plugin).
+    .bd-callout.bd-callout-warning
+        h5#making-tooltips-work-for-keyboard-and-assistive-technology-users Making tooltips work for keyboard and assistive technology users
+        p
+            | You should only add tooltips to HTML elements that are traditionally keyboard-focusable and interactive (such as links or form controls). Although arbitrary HTML elements (such as 
+            code.highlighter-rouge <span>
+            | s) can be made focusable by adding the 
+            code.highlighter-rouge tabindex="0"
+            |  attribute, this will add potentially annoying and confusing tab stops on non-interactive elements for keyboard users. In addition, most assistive technologies currently do not announce the tooltip in this situation.
+        p
+            | Additionally, do not rely solely on 
+            code.highlighter-rouge hover
+            |  as the trigger for your tooltip, as this will make your tooltips impossible to trigger for keyboard users.
+
+    figure.highlight
+        pre
+            code.css 
+                | // HTML to write
+                | a(href='#', data-toggle='tooltip', title='Some tooltip text!') Hover over me
+                | // Generated markup by the plugin
+                | .tooltip.bs-tooltip-top(role='tooltip')
+                |     .arrow
+                |     .tooltip-inner
+                |         | Some tooltip text!
+
+    h3#disabled-elements Disabled elements
+    p
+        | Elements with the 
+        code.highlighter-rouge disabled
+        |  attribute aren’t interactive, meaning users cannot focus, hover, or click them to trigger a tooltip (or popover). As a workaround, you’ll want to trigger the tooltip from a wrapper 
+        code.highlighter-rouge <div>
+        |  or 
+        code.highlighter-rouge <span>
+        | , ideally made keyboard-focusable using 
+        code.highlighter-rouge tabindex="0"
+        | , and override the 
+        code.highlighter-rouge pointer-events
+        |  on the disabled element.
+    .tooltip-demo
+        .bd-example
+            span.d-inline-block(tabindex='0', data-toggle='tooltip', title='Disabled tooltip')
+                button.btn.btn-primary(style='pointer-events: none;', type='button', disabled='') Disabled button
+
+    figure.highlight
+        pre
+            code.css 
+                | span.d-inline-block(tabindex='0', data-toggle='tooltip', title='Disabled tooltip')
+                |     button.btn.btn-primary(style='pointer-events: none;', type='button', disabled='') Disabled button
+    
+    h3#options Options
+    p
+        | Options can be passed via data attributes or JavaScript. For data attributes, append the option name to 
+        code.highlighter-rouge data-
+        | , as in 
+        code.highlighter-rouge data-animation=""
+        | .
+    table.table.table-bordered.table-striped
+        thead
+            tr
+                th(style='width: 100px;') Name
+                th(style='width: 100px;') Type
+                th(style='width: 50px;') Default
+                th Description
+        tbody
+            tr
+                td animation
+                td boolean
+                td true
+                td Apply a CSS fade transition to the tooltip
+            tr
+                td container
+                td string | element | false
+                td false
+                td
+                    p
+                        | Appends the tooltip to a specific element. Example: 
+                        code container: 'body'
+                        | . This option is particularly useful in that it allows you to position the tooltip in the flow of the document near the triggering element - which will prevent the tooltip from floating away from the triggering element during a window resize.
+            tr
+                td delay
+                td number | object
+                td 0
+                td
+                    p
+                        | Delay showing and hiding the tooltip (ms) - does not apply to manual trigger type
+                    p If a number is supplied, delay is applied to both hide/show
+                    p
+                        | Object structure is: 
+                        code delay: { "show": 500, "hide": 100 }
+            tr
+                td html
+                td boolean
+                td false
+                td
+                    p Allow HTML in the tooltip.
+                    p
+                        | If true, HTML tags in the tooltip's 
+                        code title
+                        |  will be rendered in the tooltip. If false, jQuery's 
+                        code text
+                        |  method will be used to insert content into the DOM.
+                    p Use text if you're worried about XSS attacks.
+            tr
+                td placement
+                td string | function
+                td 'top'
+                td
+                    p
+                        | How to position the tooltip - auto | top | bottom | left | right.
+                        br
+                        | When 
+                        code auto
+                        |  is specified, it will dynamically reorient the tooltip.
+                    p
+                        | When a function is used to determine the placement, it is called with the tooltip DOM node as its first argument and the triggering element DOM node as its second. The 
+                        code this
+                        |  context is set to the tooltip instance.
+            tr
+                td selector
+                td string | false
+                td false
+                td
+                    | If a selector is provided, tooltip objects will be delegated to the specified targets. In practice, this is used to enable dynamic HTML content to have popovers added. See 
+                    a(href='https://github.com/twbs/bootstrap/issues/4215') this
+                    |  and 
+                    a(href='https://jsbin.com/zopod/1/edit') an informative example
+                    | .
+            tr
+                td template
+                td string
+                td
+                    code
+                        | &apos;&lt;div class=&quot;tooltip&quot; role=&quot;tooltip&quot;&gt;&lt;div class=&quot;arrow&quot;&gt;&lt;/div&gt;&lt;div class=&quot;tooltip-inner&quot;&gt;&lt;/div&gt;&lt;/div&gt;&apos;
+                td
+                    p Base HTML to use when creating the tooltip.
+                    p
+                        | The tooltip's 
+                        code title
+                        |  will be injected into the 
+                        code .tooltip-inner
+                        | .
+                    p
+                        code .arrow
+                        |  will become the tooltip's arrow.
+                    p
+                        | The outermost wrapper element should have the 
+                        code .tooltip
+                        |  class and 
+                        code role="tooltip"
+                        | .
+            tr
+                td title
+                td string | element | function
+                td ''
+                td
+                    p
+                        | Default title value if 
+                        code title
+                        |  attribute isn't present.
+                    p
+                        | If a function is given, it will be called with its 
+                        code this
+                        |  reference set to the element that the tooltip is attached to.
+            tr
+                td trigger
+                td string
+                td 'hover focus'
+                td
+                    p
+                        | How tooltip is triggered - click | hover | focus | manual. You may pass multiple triggers; separate them with a space.
+                    p
+                        code 'manual'
+                        |  indicates that the tooltip will be triggered programmatically via the 
+                        code .tooltip('show')
+                        | , 
+                        code .tooltip('hide')
+                        |  and 
+                        code .tooltip('toggle')
+                        |  methods; this value cannot be combined with any other trigger.
+                    p
+                        code 'hover'
+                        |  on its own will result in tooltips that cannot be triggered via the keyboard, and should only be used if alternative methods for conveying the same information for keyboard users is present.
+            tr
+                td offset
+                td number | string
+                td 0
+                td
+                    | Offset of the tooltip relative to its target. For more information refer to Popper.js's 
+                    a(href='https://popper.js.org/popper-documentation.html#modifiers..offset.offset') offset docs
+                    | .
+            tr
+                td fallbackPlacement
+                td string | array
+                td 'flip'
+                td
+                    | Allow to specify which position Popper will use on fallback. For more information refer to
+                    | Popper.js's 
+                    a(href='https://popper.js.org/popper-documentation.html#modifiers..flip.behavior') behavior docs
+            tr
+                td boundary
+                td string | element
+                td 'scrollParent'
+                td
+                    | Overflow constraint boundary of the tooltip. Accepts the values of 
+                    code 'viewport'
+                    | , 
+                    code 'window'
+                    | , 
+                    code 'scrollParent'
+                    | , or an HTMLElement reference (JavaScript only). For more information refer to Popper.js's 
+                    a(href='https://popper.js.org/popper-documentation.html#modifiers..preventOverflow.boundariesElement') preventOverflow docs
+                    | .
+    .bd-callout.bd-callout-info
+        h4#data-attributes-for-individual-tooltips Data attributes for individual tooltips
+        p
+            | Options for individual tooltips can alternatively be specified through the use of data attributes, as explained above.
+    h3#methods Methods
+    .bd-callout.bd-callout-danger
+        h4#asynchronous-methods-and-transitions Asynchronous methods and transitions
+        p
+            | All API methods are 
+            strong asynchronous
+            |  and start a 
+            strong transition
+            | . They return to the caller as soon as the transition is started but 
+            strong before it ends
+            | . In addition, a method call on a 
+            strong transitioning component will be ignored
+            | .
+        p
+            a(href='/docs/4.1/getting-started/javascript/') See our JavaScript documentation for more information.
+    h4#tooltipoptions
+        code.highlighter-rouge $().tooltip(options)
+    p Attaches a tooltip handler to an element collection.
+    h4#tooltipshow
+        code.highlighter-rouge .tooltip('show')
+    p
+        | Reveals an element’s tooltip. 
+        strong Returns to the caller before the tooltip has actually been shown
+        |  (i.e. before the 
+        code.highlighter-rouge shown.bs.tooltip
+        |  event occurs). This is considered a “manual” triggering of the tooltip. Tooltips with zero-length titles are never displayed.
+    figure.highlight
+        pre
+            code.js 
+                | $('#element').tooltip('show')
+    h4#tooltiphide
+        code.highlighter-rouge .tooltip('hide')
+    p
+        | Hides an element’s tooltip. 
+        strong Returns to the caller before the tooltip has actually been hidden
+        |  (i.e. before the 
+        code.highlighter-rouge hidden.bs.tooltip
+        |  event occurs). This is considered a “manual” triggering of the tooltip.
+    figure.highlight
+        pre
+            code.js 
+                | $('#element').tooltip('hide')
+    h4#tooltiptoggle
+        code.highlighter-rouge .tooltip('toggle')
+    p
+        | Toggles an element’s tooltip. 
+        strong Returns to the caller before the tooltip has actually been shown or hidden
+        |  (i.e. before the 
+        code.highlighter-rouge shown.bs.tooltip
+        |  or 
+        code.highlighter-rouge hidden.bs.tooltip
+        |  event occurs). This is considered a “manual” triggering of the tooltip.
+    figure.highlight
+        pre
+            code.js 
+                | $('#element').tooltip('tooltip')
+    h4#tooltipdispose
+        code.highlighter-rouge .tooltip('dispose')
+    p
+        | Hides and destroys an element’s tooltip. Tooltips that use delegation (which are created using 
+        a(href='#options')
+            | the 
+            code.highlighter-rouge selector
+            |  option
+        | ) cannot be individually destroyed on descendant trigger elements.
+    figure.highlight
+        pre
+            code.js 
+                | $('#element').tooltip('dispose')
+    h4#tooltipenable
+        code.highlighter-rouge .tooltip('enable')
+    p
+        | Gives an element’s tooltip the ability to be shown. 
+        strong Tooltips are enabled by default.
+    figure.highlight
+        pre
+            code.js 
+                | $('#element').tooltip('enable')
+    h4#tooltipdisable
+        code.highlighter-rouge .tooltip('disable')
+    p
+        | Removes the ability for an element’s tooltip to be shown. The tooltip will only be able to be shown if it is re-enabled.
+    figure.highlight
+        pre
+            code.js 
+                | $('#element').tooltip('disable')
+    h4#tooltiptoggleenabled
+        code.highlighter-rouge .tooltip('toggleEnabled')
+    p Toggles the ability for an element’s tooltip to be shown or hidden.
+    figure.highlight
+        pre
+            code.js 
+                | $('#element').tooltip('toggleEnabled')
+    h4#tooltipupdate
+        code.highlighter-rouge .tooltip('update')
+    p Updates the position of an element’s tooltip.
+    figure.highlight
+        pre
+            code.js 
+                | $('#element').tooltip('update')
+    h3#events Events
+    table.table.table-bordered.table-striped
+        thead
+            tr
+                th(style='width: 150px;') Event Type
+                th Description
+        tbody
+            tr
+                td show.bs.tooltip
+                td
+                    | This event fires immediately when the 
+                    code show
+                    |  instance method is called.
+            tr
+                td shown.bs.tooltip
+                td
+                    | This event is fired when the tooltip has been made visible to the user (will wait for CSS transitions to complete).
+            tr
+                td hide.bs.tooltip
+                td
+                    | This event is fired immediately when the 
+                    code hide
+                    |  instance method has been called.
+            tr
+                td hidden.bs.tooltip
+                td
+                    | This event is fired when the tooltip has finished being hidden from the user (will wait for CSS transitions to complete).
+            tr
+                td inserted.bs.tooltip
+                td
+                    | This event is fired after the 
+                    code show.bs.tooltip
+                    |  event when the tooltip template has been added to the DOM.
+
+    figure.highlight
+        pre
+            code.js 
+                | $('#myTooltip').on('hidden.bs.tooltip', function () {
+                |     // do something…
+                | })

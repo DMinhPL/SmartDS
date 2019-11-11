@@ -1,0 +1,498 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'typography';
+    - title = "Layout - Typography"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href="#global-settings") Global settings
+        li.toc-entry.toc-h2
+            a(href="#headings") Headings
+            ul
+                li.toc-entry.toc-h3
+                    a(href="#customizing-headings") Customizing headings
+                li.toc-entry.toc-h2
+                    a(href="#display-headings") Display headings
+                li.toc-entry.toc-h2
+                    a(href="#lead") Lead
+                li.toc-entry.toc-h2
+                    a(href="#inline-text-elements") Inline text elements
+                li.toc-entry.toc-h2
+                    a(href="#text-utilities") Text utilities
+                li.toc-entry.toc-h2
+                    a(href="#abbreviations") Abbreviations
+                li.toc-entry.toc-h2
+                    a(href="#blockquotes") Blockquotes
+                    ul
+                        li.toc-entry.toc-h3
+                            a(href="#naming-a-source") Naming a source
+                        li.toc-entry.toc-h3
+                            a(href="#alignment") Alignment
+                li.toc-entry.toc-h2
+                    a(href="#lists") Lists
+                    ul
+                        li.toc-entry.toc-h3
+                            a(href="#unstyled") Unstyled
+                        li.toc-entry.toc-h3
+                            a(href="#inline") Inline
+                        li.toc-entry.toc-h3
+                            a(href="#description-list-alignment") Description list alignment
+                li.toc-entry.toc-h2
+                    a(href="#responsive-typography") Responsive typography
+
+block content 
+    h1.bd-title#content Typography
+    p.bd-lead Documentation and examples for Bootstrap typography, including global settings, headings, body text, lists, and more.
+
+    h2#global-settings Global settings
+    p
+        | Bootstrap sets basic global display, typography, and link styles. When more control is needed, check out the 
+        a(href='/docs/utilities/text/') textual utility classes
+        | .
+    ul
+        li
+            | Use a 
+            a(href='/docs/content/reboot/#native-font-stack') native font stack
+            |  that selects the best 
+            code.highlighter-rouge font-family
+            |  for each OS and device.
+        li
+            | For a more inclusive and accessible type scale, we assume the browser default root 
+            code.highlighter-rouge font-size
+            |  (typically 16px) so visitors can customize their browser defaults as needed.
+        li
+            | Use the 
+            code.highlighter-rouge $font-family-base
+            | , 
+            code.highlighter-rouge $font-size-base
+            | , and 
+            code.highlighter-rouge $line-height-base
+            |  attributes as our typographic base applied to the 
+            code.highlighter-rouge &lt;body&gt;
+            | .
+        li
+            | Set the global link color via 
+            code.highlighter-rouge $link-color
+            |  and apply link underlines only on 
+            code.highlighter-rouge :hover
+            | .
+        li
+            | Use 
+            code.highlighter-rouge $body-bg
+            |  to set a 
+            code.highlighter-rouge background-color
+            |  on the 
+            code.highlighter-rouge &lg;body&gt;
+            |  (
+            code.highlighter-rouge #fff
+            |  by default).
+    p
+        | These styles can be found within 
+        code.highlighter-rouge _reboot.scss
+        | , and the global variables are defined in 
+        code.highlighter-rouge _variables.scss
+        | . Make sure to set 
+        code.highlighter-rouge $font-size-base
+        |  in 
+        code.highlighter-rouge rem
+        | .
+    h2#headings Headings
+    p
+        | All HTML headings, 
+        code.highlighter-rouge h1
+        |  through 
+        code.highlighter-rouge h6
+        | , are available.
+    table
+        thead
+            tr
+                th Heading
+                th Example
+        tbody
+            tr
+                td
+                    p
+                        code.highlighter-rouge h1
+                td
+                    span.h1 h1. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge h2
+                td
+                    span.h2 h2. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge h3
+                td
+                    span.h3 h3. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge h4
+                td
+                    span.h4 h4. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge h4
+                td
+                    span.h5 h5. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge h6
+                td
+                    span.h6 h6. Bootstrap heading
+    figure.highlight
+        pre
+            code.css.
+                h1 h1. Bootstrap heading
+                h2 h2. Bootstrap heading
+                h3 h3. Bootstrap heading
+                h4 h4. Bootstrap heading
+                h5 h5. Bootstrap heading
+                h6 h6. Bootstrap heading
+    p
+        code.highlighter-rouge .h1
+        |  through 
+        code.highlighter-rouge .h6
+        |  classes are also available, for when you want to match the font styling of a heading but cannot use the associated HTML element.
+    .bd-example
+        p.h1 h1. Bootstrap heading
+        p.h2 h2. Bootstrap heading
+        p.h3 h3. Bootstrap heading
+        p.h4 h4. Bootstrap heading
+        p.h5 h5. Bootstrap heading
+        p.h6 h6. Bootstrap heading
+    figure.highlight
+        pre
+            code.css.
+                p.h1 h1. Bootstrap heading
+                p.h2 h2. Bootstrap heading
+                p.h3 h3. Bootstrap heading
+                p.h4 h4. Bootstrap heading
+                p.h5 h5. Bootstrap heading
+                p.h6 h6. Bootstrap heading
+
+    h3#customizing-headings Customizing headings
+    p
+        | Use the included utility classes to recreate the small secondary heading text from Bootstrap 3.
+    .bd-example
+        span.h3
+            | Fancy display heading
+            small.text-muted With faded secondary text
+    figure.highlight
+        pre
+            code.js.
+                span.h3
+                    | Fancy display heading
+                    small.text-muted With faded secondary text
+    h2#display-headings Display headings
+    p
+        | Traditional heading elements are designed to work best in the meat of your page content. When you need a heading to stand out, consider using a 
+        strong display heading
+        | —a larger, slightly more opinionated heading style.
+    .bd-example.bd-example-type
+        table.table
+            tbody
+                tr
+                    td
+                        span.display-1 Display 1
+                tr
+                    td
+                        span.display-2 Display 2
+                tr
+                    td
+                        span.display-3 Display 3
+                tr
+                    td
+                        span.display-4 Display 4
+    figure.highlight
+        pre
+            code.css.
+                h1.display-1 Display 1
+                h1.display-2 Display 2
+                h1.display-3 Display 3
+                h1.display-4 Display 4
+    h2#lead Lead
+    p
+        | Make a paragraph stand out by adding 
+        code.highlighter-rouge .lead
+        | .
+    .bd-example
+        p.lead
+            | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+    figure.highlight
+        pre
+            code.js.
+                p.lead
+                    | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+    h2#inline-text-elements Inline text elements
+    p Styling for common inline HTML5 elements.
+    .bd-example
+        p
+            | You can use the mark tag to 
+            mark highlight
+            |  text.
+        p: del This line of text is meant to be treated as deleted text.
+        p: s This line of text is meant to be treated as no longer accurate.
+        p: ins This line of text is meant to be treated as an addition to the document.
+        p: u This line of text will render as underlined
+        p: small This line of text is meant to be treated as fine print.
+        p: strong This line rendered as bold text.
+        p: em This line rendered as italicized text.
+    figure.highlight
+        pre
+            code.js.
+                p
+                    | You can use the mark tag to 
+                    mark highlight
+                    |  text.
+                p: del This line of text is meant to be treated as deleted text.
+                p: s This line of text is meant to be treated as no longer accurate.
+                p: ins This line of text is meant to be treated as an addition to the document.
+                p: u This line of text will render as underlined
+                p: small This line of text is meant to be treated as fine print.
+                p: strong This line rendered as bold text.
+                p: em This line rendered as italicized text.
+    p
+        code.highlighter-rouge .mark
+        |  and 
+        code.highlighter-rouge .small
+        |  classes are also available to apply the same styles as 
+        code.highlighter-rouge mark
+        |  and 
+        code.highlighter-rouge small
+        |  while avoiding any unwanted semantic implications that the tags would bring.
+    p
+        | While not shown above, feel free to use 
+        code.highlighter-rouge b
+        |  and 
+        code.highlighter-rouge i
+        |  in HTML5. 
+        code.highlighter-rouge b
+        |  is meant to highlight words or phrases without conveying additional importance while 
+        code.highlighter-rouge i
+        |  is mostly for voice, technical terms, etc.
+    h2#text-utilities Text utilities
+    p
+        | Change text alignment, transform, style, weight, and color with our 
+        a(href='/docs/utilities/text/') text utilities
+        |  and 
+        a(href='/docs/utilities/colors/') color utilities
+        | .
+    h2#abbreviations Abbreviations
+    p
+        | Stylized implementation of HTML’s 
+        code.highlighter-rouge abbr
+        |  element for abbreviations and acronyms to show the expanded version on hover. Abbreviations have a default underline and gain a help cursor to provide additional context on hover and to users of assistive technologies.
+    p
+        | Add 
+        code.highlighter-rouge .initialism
+        |  to an abbreviation for a slightly smaller font-size.
+    .bd-example
+        p: abbr(title='attribute') attr
+        p: abbr.initialism(title='HyperText Markup Language') HTML
+    figure.highlight
+        pre
+            code.js.
+                p: abbr(title='attribute') attr
+                p: abbr.initialism(title='HyperText Markup Language') HTML
+
+    h2#blockquotes Blockquotes
+    p
+        | For quoting blocks of content from another source within your document. Wrap 
+        code.highlighter-rouge blockquote.blockquote
+        |  around any 
+        abbr(title='HyperText Markup Language') HTML
+        |  as the quote.
+    .bd-example
+        +blockquote('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.')
+    figure.highlight
+        pre
+            code.js.
+                +blockquote('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.')
+    h3#naming-a-source Naming a source
+    p
+        | Add a 
+        code.highlighter-rouge footer.blockquote-footer
+        |  for identifying the source. Wrap the name of the source work in 
+        code.highlighter-rouge cite
+        | .
+    .bd-example
+        +blockquote('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.','Someone famous in','Source Title')
+    figure.highlight
+        pre
+            code.js.
+                +blockquote('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.','Someone famous in','Source Title')
+    h3#alignment Alignment
+    p Use text utilities as needed to change the alignment of your blockquote.
+    .bd-example
+        +blockquote-center('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.','Someone famous in','Source Title')
+    figure.highlight
+        pre
+            code.js.
+                +blockquote-center('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.','Someone famous in','Source Title')
+    .bd-example
+        +blockquote-right('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.','Someone famous in','Source Title')
+    figure.highlight
+        pre
+            code.js.
+                +blockquote-right('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.','Someone famous in','Source Title')
+    h2#lists Lists
+    h3#unstyled Unstyled
+    p
+        | Remove the default 
+        code.highlighter-rouge list-style
+        |  and left margin on list items (immediate children only). 
+        strong This only applies to immediate children list items
+        | , meaning you will need to add the class for any nested lists as well.
+    .bd-example
+        +list('ul','list-unstyled',[
+            {text:'Lorem ipsum dolor sit amet'},
+            {text:'Consectetur adipiscing elit'},
+            {text:'Integer molestie lorem at massa'},
+            {text:'Facilisis in pretium nisl aliquet'}
+        ])
+
+        +list('ul','list-unstyled')
+            +li('Lorem ipsum dolor sit amet')
+            +li('Consectetur adipiscing elit')
+            +li('Integer molestie lorem at massa')
+            +li('Facilisis in pretium nisl aliquet')
+            +li('Nulla volutpat aliquam velit')
+                +list('ul')
+                    +li('Phasellus iaculis neque')
+                    +li('Purus sodales ultricies')
+                    +li('Vestibulum laoreet porttitor sem')
+                    +li('Ac tristique libero volutpat at')
+            +li('Faucibus porta lacus fringilla vel')
+            +li('Aenean sit amet erat nunc')
+            +li('get porttitor lorem')
+    figure.highlight
+        pre
+            code.js.
+                +list('ul','list-unstyled',[
+                    {text:'Lorem ipsum dolor sit amet'},
+                    {text:'Consectetur adipiscing elit'},
+                    {text:'Integer molestie lorem at massa'},
+                    {text:'Facilisis in pretium nisl aliquet'}
+                ])
+
+                +list('ul','list-unstyled')
+                    +li('Lorem ipsum dolor sit amet')
+                    +li('Consectetur adipiscing elit')
+                    +li('Integer molestie lorem at massa')
+                    +li('Facilisis in pretium nisl aliquet')
+                    +li('Nulla volutpat aliquam velit')
+                        +list('ul')
+                            +li('Phasellus iaculis neque')
+                            +li('Purus sodales ultricies')
+                            +li('Vestibulum laoreet porttitor sem')
+                            +li('Ac tristique libero volutpat at')
+                    +li('Faucibus porta lacus fringilla vel')
+                    +li('Aenean sit amet erat nunc')
+                    +li('get porttitor lorem')
+    h3#inline Inline
+    p
+        | Remove a list’s bullets and apply some light 
+        code.highlighter-rouge margin
+        |  with a combination of two classes, 
+        code.highlighter-rouge .list-inline
+        |  and 
+        code.highlighter-rouge .list-inline-item
+        | .
+    .bd-example
+        +list('ul','list-inline',[
+            {text:'Lorem ipsum',style:'list-inline-item'},
+            {text:'Phasellus iaculis',style:'list-inline-item'},
+            {text:'Nulla volutpat',style:'list-inline-item'},
+        ])
+    figure.highlight
+        pre
+            code.js.
+                +list('ul','list-inline',[
+                    {text:'Lorem ipsum',style:'list-inline-item'},
+                    {text:'Phasellus iaculis',style:'list-inline-item'},
+                    {text:'Nulla volutpat',style:'list-inline-item'},
+                ])
+    h3#description-list-alignment Description list alignment
+    p
+        | Align terms and descriptions horizontally by using our grid system’s predefined classes (or semantic mixins). For longer terms, you can optionally add a 
+        code.highlighter-rouge .text-truncate
+        |  class to truncate the text with an ellipsis.
+    .bd-example
+        dl.row
+            dt.col-sm-3 Description lists
+            dd.col-sm-9 A description list is perfect for defining terms.
+            dt.col-sm-3 Euismod
+            dd.col-sm-9
+                p Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+                p Donec id elit non mi porta gravida at eget metus.
+            dt.col-sm-3 Malesuada porta
+            dd.col-sm-9 Etiam porta sem malesuada magna mollis euismod.
+            dt.col-sm-3.text-truncate Truncated term is truncated
+            dd.col-sm-9
+                | Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+            dt.col-sm-3 Nesting
+            dd.col-sm-9
+                dl.row
+                    dt.col-sm-4 Nested definition list
+                    dd.col-sm-8 Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.
+    figure.highlight
+        pre
+            code.css.
+                dl.row
+                    dt.col-sm-3 Description lists
+                    dd.col-sm-9 A description list is perfect for defining terms.
+                    dt.col-sm-3 Euismod
+                    dd.col-sm-9
+                        p Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+                        p Donec id elit non mi porta gravida at eget metus.
+                    dt.col-sm-3 Malesuada porta
+                    dd.col-sm-9 Etiam porta sem malesuada magna mollis euismod.
+                    dt.col-sm-3.text-truncate Truncated term is truncated
+                    dd.col-sm-9
+                        | Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                    dt.col-sm-3 Nesting
+                    dd.col-sm-9
+                        dl.row
+                            dt.col-sm-4 Nested definition list
+                            dd.col-sm-8 Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.
+    h2#responsive-typography Responsive typography
+    p
+        em Responsive typography
+        |  refers to scaling text and components by simply adjusting the root element’s 
+        code.highlighter-rouge font-size
+        |  within a series of media queries. Bootstrap doesn’t do this for you, but it’s fairly easy to add if you need it.
+    p
+        | Here’s an example of it in practice. Choose whatever 
+        code.highlighter-rouge font-size
+        | s and media queries you wish.
+    figure.highlight
+        pre
+            code.js.
+                html {
+                    font-size: 1rem;
+                }
+
+                @include media-breakpoint-up(sm) {
+                    html {
+                        font-size: 1.2rem;
+                    }
+                }
+
+                @include media-breakpoint-up(md) {
+                    html {
+                        font-size: 1.4rem;
+                    }
+                }
+
+                @include media-breakpoint-up(lg) {
+                    html {
+                        font-size: 1.6rem;
+                    }
+                }

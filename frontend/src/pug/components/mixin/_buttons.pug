@@ -1,0 +1,278 @@
+//- button mixins
+//- buttons
+//- @mixin +btn(caption,style,size,type,_block,active,disabled)
+//- @param {string} caption: content off button
+//- @param {string} style: style of button - primary, secondary, success, danger, warning, info, light, dark, link ( outline-)
+//- @param {string} size: size of button - xs, sm, lg, xl
+//- @param {string} type: type of button - button, submit, reset
+//- @param {boolean} block: block level buttons
+//- @param {boolean} active: creat active level buttons
+//- @param {boolean} disabled: creat disable level buttons
+mixin btn(caption,style,size,_type,_block,_active,_disabled,element,url)
+	- var _class = ''
+	if(typeof style!=='undefined' && style!=='')
+		- _class = _class + `btn-${style} `
+
+	if(typeof size!=='undefined' && size!=='')
+		- _class = _class + `btn-${size} `
+
+	if(typeof _block!=='undefined' && _block==true)
+		- _class = _class + `btn-block`
+
+	- _type = (typeof _type!=='undefined' && _type!=='') ? _type : 'button'
+	- _disabled = (typeof _disabled!=='undefined' && _disabled==true) ? _disabled : false
+
+	if(typeof _active!=='undefined' && _active==true)
+		- _class = _class + ` active`
+	else
+		- var _active = false
+
+	- var element = typeof element != "undefined" ? element : 'button'
+	- element = element !=="" ? element : 'button'
+
+	if(typeof url!=='undefined' && element=='a')
+		a.btn(class=_class,aria-pressed=_active,disabled=_disabled,href=url,title=caption)!= caption
+	else
+		if(element=='input')
+			input.btn(class=_class aria-pressed=_active type=_type disabled=_disabled value=caption)
+		else
+			#{element}.btn(class=_class type=_type aria-pressed=_active disabled=_disabled)!= caption
+
+//- Button color
+mixin btn-primary(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"primary",size,_type,_block,_active,_disabled)
+mixin btn-secondary(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"secondary",size,_type,_block,_active,_disabled)
+mixin btn-success(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"success",size,_type,_block,_active,_disabled)
+mixin btn-danger(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"danger",size,_type,_block,_active,_disabled)
+mixin btn-warning(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"warning",size,_type,_block,_active,_disabled)
+mixin btn-info(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"info",size,_type,_block,_active,_disabled)
+mixin btn-light(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"light",size,_type,_block,_active,_disabled)
+mixin btn-dark(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"dark",size,_type,_block,_active,_disabled)
+mixin btn-link(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"link",size,_type,_block,_active,_disabled)
+
+//- Large buttons	
+mixin btn-lg(caption,style,_type,_block,_active,_disabled)
+	+btn(caption,style,'lg',_type,_block,_active,_disabled)
+
+mixin btn-lg-primary(caption,_type,_block,_active,_disabled)
+	+btn(caption,"primary","lg",_type,_block,_active,_disabled)
+mixin btn-lg-secondary(caption,_type,_block,_active,_disabled)
+	+btn(caption,"secondary","lg",_type,_block,_active,_disabled)
+mixin btn-lg-success(caption,_type,_block,_active,_disabled)
+	+btn(caption,"success","lg",_type,_block,_active,_disabled)
+mixin btn-lg-danger(caption,_type,_block,_active,_disabled)
+	+btn(caption,"danger","lg",_type,_block,_active,_disabled)
+mixin btn-lg-warning(caption,_type,_block,_active,_disabled)
+	+btn(caption,"warning","lg",_type,_block,_active,_disabled)
+mixin btn-lg-info(caption,_type,_block,_active,_disabled)
+	+btn(caption,"info","lg",_type,_block,_active,_disabled)
+mixin btn-lg-light(caption,_type,_block,_active,_disabled)
+	+btn(caption,"light","lg",_type,_block,_active,_disabled)
+mixin btn-lg-dark(caption,_type,_block,_active,_disabled)
+	+btn(caption,"dark","lg",_type,_block,_active,_disabled)
+mixin btn-lg-link(caption,_type,_block,_active,_disabled)
+	+btn(caption,"link","lg",_type,_block,_active,_disabled)
+
+//- Small buttons	
+mixin btn-sm(caption,style,_type,_block,_active,_disabled)
+	+btn(caption,style,'sm',_type,_block,_active,_disabled)
+
+mixin btn-sm-primary(caption,_type,_block,_active,_disabled)
+	+btn(caption,"primary","sm",_type,_block,_active,_disabled)
+mixin btn-sm-secondary(caption,_type,_block,_active,_disabled)
+	+btn(caption,"secondary","sm",_type,_block,_active,_disabled)
+mixin btn-sm-success(caption,_type,_block,_active,_disabled)
+	+btn(caption,"success","sm",_type,_block,_active,_disabled)
+mixin btn-sm-danger(caption,_type,_block,_active,_disabled)
+	+btn(caption,"danger","sm",_type,_block,_active,_disabled)
+mixin btn-sm-warning(caption,_type,_block,_active,_disabled)
+	+btn(caption,"warning","sm",_type,_block,_active,_disabled)
+mixin btn-sm-info(caption,_type,_block,_active,_disabled)
+	+btn(caption,"info","sm",_type,_block,_active,_disabled)
+mixin btn-sm-light(caption,_type,_block,_active,_disabled)
+	+btn(caption,"light","sm",_type,_block,_active,_disabled)
+mixin btn-sm-dark(caption,_type,_block,_active,_disabled)
+	+btn(caption,"dark","sm",_type,_block,_active,_disabled)
+mixin btn-sm-link(caption,_type,_block,_active,_disabled)
+	+btn(caption,"link","sm",_type,_block,_active,_disabled)
+
+//- anchor buttons
+mixin a-btn(caption,url,style,size,_block,_active,_disabled)
+	+btn(caption,style,size,'',_block,_active,_disabled,"a",url)
+
+mixin a-btn-primary(caption,url,style,size,_block,_active,_disabled)
+	+a-btn(caption,url,'primary',size,_block,_active,_disabled)
+mixin a-btn-secondary(caption,url,style,size,_block,_active,_disabled)
+	+a-btn(caption,url,'secondary',size,_block,_active,_disabled)
+mixin a-btn-success(caption,url,style,size,_block,_active,_disabled)
+	+a-btn(caption,url,'success',size,_block,_active,_disabled)
+mixin a-btn-danger(caption,url,style,size,_block,_active,_disabled)
+	+a-btn(caption,url,'danger',size,_block,_active,_disabled)
+mixin a-btn-warning(caption,url,style,size,_block,_active,_disabled)
+	+a-btn(caption,url,'warning',size,_block,_active,_disabled)
+mixin a-btn-info(caption,url,style,size,_block,_active,_disabled)
+	+a-btn(caption,url,'info',size,_block,_active,_disabled)
+mixin a-btn-light(caption,url,style,size,_block,_active,_disabled)
+	+a-btn(caption,url,'light',size,_block,_active,_disabled)
+mixin a-btn-dark(caption,url,style,size,_block,_active,_disabled)
+	+a-btn(caption,url,'dark',size,_block,_active,_disabled)
+mixin a-btn-link(caption,url,style,size,_block,_active,_disabled)
+	+a-btn(caption,url,'link',size,_block,_active,_disabled)
+
+	
+mixin a-btn-lg(caption,url,style,_block,_active,_disabled)
+	+a-btn(caption,url,style,'lg',_block,_active,_disabled)
+
+mixin a-btn-lg-primary(caption,url,_block,_active,_disabled)
+	+a-btn-lg(caption,url,'primary',_block,_active,_disabled)
+mixin a-btn-lg-secondary(caption,url,_block,_active,_disabled)
+	+a-btn-lg(caption,url,'secondary',_block,_active,_disabled)
+mixin a-btn-lg-success(caption,url,_block,_active,_disabled)
+	+a-btn-lg(caption,url,'success',_block,_active,_disabled)
+mixin a-btn-lg-danger(caption,url,_block,_active,_disabled)
+	+a-btn-lg(caption,url,'danger',_block,_active,_disabled)
+mixin a-btn-lg-warning(caption,url,_block,_active,_disabled)
+	+a-btn-lg(caption,url,'warning',_block,_active,_disabled)
+mixin a-btn-lg-info(caption,url,_block,_active,_disabled)
+	+a-btn-lg(caption,url,'info',_block,_active,_disabled)
+mixin a-btn-lg-light(caption,url,_block,_active,_disabled)
+	+a-btn-lg(caption,url,'light',_block,_active,_disabled)
+mixin a-btn-lg-dark(caption,url,_block,_active,_disabled)
+	+a-btn-lg(caption,url,'dark',_block,_active,_disabled)
+mixin a-btn-lg-link(caption,url,_block,_active,_disabled)
+	+a-btn-lg(caption,url,'link',_block,_active,_disabled)
+
+
+mixin a-btn-sm(caption,url,style,_block,_active,_disabled)
+	+a-btn(caption,url,style,'sm',_block,_active,_disabled)
+
+mixin a-btn-sm-primary(caption,url,_block,_active,_disabled)
+	+a-btn-sm(caption,url,'primary',_block,_active,_disabled)
+mixin a-btn-sm-secondary(caption,url,_block,_active,_disabled)
+	+a-btn-sm(caption,url,'secondary',_block,_active,_disabled)
+mixin a-btn-sm-success(caption,url,_block,_active,_disabled)
+	+a-btn-sm(caption,url,'success',_block,_active,_disabled)
+mixin a-btn-sm-danger(caption,url,_block,_active,_disabled)
+	+a-btn-sm(caption,url,'danger',_block,_active,_disabled)
+mixin a-btn-sm-warning(caption,url,_block,_active,_disabled)
+	+a-btn-sm(caption,url,'warning',_block,_active,_disabled)
+mixin a-btn-sm-info(caption,url,_block,_active,_disabled)
+	+a-btn-sm(caption,url,'info',_block,_active,_disabled)
+mixin a-btn-sm-light(caption,url,_block,_active,_disabled)
+	+a-btn-sm(caption,url,'light',_block,_active,_disabled)
+mixin a-btn-sm-dark(caption,url,_block,_active,_disabled)
+	+a-btn-sm(caption,url,'dark',_block,_active,_disabled)
+mixin a-btn-sm-link(caption,url,_block,_active,_disabled)
+	+a-btn-sm(caption,url,'link',_block,_active,_disabled)
+
+//- input buttons
+mixin input-btn(caption,style,size,type,_block,_active,_disabled)
+	+btn(caption,style,size,type,_block,_active,_disabled,"input")
+
+mixin input-btn-primary(caption,size,type,_block,_active,_disabled)
+	+input-btn(caption,"primary",size,type,_block,_active,_disabled)
+mixin input-btn-secondary(caption,size,type,_block,_active,_disabled)
+	+input-btn(caption,"secondary",size,type,_block,_active,_disabled)
+mixin input-btn-success(caption,size,type,_block,_active,_disabled)
+	+input-btn(caption,"success",size,type,_block,_active,_disabled)
+mixin input-btn-danger(caption,size,type,_block,_active,_disabled)
+	+input-btn(caption,"danger",size,type,_block,_active,_disabled)
+mixin input-btn-warning(caption,size,type,_block,_active,_disabled)
+	+input-btn(caption,"warning",size,type,_block,_active,_disabled)
+mixin input-btn-info(caption,size,type,_block,_active,_disabled)
+	+input-btn(caption,"info",size,type,_block,_active,_disabled)
+mixin input-btn-light(caption,size,type,_block,_active,_disabled)
+	+input-btn(caption,"light",size,type,_block,_active,_disabled)
+mixin input-btn-dark(caption,size,type,_block,_active,_disabled)
+	+input-btn(caption,"dark",size,type,_block,_active,_disabled)
+mixin input-btn-link(caption,size,type,_block,_active,_disabled)
+	+input-btn(caption,"link",size,type,_block,_active,_disabled)
+
+//- Button color
+mixin btn-submit-primary(caption,size,_block,_active,_disabled)
+	+btn(caption,"primary",size,'submit',_block,_active,_disabled)
+mixin btn-submit-secondary(caption,size,_block,_active,_disabled)
+	+btn(caption,"secondary",size,'submit',_block,_active,_disabled)
+mixin btn-submit-success(caption,size,_block,_active,_disabled)
+	+btn(caption,"success",size,'submit',_block,_active,_disabled)
+mixin btn-submit-danger(caption,size,_block,_active,_disabled)
+	+btn(caption,"danger",size,'submit',_block,_active,_disabled)
+mixin btn-submit-warning(caption,size,_block,_active,_disabled)
+	+btn(caption,"warning",size,'submit',_block,_active,_disabled)
+mixin btn-submit-info(caption,size,_block,_active,_disabled)
+	+btn(caption,"info",size,'submit',_block,_active,_disabled)
+mixin btn-submit-light(caption,size,_block,_active,_disabled)
+	+btn(caption,"light",size,'submit',_block,_active,_disabled)
+mixin btn-submit-dark(caption,size,_block,_active,_disabled)
+	+btn(caption,"dark",size,'submit',_block,_active,_disabled)
+mixin btn-submit-link(caption,size,_block,_active,_disabled)
+	+btn(caption,"link",size,'submit',_block,_active,_disabled)
+
+
+//- Button outline
+mixin btn-outline-primary(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"outline-primary",size,_type,_block,_active,_disabled)
+mixin btn-outline-secondary(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"outline-secondary",size,_type,_block,_active,_disabled)
+mixin btn-outline-success(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"outline-success",size,_type,_block,_active,_disabled)
+mixin btn-outline-danger(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"outline-danger",size,_type,_block,_active,_disabled)
+mixin btn-outline-warning(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"outline-warning",size,_type,_block,_active,_disabled)
+mixin btn-outline-info(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"outline-info",size,_type,_block,_active,_disabled)
+mixin btn-outline-light(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"outline-light",size,_type,_block,_active,_disabled)
+mixin btn-outline-dark(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"outline-dark",size,_type,_block,_active,_disabled)
+mixin btn-outline-link(caption,size,_type,_block,_active,_disabled)
+	+btn(caption,"outline-link",size,_type,_block,_active,_disabled)
+
+//- Button outline sm
+mixin btn-outline-sm-primary(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-primary",'sm',_type,_block,_active,_disabled)
+mixin btn-outline-sm-secondary(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-secondary",'sm',_type,_block,_active,_disabled)
+mixin btn-outline-sm-success(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-success",'sm',_type,_block,_active,_disabled)
+mixin btn-outline-sm-danger(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-danger",'sm',_type,_block,_active,_disabled)
+mixin btn-outline-sm-warning(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-warning",'sm',_type,_block,_active,_disabled)
+mixin btn-outline-sm-info(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-info",'sm',_type,_block,_active,_disabled)
+mixin btn-outline-sm-light(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-light",'sm',_type,_block,_active,_disabled)
+mixin btn-outline-sm-dark(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-dark",'sm',_type,_block,_active,_disabled)
+mixin btn-outline-sm-link(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-link",'sm',_type,_block,_active,_disabled)
+
+//- Button outline lg
+mixin btn-outline-lg-primary(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-primary",'lg',_type,_block,_active,_disabled)
+mixin btn-outline-lg-secondary(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-secondary",'lg',_type,_block,_active,_disabled)
+mixin btn-outline-lg-success(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-success",'lg',_type,_block,_active,_disabled)
+mixin btn-outline-lg-danger(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-danger",'lg',_type,_block,_active,_disabled)
+mixin btn-outline-lg-warning(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-warning",'lg',_type,_block,_active,_disabled)
+mixin btn-outline-lg-info(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-info",'lg',_type,_block,_active,_disabled)
+mixin btn-outline-lg-light(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-light",'lg',_type,_block,_active,_disabled)
+mixin btn-outline-lg-dark(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-dark",'lg',_type,_block,_active,_disabled)
+mixin btn-outline-lg-link(caption,_type,_block,_active,_disabled)
+	+btn(caption,"outline-link",'lg',_type,_block,_active,_disabled)

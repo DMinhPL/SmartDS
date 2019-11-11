@@ -1,0 +1,2615 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'waypoint';
+    - title = "Component - Waypoint"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#getting-started') Getting Started
+            ul 
+                li.toc-entry.toc-h3
+                    a(href='#a-basic-waypoint') A Basic Waypoint
+                li.toc-entry.toc-h3
+                    a(href='#directions') Directions
+                li.toc-entry.toc-h3
+                    a(href='#offsets') Offsets
+                li.toc-entry.toc-h3
+                    a(href='#this') this?
+                li.toc-entry.toc-h3
+                    a(href='#now-what') Now What?
+        li.toc-entry.toc-h2
+            a(href='#jquery-zepto') jQuery/Zepto
+            ul 
+                li.toc-entry.toc-h3
+                    a(href='#fnwaypoint') $.fn.waypoint
+                li.toc-entry.toc-h3
+                    a(href='#context-option') Context Option
+        
+        li.toc-entry.toc-h2
+            a(href='#waypoint-class-api') Waypoint Class - API
+            ul 
+                li.toc-entry.toc-h3
+                    a(href='#option') Option
+                    ul 
+                        li.toc-entry.toc-h4: a(href='#context-option-api') context option
+                        li.toc-entry.toc-h4: a(href='#continuous-option') continuous option
+                        li.toc-entry.toc-h4: a(href='#enabled-option') enabled option
+                        li.toc-entry.toc-h4: a(href='#group-option') group option
+                        li.toc-entry.toc-h4: a(href='#handler-option') handler option
+                        li.toc-entry.toc-h4: a(href='#horizontal-option') horizontal option
+                        li.toc-entry.toc-h4: a(href='#offset-option') offset option
+
+                li.toc-entry.toc-h3
+                    a(href='#instance-methods') Instance Methods
+                    ul 
+                        li.toc-entry.toc-h4: a(href='#waypoint-destroy') Waypoint.destroy()
+                        li.toc-entry.toc-h4: a(href='#waypoint-disable') Waypoint.disable()
+                        li.toc-entry.toc-h4: a(href='#waypoint-enable') Waypoint.enable()
+                        li.toc-entry.toc-h4: a(href='#waypoint-next') Waypoint.next()
+                        li.toc-entry.toc-h4: a(href='#waypoint-previous') Waypoint.previous()
+
+                li.toc-entry.toc-h3
+                    a(href='#class-methods') Class Methods
+                    ul 
+                        li.toc-entry.toc-h4: a(href='#waypoint-destroyall') Waypoint.destroyAll()
+                        li.toc-entry.toc-h4: a(href='#waypoint-disableall') Waypoint.disableAll()
+                        li.toc-entry.toc-h4: a(href='#waypoint-enableall') Waypoint.enableAll()
+                        li.toc-entry.toc-h4: a(href='#waypoint-refreshall') Waypoint.refreshAll()
+                        li.toc-entry.toc-h4: a(href='#waypoint-viewportheight') Waypoint.viewportHeight()
+                        li.toc-entry.toc-h4: a(href='#waypoint-viewportwidth') Waypoint.viewportWidth()
+
+        li.toc-entry.toc-h2
+            a(href='#waypoint-context-class-api') Waypoint.Context Class - API
+            ul 
+                li.toc-entry.toc-h3
+                    a(href='#instance-methods-2') Instance Methods
+                    ul 
+                        li.toc-entry.toc-h4: a(href='#context-destroy') context.destroy()
+                        li.toc-entry.toc-h4: a(href='#context-refresh') context.refresh()
+                li.toc-entry.toc-h3
+                    a(href='#class-methods-2') Class Methods
+                        li.toc-entry.toc-h4: a(href='#context-findbyelement') Context.findByElement(element)
+        
+        li.toc-entry.toc-h2
+            a(href='#waypoint-group-class-api') Waypoint.Group Class - API
+            ul 
+                li.toc-entry.toc-h3
+                    a(href='#instance-methods-3') Instance Methods
+                    ul 
+                        li.toc-entry.toc-h4: a(href='#group-first') group.first()
+                        li.toc-entry.toc-h4: a(href='#group-last') group.last())
+
+        li.toc-entry.toc-h2
+            a(href='#shortcuts') Shortcuts
+            ul 
+                li.toc-entry.toc-h3
+                    a(href='#sticky-elements') Sticky Elements
+                    ul 
+                        li.toc-entry.toc-h4: a(href='#sticky-options') Options
+                        li.toc-entry.toc-h4: a(href='#sticky-destroy') sticky.destroy()
+                li.toc-entry.toc-h3
+                    a(href='#infinite-scroll') Infinite Scroll
+                    ul 
+                        li.toc-entry.toc-h4: a(href='#infinite-options') Options
+
+
+block content 
+    h1.bd-title#content Waypoint
+    p.bd-lead The file input is the most gnarly of the bunch and requires additional JavaScript if you’d like to hook them up with functional Choose file… and selected file name text.
+    #getting-started
+        h2 Getting Started
+        p
+            | The first thing you'll need to do is 
+            a(href='https://github.com/imakewebthings/waypoints/zipball/latest') download Waypoints
+            | . The 
+            code lib/
+            |  directory contains builds for jQuery and Zepto, as well as a version with no framework dependencies. Choose the one that fits your needs and include it.
+        #a-basic-waypoint
+            h3 A Basic Waypoint
+            p
+                | With Waypoints included, we now have access to a global 
+                code.highlighter-rouge Waypoint
+                |  class. We create waypoints by instantiating this class. When creating a new 
+                code.highlighter-rouge Waypoint
+                |  we must pass it an options object. There are many properties you can set on this options object, but two of them are required, 
+                code.highlighter-rouge element
+                | , and 
+                code.highlighter-rouge handler
+                | .
+
+            figure.highlight
+                pre
+                    code.js.
+                        var waypoint1 = new Waypoint({
+                            element: document.getElementById('a-basic-waypoint'),
+                            handler: function() {
+                                $.notify({ message: 'Basic waypoint triggered' },{ type: 'success'});
+                            }
+                        })
+            p
+                | The 
+                code.highlighter-rouge element
+                |  tells Waypoints which DOM element's position to observe during scroll, and 
+                code.highlighter-rouge handler
+                |  is the function that will trigger when the top of that element hits the top of the viewport.
+        #directions
+            h3 Directions
+            p You may notice the basic example above triggers when we scroll through the waypoint both downwards and upwards. What if we want to perform different actions when scrolling up, or limit our handler to one direction? When a waypoint is triggered, the handler function is passed a 
+                code.highlighter-rouge direction 
+                | parameter.
+
+            figure.highlight
+                pre
+                    code.js.
+                        var waypoint2 = new Waypoint({
+                            element: document.getElementById('directions'),
+                            handler: function(direction) {
+                                $.notify({ message: 'Direction: ' + direction },{ type: 'success'});
+                            }
+                        })
+        #offsets
+            h3 Offsets
+            p By default a waypoint triggers when the top of the element hits the top of the window. What if we want it to trigger when the element is 20px from the top instead?
+            figure.highlight
+                pre
+                    code.js.
+                        var waypoint3 = new Waypoint({
+                            element: document.getElementById('offsets'),
+                            handler: function(direction) {
+                                $.notify({ message: 'I am 20px from the top of the window' },{ type: 'success'});
+                            },
+                            offset: 20 
+                        })
+
+            p
+                | The 
+                code.highlighter-rouge offset
+                |  option can take a variety of different values to help us control where a waypoint is triggered. For more information, check out the 
+                a(href='/waypoints/api/offset-option') offset option documentation
+                | .
+        #this
+            h3 this?
+            p
+                | When we're inside the handler function the 
+                code this
+                |  keyword is a reference to the Waypoint instance. We can use this object to access all the properties and methods in the 
+                a(href='/waypoints/api/waypoint' target="blank") API
+                | . One of the most useful properties is 
+                code element
+                | , the waypoint's DOM element.
+            
+            figure.highlight
+                pre
+                    code.js.
+                        var waypoint4 = new Waypoint({
+                            element: document.getElementById('this'),
+                            handler: function(direction) {
+                                $.notify({ message: this.element.id + ' triggers at ' + this.triggerPoint },{ type: 'success'});
+                            },
+                            offset: '75%'
+                        })
+        #now-what
+            h3 Now What?
+            p
+                | This has been a very brief guide to the basics of Waypoints. The 
+                a(href='#api') API documentation
+                |  goes into more depth about all of the options, methods, and properties available to us. In addition to being a  reference for more technically savvy developers, each of the API pages acts as a guide for how to use that feature. The docs are intended to be useful for beginners and experts alike.
+
+    #jquery-zepto.mt-5
+        h2 jQuery/Zepto
+        p Prior to version 3.0, Waypoints was strictly a jQuery plugin. You'll notice most of the examples on this site use code that is compatible with the new no-framework build of Waypoints using class instantiation and generally available DOM querying methods, like this:
+        figure.highlight#new-operator
+            pre
+                code.js.
+                    var waypoint = new Waypoint({
+                        element: document.getElementById('new-operator'),
+                        handler: function(direction) {
+                            $.notify({ message: this.id + ' hit' },{ type: 'success'});
+                        }
+                    })
+        p If you're using the jQuery or Zepto builds, you can still use the no-framework approaches featured in the documentation, but those builds also provide extensions specific to the framework.
+        #fnwaypoint
+            h3 $.fn.waypoint
+            p
+                | A 
+                code waypoint
+                |  method is added to 
+                code $.fn
+                | , restoring the old 2.x syntax. Instead of passing in an 
+                code element
+                |  option, a waypoint is created for each of the matched elements.
+            
+            figure.highlight#options-only
+                pre
+                    code.js.
+                        var waypoints = $('#options-only').waypoint({
+                            handler: function(direction) {
+                                notify(this.element.id + ' hit')
+                                $.notify({ message: this.element.id + ' hit' },{ type: 'success'});
+                            }
+                        };)
+            
+            p You may also pass the handler option as the first argument to 
+                code waypoint
+                | .
+            
+            figure.highlight#handler-first
+                pre
+                    code.js.
+                        var waypoints = $('#handler-first').waypoint(function(direction) {
+                            $.notify({ message: this.element.id + ' hit 25% from top of window' },{ type: 'success'});
+                        }, {
+                            offset: '25%'
+                        });
+            
+            p In the example above, the 
+                code element 
+                | option is replaced with the element matched by the selector, and the handler option is provided as the first paramter. Because there are no other required options, the second options argument becomes optional. In this case, all other options would be the defaults.
+
+            figure.highlight#handler-only
+                pre
+                    code.js.
+                        var waypoints = $('#handler-only').waypoint(function(direction) {
+                            notify(this.element.id + ' hit') 
+                            $.notify({ message: this.element.id + ' hit' },{ type: 'success'});
+                        });
+            p
+                | There is one major difference between using the 
+                code $.fn.waypoint
+                |  method with versions 2.0 and 3.0. In 2.0, the same jQuery object was returned for chaining purposes, as is common among core jQuery methods. In 3.0, an array of 
+                code Waypoint
+                |  instances is returned.
+
+        #context-option
+            h3 Context Option
+            p
+                | The 
+                a(href='#context-option-api') context option
+                |  expects its value to be an 
+                code HTMLElement
+                |  (or 
+                code window
+                | .)
+
+            .bd-example
+                #overflow-scroll(style='overflow: auto;height: 300px;background: rgba(0, 0, 0, 0.1);')
+                    #context-example(style="background: #555;color: #fff;height: 400px;padding: 10px;margin-top: 150px;box-shadow: 0 0 0 5px rgba(104, 164, 43, 0.5);") I am a waypoint with a custom context, the "#overflow-scroll" div.
+
+            figure.highlight
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('context-example'),
+                            handler: function() {
+                                $.notify({ message: 'Context example triggered' },{ type: 'success'});
+                            },
+                            context: document.getElementById('overflow-scroll')
+                        })
+
+            p
+                | With jQuery and Zepto builds, you may also pass a CSS selector string. If you do, Waypoints will find the context element using 
+                a(href='#closest') closest
+                |  with that selector.
+            
+            .bd-example
+                #overflow-scroll-offset(style='overflow: auto;height: 300px;background: rgba(0, 0, 0, 0.1);')
+                    #context-example-offset(style="background: #555;color: #fff;height: 400px;padding: 10px;margin-top: 250px;box-shadow: 0 0 0 5px rgba(104, 164, 43, 0.5);") I am a waypoint with a custom context and a 50% offset.
+
+            figure.highlight
+                pre
+                    code.js.
+                        var waypoints = $('#context-example-offset').waypoint({
+                            handler: function() {
+                                $.notify({ message: 'Hit midpoint of my context' },{ type: 'success'});
+                            },
+                            context: '#overflow-scroll-offset',
+                            offset: '50%'
+                        })
+
+    #waypoint-class-api.mt-5
+        h2 Waypoint Class
+        div
+            p
+                | Waypoints are created by instantiating this class. How you instantiate a waypoint depends on which build you use (jQuery, Zepto, or no-framework dependency.) All builds support instantiation using 
+                code new
+                |  on the globally exposed 
+                code Waypoint
+                |  class.
+
+            h5 new Waypoint(options)
+            .bd-example
+                p: strong Parameters
+                p
+                    code options
+                    | : A JavaScript object containing Waypoints options. This options object is required. It must contain 
+                    code element
+                    |  and 
+                    code handler
+                    |  properties.
+
+            figure.highlight#new-operator-api
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('new-operator-api'),
+                            handler: function(direction) {
+                                $.notify({ message: this.id + ' hit' },{ type: 'success'});
+                            }
+                        })
+            p
+                | If you're using the jQuery or Zepto builds, extensions for those frameworks are provided to match the framework style. A 
+                code waypoint
+                |  method is exposed on the jQuery/Zepto prototypes.
+
+            br 
+            h5 $.fn.waypoint(options)
+            .bd-example
+                p: strong Parameters
+                p
+                    code options
+                    | : A JavaScript object containing Waypoints options. 
+                    code handler
+                    |  is the only required property.
+                p: strong Returns
+                p
+                    | Array of 
+                    code Waypoint
+                    |  instances.
+
+            figure.highlight#options-only-api
+                pre
+                    code.js.
+                        var waypoints = $('#options-only').waypoint({
+                            handler: function(direction) {
+                                $.notify({ message: this.element.id + ' hit' },{ type: 'success'});
+                            }
+                        })
+            p
+                | In the example above, 
+                code waypoints
+                |  will be an array of Waypoint instances, one for each of the elements matching the selector. In this case, an array containing only one waypoint using the lone 
+                code #options-only
+                |  element. Notice that the 
+                code element
+                |  option is no longer needed with the jQuery or Zepto builds, as elements are provided by the matched selector.
+
+            p
+                | The jQuery and Zepto builds also allow you to pass the handler as the first argument to 
+                code waypoint
+                | .
+
+            br 
+            h5 $.fn.waypoint(handler, options)
+            .bd-example
+                p: strong Parameters
+                p
+                    code handler
+                    | : The 
+                    a(href='../handler-option') handler
+                    |  option function.
+                    br 
+                    code options
+                    | : An optional object containing Waypoints options.
+
+                p: strong Returns
+                p
+                    | Array of 
+                    code Waypoint
+                    |  instances.
+
+            figure.highlight#handler-first-api
+                pre
+                    code.js.
+                        var waypoints = $('#handler-first-api').waypoint(function(direction) {
+                            notify(this.element.id + ' hit 25% from top of window') 
+                            }, {
+                            offset: '25%'
+                        })
+
+            p
+                | In this method signature, because the matched selector removes the need for the 
+                code element
+                |  option, and the first parameter takes care of the 
+                code handler
+                |  option, there are no remaining required options properties and you can omit the 
+                code options
+                |  parameter entirely if you want default behavior.
+            
+            figure.highlight#handler-only-api
+                pre
+                    code.js.
+                        var waypoints = $('#handler-only-api').waypoint(function(direction) {
+                            $.notify({ message: this.element.id + ' hit' },{ type: 'success'});
+                        })
+
+            br 
+            h5#context-property Properties
+            p In the API navigation you'll find links to individual pages covering, in depth, the various options you can pass to the Waypoint constructor, as well as instance and class methods. A Waypoint instance also has a number of properties. Let's take a look at some of the more useful ones.
+
+            p: strong adapter
+            p
+                | This property gives you the instance of the 
+                a(href='../../guides/adapters') adapter
+                |  wrapped around the DOM element of this waypoint. Most Waypoints users should use the 
+                a(href='#element-property') element property
+                |  to access this element, but 
+                code adapter
+                |  is useful for developers writing Waypoints extensions or scripts that are intended to be used across all the different framework builds of Waypoints.
+
+            figure.highlight#adapter-property-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('adapter-property-example'),
+                            handler: function(direction) {
+                                notify('Using jQuery Adapter: ' + !!this.adapter.$element)
+                            },
+                            offset: '25%'
+                        })
+            
+            p: strong context
+            p
+                | This property gives you the instance of 
+                a(href='../context') Waypoint.Context
+                |  that the waypoint belongs to.
+
+            figure.highlight#context-property-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('context-property-example'),
+                            handler: function(direction) {
+                                $.notify({ message: 'Context: ' + this.context.element },{ type: 'success'});
+                            },
+                            offset: '25%'
+                        })
+
+            p: strong element
+            p Easily the most useful property of a waypoint is its DOM element. With this property we gain access to that element within the handler.
+
+            figure.highlight#element-property-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('element-property-example'),
+                            handler: function(direction) {
+                                $.notify({ message: 'Waypoint element id: ' + this.element.id },{ type: 'success'});
+                            },
+                            offset: '25%'
+                        })
+
+            p#group-property
+                strong group
+            p This property gives you the instance of Waypoint.Group that the waypoint belongs to. This property should be the only way you access a group.
+            figure.highlight#group-property-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('group-property-example'),
+                            handler: function(direction) {
+                                $.notify({ message: 'Group: ' + this.group.name },{ type: 'success'});
+                            },
+                            offset: '25%'
+                        })
+
+            p: strong options
+            p
+                | The 
+                code options
+                |  property of a waypoint is the result of merging the default options object with the options object passed in on instantiation. The properties of this object have little practical use inside a handler, but inspecting this object may be useful in debugging to ensure that the waypoint received the options you intended.
+            figure.highlight#options-property-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('options-property-example'),
+                            handler: function(direction) {
+                                notify('Offset option: ' + this.options.offset)
+                            },
+                            offset: '50%'
+                        })
+
+            p: strong triggerPoint
+            p
+                | This property is the result of the most recent 
+                a(href='../offset-option') offset
+                |  calculation. It is the scroll value, in pixels, where the handler triggers. In the simplest example, when the 
+                code offset
+                |  is the default of 0, 
+                code triggerPoint
+                |  will be identical to the element's 
+                a(href='http://api.jquery.com/offset/', target='_blank') offset top
+                | .
+            p
+                | You should never set the 
+                code triggerPoint
+                |  directly on a waypoint, but it is a useful property to inspect when debugging why a waypoint may not be triggering at the location you expect.
+
+            figure.highlight#trigger-point-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('trigger-point-example'),
+                            handler: function(direction) {
+                                notify('Trigger point: ' + this.triggerPoint)
+                            },
+                            offset: 'bottom-in-view'
+                        })
+   
+        #option.mt-5
+            h3 Option
+
+            #context-option-api.mt-4
+                h4 Option option
+
+                .bd-example
+                    p
+                        strong Default
+                        br 
+                        code window
+                    p
+                        strong Possible Values
+                        br 
+                        | Any element that is an ancestor of the waypoint element.
+
+                p The 
+                    code context
+                    | option defines which scrollable element the waypoint acts within. This is perhaps easiest to explain by example, so let's look at one. Here we have the following HTML, CSS, and JavaScript:</p>
+
+            
+                figure.highlight
+                    pre
+                        code.html.
+                            #overflow-scroll
+                                #context-example I am a waypoint with a custom context, the "#overflow-scroll" div.
+                figure.highlight
+                    pre
+                        code.css.
+                            #overflow-scroll {
+                                overflow:scroll;
+                                height:300px;
+                                background:#aaa;
+                            }
+
+                            #context-example {
+                                background:#555;
+                                color:#fff;
+                                height:600px;
+                                margin-top:150px;
+                            }
+
+                figure.highlight
+                    pre
+                        code.js.
+                            var waypoint = new Waypoint({
+                                element: document.getElementById('context-example'),
+                                handler: function() {
+                                    $.notify({ message: 'Context example triggered' },{ type: 'success'});
+                                },
+                                context: document.getElementById('overflow-scroll')
+                            })
+
+                p This results in…
+
+                .bd-example
+                    #overflow-scroll-api(style='overflow: auto;height: 300px;background: rgba(0, 0, 0, 0.1);')
+                        #context-example-api(style="background: #555;color: #fff;height: 400px;padding: 10px;margin-top: 150px;box-shadow: 0 0 0 5px rgba(104, 164, 43, 0.5);") I am a waypoint with a custom context, the "#overflow-scroll" div.
+
+                
+                .bd-example
+                    #overflow-scroll-offset-api(style='overflow: auto;height: 300px;background: rgba(0, 0, 0, 0.1);')
+                        #context-example-offset-api(style="background: #555;color: #fff;height: 400px;padding: 10px;margin-top: 250px;box-shadow: 0 0 0 5px rgba(104, 164, 43, 0.5);") I am a waypoint with a custom context and a 50% offset.
+
+                p
+                    | If you're using the jQuery or Zepto builds of Waypoints, you can pass a CSS selector string as the 
+                    code context
+                    |  option, instead of an HTMLElement, and Waypoints will call 
+                    a(href='http://api.jquery.com/closest/', target='_blank') closest
+                    |  to find the context element.
+
+                figure.highlight
+                    pre
+                        code.js.
+                            $('.some-element').waypoint(function(direction) {
+                                // do things
+                            }, {
+                                context: '.scrollable-element'
+                            })
+
+            #continuous-option.mt-4
+                h4 continuous option
+                .bd-example
+                    p
+                        strong Default
+                        br 
+                        code true
+                    p
+                        strong Possible Values
+                        br 
+                        code true 
+                        | or 
+                        code false
+                        | .
+
+                p The continuous option applies when a single scroll event would trigger multiple waypoints. A common case for this is if you're linking to a page fragment further down the page. In this first example, we have waypoints with continuous set to the default of true. If you click the link to jump past them you'll see they all trigger in order.
+
+                figure.highlight
+                    pre
+                        code.js.
+                            var continuousElements = document.getElementsByClassName('continuous-true')
+                            for (var i = 0; i &lt; continuousElements.length; i++) {
+                                new Waypoint({
+                                    element: continuousElements[i],
+                                    handler: function() {
+                                        $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                                    }
+                                })
+                            }
+                .my-3
+                    +a-btn-primary('Jump Past Continuous Waypoints','#after-continuous')
+                - var n = 1;
+                while n < 6
+                    .continuous-true.waypoint= 'Continuous ' + n++
+                
+                p#after-continuous.mt-4
+                | If we set all of these waypoints to 
+                code continuous: false
+                |  and make the same jump you'll see only the last waypoint is triggered.
+
+                figure.highlight
+                    pre
+                        code.js.
+                            var discreteElements = document.getElementsByClassName('continuous-false')
+                            for (var i = 0; i &lt; discreteElements.length; i++) {
+                                new Waypoint({
+                                    element: discreteElements[i],
+                                    handler: function() {
+                                        $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                                    },
+                                    continuous: false
+                                })
+                            }
+
+                .my-3
+                    +a-btn-primary('Jump Past Non-Continuous Waypoints','#after-discrete')
+                - var n = 1;
+                while n < 6
+                    .continuous-false.waypoint= 'Non-Continuous ' + n++
+
+                p#after-discrete Continuous is a property that is evaluated in the context of a waypoint's group. That is, if you cross multiple waypoints and they all have continuous set to false, but belong to different groups, they will all still fire. The last waypoint for each group is triggered. In the example below we have two different waypoint groups, both containing all waypoints with continuous false. You'll see the last waypoint from each group fires when making the jump.
+
+                figure.highlight
+                    pre
+                        code.js.
+                            var leftElements = document.getElementsByClassName('continuous-group-left')
+                            for (var i = 0; i &lt; leftElements.length; i++) {
+                                new Waypoint({
+                                    element: leftElements[i],
+                                    handler: function() {
+                                        $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                                    },
+                                    continuous: false
+                                })
+                            }
+
+                            var rightElements = document.getElementsByClassName('continuous-group-right')
+                            for (var i = 0; i &lt; rightElements.length; i++) {
+                                new Waypoint({
+                                    element: rightElements[i],
+                                    handler: function() {
+                                        $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                                    },
+                                    continuous: false
+                                })
+                            }
+                .my-3
+                    +a-btn-primary('Jump Past Waypoint Groups','#after-group')
+                
+                .row
+                    .col-12.col-sm-6
+                        - var n = 1;
+                        while n < 6
+                            .continuous-group-left.waypoint= 'Non-Continuous Left ' + n++
+                    .col-12.col-sm-6
+                        - var n = 1;
+                        while n < 6
+                            .continuous-group-right.waypoint= 'Non-Continuous Right ' + n++
+
+                p#after-group
+                    | It's easy to think about continuous in the following way: If we cross a bunch of waypoints in one scroll, only trigger the last one. This can be the case if every waypoint has continuous set to false, but it isn't exactly what's happening. Continuous is a property of an individual waypoint, and whether that waypoint is triggered is dependent only on its own continuous setting and not that of other triggered waypoints. The more accurate way to think of continuous is: 
+                    strong
+                        | If this waypoint was crossed and its continuous setting is false, only trigger its handler if it was the last waypoint crossed in its group.
+
+                p That's a dense bunch of text for a simple example. Here we have a bunch of waypoints with continuous false, except for two in the middle with continuous true. You'll notice the jump causes the last non-continuous waypoint to fire, as well as the continuous waypoints in the middle.
+
+                figure.highlight
+                    pre
+                        code.js.
+                            var continuousElements = document.getElementsByClassName('continuous-mix-true')
+                            for (var i = 0; i &lt; continuousElements.length; i++) {
+                                new Waypoint({
+                                    element: continuousElements[i],
+                                    handler: function() {
+                                        $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                                    },
+                                    offset: 'bottom-in-view'
+                                })
+                            }
+
+                            var discreteElements = document.getElementsByClassName('continuous-mix-false')
+                            for (var i = 0; i &lt; discreteElements.length; i++) {
+                                new Waypoint({
+                                    element: discreteElements[i],
+                                    handler: function() {
+                                        $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                                    },
+                                    offset: 'bottom-in-view',
+                                    continuous: false
+                                })
+                            }
+                
+                .my-3
+                    +a-btn-primary('Jump Past Mixed Waypoints','#after-mix')
+                
+                .row
+                    .col-12.col-sm-6
+                        - var n = 1;
+                        while n < 6
+                            if ( n=== 3)
+                                .continuous-mix-true.waypoint= 'Mix ' + n++ + ': Continuous'
+                            else
+                                .continuous-mix-false.waypoint= 'Mix ' + n++ + ': Non-Continuous'
+                #after-mix
+
+            #enabled-option.mt-4
+                h4 enabled option
+                .bd-example
+                    p
+                        strong Default
+                        br 
+                        code true
+                    p
+                        strong Possible Values
+                        br 
+                        code true 
+                        | or 
+                        code false
+                        | .
+
+                p
+                    | Setting enabled to false is almost the same as calling 
+                    a(href='../disable') disable
+                    |  after creation, with one key difference. When a waypoint is created, one of the steps in the process is to check if the waypoint has already been passed in the down direction. If it has, the waypoint handler is immediately triggered. However, if 
+                    code enabled: false
+                    |  is set in the options, even that initial check will not occur. Notice one of the following waypoints triggers on page load, and the other does not.
+
+                #disabled-after.waypoint.disabled
+                    figure.highlight
+                        pre
+                            code.js.
+                                var waypoint = new Waypoint({
+                                    element: document.getElementById('disabled-after'),
+                                    handler: function() {
+                                        $.notify({ message: 'Disabled after creation' },{ type: 'success'});
+                                    },
+                                    offset: 99999 // big enough to be crossed already
+                                })
+                                waypoint.disable()
+
+                #enabled-false.waypoint.disabled   
+                    figure.highlight
+                        pre
+                            code.js.
+                                var waypoint = new Waypoint({
+                                element: document.getElementById('enabled-false'),
+                                    handler: function() {
+                                        $.notify({ message: 'Enabled option false' },{ type: 'success'});
+                                    },
+                                    enabled: false,
+                                    offset: 99999 // big enough to be crossed already
+                                })
+
+            #group-option.mt-4
+                h4 group option
+                .bd-example
+                    p
+                        strong Default
+                        br 
+                        code 'default'
+                    p
+                        strong Possible Values
+                        br 
+                        | Any string.
+                p
+                    | The group option identifies which 
+                    a(href='../group') group
+                    |  the waypoint belongs to. In most cases you will not want or need to set this option, and all waypoints will be part of the 
+                    code 'default'
+                    |  group. Setting this option to any other string will create custom groups.
+                p
+                    | Group functionality is covered in detail on the 
+                    a(href='../group') Group class
+                    |  page, so head over there for more information.
+            
+            #handler-option.mt-4
+                h4 handler option
+                .bd-example
+                    p
+                        strong Default
+                        br 
+                        | A no-op function, 
+                        code function() {}
+                        | .
+                    p
+                        strong Possible Values
+                        br 
+                        | Any function.
+                p
+                    | The handler option is the whole point of Waypoints. This is the function that executes when a waypoint is crossed. This function is passed one parameter, 
+                    code direction
+                    | . If you are scrolling down and cross the waypoint, 
+                    code direction
+                    |  will equal 
+                    code 'down'
+                    | . If you are scrolling up, it will equal 
+                    code 'up'
+                    | .
+
+                figure.highlight#handler-example
+                    pre
+                        code.js.
+                            var waypoint = new Waypoint({
+                                element: document.getElementById('handler-example'),
+                                handler: function(direction) {
+                                    $.notify({ message: 'Handler triggered in ' + direction + ' direction' },{ type: 'success'});
+                                },
+                                offset: 'bottom-in-view'
+                            })
+                p
+                    | If you're using a 
+                    a(href='#horizontal-option') horizontal
+                    |  waypoint, the direction parameter is set to either 
+                    code 'right'
+                    |  or 
+                    code 'left'
+                    | .
+
+                figure.highlight
+                    pre
+                        code.js.
+                            var waypoint = new Waypoint({
+                                element: document.getElementById('handler-horizontal'),
+                                handler: function(direction) {
+                                    $.notify({ message: 'Horizontal triggered in ' + direction + ' direction' },{ type: 'success'});
+                                },
+                                context: document.getElementById('overflow-scroll-horizontal'),
+                                horizontal: true
+                            })
+
+                #overflow-scroll-horizontal(style="overflow: auto;height: 300px;background: rgba(0, 0, 0, 0.1);")
+                    #handler-horizontal.waypoint(style="width: 1500px;height: 100%;padding: 10px;margin-left: 150px;background: #555;color: #fff;") Horizontal
+
+            #horizontal-option.mt-4
+                h4 horizontal option
+                .bd-example
+                    p
+                        strong Default
+                        code false
+                    p
+                        strong Possible Values
+                        br 
+                        code true 
+                        | or 
+                        code false
+
+                p
+                    | By default, everything in Waypoints land is happening on the vertical axis. 
+                    a(href='#offset-option') Offsets
+                    |  are calculated with regard to the 
+                    em top
+                    |  of the element versus the 
+                    em top
+                    |  of its 
+                    a(href='#context-option-api') context
+                    | , handlers are triggered in response to vertical scrolls, and the 
+                    code direction
+                    |  parameter passed to that handler is either 
+                    code 'down'
+                    |  or 
+                    code 'up'
+                    | .
+
+                p
+                    | When horizontal is set to true, all of this changes to the horizontal axis. Offsets are calculated between the 
+                    em left
+                    |  of the element and the 
+                    em left
+                    |  of the context, and the direction is either set to 
+                    code 'right'
+                    |  or 
+                    code 'left'
+                    | .
+
+                p
+                    | Let's look at the simplest example. Here we'll use a custom context, just to make it easier on this site's design:
+
+                figure.highlight
+                    pre
+                        code.pug.
+                            #overflow-scroll-horizontal
+                                #horizontal-waypoint Horizontal
+                
+                figure.highlight
+                    pre
+                        code.pug.
+                            var waypoint = new Waypoint({
+                                element: document.getElementById('horizontal-waypoint'),
+                                handler: function(direction) {
+                                    $.notify({ message: 'Horizontal waypoint triggered in the ' + direction + ' direction' },{ type: 'success'});
+                                },
+                                context: document.getElementById('overflow-scroll-horizontal'),
+                                horizontal: true
+                            })
+                
+                #overflow-scroll-horizontal-2.mb-5(style="overflow: auto;height: 300px;background: rgba(0, 0, 0, 0.1);")
+                    #horizontal-waypoint-2.waypoint(style="width: 1500px;height: 100%;padding: 10px;margin-left: 150px;background: #555;color: #fff;") Horizontal
+
+                p
+                    | Vertical waypoints have a special possible offset shortcut value, 
+                    code 'bottom-in-view'
+                    | . Horizontal waypoints have an analog, 
+                    code 'right-in-view'
+                    | .
+
+            #offset-option.mt-4
+                h4 offset option
+                .bd-example
+                    p
+                        strong Default
+                        br 
+                        code 0
+                    p
+                        strong Possible Values
+                        br 
+                    p
+                        a(href="#number") number
+                        span.ml-4.d-block A number of pixels.
+                    p
+                        a(href="#percentage") percentage string
+                        span.ml-4.d-block 
+                            | Ex: 
+                            code '50%'. 
+                            | A percentage of the viewport's height.
+                    p
+                        a(href="#function-offset") function
+                        span.ml-4.d-block The function must return a number of pixels, as if you were using a number offset. The function is re-evaluated whenever a trigger point is recalculated, allowing for changes in layout.
+
+                    p
+                        a(href="#bottom-in-view-offset") 'bottom-in-view' string
+                        span.ml-4.d-block This is a shortcut, an alias for a function offset that will trigger the handler when the bottom of the element hits the bottom of the viewport.
+                    p
+                        a(href="#right-in-view") 'right-in-view' string
+                        span.ml-4.d-block This is a shortcut, an alias for a function offset that will trigger the handler when the right of the element hits the right of the viewport. This is only useful in conjunction with the 
+                            a(href="#horizontal-option") horizontal option.
+                p
+                    | After the 
+                    a(href='#handler-option') handler
+                    | , the 
+                    code offset
+                    |  is probably the most important and used option. By default, the handler is triggered when the top of an element hits the top of the viewport. The offset changes the location of that trigger point. This option accepts several different types of values. Let's look at each of them.
+                #number
+                    h5 Number Offset
+                    p
+                        | A number offset represents the number of pixels from the top of the viewport where the handler should trigger. The default, 
+                        code 0
+                        | , means the handler triggers when the top of the element hits the top of the viewport. If we set this to 
+                        code 25
+                        | , it will trigger when the top of the element is 25px from the top of the window.
+
+                    figure.highlight#number-offset
+                        pre
+                            code.js.
+                                var waypoint = new Waypoint({
+                                    element: document.getElementById('number-offset'),
+                                    handler: function(direction) {
+                                        $.notify({ message: '25px from top' },{ type: 'success'});
+                                    },
+                                    offset: 25
+                                })
+
+                    p
+                        | Number offsets can be negative. An offset of 
+                        code -25
+                        |  triggers the handler when the top of the element is 25px 
+                        em above
+                        |  the top of the viewport, out of sight.
+
+                    figure.highlight#number-offset-negative
+                        pre
+                            code.js.
+                                var waypoint = new Waypoint({
+                                    element: document.getElementById('number-offset-negative'),
+                                    handler: function(direction) {
+                                        $.notify({ message: '25px past the top' },{ type: 'success'});
+                                    },
+                                    offset: -25
+                                })
+                #percentage
+                    h5 Percentage Offset
+                    p
+                        | A percentage offset refers to a percentage of the window's height. An offet of 
+                        code '50%'
+                        |  will trigger when the top of the element is 50% of the way from the top of the window, or simply put, hits the middle of the window.
+
+                    figure.highlight#percentage-offset
+                        pre
+                            code.js.
+                                var waypoint = new Waypoint({
+                                    element: document.getElementById('percentage-offset'),
+                                    handler: function(direction) {
+                                        $.notify({ message: '50% from the top' },{ type: 'success'});
+                                    },
+                                    offset: '50%'
+                                })
+
+                    p
+                        | Just like number offsets, percentages can be negative. Also like number offsets, negatives indicate the top of the element is a certain percentage of the window height 
+                        em beyond
+                        |  the top of the viewport.
+                    figure.highlight#percentage-offset-negative
+                        pre
+                            code.js.
+                                var waypoint = new Waypoint({
+                                    element: document.getElementById('percentage-offset-negative'),
+                                    handler: function(direction) {
+                                        $.notify({ message: '50% past the top' },{ type: 'success'});
+                                    },
+                                    offset: '-50%'
+                                })
+                #function-offset
+                    h5 Function Offset
+                    p Function offsets allow for dynamic, complex, creative offsets that depend on runtime values. Let's say we had a waypoint that we wanted to trigger when the bottom of the element hit the top of the window. Let's also say that element has a height of 100px. Easy enough:
+
+                    figure.highlight
+                        pre
+                            code.js.
+                                offset: -100
+                    p But what if we didn't know the height of the element? Maybe it contains user controlled content and could be any height. We might be tempted to do this:
+                    figure.highlight
+                        pre
+                            code.js.
+                                offset: -myElement.clientHeight
+                    p This may work, but what if the height of the element changes during a user's time browsing? Perhaps they resized their browser and the element is now taller. If we used the offset above, the waypoint's trigger point would not adjust. This is where function offsets come in.
+                    figure.highlight
+                        pre
+                            code.js.
+                                var waypoint = new Waypoint({
+                                    element: document.getElementById('function-offset'),
+                                    handler: function(direction) {
+                                        $.notify({ message: 'Bottom of element hit top of viewport' },{ type: 'success'});
+                                    },
+                                    offset: function() {
+                                        return -this.element.clientHeight
+                                    }
+                                })
+                    p
+                        | This offset function will now stay up to date with the element's height as the browser resizes. This is because resizing the browser triggers a 
+                        a(href='#refresh-all') refresh all
+                        | , which forces the recalculation of every waypoint's trigger point. Trigger points are 
+                        strong only
+                        |  calculated during a refresh, which occurs when a new waypoint is created, the browser is resized, or a refresh method is manually called. If you change the layout of your page or manipulate the DOM in a way that may effect a waypoint's trigger point, you should call refresh manually.
+                #bottom-in-view-offset
+                    h5 bottom-in-view Offset
+                    p
+                        | One of the most common needs when using Waypoints is to detect when the entire element is in view, or more precisely, when the bottom of the element hits the bottom of the window. Because it's so common, a shortcut string is included, 
+                        code 'bottom-in-view'
+                        | .
+
+                    figure.highlight#bottom-in-view-example
+                        pre
+                            code.js.
+                                var waypoint = new Waypoint({
+                                    element: document.getElementById('bottom-in-view-example'),
+                                    handler: function(direction) {
+                                        $.notify({ message: 'Bottom of element hit bottom of viewport' },{ type: 'success'});
+                                    },
+                                    offset: 'bottom-in-view'
+                                })
+                #right-in-view
+                    h5 bottom-in-view Offset
+                    p
+                        code 'right-in-view'
+                        |  is the horizontal analog to the 
+                        code 'bottom-in-view'
+                        |  alias. It is a shortcut for a function offset, and triggers when the right of the element hits the right edge of the viewport. Here we'll use a custom 
+                        a(href='#context-option-api') context
+                        | , just to make it easier on this site's design:
+
+                    figure.highlight
+                        pre
+                            code.html.
+                                #right-in-view-offset-wrap
+                                    #right-in-view-offset
+                    figure.highlight
+                        pre
+                            code.js.
+                                var waypoint = new Waypoint({
+                                    element: document.getElementById('right-in-view-offset'),
+                                    handler: function(direction) {
+                                        $.notify({ message: 'right-in-view waypoint triggered' },{ type: 'success'});
+                                    },
+                                    context: document.getElementById('right-in-view-offset-wrap'),
+                                    horizontal: true,
+                                    offset: 'right-in-view'
+                                })
+                    #right-in-view-offset-wrap.my-5(style="overflow: auto;height: 300px;background: rgba(0, 0, 0, 0.1);")
+                        #right-in-view-offset.waypoint(style="width: 1500px;height: 100%;padding: 10px;margin-left: 150px;background: #555;color: #fff;") right-in-view offset
+
+                    p As you can see in the above example, the offset is calculated in relation to the bounding box of the scrollable context element. This is true of all the different possible offset value types.
+
+        #instance-methods.mt-5 
+            h3 Instance Methods
+
+            #waypoint-destroy 
+                h4 waypoint.destroy()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        | The same Waypoint instance, allowing chained method calls.
+                
+                p Destroys the waypoint, preventing the handler from triggering ever again.
+
+                figure.highlight#destroy-example
+                    pre
+                        code.js.
+                            var waypointDestroy = new Waypoint({
+                                element: document.getElementById('destroy-example'),
+                                handler: function(direction) {
+                                    $.notify({ message: 'I am still alive' },{ type: 'success'});
+                                },
+                                offset: 'bottom-in-view'
+                            })
+
+                            $('button.destroy').on('click', function() {
+                                waypointDestroy.destroy()
+                            })                
+                    +btn-primary('Destroy',' destroy')
+                
+                p
+                    | Previous versions of Waypoints included an option, 
+                    code triggerOnce
+                    | , which would destroy a waypoint after the handler was triggered the first time. That option has been removed in favor of manually calling 
+                    code .destroy()
+                    |  at the end of the handler.
+                
+                figure.highlight#destroy-example
+                    pre
+                        code.js.
+                            var waypoint = new Waypoint({
+                                element: document.getElementById('trigger-once-example'),
+                                    handler: function(direction) {
+                                        $.notify({ message: 'Triggered once, now destroyed' },{ type: 'success'});
+                                        this.destroy()
+                                    },
+                                    offset: 'bottom-in-view'
+                                })
+
+            #waypoint-disable 
+                h4 waypoint.disable()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        | The same Waypoint instance, allowing chained method calls.
+                p Disables the waypoint, preventing the handler function from triggering.
+                p
+                    | If you wish to re-enable the waypoint you can call 
+                    a(href='#waypoint-enable') enable
+                    | . If a waypoint is crossed while it is disabled those triggers do not accumulate and fire when renabled. They are lost. This is the point of disabling.
+                
+                figure.highlight#disable-enable-example
+                    pre
+                        code.js.
+                            var waypointDE = new Waypoint({
+                                element: document.getElementById('disable-enable-example'),
+                                handler: function(direction) {
+                                    $.notify({ message: 'I am enabled' },{ type: 'success'});
+                                },
+                                offset: 'bottom-in-view'
+                            })
+
+                            $('button.disable').on('click', function() {
+                                waypointDE.disable()
+                            })
+
+                            $('button.enable').on('click', function() {
+                                waypointDE.enable()
+                            })
+                    
+                    .button-group
+                        +btn-primary('Enable',' enable')
+                        +btn-warning('Disable',' disable')
+
+            #waypoint-enable 
+                h4 waypoint.enable()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        | The same Waypoint instance, allowing chained method calls.
+                p Enables the waypoint, allowing the handler function to trigger.
+                p
+                    | By default, waypoints are enabled and calling this function will do nothing. However, if you previously disabled a waypoint by calling the 
+                    a(href='#waypoint-disable') disable method
+                    |  or passing 
+                    code enabled: false
+                    |  as an option when creating the waypoint, calling this method will renable the waypoint. A disabled waypoint's handler is not triggered when it is crossed. If the waypoint was crossed while it was disabled those triggers do not accumulate and fire when renabled. They are lost. This is the point of disabling.
+                
+            #waypoint-next
+                h4 waypoint.next()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        | The next waypoint in this waypoint's 
+                        a(href='#group') group
+                        | . If this method is called on the last waypoint in a group, 
+                        code null
+                        |  is returned instead.
+                
+                p
+                    | When you're inside a waypoint handler, it is sometimes useful to know what the previous or next waypoint is in relation to the current one being triggered. The 
+                    code next
+                    |  and 
+                    code previous
+                    |  functions servce that purpose.
+                
+                p
+                    | These methods act within the scope of the waypoint's 
+                    a(href='#group') group
+                    | , which is set on initialization using the 
+                    a(href='#group-option') group option
+                    | . In older versions of Waypoints, when there was no Group concept, calling 
+                    code next
+                    |  or 
+                    code previous
+                    |  ran the risk of returning a logically unrelated waypoint that just happened to be at the nearest trigger point.
+                p
+                    | In the example below, we can see 
+                    code next
+                    |  and 
+                    code previous
+                    |  in action, as well as how grouping effects them. There are two groups. The most recently triggered waypoint in each group is highlighted green. The previous waypoints are highlighted in red, next waypoints in blue. This example will use jQuery to mess with the DOM, for brevity, but still utilizes the no-framework build of Waypoints.
+
+                figure.highlight
+                    pre
+                        code.js.
+                            $.each(['np-left', 'np-right'], function(i, classname) {
+                                var $elements = $('.' + classname)
+                                $elements.each(function() {
+                                    new Waypoint({
+                                        element: this,
+                                        handler: function(direction) {
+                                            var previousWaypoint = this.previous()
+                                            var nextWaypoint = this.next()
+
+                                            $elements.removeClass('np-previous np-current np-next');
+                                            $(this.element).addClass('np-current');
+                                            if (previousWaypoint) {
+                                                $(previousWaypoint.element).addClass('np-previous');
+                                            }
+                                            if (nextWaypoint) {
+                                                $(nextWaypoint.element).addClass('np-next');
+                                            }
+                                        },
+                                        offset: '30%',
+                                        group: classname
+                                    })
+                                })
+                            })
+                
+                .row
+                    .col-12.col-sm-6
+                        - var n = 1;
+                        while n < 12
+                            - n++
+                            .np-left.waypoint
+                    .col-12.col-sm-6
+                        - var m = 1;
+                        while m < 6
+                            - m++
+                            .np-right.waypoint
+            
+            #waypoint-previous
+                h4 waypoint.previous()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        | The previous waypoint in this waypoint's 
+                        a(href='#group') group
+                        | . If this method is called on the last waypoint in a group, 
+                        code null
+                        |  is returned instead.
+            
+        #class-methods.mt-5 
+            h3 Class Methods
+
+            #waypoint-destroyall
+                h4 Waypoint.destroyAll()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        code undefined
+                
+                p
+                    | Destroys all Waypoints. This is the same as calling 
+                    a(href='#waypoint-destroy') destroy
+                    |  on every waypoint, or calling 
+                    a(href='#waypoint-context-destroy') destroy on every context
+                    | .
+            
+            #waypoint-disableall
+                h4 Waypoint.disableAll()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        code undefined
+                
+                p
+                    | Disables all waypoints. This has the same effect as calling the 
+                    a(href='#waypoint-disable') disable method
+                    |  on every waypoint individually.
+            
+            #waypoint-enableall
+                h4 Waypoint.enableAll()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        code undefined
+                
+                p
+                    | Enables all waypoints. This has the same effect as calling the 
+                    a(href='#waypoint-enable') enable method
+                    |  on every waypoint individually.
+            
+            #waypoint-refreshall
+                h4 Waypoint.refreshAll()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        code undefined
+                
+                p
+                    | This method forces a recalculation of the trigger point for every waypoint. It is the same as individually calling 
+                    a(href='#context-refresh') refresh
+                    |  on every context.
+
+                p This method needs to be called whenever you make changes to the DOM, CSS, or anything that may effect the layout and positioning of elements on the page. It is called automatically when the window is resized, so it only needs to be called manually when layout changes happen outside of a resize.
+
+                p
+                    | In the example below we have a waypoint that triggers when the bottom of the element hits the bottom of the viewport. We also have two buttons. Both buttons add an element to the DOM above the waypoint, effectively pushing the waypoint further down the page. One button calls 
+                    code refreshAll
+                    |  after the new element is appended, the other does not. Notice how the button with refresh causes the waypoint to continue triggering in the correct spot, when the bottom of the waypoint hits the bottom of the window. The no-refresh button will keep the old, incorrect trigger point.
+
+                figure.highlight
+                    pre
+                        code.js.
+                            var waypoint = new Waypoint({
+                                element: document.getElementById('refresh-all-waypoint'),
+                                handler: function(direction) {
+                                    $.notify({ message: 'Waypoint triggered in ' + direction + ' direction' },{ type: 'success'});
+                                },
+                                offset: 'bottom-in-view'
+                            })
+
+                            $('button.add-with-refresh').on('click', function() {
+                                $('#refresh-all-waypoint').prepend('&lt;div class="added"&gt;Added&lt;/div&gt;')
+                                Waypoint.refreshAll()
+                            })
+
+                            $('button.add-without-refresh').on('click', function() {
+                                $('#refresh-all-waypoint').prepend('&lt;div class="added"&gt;Added&lt;/div&gt;')
+                            })
+
+            #waypoint-viewportheight
+                h4 Waypoint.viewportHeight()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        | The height of the window in px.
+                    p This is a convenience method for retrieving the height of the window. It also works around inconsistencies in iOS with window height reporting when the URL bar is present on screen.
+
+                figure.highlight
+                    pre
+                        code.js.
+                            $('button.show-viewport-height').on('click', function() {
+                                $.notify({ message: 'Viewport Height: ' + Waypoint.viewportHeight() },{ type: 'success'});
+                            })
+                    
+                +btn-primary('Show Viewport Height',' show-viewport-height my-4')
+
+                p
+                    | This method often comes in handy when writing 
+                    a(href='#offset-option') function offsets
+                    | . For example, if your waypoint has the default 
+                    a(href='#context-option-api') context
+                    |  of 
+                    code window
+                    | , the 
+                    a(href='#bottom-in-view-offset') bottom-in-view
+                    |  alias works out to be the following function offset:
+                
+                figure.highlight
+                    pre
+                        code.js.
+                            offset: function() {
+                                return Waypoint.viewportHeight() - this.element.clientHeight
+                            }
+            
+            #waypoint-viewportwidth
+                h4 Waypoint.viewportWidth()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        | The width of the window in px.
+                    p
+                        | This is a convenience method for retrieving the width of the window. Unlike its 
+                        a(href='#waypoint-viewportheight') viewportHeight complement
+                        | , this method does not need to work around iOS inconsistencies.
+
+
+                figure.highlight
+                    pre
+                        code.js.
+                            $('button.show-viewport-width').on('click', function() {
+                                $.notify({ message: 'Viewport Width: ' + Waypoint.viewportWidth() },{ type: 'success'});
+                            })
+                    
+                +btn-primary('Show Viewport Height',' show-viewport-width my-4')
+
+                p
+                    | This method often comes in handy when writing 
+                    a(href='#function-offset') function offsets
+                    | , particularly for 
+                    a(href='#horizontal-option') horizontal waypoints
+                    | . For example, if your horizontal waypoint has the default 
+                    a(href='#context-option-api') context
+                    |  of 
+                    code window
+                    | , the 
+                    a(href='#right-in-view') right-in-view
+                    |  alias works out to be the following function offset:
+
+                figure.highlight
+                    pre
+                        code.js.
+                            offset: function() {
+                                return Waypoint.viewportWidth() - this.element.clientwidth
+                            }
+
+    #waypoint-context-class-api.mt-5
+        h2 Waypoint.Context Class
+        div
+            p
+                | Every waypoint belongs to a 
+                code Context
+                | . A 
+                code Context
+                |  is a wrapper around a scrollable DOM element (or 
+                code window
+                | ), and there is always only one 
+                code Context
+                |  for any element. Contexts are only created for an element if a 
+                a(href='#waypoint-class-api') Waypoint
+                |  is created with that element supplied as the 
+                a(href='#context-option-api') context option
+                | . Because 
+                code Waypoint
+                |  creation automatically drives 
+                code Context
+                |  creation, you never need to instantiate this class directly. Instead, instances of this class should be retrieved through a waypoint's 
+                a(href='#context-property') context property
+                | , or by using 
+                a(href='#context-findbyelement') Waypoint.Context.findByElement
+                | .
+
+            h5 Properties
+            p
+                | The 
+                code Context
+                |  plays a crucial role. It oversees the 
+                code scroll
+                |  and 
+                code resize
+                |  events for the element it represents and makes the necessary checks for which waypoints to trigger. As part of these duties, it keeps a few internal state properties, namely booleans used for event throttling and previous scroll positions. Besides those properties, let's look at others more useful to Waypoints users.
+
+            p: strong adapter
+            p
+                | This property gives you the instance of the 
+                a(href='http://imakewebthings.com/waypoints/guides/adapters/' target="blank") adapter
+                |  wrapped around the DOM element of this context. Most Waypoints users should use the 
+                a(href='#element-property') element property
+                |  to access this element, but 
+                code adapter
+                |  is useful for developers writing Waypoints extensions or scripts that are intended to be used across all the different framework builds of Waypoints.
+            
+            figure.highlight#context-adapter-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('context-adapter-example'),
+                            handler: function(direction) {
+                                $.notify({ message: 'Scrolltop value: ' + this.context.adapter.scrollTop() },{ type: 'success'});
+                            },
+                            offset: '25%'
+                        })
+
+            P#element-property
+                strong element
+
+            p This property gives you the underlying DOM element (or 
+                code window 
+                | , in the default case) of the context.
+
+            figure.highlight#context-element-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('context-element-example'),
+                            handler: function(direction) {
+                                $.notify({ message: 'Context element: ' + this.context.element },{ type: 'success'});
+                            },
+                            offset: '25%'
+                        })
+            
+            p: strong waypoints
+            p
+                | The 
+                code waypoints
+                |  property is an object with two properties, 
+                code horizontal
+                |  and 
+                code vertical
+                | . Each of those properties are themselves objects containing all the horizontal and vertical waypoints in the context respectively. The keys of those objects are a unique internal id assigned to a waypoint, and the values are the 
+                code Waypoint
+                |  instances themselves. The whole object might look like this at any given time:
+
+            figure.highlight
+                pre
+                    code.js.
+                        {
+                            horizontal: {
+                                'waypoint-key-24': (a Waypoint instance)
+                            },
+                            vertical: {
+                                'waypoint-key-4': (a Waypoint instance),
+                                'waypoint-key-5': (a Waypoint instance)
+                            }
+                        }
+            p Let's look at the 
+                code waypoints 
+                | property on the 
+                code window 
+                | context for this page.
+
+            figure.highlight#context-waypoints-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('context-waypoints-example'),
+                            handler: function(direction) {
+                                for (var axis in this.context.waypoints) {
+                                    for (var waypointKey in this.context.waypoints[axis]) {
+                                        $.notify({ 
+                                            message: [axis,waypointKey,this.context.waypoints[axis][waypointKey].element.id].join(' / ')
+                                        },
+                                        { 
+                                            type: 'success'
+                                        });
+                                    }
+                                }
+                            },
+                            offset: 'bottom-in-view'
+                        })
+
+        #instance-methods-2
+            h3 Instance methods
+
+            #context-destroy.mt-4
+                h4 context.destroy()
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        code undefined 
+                        | .
+                p This destroys every waypoint in the context, and consequently unbinds any scroll and resize handlers attached to this context's element.
+                p In this example we have two custom contexts. Clicking the destroy button for each will destroy only those waypoints within that context.
+                figure.highlight
+                    pre
+                        code.js.
+                            var leftElements = document.getElementsByClassName('left-context-waypoint')
+                            var rightElements = document.getElementsByClassName('right-context-waypoint')
+
+                            function notifyInnerHTML() {
+                                $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                            }
+
+                            leftElements.forEach(function(element) {
+                                new Waypoint({
+                                    element: element,
+                                    handler: notifyInnerHTML,
+                                    context: document.getElementById('left-context')
+                                })
+                            })
+
+                            rightElements.forEach(function(element) {
+                                new Waypoint({
+                                    element: element,
+                                    handler: notifyInnerHTML,
+                                    context: document.getElementById('right-context')
+                                })
+                            })
+
+                            $('button.destroy-left-context').on('click', function() {
+                                var element = document.getElementById('left-context')
+                                var context = Waypoint.Context.findByElement(element)
+                                context.destroy()
+                            })
+
+                            $('button.destroy-right-context').on('click', function() {
+                                var element = document.getElementById('right-context')
+                                var context = Waypoint.Context.findByElement(element)
+                                context.destroy()
+                            })
+            #context-refresh.mt-4
+                h4 context.refresh()
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        code undefined 
+                        | .
+                
+                p
+                    | This method forces a recalculation of the trigger point for every waypoint in this context. This method ends up being called automatically during a 
+                    code resize
+                    |  event and when new waypoints are created. However, if you make changes to the DOM, CSS, or anything that may effect the layout and positioning of elements on the page, you need to call this method manually. In that situation calling 
+                    a(href='#waypoint-refreshall') refreshAll
+                    | , which refreshes all contexts, is recommended, but if you know only one context needs to be refreshed you can opt to call this method instead.
+
+        #class-methods-2.mt-4
+            h3 Class Methods
+            #context-refresh.mt-4
+                h4 Context.findByElement(element)
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        code element
+                        | : The scrollable 
+                        a(href='https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement', target='blank') HTMLElement
+                        |  of the context object you wish to find.
+                    p
+                        strong Returns
+                        br 
+                        a(href='#waypoint-context-class-api') Context
+                        |  instance, or 
+                        code undefined
+                        |  if no context is associated with the provided element.
+            p
+                | Given an element on the page, this method returns the 
+                code Context
+                |  instance associated with that element. If the element does not have an associated 
+                code Context
+                | , the method returns 
+                code undefined
+                | .
+            p
+                | In this example we can create and destroy a waypoint inside a custom context. Another button shows us the result of calling 
+                code findByElement
+                | . Notice when the waypoint is created (and as a result the 
+                code Context
+                |  is created) the method returns that 
+                code Context
+                | . When the waypoint is destroyed (which also destroys the 
+                code Context
+                |  since it is empty) the call returns 
+                code undefined
+                | .
+
+            figure.highlight
+                pre
+                    code.js.
+                        var waypoint
+
+                        $('button.find-create').on('click', function() {
+                            waypoint = new Waypoint({
+                                element: document.getElementById('find-by-example'),
+                                handler: function(direction) {
+                                    $.notify({ message: 'Waypoint hit' },{ type: 'success'});
+                                },
+                                context: document.getElementById('overflow-scroll')
+                            })
+                        })
+
+                        $('button.find-destroy').on('click', function() {
+                            waypoint.destroy()
+                        })
+
+                        $('button.find-by-element').on('click', function() {
+                            var element = document.getElementById('overflow-scroll')
+                            var context = Waypoint.Context.findByElement(element)
+                            if (typeof context === 'undefined') {
+                                $.notify({ message: 'Context does not exist' },{ type: 'success'});
+                            }
+                            else if (context instanceof Waypoint.Context) {
+                                $.notify({ message: 'Context found' },{ type: 'success'});
+                            }
+                        })
+
+    #waypoint-group-class-api.mt-5
+        h2 Waypoint.Group Class
+
+        div
+            p
+                | Every waypoint belongs to a 
+                code Group
+                | . A 
+                code Group
+                |  serves as a logical separation of groups of waypoints that comes into play with group-dependent options and methods, such as the 
+                a(href='#continuous-option') continuous option
+                | , 
+                a(href='#waypoint-next') next method
+                | , and 
+                a(href='#waypoint-previous') previous method
+                | . Groups also ensure the correct trigger order of waypoints when multiple waypoints are crossed in one check.
+
+            p
+                | When a 
+                a(href='#waypoint-context-class-api') Context
+                |  listening for scroll and resize events sees that a waypoint has been crossed, it doesn't immediately trigger it. Instead, it registers the waypoint as triggered with that waypoint's 
+                code Group
+                | . When the context is done with its checks, groups with marked waypoints go through the process of sorting the triggered waypoints and filtering them according to the 
+                code continuous
+                |  option.
+            
+            p
+                | Groups are automatically created through the use of the 
+                a(href='#group-option') group option
+                | . Because of this, you should not instantiate this class directly. Instead, a group should be accessed using a waypoint's 
+                a(href='#group-property') group property
+                | .
+
+            h5.mt-5 Properties
+            p Groups are a simple construct with only a few properties. Let's look at a few examples that use of them.
+
+            p.mt-4: strong axis
+            p
+                | Groups only operate on a single axis. That means if you create a vertical 
+                code Waypoint
+                |  with a group name of 
+                code "foo"
+                | , and create a horizontal one with the same group name, you'll end up creating two different groups. They share the same 
+                a(href='#name-property') name
+                | , but have a different 
+                code axis
+                | .
+
+            figure.highlight#group-axis-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('group-axis-example'),
+                            handler: function(direction) {
+                                $.notify({ message: 'Axis: ' + this.group.axis },{ type: 'success'});
+                            },
+                            offset: '50%'
+                        })
+
+            p#name-property.mt-4: strong name
+            p
+                | The 
+                code name
+                |  property for a group is identical to the string provided as the 
+                a(href='#group-option') group option
+                | .
+            figure.highlight#group-name-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('group-name-example'),
+                            handler: function(direction) {
+                                $.notify({ message: 'Name: ' + this.group.name },{ type: 'success'});
+                            },
+                            group: 'custom-group',
+                            offset: '50%'
+                        })
+
+            p#waypoints-property.mt-4: strong waypoints
+            p
+                | The 
+                code waypoints
+                |  property is an array of the 
+                code Waypoint
+                |  instances that belong to this group. Beware that while the 
+                a(href='#group-first') first
+                | , 
+                a(href='#group-last') last
+                | , 
+                a(href='#waypoint-previous') previous
+                | , and 
+                a(href='#waypoint-next') next
+                |  methods guarantee the result comes from a properly sorted waypoint array, this property may be unsorted at any given time.
+
+            figure.highlight#group-waypoints-example
+                pre
+                    code.js.
+                        var waypoint = new Waypoint({
+                            element: document.getElementById('group-waypoints-example'),
+                            handler: function(direction) {
+                                $.notify({ message: 'Group waypoint count: ' + this.group.waypoints.length },{ type: 'success'});
+                            },
+                            group: 'custom-group',
+                            offset: 'bottom-in-view'
+                        })
+
+        #instance-methods-3.mt-4
+            h3 Instance Methods
+
+            #group-first.mt-4
+                h4 group.first()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        | A 
+                        code Waypoint 
+                        | instance.
+
+                p This method returns the first waypoint in the group. "First" is determined by the trigger point of the waypoints in the group, where "first" is the waypoint with the top-most (or left-most for horizontal waypoints) trigger point.
+                p In the example below, we'll set up two groups of waypoints, even and odds. Both groups of waypoints do the same thing: If the waypoint hit is the first waypoint in the group, it will produce a different notification from the others.
+
+                figure
+                    pre
+                        code.js.
+                            var evens = document.getElementsByClassName('group-even')
+                            var odds = document.getElementsByClassName('group-odd')
+
+                            function handler(direction) {
+                                if (this === this.group.first()) {
+                                    $.notify({ message: 'First ' + this.group.name + ' hit' },{ type: 'success'});
+                                }
+                                else {
+                                    $.notify({ message: 'Some other ' + this.group.name + ' hit' },{ type: 'success'});
+                                }
+                            }
+
+                            evens.forEach(function(element) {
+                                new Waypoint({
+                                    element: element,
+                                    handler: handler,
+                                    offset: 'bottom-in-view',
+                                    group: 'even'
+                                })
+                            })
+
+                            odds.forEach(function(element) {
+                                new Waypoint({
+                                    element: element,
+                                    handler: handler
+                                    offset: 'bottom-in-view',
+                                    group: 'odd'
+                                })
+                            })
+            
+            #group-last.mt-4
+                h4 group.last()
+
+                .bd-example
+                    p
+                        strong Parameters
+                        br 
+                        | None.
+                    p
+                        strong Returns
+                        br 
+                        | A 
+                        code Waypoint 
+                        | instance.
+
+                p This method returns the last waypoint in the group. "Last" is determined by the trigger point of the waypoints in the group, where "last" is the waypoint with the bottom-most (or right-most for horizontal waypoints) trigger point.
+                p In the example below, we'll set up two groups of waypoints, even and odds. Both groups of waypoints do the same thing: If the waypoint hit is the last waypoint in the group, it will produce a different notification from the others.
+    
+    #shortcuts.mt-5
+        h2 Shortcuts
+
+        #sticky-elements.mt-4
+            h3 Sticky Elements
+            p
+                | The Sticky Elements shortcut is used to make an element "stick" to the top of the page once a user has scrolled past it. It packages some best practices around accomplishing this, working around edge cases that can come up, and exposes it as a new class, 
+                code Waypoint.Sticky
+                | . To create a sticky element, instantiate this new class with the desired element:
+
+            figure.highlight.basic-sticky-example(style='z-index: 1111;')
+                pre
+                    code.js.
+                        var sticky = new Waypoint.Sticky({
+                            element: $('.basic-sticky-example')[0]
+                        })
+            
+            p
+                | When you create a new instance of 
+                code Sticky
+                | , a few things happen.
+            ul
+                li
+                    strong A wrapper is created around your element.
+                    |  This wrapper remains in a static position on the page, acting as an empty placeholder for that element in the document flow while the real element gains and loses fixed positioning. This wrapper element is the actual element that is used in the underlying 
+                    code Waypoint
+                    | .
+                li
+                    strong The wrapper height is set.
+                    |  This ensures the wrapper is the same height as the element it wraps, even when that element becomes fixed. This prevents the page layout from shifting when it does.
+                li
+                    strong Adds a class to the sticky element when it hits the top of the window.
+                    |  This class is what you must style using CSS to give the sticky element fixed positioning.
+
+            p
+                | Creating a sticky element using this shortcut 
+                strong does not
+                | …
+            
+            ul
+                li
+                    strong Give elements fixed positioning.
+                    |  You must do this in CSS. In most cases this simple snippet seen below is enough to get the job done, but this may vary depending on your design.
+                    figure.highlight.basic-sticky-example
+                        pre
+                            code.css.
+                                .stuck {
+                                    position:fixed;
+                                    top:0;
+                                }
+                li
+                    strong Adjust for the wrapper.
+                    |  Other CSS properties such as 
+                    code margin
+                    |  may have an effect on the layout of your site and cause content shifts when losing/gaining fixed positioning. You may be better off moving margins off of the element and onto the wrapper.
+
+            #sticky-options.mt-5
+                h4 Options
+
+                p
+                    | When creating a new 
+                    code Sticky
+                    |  you can also pass along an options object. This options object can take all of the options of a normal 
+                    a(href='#waypoint-class-api') Waypoint
+                    | , as well as a few extras specific to the 
+                    code Sticky
+                    |  class.
+
+                p.mt-4: strong direction
+                p Default: 
+                    code 'down right'
+                    | .
+                p
+                    | This is a space separated list of directions in which the 
+                    code stuckClass
+                    |  should be applied. The default directions handle the most common case for both vertical and horizontal waypoints: You start at the top and wish to add the stuck state when scrolling down and reaching the element (right for horizontal waypoints.) In the rare case that you wish to start in a stuck state and lose fixed positioning as you scroll down to the element's natural position, this could be changed to 
+                    code 'up'
+                    |  (or 
+                    code 'left'
+                    |  for the horizontal analog.)
+                
+                p.mt-5: strong stuckClass
+                p Default: 
+                    code 'stuck'
+                    | .
+                p This is a string, a class name that is applied to the sticky element when it is reached. This class is your CSS hook into styling the sticky element in its stuck state. Apply fixed positioning to this class.
+
+                p.mt-5: strong wrapper
+                p Default: 
+                    code '&lt;div class="sticky-wrapper" /&gt;'
+                    | .
+                p This is the string of HTML that will be wrapped around the target sticky element. If this options is set to 
+                    code false, 
+                    | no wrapper will be created and the existing parent of the sticky element will be used as the wrapper.
+
+            #sticky-destroy.mt-5
+                h4 sticky.destroy()
+                p
+                    | An instance of 
+                    code Sticky
+                    |  has one method, 
+                    code destroy
+                    | . Calling 
+                    code destroy
+                    |  will destroy the waypoint, remove the stuck class, and get rid of the wrapper that was created around your sticky element, returning the DOM to the state it was in before the 
+                    code Sticky
+                    |  was created.
+                
+                p Let's look at destroying the 
+                    code Sticky 
+                    | we created earlier.
+
+                figure.highlight
+                    pre
+                        code.js.
+                            $('.destroy-sticky').on('click', function() {
+                                sticky.destroy() 
+                            })
+                
+                +btn-primary('Destroy Sticky',' destroy-sticky')
+
+        #infinite-scroll.mt-5
+            h3 Infinite Scroll
+            p
+                | The Infinite Scroll shortcut transforms a traditional "Next Page" navigation into an AJAX-powered infinite scrolling UI pattern. To create it, instantiate the 
+                code Waypoint.Infinite
+                |  class.
+            
+            figure.highlight
+                pre
+                    code.js.
+                        var infinite = new Waypoint.Infinite({
+                            element: $('.infinite-container')[0]
+                        })
+            
+            p
+                | The 
+                code element
+                |  option for 
+                code Infinite
+                |  referes to the container around all infinite items that will be used as the waypoint and fetched items will be appended to.
+
+            #infinite-options.mt-5
+                h4 Options
+                p The above example uses all of the default options. You can override those options or apply the necessary classes to your existing markup. Default markup would look like this:
+
+                figure.highlight
+                    pre
+                        code.js.
+                            .infinite-container
+                                .infinite-item ...
+                                .infinite-item ...
+                                .infinite-item ...
+                                ...
+                            a.infinite-more-link(href="/next/page") More
+                
+                p.mt-4: strong container
+                p Default: 
+                    code 'auto'
+                    | .
+                p
+                    | Newly loaded items are appended to the container. The default value of 
+                    code 'auto'
+                    |  means the container will be the same element as the 
+                    code element
+                    |  option. The 
+                    code element
+                    |  option, in congruence with the 
+                    a(href='#offset-option') offset option
+                    | , make up the waypoint that triggers the next page to load.
+
+                p.mt-4: strong items
+                p Default: 
+                    code '.infinite-item'
+                    | .
+                p This is a selector string that should match the individual items that will be pulled out of each page and appended to the item container.
+
+                p.mt-4: strong loadingClass
+                p Default: 
+                    code '.infinite-loading'
+                    | .
+                p This string is a class name that is added to the container while items are loading, and removed once they are appended.
+
+                p.mt-4: strong more
+                p Default: 
+                    code '.infinite-more-link'
+                    | .
+                p This string selector should match the "Next Page" element on every page. 
+                    code Infinite 
+                    | will know to stop loading more pages when an AJAX request no longer includes this "More" link (indicating you're on the final page.)
+
+                p.mt-4: strong offset
+                p Default: 
+                    code 'bottom-in-view'
+                    | .
+                p This is the same offset option from a regular 
+                    code Waypoint
+                    | , except the default is now 
+                    code 'bottom-in-view' 
+                    | instead of 0. This means, by default, new items will be loaded when the bottom of the container comes into view.
+
+                p.mt-4: strong onBeforePageLoad
+                p Default: 
+                    code $.noop
+                    | .
+                p This is a callback that will fire as soon as the waypoint is reached, before the request for new items has been made.
+
+                p.mt-4: strong onAfterPageLoad
+                p Default: 
+                    code $.noop
+                    | .
+                p This is a callback that will fire at the end of the request cycle, after new items have been appended to the container. It is passed one parameter, which is a jQuery object of all the items that were appended during the page load.
+
+                
+
+    #bottom-in-view
+block js
+    script.
+        var waypoint1 = new Waypoint({
+            element: document.getElementById('a-basic-waypoint'),
+            handler: function() {
+                $.notify({ message: 'Basic waypoint triggered' },{ type: 'success'});
+            }
+        });
+        var waypoint2 = new Waypoint({
+            element: document.getElementById('directions'),
+            handler: function(direction) {
+                $.notify({ message: 'Direction: ' + direction },{ type: 'success'});
+            }
+        });
+        var waypoint3 = new Waypoint({
+            element: document.getElementById('offsets'),
+            handler: function(direction) {
+                $.notify({ message: 'I am 20px from the top of the window' },{ type: 'success'});
+            },
+            offset: 20 
+        });
+        var waypoint4 = new Waypoint({
+            element: document.getElementById('this'),
+            handler: function(direction) {
+                $.notify({ message: this.element.id + ' triggers at ' + this.triggerPoint },{ type: 'success'});
+            },
+            offset: '75%'
+        });
+        var waypoint = new Waypoint({
+            element: document.getElementById('new-operator'),
+            handler: function(direction) {
+                $.notify({ message: this.id + ' hit' },{ type: 'success'});
+            }
+        });
+        var waypoints = $('#options-only').waypoint({
+            handler: function(direction) {
+                $.notify({ message: this.element.id + ' hit' },{ type: 'success'});
+            }
+        });
+        var waypoints = $('#handler-first').waypoint(function(direction) {
+            $.notify({ message: this.element.id + ' hit 25% from top of window' },{ type: 'success'});
+        }, {
+            offset: '25%'
+        });
+        var waypoints = $('#handler-only').waypoint(function(direction) {
+            $.notify({ message: this.element.id + ' hit' },{ type: 'success'});
+        });
+        var waypoint = new Waypoint({
+            element: document.getElementById('context-example'),
+            handler: function() {
+                $.notify({ message: 'Context example triggered' },{ type: 'success'});
+            },
+            context: document.getElementById('overflow-scroll')
+        })
+        var waypoints = $('#context-example-offset').waypoint({
+            handler: function() {
+                $.notify({ message: 'Hit midpoint of my context' },{ type: 'success'});
+            },
+            context: '#overflow-scroll-offset',
+            offset: '50%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('new-operator-api'),
+            handler: function(direction) {
+                $.notify({ message: this.id + ' hit' },{ type: 'success'});
+            }
+        })
+        var waypoints = $('#options-only-api').waypoint({
+            handler: function(direction) {
+                $.notify({ message: this.element.id + ' hit' },{ type: 'success'});
+            }
+        })
+        var waypoints = $('#handler-first-api').waypoint(function(direction) {
+                $.notify({ message: this.element.id + ' hit 25% from top of window' },{ type: 'success'});
+            }, {
+            offset: '25%'
+        })
+        var waypoints = $('#handler-only-api').waypoint(function(direction) {
+            $.notify({ message: this.element.id + ' hit' },{ type: 'success'});
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('adapter-property-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Using jQuery Adapter: ' + !!this.adapter.$element },{ type: 'success'});
+            },
+            offset: '25%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('context-property-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Context: ' + this.context.element },{ type: 'success'});
+            },
+            offset: '25%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('element-property-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Waypoint element id: ' + this.element.id },{ type: 'success'});
+            },
+            offset: '25%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('group-property-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Group: ' + this.group.name },{ type: 'success'});
+            },
+            offset: '25%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('options-property-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Offset option: ' + this.options.offset },{ type: 'success'});
+            },
+            offset: '50%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('trigger-point-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Trigger point: ' + this.triggerPoint },{ type: 'success'});
+            },
+            offset: 'bottom-in-view'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('context-example-api'),
+            handler: function() {
+                $.notify({ message: 'Context example triggered' },{ type: 'success'});
+            },
+            context: document.getElementById('overflow-scroll-api')
+        })
+        var waypoints = $('#context-example-offset-api').waypoint({
+            handler: function() {
+                $.notify({ message: 'Hit midpoint of my context' },{ type: 'success'});
+            },
+            context: '#overflow-scroll-offset-api',
+            offset: '50%'
+        })
+        var continuousElements = document.getElementsByClassName('continuous-true')
+        for (var i = 0; i < continuousElements.length; i++) {
+            new Waypoint({
+                element: continuousElements[i],
+                handler: function() {
+                    $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                }
+            })
+        }
+        var discreteElements = document.getElementsByClassName('continuous-false')
+        for (var i = 0; i < discreteElements.length; i++) {
+            new Waypoint({
+                element: discreteElements[i],
+                handler: function() {
+                    $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                },
+                continuous: false
+            })
+        }
+        var leftElements = document.getElementsByClassName('continuous-group-left')
+        for (var i = 0; i < leftElements.length; i++) {
+            new Waypoint({
+                element: leftElements[i],
+                handler: function() {
+                    $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                },
+                continuous: false
+            })
+        }
+        var rightElements = document.getElementsByClassName('continuous-group-right')
+        for (var i = 0; i < rightElements.length; i++) {
+            new Waypoint({
+                element: rightElements[i],
+                handler: function() {
+                    $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                },
+                continuous: false
+            })
+        }
+        var continuousElements = document.getElementsByClassName('continuous-mix-true')
+        for (var i = 0; i < continuousElements.length; i++) {
+            new Waypoint({
+                element: continuousElements[i],
+                handler: function() {
+                    $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                },
+                offset: 'bottom-in-view'
+            })
+        }
+        var discreteElements = document.getElementsByClassName('continuous-mix-false')
+        for (var i = 0; i < discreteElements.length; i++) {
+            new Waypoint({
+                element: discreteElements[i],
+                handler: function() {
+                    $.notify({ message: this.element.innerHTML + ' hit' },{ type: 'success'});
+                },
+                offset: 'bottom-in-view',
+                continuous: false
+            })
+        }
+        var waypoint = new Waypoint({
+            element: document.getElementById('disabled-after'),
+            handler: function() {
+                $.notify({ message: 'Disabled after creation' },{ type: 'success'});
+            },
+            offset: 99999 // big enough to be crossed already
+        });
+        waypoint.disable();
+        var waypoint = new Waypoint({
+            element: document.getElementById('enabled-false'),
+            handler: function() {
+                $.notify({ message: 'Enabled option false' },{ type: 'success'});
+            },
+            enabled: false,
+            offset: 99999 // big enough to be crossed already
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('handler-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Handler triggered in ' + direction + ' direction' },{ type: 'success'});
+            },
+            offset: 'bottom-in-view'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('handler-horizontal'),
+            handler: function(direction) {
+                $.notify({ message: 'Handler triggered in ' + direction + ' direction' },{ type: 'success'});
+            },
+            context: document.getElementById('overflow-scroll-horizontal'),
+            horizontal: true
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('horizontal-waypoint-2'),
+            handler: function(direction) {
+                $.notify({ message: 'Horizontal waypoint triggered in the ' + direction + ' direction' },{ type: 'success'});
+            },
+            context: document.getElementById('overflow-scroll-horizontal-2'),
+            horizontal: true
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('number-offset'),
+            handler: function(direction) {
+                $.notify({ message: '25px from top' },{ type: 'success'});
+            },
+            offset: 25
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('number-offset-negative'),
+            handler: function(direction) {
+                $.notify({ message: '25px past the top' },{ type: 'success'});
+            },
+            offset: -25
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('percentage-offset'),
+            handler: function(direction) {
+                $.notify({ message: '50% from the top' },{ type: 'success'});
+            },
+            offset: '50%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('percentage-offset-negative'),
+            handler: function(direction) {
+                $.notify({ message: '50% past the top' },{ type: 'success'});
+            },
+            offset: '-50%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('function-offset'),
+            handler: function(direction) {
+                $.notify({ message: 'Bottom of element hit top of viewport' },{ type: 'success'});
+            },
+            offset: function() {
+                return -this.element.clientHeight
+            }
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('bottom-in-view-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Bottom of element hit bottom of viewport' },{ type: 'success'});
+            },
+            offset: 'bottom-in-view'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('right-in-view-offset'),
+            handler: function(direction) {
+                $.notify({ message: 'right-in-view waypoint triggered' },{ type: 'success'});
+            },
+            context: document.getElementById('right-in-view-offset-wrap'),
+            horizontal: true,
+            offset: 'right-in-view'
+        })
+        var waypointDestroy = new Waypoint({
+            element: document.getElementById('destroy-example'),
+            handler: function(direction) {
+                $.notify({ message: 'I am still alive' },{ type: 'success'});
+            },
+            offset: 'bottom-in-view'
+        })
+
+        $('button.destroy').on('click', function() {
+            waypointDestroy.destroy()
+        })
+
+        var waypointDE = new Waypoint({
+            element: document.getElementById('disable-enable-example'),
+            handler: function(direction) {
+                $.notify({ message: 'I am enabled' },{ type: 'success'});
+            },
+            offset: 'bottom-in-view'
+        })
+
+        $('button.disable').on('click', function() {
+            waypointDE.disable()
+        })
+
+        $('button.enable').on('click', function() {
+            waypointDE.enable()
+        })
+
+        $.each(['np-left', 'np-right'], function(i, classname) {
+            var $elements = $('.' + classname)
+            $elements.each(function() {
+                new Waypoint({
+                    element: this,
+                    handler: function(direction) {
+                        var previousWaypoint = this.previous()
+                        var nextWaypoint = this.next()
+
+                        $elements.removeClass('np-previous np-current np-next');
+                        $(this.element).addClass('np-current');
+                        if (previousWaypoint) {
+                            $(previousWaypoint.element).addClass('np-previous');
+                        }
+                        if (nextWaypoint) {
+                            $(nextWaypoint.element).addClass('np-next');
+                        }
+                    },
+                    offset: '30%',
+                    group: classname
+                })
+            })
+        })
+        $('button.show-viewport-height').on('click', function() {
+            $.notify({ message: 'Viewport Height: ' + Waypoint.viewportHeight() },{ type: 'success'});
+        })
+        $('button.show-viewport-width').on('click', function() {
+            $.notify({ message: 'Viewport Width: ' + Waypoint.viewportWidth() },{ type: 'success'});
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('context-adapter-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Scrolltop value: ' + this.context.adapter.scrollTop() },{ type: 'success'});
+            },
+            offset: '25%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('context-element-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Context element: ' + this.context.element },{ type: 'success'});
+            },
+            offset: '25%'
+        })
+        //- var contextWaypoints = new Waypoint({
+        //-     element: document.getElementById('context-waypoints-example'),
+        //-     handler: function(direction) {
+        //-         for (var axis in this.context.waypoints) {
+        //-             for (var waypointKey in this.context.waypoints[axis]) {
+        //-                 $.notify({ 
+        //-                     message: [axis,waypointKey,this.context.waypoints[axis][waypointKey].element.id].join(' / ')
+        //-                 },
+        //-                 { 
+        //-                     type: 'success'
+        //-                 });
+        //-             }
+        //-         }
+        //-     },
+        //-     offset: 'bottom-in-view'
+        //- })
+        var waypoint = new Waypoint({
+            element: document.getElementById('group-axis-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Axis: ' + this.group.axis },{ type: 'success'});
+            },
+            offset: '50%'
+        })
+        var waypoint = new Waypoint({
+            element: document.getElementById('group-name-example'),
+            handler: function(direction) {
+                $.notify({ message: 'Name: ' + this.group.name },{ type: 'success'});
+            },
+            group: 'custom-group',
+            offset: '50%'
+        })
+        var sticky = new Waypoint.Sticky({
+            element: $('.basic-sticky-example')[0]
+        })
+        $('.destroy-sticky').on('click', function() {
+            sticky.$element.attr('style','')
+            sticky.destroy();
+        })
+        var infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0]
+        })

@@ -1,0 +1,69 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'vertical-align';
+    - title = "Utilities - Vertical alignment"
+block navsection
+
+block content 
+    h1.bd-title#content Vertical alignment
+    p.bd-lead Easily change the vertical alignment of inline, inline-block, inline-table, and table cell elements.
+    p
+        | Change the alignment of elements with the 
+        a(href='https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align')
+            code.highlighter-rouge vertical-alignment
+        |  utilities. Please note that vertical-align only affects inline, inline-block, inline-table, and table cell elements.
+    p
+        | Choose from 
+        code.highlighter-rouge .align-baseline
+        | , 
+        code.highlighter-rouge .align-top
+        | , 
+        code.highlighter-rouge .align-middle
+        | , 
+        code.highlighter-rouge .align-bottom
+        | , 
+        code.highlighter-rouge .align-text-bottom
+        | , and 
+        code.highlighter-rouge .align-text-top
+        |  as needed.
+    p With inline elements:
+    .bd-example
+        span.align-baseline baseline
+        span.align-top top
+        span.align-middle middle
+        span.align-bottom bottom
+        span.align-text-top text-top
+        span.align-text-bottom text-bottom
+    figure.highlight
+        pre
+            code.css.
+                span.align-baseline baseline
+                span.align-top top
+                span.align-middle middle
+                span.align-bottom bottom
+                span.align-text-top text-top
+                span.align-text-bottom text-bottom
+    p With table cells:
+    .bd-example
+        table(style='height: 100px;')
+            tbody
+                tr
+                    td.align-baseline baseline
+                    td.align-top top
+                    td.align-middle middle
+                    td.align-bottom bottom
+                    td.align-text-top text-top
+                    td.align-text-bottom text-bottom
+    figure.highlight
+        pre
+            code.css.
+                table(style='height: 100px;')
+                    tbody
+                        tr
+                            td.align-baseline baseline
+                            td.align-top top
+                            td.align-middle middle
+                            td.align-bottom bottom
+                            td.align-text-top text-top
+                            td.align-text-bottom text-bottom

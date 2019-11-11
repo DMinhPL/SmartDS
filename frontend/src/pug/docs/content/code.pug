@@ -1,0 +1,115 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'code';
+    - title = "Layout - Code"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#inline-code') Inline code
+        li.toc-entry.toc-h2
+            a(href='#code-blocks') Code blocks
+        li.toc-entry.toc-h2
+            a(href='#variables') Variables
+        li.toc-entry.toc-h2
+            a(href='#user-input') User input
+        li.toc-entry.toc-h2
+            a(href='#sample-output') Sample output
+
+block content 
+    h1.bd-title#content Code
+    p.bd-lead Documentation and examples for displaying inline and multiline blocks of code with Bootstrap.
+    
+    h2#inline-code Inline code
+    p
+        | Wrap inline snippets of code with 
+        code.highlighter-rouge &lt;code&lt;
+        | . Be sure to escape HTML angle brackets.
+    .bd-example
+        | For example, 
+        code &lt;section&gt;
+        |  should be wrapped as inline.
+    figure.highlight
+        pre
+            code.css.
+                | For example, 
+                code #{"&lt;section&gt;"}
+                | should be wrapped as inline.
+    h2#code-blocks Code blocks
+    p
+        | Use 
+        code.highlighter-rouge &lt;pre&gt;
+        | s for multiple lines of code. Once again, be sure to escape any angle brackets in the code for proper rendering. You may optionally add the 
+        code.highlighter-rouge .pre-scrollable
+        |  class, which will set a max-height of 340px and provide a y-axis scrollbar.
+    .bd-example
+        pre
+            code.nohighlight.
+                &lt;p&gt;Sample text here...&lt;/p&gt;
+                &lt;p&gt;And another line of sample text here...&lt;/p&gt;
+    figure.highlight
+        pre
+            code.css.
+                pre
+                    code.
+                        #{"&lt;p&gt;Sample text here...&lt;/p&gt;"}
+                        #{"&lt;p&gt;And another line of sample text here...&lt;/p&gt;"}
+    h2#variables Variables
+    p
+        | For indicating variables use the 
+        code.highlighter-rouge &lt;var&gt;
+        |  tag.
+    .bd-example
+        var y
+        |  = 
+        var m
+        var x
+        |  + 
+        var b
+    figure.highlight
+        pre
+            code.css.
+                var y
+                |  = 
+                var m
+                var x
+                |  + 
+                var b
+    h2#user-input User input
+    p
+        | Use the 
+        code.highlighter-rouge &lt;kbd&gt;
+        |  to indicate input that is typically entered via keyboard.
+    .bd-example
+        | To switch directories, type 
+        kbd cd
+        |  followed by the name of the directory.
+        br
+        | To edit settings, press 
+        kbd
+            kbd ctrl
+            |  + 
+            kbd ,
+    figure.highlight
+        pre
+            code.css.
+                | To switch directories, type 
+                kbd cd
+                |  followed by the name of the directory.
+                br
+                | To edit settings, press 
+                kbd
+                    kbd ctrl
+                    |  + 
+                    kbd ,
+    h2#sample-output Sample output
+    p
+        | For indicating sample output from a program use the 
+        code.highlighter-rouge &lt;samp&gt;
+        |  tag.
+    .bd-example
+        samp This text is meant to be treated as sample output from a computer program.
+    figure.highlight
+        pre
+            code.css.
+                samp This text is meant to be treated as sample output from a computer program.

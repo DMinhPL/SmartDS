@@ -1,0 +1,106 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'checkbox';
+    - title = "Component - Checkboxes and radios"
+
+block content 
+    h1.bd-title#content Checkboxes and radios
+    p
+        | Each checkbox and radio is wrapped in a 
+        code.highlighter-rouge div
+        |  with a sibling 
+        code.highlighter-rouge span
+        |  to create our custom control and a 
+        code.highlighter-rouge label
+        |  for the accompanying text. Structurally, this is the same approach as our default 
+        code.highlighter-rouge .form-check
+        | .
+    p
+        | We use the sibling selector (
+        code.highlighter-rouge ~
+        | ) for all our 
+        code.highlighter-rouge input
+        |  states—like 
+        code.highlighter-rouge :checked
+        | —to properly style our custom form indicator. When combined with the 
+        code.highlighter-rouge .ctr-ui-label
+        |  class, we can also style the text for each item based on the 
+        code.highlighter-rouge input
+        | ’s state.
+    p
+        | We hide the default 
+        code.highlighter-rouge input
+        |  with 
+        code.highlighter-rouge opacity
+        |  and use the 
+        code.highlighter-rouge .ctr-ui-label
+        |  to build a new custom form indicator in its place with 
+        code.highlighter-rouge ::before
+        |  and 
+        code.highlighter-rouge ::after
+        | . Unfortunately we can’t build a custom one from just the 
+        code.highlighter-rouge input
+        |  because CSS’s 
+        code.highlighter-rouge content
+        |  doesn’t work on that element.
+    p
+        | In the checked states, we use 
+        strong base64 embedded SVG icons
+        |  from 
+        a(href='https://useiconic.com/open') Open Iconic
+        | . This provides us the best control for styling and positioning across browsers and devices.
+    h4#checkboxes Checkboxes
+    .bd-example
+        +checkboxui('Check this custom checkbox','customCheck1')
+    figure.highlight
+        pre
+            code.js.
+                +checkboxui('Check this custom checkbox','customCheck1')
+    p
+        | Custom checkboxes can also utilize the 
+        code.highlighter-rouge :indeterminate
+        |  pseudo class when manually set via JavaScript (there is no available HTML attribute for specifying it).
+    .bd-example.bd-example-indeterminate
+        +checkboxui('Check this custom checkbox','customCheck2')
+    p If you’re using jQuery, something like this should suffice:
+    figure.highlight
+        pre
+            code.js.
+                +checkboxui('Check this custom checkbox','customCheck2')
+    h4#radios Radios
+    .bd-example
+        +radioui('Toggle this custom radio','customRadio','customRadio1')
+        +radioui('Or toggle this other custom radio','customRadio','customRadio2')
+
+    figure.highlight
+        pre
+            code.js.
+                +radioui('Toggle this custom radio','customRadio','customRadio1')
+                +radioui('Or toggle this other custom radio','customRadio','customRadio2')
+
+    h4#inline-1 Inline
+    .bd-example
+        +radioui-inline('Toggle this custom radio','customRadioInline1','customRadioInline1')
+        +radioui-inline('Or toggle this other custom radio','customRadioInline1','customRadioInline2')
+        
+    figure.highlight
+        pre
+            code.js.
+                +radioui-inline('Toggle this custom radio','customRadioInline1','customRadioInline1')
+                +radioui-inline('Or toggle this other custom radio','customRadioInline1','customRadioInline2')
+    h4#disabled Disabled
+    p
+        | Custom checkboxes and radios can also be disabled. Add the 
+        code.highlighter-rouge disabled
+        |  boolean attribute to the 
+        code.highlighter-rouge input
+        |  and the custom indicator and label description will be automatically styled.
+    .bd-example
+        +checkboxui('Check this custom checkbox','customCheckDisabled','',true)
+        +radioui('Toggle this custom radio','radioDisabled','customRadioDisabled','','',true)
+    figure.highlight
+        pre
+            code.js.
+                +checkboxui('Check this custom checkbox','customCheckDisabled','',true)
+                +radioui('Toggle this custom radio','radioDisabled','customRadioDisabled','','',true)

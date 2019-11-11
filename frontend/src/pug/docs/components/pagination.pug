@@ -1,0 +1,201 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'pagination';
+    - title = "Component - Pagination"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#overview') Overview
+        li.toc-entry.toc-h2
+            a(href='#working-with-icons') Working with icons
+        li.toc-entry.toc-h2
+            a(href='#disabled-and-active-states') Disabled and active states
+        li.toc-entry.toc-h2
+            a(href='#sizing') Sizing
+        li.toc-entry.toc-h2
+            a(href='#alignment') Alignment
+
+block content 
+    h1.bd-title#content Pagination
+    p.bd-lead Documentation and examples for showing pagination to indicate a series of related content exists across multiple pages.
+    
+    h2#overview Overview
+    p
+        | We use a large block of connected links for our pagination, making links hard to miss and easily scalable—all while providing large hit areas. Pagination is built with list HTML elements so screen readers can announce the number of available links. Use a wrapping 
+        code.highlighter-rouge &lt;nav&gt;
+        |  element to identify it as a navigation section to screen readers and other assistive technologies.
+    p
+        | In addition, as pages likely have more than one such navigation section, it’s advisable to provide a descriptive 
+        code.highlighter-rouge aria-label
+        |  for the 
+        code.highlighter-rouge &lt;nav&gt;
+        |  to reflect its purpose. For example, if the pagination component is used to navigate between a set of search results, an appropriate label could be 
+        code.highlighter-rouge aria-label="Search results pages"
+        | .
+    .bd-example
+        +pagination([
+            {text:'Previous',url:'#'},
+            {text:'1',url:'#'},
+            {text:'2',url:'#'},
+            {text:'3',url:'#'},
+            {text:'Next',url:'#'}
+        ])
+
+    figure.highlight
+        pre
+            code.js.
+                +pagination([
+                    {text:'Previous',url:'#'},
+                    {text:'1',url:'#'},
+                    {text:'2',url:'#'},
+                    {text:'3',url:'#'},
+                    {text:'Next',url:'#'}
+                ])
+    
+    h2#working-with-icons Working with icons
+    p
+        | Looking to use an icon or symbol in place of text for some pagination links? Be sure to provide proper screen reader support with 
+        code.highlighter-rouge aria
+        |  attributes and the 
+        code.highlighter-rouge .sr-only
+        |  utility.
+    .bd-example
+        +pagination([
+            {text:'Previous',url:'#',icon:'«'},
+            {text:'1',url:'#'},
+            {text:'2',url:'#'},
+            {text:'3',url:'#'},
+            {text:'Next',url:'#',icon:'»'}
+        ])    
+    figure.highlight
+        pre
+            code.js.
+                +pagination([
+                    {text:'Previous',url:'#',icon:'«'},
+                    {text:'1',url:'#'},
+                    {text:'2',url:'#'},
+                    {text:'3',url:'#'},
+                    {text:'Next',url:'#',icon:'»'}
+                ])
+    
+    h2#disabled-and-active-states Disabled and active states
+    p
+        | Pagination links are customizable for different circumstances. Use 
+        code.highlighter-rouge .disabled
+        |  for links that appear un-clickable and 
+        code.highlighter-rouge .active
+        |  to indicate the current page.
+    p
+        | While the 
+        code.highlighter-rouge .disabled
+        |  class uses 
+        code.highlighter-rouge pointer-events: none
+        |  to 
+        em try
+        |  to disable the link functionality of 
+        code.highlighter-rouge &lt;a&gt;
+        | s, that CSS property is not yet standardized and doesn’t account for keyboard navigation. As such, you should always add 
+        code.highlighter-rouge tabindex="-1"
+        |  on disabled links and use custom JavaScript to fully disable their functionality.
+    .bd-example
+        +pagination([
+            {text:'Previous',url:'#',style:'disabled'},
+            {text:'1',url:'#'},
+            {text:'2',url:'#',style:'active'},
+            {text:'3',url:'#'},
+            {text:'Next',url:'#'}
+        ])
+    figure.highlight
+        pre
+            code.js.
+                +pagination([
+                    {text:'Previous',url:'#',style:'disabled'},
+                    {text:'1',url:'#'},
+                    {text:'2',url:'#',style:'active'},
+                    {text:'3',url:'#'},
+                    {text:'Next',url:'#'}
+                ])
+    h2#sizing Sizing
+    p
+        | Fancy larger or smaller pagination? Add 
+        code.highlighter-rouge .pagination-lg
+        |  or 
+        code.highlighter-rouge .pagination-sm
+        |  for additional sizes.
+    .bd-example
+        +pagination-lg([
+            {text:'1',url:'#',class:'disabled'},
+            {text:'2',url:'#'},
+            {text:'3',url:'#'}
+        ])
+    figure.highlight
+        pre
+            code.js.
+                +pagination-lg([
+                    {text:'1',url:'#',class:'disabled'},
+                    {text:'2',url:'#'},
+                    {text:'3',url:'#'}
+                ])
+    
+    .bd-example
+        +pagination-sm([
+            {text:'1',url:'#',class:'disabled'},
+            {text:'2',url:'#'},
+            {text:'3',url:'#'}
+        ])
+
+    figure.highlight
+        pre
+            code.js.
+                +pagination-lg([
+                    {text:'1',url:'#',class:'disabled'},
+                    {text:'2',url:'#'},
+                    {text:'3',url:'#'}
+                ])
+
+    h2#alignment Alignment
+    p
+        | Change the alignment of pagination components with 
+        a(href='/docs/utilities/flex/') flexbox utilities
+        | .
+    .bd-example
+        +pagination-center([
+            {text:'Previous',url:'#',style:'disabled'},
+            {text:'1',url:'#'},
+            {text:'2',url:'#',style:'active'},
+            {text:'3',url:'#'},
+            {text:'Next',url:'#'}
+        ])
+
+    figure.highlight
+        pre
+            code.js.
+                +pagination-center([
+                    {text:'Previous',url:'#',style:'disabled'},
+                    {text:'1',url:'#'},
+                    {text:'2',url:'#',style:'active'},
+                    {text:'3',url:'#'},
+                    {text:'Next',url:'#'}
+                ])
+    
+    .bd-example
+        +pagination-right([
+            {text:'Previous',url:'#',style:'disabled'},
+            {text:'1',url:'#'},
+            {text:'2',url:'#',style:'active'},
+            {text:'3',url:'#'},
+            {text:'Next',url:'#'}
+        ])
+    
+    figure.highlight
+        pre
+            code.js.
+                +pagination-right([
+                    {text:'Previous',url:'#',style:'disabled'},
+                    {text:'1',url:'#'},
+                    {text:'2',url:'#',style:'active'},
+                    {text:'3',url:'#'},
+                    {text:'Next',url:'#'}
+                ])

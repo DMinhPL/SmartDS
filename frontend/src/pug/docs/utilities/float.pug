@@ -1,0 +1,118 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'float';
+    - title = "Utilities - Float"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#overview') Overview
+        li.toc-entry.toc-h2
+            a(href='#classes') Classes
+        li.toc-entry.toc-h2
+            a(href='#mixins') Mixins
+        li.toc-entry.toc-h2
+            a(href='#responsive') Responsive
+
+block content 
+    h1.bd-title#content Float
+    p.bd-lead Toggle floats on any element, across any breakpoint, using our responsive float utilities.
+
+    h2#overview Overview
+    p
+        | These utility classes float an element to the left or right, or disable floating, based on the current viewport size using the 
+        a(href='https://developer.mozilla.org/en-US/docs/Web/CSS/float')
+            | CSS 
+            code.highlighter-rouge float
+            |  property
+        | . 
+        code.highlighter-rouge !important
+        |  is included to avoid specificity issues. These use the same viewport breakpoints as our grid system. Please be aware float utilities have no affect on flex items.
+    h2#classes Classes
+    p Toggle a float with a class:
+    .bd-example
+        .float-left Float left on all viewport sizes
+        br
+        .float-right Float right on all viewport sizes
+        br
+        .float-none Don't float on all viewport sizes
+    figure.highlight
+        pre
+            code.css
+                | .float-left Float left on all viewport sizes
+                | br
+                | .float-right Float right on all viewport sizes
+                | br
+                | .float-none Don't float on all viewport sizes
+            
+    h2#mixins Mixins
+    p Or by Sass mixin:
+    figure.highlight
+        pre
+            code.scss
+                | .element {
+                |     @include float-left;
+                | }
+                | .another-element {
+                |     @include float-right;
+                | }
+                | .one-more {
+                |     @include float-none;
+                | }
+    h2#responsive Responsive
+    p
+        | Responsive variations also exist for each 
+        code.highlighter-rouge float
+        |  value.
+    .bd-example
+        .float-sm-left Float left on viewports sized SM (small) or wider
+        br
+        .float-md-left Float left on viewports sized MD (medium) or wider
+        br
+        .float-lg-left Float left on viewports sized LG (large) or wider
+        br
+        .float-xl-left Float left on viewports sized XL (extra-large) or wider
+        br
+    figure.highlight
+        pre
+            code.css
+                | .float-sm-left Float left on viewports sized SM (small) or wider
+                | br
+                | .float-md-left Float left on viewports sized MD (medium) or wider
+                | br
+                | .float-lg-left Float left on viewports sized LG (large) or wider
+                | br
+                | .float-xl-left Float left on viewports sized XL (extra-large) or wider
+                | br
+    p Here are all the support classes;
+    ul
+        li
+            code.highlighter-rouge .float-left
+        li
+            code.highlighter-rouge .float-right
+        li
+            code.highlighter-rouge .float-none
+        li
+            code.highlighter-rouge .float-sm-left
+        li
+            code.highlighter-rouge .float-sm-right
+        li
+            code.highlighter-rouge .float-sm-none
+        li
+            code.highlighter-rouge .float-md-left
+        li
+            code.highlighter-rouge .float-md-right
+        li
+            code.highlighter-rouge .float-md-none
+        li
+            code.highlighter-rouge .float-lg-left
+        li
+            code.highlighter-rouge .float-lg-right
+        li
+            code.highlighter-rouge .float-lg-none
+        li
+            code.highlighter-rouge .float-xl-left
+        li
+            code.highlighter-rouge .float-xl-right
+        li
+            code.highlighter-rouge .float-xl-none

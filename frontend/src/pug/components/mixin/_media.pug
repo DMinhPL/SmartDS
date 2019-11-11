@@ -1,0 +1,50 @@
+//- Media mixin
+//- @mixin +media(head, img, imgdesc, cls)
+//- @param {string} head: heading content
+//- @param {string} img: image path
+//- @param {string} imgdesc: alt image content
+//- @param {string} cls: class name
+//- @param {string} imgCls: image class name
+//- @param {boolean} list
+
+mixin media(head, img, imgdesc, cls, link, imgCls, list)
+    unless imgdesc
+        - imgdesc = ''
+    unless cls
+        - cls = ''
+    unless imgCls
+        - imgCls = 'mr-3'
+    unless list
+        - item = 'div'
+    else
+        - item = 'li'
+        
+
+    #{item}.media(class=`${cls}`)
+        unless link
+            img(src=img, alt=imgdesc, class=imgCls)
+        else
+            a(href=link, title=head)
+                img(src=img, alt=imgdesc, class=imgCls)
+        .media-body
+            h5.mt-0= head
+            block
+
+//- Child
+mixin media-center(head, img, imgdesc, cls, link, list)
+    +media(head, img, imgdesc, cls, link, 'mr-3 align-self-center', list)
+        block
+
+mixin media-end(head, img, imgdesc, cls, link, list)
+    +media(head, img, imgdesc, cls, link, 'mr-3 align-self-end', list)
+        block
+
+mixin media-list(head, img, imgdesc, cls, link, imgCls)
+    +media(head, img, imgdesc, cls, link, imgCls, true)
+        block
+
+mixin media-order(head, img, imgdesc, cls, link, imgCls, list)
+    unless imgCls
+        - imgCls = ''
+    +media(head, img, imgdesc, cls, link, imgCls + ' ml-3 order-last', list)
+        block

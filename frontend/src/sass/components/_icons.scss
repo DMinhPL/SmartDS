@@ -1,0 +1,24 @@
+@import "icons-ElegantIcons";
+@import "icons-FontAwesomeIcon";
+
+i.icon{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: inline-block;
+    &.icon-laptop{
+        background-image: url(../images/icon-laptop.svg);
+        width: 31px;
+        height: 31px;
+    }
+    &.icon-bullhorn{
+        background-image: url(../images/icon-bullhorn.svg);
+        width: 31px;
+        height: 31px;
+    }
+    &.icon-support{
+        background-image: url(../images/icon-support.svg);
+        width: 31px;
+        height: 31px;
+    }
+}

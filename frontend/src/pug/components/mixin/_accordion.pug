@@ -1,0 +1,28 @@
+
+mixin accordion(_id,items)
+	- var _id = _id || 'accordion-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+	.accordion(id=_id)
+		unless !items
+			each item in items
+				- var itemID = 'card-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+				+card(itemID,_id,item.head,item.style)
+					!= item.text
+		block
+
+mixin card(_id,parent,head,show)
+	.card
+		.card-header(id=`head-${_id}`)
+			h5.mb-0
+				button.btn.btn-link(type='button', data-toggle='collapse', data-target=`#${_id}`, aria-expanded='true', aria-controls=_id)
+					!= head
+		+collapse(_id,show,parent)
+			block
+
+mixin collapse(_id,show,parent)
+	- var _id 		= _id 		|| 'collapse-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+	- var head 		= head 		|| ''
+	- var parent 	= parent 	|| ''
+	
+	.collapse(id=_id class=show aria-labelledby=`head-${_id}`, data-parent=`#${parent}`)
+		.card.card-body
+			block

@@ -1,0 +1,116 @@
+//- toggle
+//- @mixin +toggle(type,text)
+//- @param {string} type: type toggle item
+//- @param {string} text: caption of toggle
+
+mixin toggle(type,text)
+	button.btn(class=`btn-${type}`,type="button",data-toggle="button",aria-pressed="false",autocomplete="off")
+		!= text
+
+mixin toggle-primary(text)
+	+toggle("primary",text)
+mixin toggle-secondary(text)
+	+toggle("secondary",text)
+mixin toggle-info(text)
+	+toggle("info",text)
+mixin toggle-success(text)
+	+toggle("success",text)
+mixin toggle-warning(text)
+	+toggle("warning",text)
+mixin toggle-light(text)
+	+toggle("light",text)
+mixin toggle-dark(text)
+	+toggle("dark",text)
+mixin toggle-danger(text)
+	+toggle("danger",text)
+
+
+//- checkbox toggle group
+//- @mixin +checkbox-toggle(type,items,active)
+//- @param {string} type: type of checkbox toggle item
+//- @param {array} items: items of checkbox toggle
+//- @param {number} active: index item active
+mixin checkbox-toggle(type,items,active)
+	.btn-group.btn-group-toggle(data-toggle="buttons")
+		each item,index in items
+			if(index === active)
+				label.btn.active(class=`btn-${type}`)
+					input(type="checkbox",autocomplete="off",checked) 
+					|  #{item.caption}
+			else
+				label.btn(class=`btn-${type}`)
+					input(type="checkbox",autocomplete="off") 
+					|  #{item.caption}
+
+mixin checkbox-toggle-primary(items,active)
+	+checkbox-toggle("primary",items,active)
+mixin checkbox-toggle-info(items,active)
+	+checkbox-toggle("info",items,active)
+mixin checkbox-toggle-success(items,active)
+	+checkbox-toggle("success",items,active)
+mixin checkbox-toggle-warning(items,active)
+	+checkbox-toggle("warning",items,active)
+mixin checkbox-toggle-danger(items,active)
+	+checkbox-toggle("danger",items,active)
+mixin checkbox-toggle-secondary(items,active)
+	+checkbox-toggle("secondary",items,active)
+mixin checkbox-toggle-light(items,active)
+	+checkbox-toggle("light",items,active)
+mixin checkbox-toggle-dark(items,active)
+	+checkbox-toggle("dark",items,active)
+	
+
+//- radio toggle group
+//- @mixin +radio-toggle(type,name,items,active)
+//- @param {string} type: type of checkbox toggle item
+//- @param {string} name: name of checkbox toggle item
+//- @param {array} items: items of checkbox toggle
+//- @param {number} active: index item active
+mixin radio-toggle(type,name,items,active)
+	.btn-group.btn-group-toggle(data-toggle="buttons")
+		unless !items
+			each item,index in items
+				if(index === active)
+					+radio-toggle-item(item.caption,name,item.value,type,true)
+				else
+					+radio-toggle-item(item.caption,name,item.value,type)
+		block
+
+mixin  radio-toggle-item(caption,name,value,type,checked)
+	unless caption
+		- var caption  = ''
+	unless name
+		- var name  = ''
+	unless value
+		- var value  = ''
+	unless type
+		- var type  = ''
+	unless checked
+		- var checked  = false
+	if(checked ===true)
+		label.btn.active(class=`btn-${type}`)
+			input(type="radio",name=`${name}`,autocomplete="off", checked='', value=value) 
+			|  #{caption}
+	else
+		label.btn(class=`btn-${type}`)
+			input(type="radio",name=`${name}`,autocomplete="off", value=value) 
+			|  #{caption}
+
+
+//- radio-toggle-primary
+mixin radio-toggle-primary(name,items,active)
+	+radio-toggle("primary",name,items,active)
+mixin radio-toggle-info(name,items,active)
+	+radio-toggle("info",name,items,active)
+mixin radio-toggle-success(name,items,active)
+	+radio-toggle("success",name,items,active)
+mixin radio-toggle-warning(name,items,active)
+	+radio-toggle("warning",name,items,active)
+mixin radio-toggle-danger(name,items,active)
+	+radio-toggle("danger",name,items,active)
+mixin radio-toggle-secondary(name,items,active)
+	+radio-toggle("secondary",name,items,active)
+mixin radio-toggle-light(name,items,active)
+	+radio-toggle("light",name,items,active)
+mixin radio-toggle-dark(name,items,active)
+	+radio-toggle("dark",name,items,active)

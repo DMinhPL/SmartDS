@@ -1,0 +1,98 @@
+//- Image mixins
+//- @mixin +media(head, img, imgdesc, cls)
+//- @param {string} _src: image path
+//- @param {string} _alt: alt image content
+//- @param {string} _class: class name
+mixin img(_src, _alt, _class)
+	unless _class
+		- var _class = ''
+	unless _alt
+		- var _alt = ''
+	img(src=_src, alt=_alt, class=_class)
+	
+mixin img-responsive(_src,_alt,_class)
+	unless _class
+		- var _class = ''
+	else
+		- _class= ' ' + _class
+	+img(_src, _alt, 'img-fluid' + _class)
+
+mixin img-thumbnail(_src,_alt,_class)
+	unless _class
+		- var _class = ''
+	else
+		- _class= ' ' + _class
+	+img(_src, _alt, 'img-thumbnail' + _class)
+	
+mixin img-left(_src, _alt, _class)
+	unless _class
+		- _class = ''
+	else
+		- _class= ' ' + _class
+	+img(_src, _alt, 'float-left' + _class)
+	
+mixin img-right(_src, _alt, _class)
+	unless _class
+		- _class = ''
+	else
+		- _class= ' ' + _class
+	+img(_src, _alt, 'float-right' + _class)
+
+mixin img-center(_src, _alt, _class)
+	unless _class
+		- _class = ''
+	else
+		- _class= ' ' + _class
+	+img(_src, _alt, 'mx-auto d-block' + _class)
+
+mixin img-center-wrap(_src, _alt, _class)
+	unless _class
+		- _class = ''
+	.text-center
+		+img(_src, _alt, _class)
+
+mixin img-bg(_src,_alt,_class, _href)
+	unless _alt
+		- var _alt = ''
+	unless _class
+		- var _class = ''
+	else
+		- _class= ' ' + _class
+
+	unless _href
+		.img-bg(style=`background-image: url(${_src})`, class=_class)
+			+img(_src, _alt)
+	else
+		a.img-bg(href=_href style=`background-image: url(${_src})`, title=_alt class=_class)
+			+img(_src, _alt)
+
+
+//- Picture mixins
+//- @mixin +picture(head, img, imgdesc, cls)
+//- @param {string} _src: image path
+//- @param {string} _alt: alt image content
+//- @param {string} _class: class name
+mixin picture(_src, _alt, _class)
+	- var type = ['svg+xml','jpg','webp']
+	unless _class
+		- var _class = ''
+
+	picture(class=_class)
+		each val in type
+			source(srcset=_src type="image/" + val)
+			img(src=_src alt=_alt)
+
+
+//- Picture mixins
+//- @mixin +picture(head, img, imgdesc, cls)
+//- @param {string} _src: image path
+//- @param {string} _alt: alt image content
+//- @param {string} _class: class name
+mixin figure(_src, _caption,_align,_class)
+	- var _caption = _caption || ''
+	- var _align = 'text-'+_align || ''
+	- var _class = _class || ''
+	
+	figure.figure
+		img.figure-img.img-fluid.rounded(src=_src, alt=_caption, class=_class)
+		figcaption.figure-caption(class=_align)= _caption

@@ -1,0 +1,91 @@
+//- Tabs mixins
+//- @mixin +tabs(_id,items,style,simple,pills,vertical)
+//- @param {string} _id: id of tabs
+//- @param {array} items: data of tabs
+//- @param {string} style: class name of tabs
+//- @param {boolean} simple: set ul or nav element (true) wrapper
+//- @param {boolean} pills: pills style of tabs
+//- @param {boolean} vertical: vertical style of tabs
+mixin tabs(_id,items,style,simple,pills,vertical)
+	- var element = 'ul'
+	- var _class = ''
+	
+	if(typeof simple!=='undefined' && simple===true)
+		- element = 'nav'
+	else 
+		- simple = false
+	unless !style
+		- var _class = style + ' '
+
+	if(typeof _id==='undefined' || _id=='')
+		- var _id = 'tabs' + Math.floor(Math.random() * (15 - 1300) + 1300)
+
+	if(typeof pills!=='undefined' && pills===true)
+		- _class = _class + 'nav-pills'
+	else 
+		- _class = _class + 'nav-tabs'
+
+	if(typeof vertical!=='undefined' && vertical===true)
+		- var vertical = true
+	else 
+		- var vertical = false
+	if vertical
+		.row
+			.col-3
+				#{element}.nav(id=_id class=`${_class} flex-column` role='tablist')
+					unless !items
+						each item in items
+							unless item.style
+								- var iStyle = ''
+							else 
+								- var iStyle = item.style
+							+tabs-item(item.id,item.text,item.active,iStyle,simple)
+			.col-9
+				.tab-content(id=`${_id}Content`)
+					unless !items
+						each item in items
+							+tab-item-content(item.id,item.content,item.active)
+	else
+		#{element}.nav(id=_id class=_class role='tablist')
+			unless !items
+				each item in items
+					unless item.style
+						- var iStyle = ''
+					else 
+						- var iStyle = item.style
+					+tabs-item(item.id,item.text,item.active,iStyle,simple)
+		.tab-content(id=`${_id}Content`)
+			unless !items
+				each item in items
+					+tab-item-content(item.id,item.content,item.active)
+
+mixin tabs-item(_id,text,active,style,simple)
+	- var _class = ''
+	if(typeof active!=='undefined' && active===true)
+		- _class = 'active'
+	else 
+		- active = false
+	unless style
+		- _class = _class + " " + style;
+	
+	if(typeof simple!=='undefined' && simple===true)
+		a.nav-link.nav-item(id=`${_id}-tab` class=_class data-toggle='tab', href=`#${_id}`, role='tab', aria-controls=_id, aria-selected=active)!= text
+	else
+		li.nav-item
+			a.nav-link(id=`${_id}-tab` class=_class data-toggle='tab', href=`#${_id}`, role='tab', aria-controls=_id, aria-selected=active)!= text
+	
+mixin tab-item-content(_id,content,active)
+	- var _class = ''
+	if(typeof active!=='undefined' && active===true)
+		- _class = 'show active'
+	unless content
+		- var content = ''
+	.tab-pane.fade(id=_id class=_class role='tabpanel', aria-labelledby=`${_id}-tab`)
+		!= content
+		block
+
+mixin tabs-fills(_id,items,style)
+	+tabs(_id,items,'mb-3 ' + style,true,true)
+
+mixin tabs-fills-vertical(_id,items,style)
+	+tabs(_id,items,style,true,true,true)

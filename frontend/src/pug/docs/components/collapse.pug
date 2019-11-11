@@ -1,0 +1,361 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'collapse';
+    - title = "Component - Collapse"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#how-it-works') How it works
+        li.toc-entry.toc-h2
+            a(href='#example') Example
+        li.toc-entry.toc-h2
+            a(href='#multiple-targets') Multiple targets
+        li.toc-entry.toc-h2
+            a(href='#accordion-example') Accordion example
+        li.toc-entry.toc-h2
+            a(href='#accessibility') Accessibility
+        li.toc-entry.toc-h2
+            a(href='#usage') Usage
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#via-data-attributes') Via data attributes
+                li.toc-entry.toc-h3
+                    a(href='#via-javascript') Via JavaScript
+                li.toc-entry.toc-h3
+                    a(href='#options') Options
+                li.toc-entry.toc-h3
+                    a(href='#methods') Methods
+                    ul
+                        li.toc-entry.toc-h4
+                            a(href='#asynchronous-methods-and-transitions') Asynchronous methods and transitions
+                        li.toc-entry.toc-h4
+                            a(href='#collapseoptions') .collapse(options)
+                        li.toc-entry.toc-h4
+                            a(href='#collapsetoggle') .collapse('toggle')
+                        li.toc-entry.toc-h4
+                            a(href='#collapseshow') .collapse('show')
+                        li.toc-entry.toc-h4
+                            a(href='#collapsehide') .collapse('hide')
+                        li.toc-entry.toc-h4
+                            a(href='#collapsedispose') .collapse('dispose')
+                li.toc-entry.toc-h3
+                    a(href='#events') Events
+block content 
+    h1.bd-title#content Collapse
+    p.bd-lead Toggle the visibility of content across your project with a few classes and our JavaScript plugins.
+
+    h2#how-it-works How it works
+    p
+        | The collapse JavaScript plugin is used to show and hide content. Buttons or anchors are used as triggers that are mapped to specific elements you toggle. Collapsing an element will animate the 
+        code.highlighter-rouge height
+        |  from it’s current value to 
+        code.highlighter-rouge 0
+        | . Given how CSS handles animations, you cannot use 
+        code.highlighter-rouge padding
+        |  on a 
+        code.highlighter-rouge .collapse
+        |  element. Instead, use the class as an independent wrapping element.
+
+    h2#example Example
+    p Click the buttons below to show and hide another element via class changes:
+    ul
+        li
+            code.highlighter-rouge .collapse
+            |  hides content
+        li
+            code.highlighter-rouge .collapsing
+            |  is applied during transitions
+        li
+            code.highlighter-rouge .collapse.show
+            |  shows content
+    p
+        | You can use a link with the 
+        code.highlighter-rouge href
+        |  attribute, or a button with the 
+        code.highlighter-rouge data-target
+        |  attribute. In both cases, the 
+        code.highlighter-rouge data-toggle="collapse"
+        |  is required.
+
+    .bd-example
+        p
+            a.btn.btn-primary(data-toggle='collapse', href='#collapseExample', role='button', aria-expanded='false', aria-controls='collapseExample')
+                | Link with href
+            button.btn.btn-primary(type='button', data-toggle='collapse', data-target='#collapseExample', aria-expanded='false', aria-controls='collapseExample')
+                | Button with data-target
+        +collapse('collapseExample')
+            | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+
+    figure.highlight
+        pre
+            code.css.
+                p
+                    a.btn.btn-primary(data-toggle='collapse', href='#collapseExample', role='button', aria-expanded='false', aria-controls='collapseExample')
+                        | Link with href
+                    button.btn.btn-primary(type='button', data-toggle='collapse', data-target='#collapseExample', aria-expanded='false', aria-controls='collapseExample')
+                        | Button with data-target
+                +collapse('collapseExample')
+                    | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    h2#multiple-targets Multiple targets
+    p
+        | A 
+        code.highlighter-rouge button
+        |  or 
+        code.highlighter-rouge a
+        |  can show and hide multiple elements by referencing them with a JQuery selector in its 
+        code.highlighter-rouge href
+        |  or 
+        code.highlighter-rouge data-target
+        |  attribute.
+        | Multiple 
+        code.highlighter-rouge button
+        |  or 
+        code.highlighter-rouge a
+        |  can show and hide an element if they each reference it with their 
+        code.highlighter-rouge href
+        |  or 
+        code.highlighter-rouge data-target
+        |  attribute
+    .bd-example
+        p
+            a.btn.btn-primary(data-toggle='collapse', href='#multiCollapseExample1', role='button', aria-expanded='false', aria-controls='multiCollapseExample1') Toggle first element
+            button.btn.btn-primary(type='button', data-toggle='collapse', data-target='#multiCollapseExample2', aria-expanded='false', aria-controls='multiCollapseExample2') Toggle second element
+            button.btn.btn-primary(type='button', data-toggle='collapse', data-target='.multi-collapse', aria-expanded='false', aria-controls='multiCollapseExample1 multiCollapseExample2') Toggle both elements
+        .row
+            .col
+                +collapse('multiCollapseExample1')
+                    | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+            .col
+                +collapse('multiCollapseExample2')
+                    | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+
+    figure.highlight
+        pre
+            code.css.
+                p
+                    a.btn.btn-primary(data-toggle='collapse', href='#multiCollapseExample1', role='button', aria-expanded='false', aria-controls='multiCollapseExample1') Toggle first element
+                    button.btn.btn-primary(type='button', data-toggle='collapse', data-target='#multiCollapseExample2', aria-expanded='false', aria-controls='multiCollapseExample2') Toggle second element
+                    button.btn.btn-primary(type='button', data-toggle='collapse', data-target='.multi-collapse', aria-expanded='false', aria-controls='multiCollapseExample1 multiCollapseExample2') Toggle both elements
+                .row
+                    .col
+                        +collapse('multiCollapseExample1')
+                            | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    .col
+                        +collapse('multiCollapseExample2')
+                            | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+
+    h2#accordion-example Accordion example
+    p
+        | Using the 
+        a(href='/docs/components/card/') card
+        |  component, you can extend the default collapse behavior to create an accordion.
+    .bd-example
+        +accordion('accordionExample',[
+            {head:'Collapsible Group Item #1',text:'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.',style:'show'},
+            {head:'Collapsible Group Item #2',text:'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.'},
+            {head:'Collapsible Group Item #3',text:'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.'},
+        ])
+    figure.highlight
+        pre
+            code.js.
+                +accordion('accordionExample',[
+                    {head:'Collapsible Group Item #1',text:'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry...',style:'show'},
+                    {head:'Collapsible Group Item #2',text:'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry...'},
+                    {head:'Collapsible Group Item #3',text:'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry...'},
+                ])
+
+    h2#accessibility Accessibility
+    p   
+        | Be sure to add 
+        code.highlighter-rouge aria-expanded
+        |  to the control element. This attribute explicitly conveys the current state of the collapsible element tied to the control to screen readers and similar assistive technologies. If the collapsible element is closed by default, the attribute on the control element should have a value of 
+        code.highlighter-rouge aria-expanded="false"
+        | . If you’ve set the collapsible element to be open by default using the 
+        code.highlighter-rouge show
+        |  class, set 
+        code.highlighter-rouge aria-expanded="true"
+        |  on the control instead. The plugin will automatically toggle this attribute on the control based on whether or not the collapsible element has been opened or closed (via JavaScript, or because the user triggered another control element also tied to the same collapsbile element). If the control element’s HTML element is not a button (e.g., an 
+        code.highlighter-rouge a
+        |  or 
+        code.highlighter-rouge div
+        | ), the attribute 
+        code.highlighter-rouge role="button"
+        |  should be added to the element.
+    p
+        | If your control element is targeting a single collapsible element – i.e. the 
+        code.highlighter-rouge data-target
+        |  attribute is pointing to an 
+        code.highlighter-rouge id
+        |  selector – you should add the 
+        code.highlighter-rouge aria-controls
+        |  attribute to the control element, containing the 
+        code.highlighter-rouge id
+        |  of the collapsible element. Modern screen readers and similar assistive technologies make use of this attribute to provide users with additional shortcuts to navigate directly to the collapsible element itself.
+    p
+        | Note that Bootstrap’s current implementation does not cover the various keyboard interactions described in the 
+        a(href='https://www.w3.org/TR/wai-aria-practices-1.1/#accordion') WAI-ARIA Authoring Practices 1.1 accordion pattern
+        |  - you will need to include these yourself with custom JavaScript.
+    h2#usage Usage
+    p The collapse plugin utilizes a few classes to handle the heavy lifting:
+    ul
+        li
+            code.highlighter-rouge .collapse
+            |  hides the content
+        li
+            code.highlighter-rouge .collapse.show
+            |  shows the content
+        li
+            code.highlighter-rouge .collapsing
+            |  is added when the transition starts, and removed when it finishes
+    p
+        | These classes can be found in 
+        code.highlighter-rouge _transitions.scss
+        | .
+    h3#via-data-attributes Via data attributes
+    p
+        | Just add 
+        code.highlighter-rouge data-toggle="collapse"
+        |  and a 
+        code.highlighter-rouge data-target
+        |  to the element to automatically assign control of one or more collapsible elements. The 
+        code.highlighter-rouge data-target
+        |  attribute accepts a CSS selector to apply the collapse to. Be sure to add the class 
+        code.highlighter-rouge collapse
+        |  to the collapsible element. If you’d like it to default open, add the additional class 
+        code.highlighter-rouge show
+        | .
+    p
+        | To add accordion-like group management to a collapsible area, add the data attribute 
+        code.highlighter-rouge data-parent="#selector"
+        | . Refer to the demo to see this in action.
+    h3#via-javascript Via JavaScript
+    p Enable manually with:
+    figure.highlight
+        pre
+            code.js
+                | $('.collapse').collapse()
+    h3#options Options
+    p
+        | Options can be passed via data attributes or JavaScript. For data attributes, append the option name to 
+        code.highlighter-rouge data-
+        | , as in 
+        code.highlighter-rouge data-parent=""
+        | .
+    table.table.table-bordered.table-striped
+        thead
+            tr
+                th(style='width: 100px;') Name
+                th(style='width: 50px;') Type
+                th(style='width: 50px;') Default
+                th Description
+        tbody
+            tr
+                td parent
+                td selector | jQuery object | DOM element 
+                td false
+                td
+                    | If parent is provided, then all collapsible elements under the specified parent will be closed when this collapsible item is shown. (similar to traditional accordion behavior - this is dependent on the 
+                    code card
+                    |  class). The attribute has to be set on the target collapsible area.
+            tr
+                td toggle
+                td boolean
+                td true
+                td Toggles the collapsible element on invocation
+    h3#methods Methods
+    .bd-callout.bd-callout-danger
+        h4#asynchronous-methods-and-transitions Asynchronous methods and transitions
+        p
+            | All API methods are 
+            strong asynchronous
+            |  and start a 
+            strong transition
+            | . They return to the caller as soon as the transition is started but 
+            strong before it ends
+            | . In addition, a method call on a 
+            strong transitioning component will be ignored
+            | .
+        p
+            a(href='/docs/getting-started/javascript/') See our JavaScript documentation for more information.
+    h4#collapseoptions
+        code.highlighter-rouge .collapse(options)
+    p
+        | Activates your content as a collapsible element. Accepts an optional options 
+        code.highlighter-rouge object
+        | .
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myCollapsible').collapse({
+                |     toggle: false
+                | })
+
+    h4#collapsetoggle
+        code.highlighter-rouge .collapse('toggle')
+    p
+        | Toggles a collapsible element to shown or hidden. 
+        strong
+            | Returns to the caller before the collapsible element has actually been shown or hidden
+        |  (i.e. before the 
+        code.highlighter-rouge shown.bs.collapse
+        |  or 
+        code.highlighter-rouge hidden.bs.collapse
+        |  event occurs).
+    h4#collapseshow
+        code.highlighter-rouge .collapse('show')
+    p
+        | Shows a collapsible element. 
+        strong Returns to the caller before the collapsible element has actually been shown
+        |  (i.e. before the 
+        code.highlighter-rouge shown.bs.collapse
+        |  event occurs).
+    h4#collapsehide
+        code.highlighter-rouge .collapse('hide')
+    p
+        | Hides a collapsible element. 
+        strong Returns to the caller before the collapsible element has actually been hidden
+        |  (i.e. before the 
+        code.highlighter-rouge hidden.bs.collapse
+        |  event occurs).
+    h4#collapsedispose
+        code.highlighter-rouge .collapse('dispose')
+    p Destroys an element’s collapse.
+    h3#events Events
+    p
+        | Bootstrap’s collapse class exposes a few events for hooking into collapse functionality.
+    table.table.table-bordered.table-striped
+        thead
+            tr
+                th(style='width: 150px;') Event Type
+                th Description
+        tbody
+            tr
+                td show.bs.collapse
+                td
+                    | This event fires immediately when the 
+                    code show
+                    |  instance method is called.
+            tr
+                td shown.bs.collapse
+                td
+                    | This event is fired when a collapse element has been made visible to the user (will wait for CSS transitions to complete).
+            tr
+                td hide.bs.collapse
+                td
+                    | This event is fired immediately when the 
+                    code hide
+                    |  method has been called.
+            tr
+                td hidden.bs.collapse
+                td
+                    | This event is fired when a collapse element has been hidden from the user (will wait for CSS transitions to complete).
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myCollapsible').on('hidden.bs.collapse', function () {
+                |    // do something…
+                | })
+

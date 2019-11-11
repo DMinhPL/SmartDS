@@ -1,0 +1,70 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'embed';
+    - title = "Utilities - Embeds"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#about') About
+        li.toc-entry.toc-h2
+            a(href='#example') Example
+        li.toc-entry.toc-h2
+            a(href='#aspect-ratios') Aspect ratios
+
+block content 
+    h1.bd-title#content Embeds
+    p.bd-lead Create responsive video or slideshow embeds based on the width of the parent by creating an intrinsic ratio that scales on any device.
+
+    h2#about About
+    p
+        | Rules are directly applied to 
+        code.highlighter-rouge &lt;iframe&gt;
+        | , 
+        code.highlighter-rouge &lt;embed&gt;
+        | , 
+        code.highlighter-rouge &lt;video&gt;
+        | , and 
+        code.highlighter-rouge &lt;object&gt;
+        |  elements; optionally use an explicit descendant class 
+        code.highlighter-rouge .embed-responsive-item
+        |  when you want to match the styling for other attributes.
+    p
+        strong Pro-Tip!
+        |  You don’t need to include 
+        code.highlighter-rouge frameborder="0"
+        |  in your 
+        code.highlighter-rouge &lt;iframe&gt;
+        | s as we override that for you.
+    h2#example Example
+    p
+        | Wrap any embed like an 
+        code.highlighter-rouge &lt;iframe&gt;
+        |  in a parent element with 
+        code.highlighter-rouge .embed-responsive
+        |  and an aspect ratio. The 
+        code.highlighter-rouge .embed-responsive-item
+        |  isn’t strictly required, but we encourage it.
+    .bd-example
+        +embed-16by9('https://www.youtube.com/embed/9ZfN87gSjvI?rel=0')
+    figure.highlight
+        pre
+            code.js.
+                +embed-16by9('https://www.youtube.com/embed/9ZfN87gSjvI?rel=0')
+
+    h2#aspect-ratios Aspect ratios
+    p Aspect ratios can be customized with modifier classes.
+    figure.highlight
+        pre
+            code.js.
+                // 21:9 aspect ratio
+                +embed-21by9('https://www.youtube.com/embed/9ZfN87gSjvI?rel=0')
+
+                // 16:9 aspect ratio
+                +embed-16by9('https://www.youtube.com/embed/9ZfN87gSjvI?rel=0')
+
+                // 4:3 aspect ratio
+                +embed-4by3('https://www.youtube.com/embed/9ZfN87gSjvI?rel=0')
+
+                // 1:1 aspect ratio
+                +embed-1by1('https://www.youtube.com/embed/9ZfN87gSjvI?rel=0')

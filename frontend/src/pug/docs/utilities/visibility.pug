@@ -1,0 +1,45 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'visibility';
+    - title = "Utilities - Visibility"
+block navsection
+
+block content 
+    h1.bd-title#content Visibility
+    p.bd-lead Control the visibility, without modifying the display, of elements with visibility utilities.
+    p
+        | Set the 
+        code.highlighter-rouge visibility
+        |  of elements with our visibility utilities. These do not modify the 
+        code.highlighter-rouge display
+        |  value at all and are helpful for hiding content from most users, but still keeping them for screen readers.
+    p
+        | Apply 
+        code.highlighter-rouge .visible
+        |  or 
+        code.highlighter-rouge .invisible
+        |  as needed.
+    figure.highlight
+        pre
+            code.css.
+                .visible ...
+                .invisible ...
+    figure.highlight
+        pre
+            code.css.
+                // Class
+                .visible {
+                    visibility: visible;
+                }
+                .invisible {
+                    visibility: hidden;
+                }
+
+                // Usage as a mixin
+                .element {
+                    @include invisible(visible);
+                }
+                .element {
+                    @include invisible(hidden);
+                }

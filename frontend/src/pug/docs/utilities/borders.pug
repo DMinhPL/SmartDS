@@ -1,0 +1,110 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'borders';
+    - title = "Utilities - Borders"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#border') Border
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#additive') Additive
+                li.toc-entry.toc-h3
+                    a(href='#subtractive') Subtractive
+        li.toc-entry.toc-h2
+            a(href='#border-color') Border color
+        li.toc-entry.toc-h2
+            a(href='#border-radius') Border-radius
+
+block content 
+    h1.bd-title#content Borders
+    p.bd-lead Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.
+
+    h2#border Border
+    p
+        | Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time.
+    h3#additive Additive
+    .bd-example-border-utils
+        .bd-example
+            span.border
+            span.border-top
+            span.border-right
+            span.border-bottom
+            span.border-left
+
+    figure.highlight
+        pre
+            code.css
+                | span.border
+                | span.border-top
+                | span.border-right
+                | span.border-bottom
+                | span.border-left
+    
+    h3#subtractive Subtractive
+    .bd-example-border-utils.bd-example-border-utils-0
+        .bd-example
+            span.border-0
+            span.border-top-0
+            span.border-right-0
+            span.border-bottom-0
+            span.border-left-0
+
+    figure.highlight
+        pre
+            code.css
+                | span.border-0
+                | span.border-top-0
+                | span.border-right-0
+                | span.border-bottom-0
+                | span.border-left-0
+    
+    h2#border-color Border color
+    p Change the border color using utilities built on our theme colors.
+    .bd-example-border-utils
+        .bd-example
+            span.border.border-primary
+            span.border.border-secondary
+            span.border.border-success
+            span.border.border-danger
+            span.border.border-warning
+            span.border.border-info
+            span.border.border-light
+            span.border.border-dark
+            span.border.border-white
+    
+    figure.highlight
+        pre
+            code.css
+                | span.border.border-primary
+                | span.border.border-secondary
+                | span.border.border-success
+                | span.border.border-danger
+                | span.border.border-warning
+                | span.border.border-info
+                | span.border.border-light
+                | span.border.border-dark
+                | span.border.border-white
+
+    h2#border-radius Border-radius
+    p Add classes to an element to easily round its corners.
+    .bd-example.bd-example-images
+        img.rounded(data-src='holder.js/75x75', alt='Example rounded image')
+        img.rounded-top(data-src='holder.js/75x75', alt='Example top rounded image')
+        img.rounded-right(data-src='holder.js/75x75', alt='Example right rounded image')
+        img.rounded-bottom(data-src='holder.js/75x75', alt='Example bottom rounded image')
+        img.rounded-left(data-src='holder.js/75x75', alt='Example left rounded image')
+        img.rounded-circle(data-src='holder.js/75x75', alt='Completely round image')
+        img.rounded-0(data-src='holder.js/75x75', alt='Example non-rounded image (overrides rounding applied elsewhere)')
+    
+    figure.highlight
+        pre
+            code.css
+                | img.rounded(src='...', alt='...')
+                | img.rounded-top(src='...', alt='...')
+                | img.rounded-right(src='...', alt='...')
+                | img.rounded-bottom(src='...', alt='...')
+                | img.rounded-left(src='...', alt='...')
+                | img.rounded-circle(src='...', alt='...')
+                | img.rounded-0(src='...', alt='...')

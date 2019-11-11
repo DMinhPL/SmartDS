@@ -1,0 +1,1859 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'datepicker';
+    - title = "Component - Datepicker"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#usage') Usage
+            ul 
+                li.toc-entry.toc-h3
+                    a(href='#minimum-setup') Minimum Setup
+                li.toc-entry.toc-h3
+                    a(href='#using-locales') Using Locales
+                li.toc-entry.toc-h3
+                    a(href='#time-only') Time Only
+                li.toc-entry.toc-h3
+                    a(href='#date-only') Date Only
+                li.toc-entry.toc-h3
+                    a(href='#no-icon-input-field-only') No Icon (input field only):
+                li.toc-entry.toc-h3
+                    a(href='#enableddisabled-dates') Enabled/Disabled Dates
+                li.toc-entry.toc-h3
+                    a(href='#linked-pickers') Linked Pickers
+                li.toc-entry.toc-h3
+                    a(href='#custom-icons') Custom Icons
+                li.toc-entry.toc-h3
+                    a(href='#view-mode') View Mode
+                li.toc-entry.toc-h3
+                    a(href='#min-view-mode') Min View Mode
+                li.toc-entry.toc-h3
+                    a(href='#disabled-days-of-the-week') Disabled Days of the Week
+                li.toc-entry.toc-h3
+                    a(href='#inline') Inline
+        li.toc-entry.toc-h2
+            a(href='#functions') Functions
+            ul 
+                li.toc-entry.toc-h3
+                    a(href='#destroy') destroy()
+                li.toc-entry.toc-h3
+                    a(href='#toggle') toggle()
+                li.toc-entry.toc-h3
+                    a(href='#show') show()
+                li.toc-entry.toc-h3
+                    a(href='#hide') hide()
+                li.toc-entry.toc-h3
+                    a(href='#disable') disable()
+                li.toc-entry.toc-h3
+                    a(href='#enable') enable()
+                li.toc-entry.toc-h3
+                    a(href='#clear') clear()
+                li.toc-entry.toc-h3
+                    a(href='#viewdate') viewDate()
+        
+        li.toc-entry.toc-h2
+            a(href='#options') Options
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#options_child') options()
+                li.toc-entry.toc-h3
+                    a(href='#options_child2') options([options])
+                li.toc-entry.toc-h3
+                    a(href='#date') date
+                li.toc-entry.toc-h3
+                    a(href='#format') format
+                li.toc-entry.toc-h3
+                    a(href='#dayviewheaderformat') dayViewHeaderFormat
+                li.toc-entry.toc-h3
+                    a(href='#extraformats') extraFormats
+                li.toc-entry.toc-h3
+                    a(href='#stepping') stepping
+                li.toc-entry.toc-h3
+                    a(href='#minmaxdate') min/maxDate
+                li.toc-entry.toc-h3
+                    a(href='#usecurrent') useCurrent
+                li.toc-entry.toc-h3
+                    a(href='#collapse') collapse
+                li.toc-entry.toc-h3
+                    a(href='#locale') locale
+                li.toc-entry.toc-h3
+                    a(href='#defaultdate') defaultDate
+                li.toc-entry.toc-h3
+                    a(href='#endisableddates') en/disabledDates
+                li.toc-entry.toc-h3
+                    a(href='#icons') icons
+                li.toc-entry.toc-h3
+                    a(href='#usestrict') useStrict
+                li.toc-entry.toc-h3
+                    a(href='#sidebyside') sideBySide
+                li.toc-entry.toc-h3
+                    a(href='#daysofweekdisabled') daysOfWeekDisabled
+                li.toc-entry.toc-h3
+                    a(href='#calendarweeks') calendarWeeks
+                li.toc-entry.toc-h3
+                    a(href='#viewmode') viewMode
+                li.toc-entry.toc-h3
+                    a(href='#toolbarplacement') toolbarPlacement 
+                li.toc-entry.toc-h3
+                    a(href='#showtodaybutton') showTodayButton 
+                li.toc-entry.toc-h3
+                    a(href='#showclear') showClear 
+                li.toc-entry.toc-h3
+                    a(href='#showclose') showClose 
+                li.toc-entry.toc-h3
+                    a(href='#widgetpositioning') widgetPositioning 
+                li.toc-entry.toc-h3
+                    a(href='#widgetparent') widgetParent 
+                li.toc-entry.toc-h3
+                    a(href='#keepopen') keepOpen 
+                li.toc-entry.toc-h3
+                    a(href='#inline-option') inline 
+                li.toc-entry.toc-h3
+                    a(href='#keepinvalid') keepInvalid 
+                li.toc-entry.toc-h3
+                    a(href='#keybinds') keyBinds 
+                li.toc-entry.toc-h3
+                    a(href='#debug') debug 
+                li.toc-entry.toc-h3
+                    a(href='#ignorereadonly') ignoreReadonly 
+                li.toc-entry.toc-h3
+                    a(href='#disabledtimeIntervals') disabledTimeIntervals 
+                li.toc-entry.toc-h3
+                    a(href='#allowinputtoggle') allowInputToggle 
+                li.toc-entry.toc-h3
+                    a(href='#focusonshow') focusOnShow 
+                li.toc-entry.toc-h3
+                    a(href='#endisabledhours') en/disabledHours 
+                li.toc-entry.toc-h3
+                    a(href='#viewdate') viewDate 
+                li.toc-entry.toc-h3
+                    a(href='#parseinputdate') parseInputDate 
+                li.toc-entry.toc-h3
+                    a(href='#tooltips') tooltips 
+                li.toc-entry.toc-h3
+                    a(href='#timezone') timeZone 
+
+        li.toc-entry.toc-h2
+            a(href='#events') Events 
+            ul 
+                li.toc-entry.toc-h3
+                    a(href='#dphide') dp.hide
+                li.toc-entry.toc-h3
+                    a(href='#dpshow') dp.show
+                li.toc-entry.toc-h3
+                    a(href='#dpchange') dp.change
+                li.toc-entry.toc-h3
+                    a(href='#dperror') dp.error
+                li.toc-entry.toc-h3
+                    a(href='#dpupdate') dp.update
+
+block content 
+    h1.bd-title#content Datepicker
+    p.bd-lead Bootstrap 4 Datepicker v4 Docs
+
+    h2#usage Usage
+    +alert-info
+        strong Note 
+        | All functions are accessed via the <code>data</code> attribute e.g. <code>$('#datetimepicker').data("DateTimePicker").FUNCTION()</code>
+    
+    h3#minimum-setup Minimum Setup
+    .bd-example
+        .form-group.w-50
+            +input-group(prepend,'<i class="fa fa-calendar"></i>','date','','datetimepicker1')
+                +input-simple('text') 
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-group(prepend,'&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;','date','','datetimepicker1')
+                    +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker1').datetimepicker();
+    
+    h3#using-locales Using Locales
+    .bd-example
+        .form-group.w-50
+            +input-group(prepend,'<i class="fa fa-calendar"></i>','date','','datetimepicker2')
+                +input-simple('text')
+    
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-group(prepend,'&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;','date','','datetimepicker2')
+                    +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker2').datetimepicker({
+                    locale: 'vi'
+                });
+    
+    h3#time-only Time Only
+    .bd-example
+        .form-group.w-50
+            +input-group(prepend,'<i class="fa fa-clock-o"></i>','date','','datetimepicker3')
+                +input-simple('text')
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-group(prepend,'&lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;','date','','datetimepicker3')
+                    +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
+
+    h3#date-only Date Only
+    .bd-example
+        .form-group.w-50
+            +input-group(prepend,'<i class="fa fa-clock-o"></i>','date','','datetimepicker4')
+                +input-simple('text')
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-group(prepend,'&lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;','date','','datetimepicker4')
+                    +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker4').datetimepicker({
+                    format: 'L'
+                });
+
+    h3#no-icon-input-field-only No Icon (input field only):
+    .bd-example
+        .form-group.w-50
+            +input-simple('text','datetimepicker5')
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-simple('text','datetimepicker5')
+
+                //- jQuery
+                $('#datetimepicker5').datetimepicker();
+
+    h3#enableddisabled-dates Enabled/Disabled Dates
+    .bd-example
+        .form-group.w-50
+            +input-group(prepend,'<i class="fa fa-calendar"></i>','date','','datetimepicker6')
+                +input-simple('text')
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-group(prepend,'&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;','date','','datetimepicker6')
+                    +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker6').datetimepicker({
+                    defaultDate: "11/1/2018",
+                    disabledDates: [
+                        moment("12/25/2018"),
+                        new Date(2018, 11 - 1, 21),
+                        "11/22/2018 00:53"
+                    ]
+                });
+    
+    h3#linked-pickers Linked Pickers
+    .bd-example
+        .row
+            .col-md-6
+                .form-group
+                    +input-group(prepend,'<i class="fa fa-calendar"></i>','date','','datetimepicker7')
+                        +input-simple('text')
+            .col-md-6
+                .form-group
+                    +input-group(prepend,'<i class="fa fa-calendar"></i>','date','','datetimepicker8')
+                        +input-simple('text')
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                .row.w-75
+                    .col-md-6
+                        .form-group
+                            +input-group(prepend,'&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;','date','','datetimepicker7')
+                                +input-simple('text')
+                    .col-md-6
+                        .form-group
+                            +input-group(prepend,'&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;','date','','datetimepicker8')
+                                +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker7').datetimepicker();
+                $('#datetimepicker8').datetimepicker({
+                    useCurrent: false
+                });
+                $("#datetimepicker7").on("dp.change", function (e) {
+                    $('#datetimepicker8').data("DateTimePicker").minDate(e.date);
+                });
+                $("#datetimepicker8").on("dp.change", function (e) {
+                    $('#datetimepicker7').data("DateTimePicker").maxDate(e.date);
+                });
+
+    h3#custom-icons Custom Icons
+    .bd-example
+        .form-group.w-50
+            +input-group(prepend,'<i class="fa fa-calendar"></i>','date','','datetimepicker9')
+                +input-simple('text')
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-group(prepend,'&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;','date','','datetimepicker9')
+                    +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker9').datetimepicker({
+                    icons: {
+                        time: "icon_clock_alt",
+                        date: "icon_calendar",
+                        up: "arrow_carrot-up",
+                        down: "arrow_carrot-down"
+                    }
+                });
+    
+    h3#custom-icons Custom Icons
+    .bd-example
+        .form-group.w-50
+            +input-group(prepend,'<i class="fa fa-calendar"></i>','date','','datetimepicker10')
+                +input-simple('text')
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-group(prepend,'&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;','date','','datetimepicker10')
+                    +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker10').datetimepicker({
+                    viewMode: 'years'
+                });
+    
+    h3#custom-icons Min View Mode
+    .bd-example
+        .form-group.w-50
+            +input-group(prepend,'<i class="fa fa-calendar"></i>','date','','datetimepicker11')
+                +input-simple('text')
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-group(prepend,'&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;','date','','datetimepicker11')
+                    +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker11').datetimepicker({
+                    viewMode: 'years',
+                    format: 'MM/YYYY'
+                });
+    
+    h3#custom-icons Disabled Days of the Week
+    .bd-example
+        .form-group.w-50
+            +input-group(prepend,'<i class="fa fa-calendar"></i>','date','','datetimepicker12')
+                +input-simple('text')
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                +input-group(prepend,'&lt;i class="fa fa-calendar"&gt;&lt;/i&gt;','date','','datetimepicker12')
+                    +input-simple('text')
+
+                //- jQuery
+                $('#datetimepicker12').datetimepicker({
+                    viewMode: 'years',
+                    format: 'MM/YYYY'
+                });
+    
+    h3#inline Inline
+    .bd-example
+        .form-group.w-50
+            #datetimepicker13
+    figure.highlight
+        pre
+            code.js.
+                //- Pug
+                #datetimepicker13
+
+                //- jQuery
+                $('#datetimepicker13').datetimepicker({
+                    inline: true,
+                    sideBySide: true
+                });
+
+    h2#functions Functions
+    h3#destroy destroy()
+    p Destroys the widget and removes all attached event listeners
+
+    h3#toggle toggle()
+    p Shows or hides the widget
+    p Emits:
+    ul
+        li
+            code.highlighter-rouge dp.hide 
+            | - if the widget is hidden after the toggle call
+        li
+            code.highlighter-rouge dp.show 
+            | - if the widget is show after the toggle call
+        li
+            code.highlighter-rouge dp.change 
+            | - if the widget is opened for the first time and the input element is empty and 
+            code.highlighter-rouge options.useCurrent != false
+    
+    h3#show show()
+    p Shows the widget
+    p Emits:
+    ul
+        li
+            code.highlighter-rouge dp.show 
+            | - if the widget was hidden before that call
+        li
+            code.highlighter-rouge dp.change 
+            | - if the widget is opened for the first time and the useCurrent is set to true or to a granularity value and the input element the component is attached to has an empty value
+    
+    h3#hide hide()
+    p Hide the widget
+    p Emits:
+    ul
+        li
+            code.highlighter-rouge dp.hide 
+            | - if the widget was visible before that call
+
+    h3#disable disable()
+    p 
+        | Disables the input element, the component is attached to, by adding a 
+        code.highlighter-rouge disabled="true" 
+        | attribute to it. If the widget was visible before that call it is hidden.
+        
+    p Emits:
+    ul
+        li
+            code.highlighter-rouge dp.hide 
+            | - if the widget was visible before that call
+    
+    h3#enable enable()
+    p 
+        | Enables the input element, the component is attached to, by removing 
+        code.highlighter-rouge disabled
+        | attribute to it.
+    h3#clear clear()
+    p 
+        | Clears the datepicker by setting the value to
+        code.highlighter-rouge null
+    h3#viewdate viewDate()
+    
+    h5 viewDate()
+    p 
+        | Returns a 
+        code.highlighter-rouge moment 
+        | variable with the currently set 
+        code.highlighter-rouge options.viewDate 
+        | option
+    
+    h5 viewDate(viewDate)
+    p 
+        | Takes a 
+        code.highlighter-rouge string, moment or Date 
+        | value.
+
+    P 
+        | This will change the 
+        code.highlighter-rouge viewDate 
+        | without changing or setting the selected date.
+
+    h2#options Options
+    h3#options_child options()
+    p Returns the components current options object. Note that the changing the values of the returned object does not change the components actual configuration. Use 
+        code.highlighter-rouge options(options) 
+        | to set the components options massively or the other methods for setting config options individually.
+    h3#options_child2 options([options])
+    p Takes an object variable with option key:value properties and configures the component. Use this to update multiple options on the component.
+    
+    h3#date date
+    p Returns the component's model current date, a 
+        code.highlighter-rouge moment 
+        | object or 
+        code.highlighter-rouge null 
+        | if not set.
+    h5 date([newDate])
+    p Takes 
+        code.highlighter-rouge string, Date, moment, null 
+        | parameter and sets the components model current moment to it. Passing a
+        code.highlighter-rouge null 
+        | value unsets the components model current moment. Parsing of the newDate parameter is made using moment library with the 
+        code.highlighter-rouge options.format
+        | and 
+        code.highlighter-rouge options.useStrict 
+        | components configuration.
+    p Throws
+    ul: li
+        code.highlighter-rouge TypeError
+        | -  in case the 
+        code.highlighter-rouge newDate 
+        | cannot be parsed
+    p Emits
+    ul: li
+        code.highlighter-rouge dp.change
+        | -  in case  
+        code.highlighter-rouge newDate 
+        | is different from current moment
+    
+    h3#format format
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p
+        | See 
+        a(href='http://momentjs.com/docs/#/displaying/format/') momentjs' docs
+        |  for valid formats. Format also dictates what components are shown, e.g. 
+        code MM/dd/YYYY
+        |  will not display the time picker.
+    h5#format_1 format()
+    p
+        | Returns the component's 
+        code.highlighter-rouge options.format
+        code.highlighter-rouge string
+    h5#formatformat format(format)
+    p
+        | Takes a 
+        a(href='http://momentjs.com/docs/#/displaying/format/' target="blank") moment.js
+        |  format 
+        code.highlighter-rouge string
+        |  and sets the components  
+        code.highlighter-rouge options.format
+        | . This is used for displaying and also for parsing input strings either from the input element the component is attached to or the 
+        code.highlighter-rouge date()
+        |  function.
+        | The parameter can also be a 
+        code.highlighter-rouge boolean:false
+        |  in which case the format is set to the locale's 
+        code.highlighter-rouge L LT
+        | .
+    p
+        strong Note:
+        |  this is also used to determine if the TimePicker sub component will display the hours in 12 or 24 format. (if 'a' or 'h' exists in the passed 
+        code.highlighter-rouge string
+        |  then a 12 hour mode is set)
+
+    h3#dayviewheaderformat dayViewHeaderFormat
+    figure.highlight
+        pre
+            code.js.
+                Default: 'MMMM YYYY'
+    p Changes the heading of the datepicker when in "days" view.
+    h5 dayViewHeaderFormat()
+    p
+        | Returns a 
+        code.highlighter-rouge string
+        |  variable with the currently set 
+        code.highlighter-rouge options.dayViewHeaderFormat
+        |  option.
+    h5 dayViewHeaderFormat(string)
+    p
+        | Takes a 
+        code.highlighter-rouge string
+        |  value.
+    p Used to customize the header of the day view.
+
+    h3#extraformats extraFormats
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p
+        | Allows for several input formats to be valid. See 
+        a(href='https://github.com/Eonasdan/bootstrap-datetimepicker/pull/666') this PR
+        | .
+    h5 extraFormats()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  or array with the 
+        code.highlighter-rouge options.extraFormats
+        |  option configuration
+    h5 extraFormats(formats)
+    p Takes an array of valid input moment format options.
+
+    h3#stepping stepping
+    figure.highlight
+        pre
+            code.js.
+                Default: 1
+    p
+        | Number of minutes the up/down arrow's will move the minutes value in the time picker
+    h5 stepping()
+    p
+        | Returns a 
+        code.highlighter-rouge number
+        |  with the 
+        code.highlighter-rouge options.stepping
+        |  option configuration
+    h5 stepping(number)
+    p
+        | Takes a 
+        code.highlighter-rouge number
+        | . This be the amount the up/down arrows move the minute value with a time picker.
+    h3#minmaxdate min/maxDate
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+                Accepts: date, moment, string
+    p
+        | Prevents date/time selections before this date. Will override 
+        code.highlighter-rouge defaultDate
+        |  and 
+        code.highlighter-rouge useCurrent
+        |  if either of these settings are the same day since both options are invalid according to the rules you've selected.
+    h5 minDate()
+    p
+        | Returns the currently set moment of the 
+        code.highlighter-rouge options.minDate
+        |  or 
+        code.highlighter-rouge false
+        |  if not set
+    h5 minDate(minDate)
+    p
+        | Takes a minDate 
+        code.highlighter-rouge string, Date, moment, boolean:false
+        |  parameter and disallows the user to select a moment that is before that moment. If a 
+        code.highlighter-rouge boolean:false
+        |  value is passed the 
+        code.highlighter-rouge options.minDate
+        |  parameter is cleared and there is no restriction to the miminum moment the user can select.
+    p
+        strong Note:
+        |  If the minDate parameter is after the currently selected moment the currently selected moment changes to minDate parameter
+    p Throws
+    ul
+        li: p
+            code.highlighter-rouge TypeError
+            |  - if minDate parameter cannot be parsed using the 
+            code.highlighter-rouge options.format
+            |  and 
+            code.highlighter-rouge options.useStrict
+            |  configuration settings
+        li: p
+            code.highlighter-rouge TypeError
+            |  - if minDate parameter is after 
+            code.highlighter-rouge options.maxDate
+    p Emits
+    ul
+        li: p
+            code.highlighter-rouge dp.change
+            |  - if the new minDate is after currently selected moment (waiting for #472 to close in order to finalize this part)
+        li: p
+            code.highlighter-rouge dp.error
+            |  - if the new minDate is after currently selected moment (waiting for #472 to close in order to finalize this part)
+
+    h4#maxdate maxDate()
+    p
+        | Returns the currently set moment of the 
+        code options.maxDate
+        |  or 
+        code false
+        |  if not set
+    h4#maxdatemaxdate maxDate(maxDate)
+    p
+        | Takes a maxDate 
+        code.highlighter-rouge string, Date, moment, boolean:false
+        |  parameter and disallows the user to select a moment that is after that moment. If a 
+        code.highlighter-rouge boolean:false
+        |  value is passed 
+        code.highlighter-rouge options.maxDate
+        |  is cleared and there is no restriction to the maximum moment the user can select.
+    p
+        strong Note:
+        |  If maxDate is before the currently selected moment the currently selected moment changes to maxDate
+    h5#throws_2 Throws
+    ul
+        li: p
+                code.highlighter-rouge TypeError
+                |  - if maxDate parameter cannot be parsed using the 
+                code.highlighter-rouge options.format
+                |  and 
+                code.highlighter-rouge options.useStrict
+                |  configuration settings
+        li: p
+                code.highlighter-rouge TypeError
+                |  - if maxDate parameter is before 
+                code.highlighter-rouge options.minDate
+    h5#emits_2 Emits
+    ul
+        li: p
+                code.highlighter-rouge dp.change
+                |  - if the new maxDate is after currently selected moment  (waiting for #472 to close in order to finalize this part)
+        li: p
+                code.highlighter-rouge dp.error
+                |  - if the new maxDate is after currently selected moment  (waiting for #472 to close in order to finalize this part)
+
+    h3#usecurrent useCurrent
+    figure.highlight
+        pre
+            code.js.
+                Default: true
+    p
+        | On 
+        code show
+        | , will set the picker to the current date/time.
+    h5 useCurrent()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  or 
+        code.highlighter-rouge string
+        |  with the 
+        code.highlighter-rouge options.useCurrent
+        |  option configuration
+    h5 useCurrent(boolean or string)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  or 
+        code.highlighter-rouge string
+        | . If a 
+        code.highlighter-rouge boolean
+        |  true is passed and the components model moment is not set (either through 
+        code.highlighter-rouge setDate
+        |  or through a valid value on the input element the component is attached to) then the first time the user opens the datetimepicker widget the value is initialized to the current moment of the action. If a false 
+        code.highlighter-rouge boolean
+        |  is passed then no initialization happens on the input element. You can select the granularity on the initialized moment by passing one of the following strings (
+        code.highlighter-rouge 'year', 'month', 'day', 'hour', 'minute'
+        | ) in the variable.
+    p
+        | If for example you pass 
+        code.highlighter-rouge 'day'
+        |  to the 
+        code.highlighter-rouge setUseCurrent
+        |  function and the input field is empty the first time the user opens the datetimepicker widget the input text will be initialized to the current datetime with day granularity (ie if currentTime = 
+        code.highlighter-rouge 2014-08-10 13:32:33
+        |  the input value will be initialized to 
+        code.highlighter-rouge 2014-08-10 00:00:00
+        | )
+    p
+        strong Note:
+        |  If the 
+        code.highlighter-rouge options.defaultDate
+        |  is set or the input element the component is attached to has already a value that takes precedence and the functionality of 
+        code.highlighter-rouge useCurrent
+        |  is not triggered!
+
+    h3#collapse collapse
+    figure.highlight
+        pre
+            code.js.
+                Default: true
+    p Using a Bootstraps collapse to switch between date/time pickers.
+    h5 collapse()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  of the 
+        code.highlighter-rouge options.sideBySide
+        | .
+    h5 collapse(collapse)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        | . If set to 
+        code.highlighter-rouge false
+        |  the picker will display similar to 
+        code.highlighter-rouge sideBySide
+        |  except vertical.
+
+    h3#locale locale
+    figure.highlight
+        pre
+            code.js.
+                Default: moment.locale()
+                Accepts: string, moment.locale('locale')
+    p
+        | See 
+        a(href='https://github.com/moment/moment/tree/develop/locale') momentjs
+        |  for valid locales.
+    p
+        | You must include 
+        code.highlighter-rouge moment-with-locales.js
+        |  or a local js file.
+    h5 locale()
+    p
+        | Returns the currently set locale of the 
+        code.highlighter-rouge options.locale
+    h5 locale(newLocale)
+    p
+        | Takes a 
+        code.highlighter-rouge string
+        |  of any valid 
+        a(href='https://github.com/moment/moment/tree/develop/locale') moment locale
+        |  e.g. 
+        code.highlighter-rouge de
+        |  for German.
+    p Throws
+    ul
+        li
+            code.highlighter-rouge TypeError
+            |  - if the locale is not loaded via a separate script or 
+            code.highlighter-rouge moment-with-locales
+
+    h3#defaultdate defaultDate
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+                Accepts: date, moment, string
+    p
+        | Sets the picker default date/time. Overrides 
+        code.highlighter-rouge useCurrent
+    h5 defaultDate()
+    p
+        | Returns a 
+        code.highlighter-rouge moment
+        |  with the 
+        code.highlighter-rouge options.defaultDate
+        |  option configuration or 
+        code.highlighter-rouge false
+        |  if not set
+    h5 defaultDate(defaultDate)
+    p
+        | Takes a 
+        code.highlighter-rouge string, Date, moment, boolean:false
+        | . Will set the picker's inital date. If a 
+        code.highlighter-rouge boolean:false
+        |  value is passed the 
+        code.highlighter-rouge options.defaultDate
+        |  parameter is cleared.
+    ul
+        li
+            p
+                code.highlighter-rouge TypeError
+                |  - if the provided date pass validation, including 
+                code.highlighter-rouge disabledDates
+                | , 
+                code.highlighter-rouge enabledDates
+                | , 
+                code.highlighter-rouge minDate
+                | , 
+                code.highlighter-rouge maxDate
+                | , and 
+                code.highlighter-rouge daysOfWeekDisabled
+        li
+            p
+                code.highlighter-rouge TypeError
+                |  - if the provided date cannot be parsed by momentjs
+
+    h3#endisableddates en/disabledDates
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+                Accepts: array of [date, moment, string]
+    h5 disabledDates()
+    p Returns an array with the currently set disabled dates on the component.
+    h5 disabledDates(dates)
+    p
+        | Takes an 
+        code.highlighter-rouge [
+        code.highlighter-rouge string
+        |  or 
+        code.highlighter-rouge Date
+        |  or 
+        code.highlighter-rouge moment
+        code.highlighter-rouge ]
+        |  of values and disallows the user to select those days. Setting this takes precedence over 
+        code.highlighter-rouge options.minDate
+        | , 
+        code.highlighter-rouge options.maxDate
+        |  configuration. Also calling this function removes the configuration of options.enabledDates if such exist.
+    p
+        strong Note:
+        |  These values are matched with 
+        code.highlighter-rouge Day
+        |  granularity.
+    hr
+    h4#enableddates enabledDates()
+    p Returns an array with the currently set enabled dates on the component.
+    h4#enableddatesdates enabledDates(dates)
+    p
+        | Takes an 
+        code.highlighter-rouge [
+        code.highlighter-rouge string
+        |  or 
+        code.highlighter-rouge Date
+        |  or 
+        code.highlighter-rouge moment
+        code.highlighter-rouge ]
+        |  of values and allows the user to select only from those days. Setting this takes precedence over 
+        code.highlighter-rouge options.minDate
+        | , 
+        code.highlighter-rouge options.maxDate
+        |  configuration. Also calling this function removes the configuration of options.disabledDates if such exist.
+    p
+        strong Note:
+        |  These values are matched with 
+        code.highlighter-rouge Day
+        |  granularity.
+
+    h3#icons icons
+    figure.highlight
+        pre
+            code.js.
+                Default: {
+                    time: 'glyphicon glyphicon-time',
+                    date: 'glyphicon glyphicon-calendar',
+                    up: 'glyphicon glyphicon-chevron-up',
+                    down: 'glyphicon glyphicon-chevron-down',
+                    previous: 'glyphicon glyphicon-chevron-left',
+                    next: 'glyphicon glyphicon-chevron-right',
+                    today: 'glyphicon glyphicon-screenshot',
+                    clear: 'glyphicon glyphicon-trash',
+                    close: 'glyphicon glyphicon-remove'
+                }
+                Accepts: object with all or some of the parameters above
+    p Change the default icons for the pickers functions.
+    h5 icons()
+    p
+        | Returns an 
+        code.highlighter-rouge Ojbect
+        |  of 
+        code.highlighter-rouge options.icons
+    h5 icons(icons)
+    p
+        | Takes an 
+        code.highlighter-rouge Ojbect
+        |  of 
+        code strings
+        | .
+    p Throws
+    ul
+        li
+            code TypeError
+            |  - if icons parameter is not an 
+            code Ojbect
+
+    h3#usestrict useStrict
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p
+        | Defines if moment should use strict date parsing when considering a date to be valid.
+    h5 useStrict()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  of the 
+        code.highlighter-rouge options.useStrict
+    h5 useStrict(useStrict)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        | . If 
+        code.highlighter-rouge useStrict
+        |  is 
+        code.highlighter-rouge true
+        | , momentjs parsing rules will be stricter when determining if a date is valid or not.
+
+    h3#sidebyside sideBySide
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p Shows the picker side by side when using the time and date together.
+    h5 sideBySide()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  of the 
+        code.highlighter-rouge options.sideBySide
+        | .
+    h5 sideBySide(sideBySide)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        | . If 
+        code.highlighter-rouge sideBySide
+        |  is 
+        code.highlighter-rouge true
+        |  and the time picker is used, both components will display side by side instead of collapsing.
+
+    h3#daysofweekdisabled daysOfWeekDisabled
+    figure.highlight
+        pre
+            code.js.
+                Default: []
+                Accepts: array of numbers from 0-6
+
+    p Disables the section of days of the week, e.g. weekends.
+    h5 daysOfWeekDisabled()
+    p
+        | Returns an array with the 
+        code options.daysOfWeekDisabled
+        |  configuration setting of the component.
+    h5 daysOfWeekDisabled(daysOfWeek)
+    p
+        | Takes an 
+        code.highlighter-rouge [
+        code.highlighter-rouge Number
+        | :
+        code.highlighter-rouge 0
+        |  to 
+        code.highlighter-rouge 6
+        code.highlighter-rouge ]
+        |  and disallow the user to select weekdays that exist in this array. This has lower priority over the 
+        code.highlighter-rouge options.minDate
+        | , 
+        code.highlighter-rouge options.maxDate
+        | , 
+        code.highlighter-rouge options.disabledDates
+        |  and 
+        code.highlighter-rouge options.enabledDates
+        |  configuration settings.
+    p Emits
+    ul
+        li
+            p
+                code dp.change
+                |  - if the currently selected moment falls in the values passed on the daysOfWeek parameter. (waiting for #472 to close in order to finalize this part)
+        li
+            p
+                code dp.error
+                |  - if the currently selected moment falls in the values passed on the daysOfWeek parameter. (waiting for #472 to close in order to finalize this part)
+
+    h3#calendarweeks calendarWeeks
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+
+    p Shows the week of the year to the left of first day of the week.
+    h5 calendarWeeks()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  with the current 
+        code.highlighter-rouge options.calendarWeeks
+        |  option configuration
+    h5 calendarWeeks(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  variable to set if the week numbers will appear to the left on the days view
+
+    h3#viewmode viewMode
+    figure.highlight
+        pre
+            code.js.
+                Default: 'days'
+                Accepts: 'decades','years','months','days'
+
+    p The default view to display when the picker is shown.
+    p
+        strong Note
+        | : To limit the picker to selecting, for instance the year and month, use 
+        code.highlighter-rouge format: MM/YYYY
+        | .
+    h5 viewMode()
+    p
+        | Returns a 
+        code.highlighter-rouge string
+        |  of the 
+        code.highlighter-rouge options.viewMode
+        | .
+    h5 viewMode(newViewMode)
+    p
+        | Takes a 
+        code.highlighter-rouge string
+        | . Valid values are 
+        code.highlighter-rouge 'days'
+        | , 
+        code.highlighter-rouge 'months'
+        | , 
+        code.highlighter-rouge 'years'
+        |  and 
+        code.highlighter-rouge 'decades'
+    p Throws
+    ul
+        li
+            code.highlighter-rouge TypeError
+            |  - if 
+            code.highlighter-rouge newViewMode
+            |  parameter is not an a 
+            code.highlighter-rouge string
+            |  or if 
+            code.highlighter-rouge newViewMode
+            |  is not a valid value.
+
+    h3#toolbarplacement toolbarPlacement
+    figure.highlight
+        pre
+            code.js.
+                Default: 'default'
+                Accepts: 'default', 'top', 'bottom'
+    p Changes the placement of the icon toolbar.
+    h5 toolbarplacement()
+    p
+        | Returns a 
+        code.highlighter-rouge string
+        |  variable with the currently set 
+        code.highlighter-rouge options.toolbarplacement
+        |  option.
+    h5 toolbarplacement(string)
+    p
+        | Takes a 
+        code.highlighter-rouge string
+        |  value. Valid values are 
+        code.highlighter-rouge 'default'
+        | , 
+        code.highlighter-rouge 'top'
+        |  and 
+        code.highlighter-rouge 'bottom'
+        | .
+    p
+        | Changes the placement of the toolbar where the today, clear, component switch icon are located.
+
+    h3#showtodaybutton showTodayButton
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p Show the "Today" button in the icon toolbar.
+    p
+        | Clicking the "Today" button will set the calendar view and set the date to 
+        code.highlighter-rouge now
+        | .
+    h5 showTodayButton()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  variable with the currently set 
+        code.highlighter-rouge options.showTodayButton
+        |  option.
+    h5 showTodayButton(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  variable to set if the Today button will appear on the widget
+
+    h3#showclear showClear
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p Show the "Clear" button in the icon toolbar.
+    p Clicking the "Clear" button will set the calendar to null.
+    h5 showClear()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  variable with the currently set 
+        code.highlighter-rouge options.showClear
+        |  option.
+    h5 showClear(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  variable to set if the clear date button will appear on the widget
+
+    h3#showclose showClose
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p Show the "Close" button in the icon toolbar.
+    p
+        | Clicking the "Close" button will call 
+        code.highlighter-rouge hide()
+    h5 showClose()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  variable with the currently set 
+        code.highlighter-rouge options.showClose
+        |  option.
+    h5 showClose(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  value.
+    p
+        | If 
+        code.highlighter-rouge true
+        | , an icon will be displayed on the toolbar that will hide the picker
+
+    h3#widgetpositioning widgetPositioning
+    figure.highlight
+        pre
+            code.js.
+                Default: {
+                    horizontal: 'auto'
+                    vertical: 'auto'
+                }
+                Accepts: object with the all or one of the parameters above
+                    horizontal: 'auto', 'left', 'right'
+                    vertical: 'auto', 'top', 'bottom'
+
+    h5 widgetPositioning()
+    p
+        | Returns the currently set 
+        code.highlighter-rouge options.widgetPositioning
+        |  object containing two keys 
+        code.highlighter-rouge horizontal
+        |  and 
+        code.highlighter-rouge vertical
+    h5 widgetPositioning(positioningObject)
+    p
+        | Takes an object parameter that can contain two keys 
+        code.highlighter-rouge vertical
+        |  and 
+        code.highlighter-rouge horizontal
+        |  each having a value of 
+        code.highlighter-rouge 'auto', 'top', 'bottom'
+        |  for 
+        code.highlighter-rouge vertical
+        |  and 
+        code.highlighter-rouge 'auto', 'left', 'right'
+        |  for 
+        code.highlighter-rouge horizontal
+        |  which defines where the dropdown with the widget will appear relative to the input element the component is attached to.
+    p
+        code.highlighter-rouge 'auto'
+        |  is the default value for both 
+        code.highlighter-rouge horizontal
+        |  and 
+        code.highlighter-rouge vertical
+        |  keys and it tries to automatically place the dropdown in a position that is visible to the user. Usually you should not override those options unless you have a special need in your layout.
+
+    h3#widgetparent widgetParent
+    figure.highlight
+        pre
+            code.js.
+                Default: null
+                Accepts: string or jQuery object
+    p
+        | On picker show, places the widget at the identifier (string) or jQuery object 
+        strong if
+        |  the element has css 
+        code.highlighter-rouge position: 'relative'
+    h5 widgetParent()
+    p
+        | Returns a 
+        code.highlighter-rouge $(element)
+        |  variable with the currently set 
+        code.highlighter-rouge options.widgetParent
+        |  option.
+    h5 widgetParent(widgetParent)
+    p
+        | Takes a 
+        code.highlighter-rouge string
+        |  or 
+        code.highlighter-rouge $(element)
+        |  value.
+
+    h3#keepopen keepOpen
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p Will cause the date picker to stay open after selecting a date.
+    h5 keepOpen()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  variable with the currently set 
+        code.highlighter-rouge options.keepOpen
+        |  option.
+    h5 keepOpen(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  value.
+
+    h3#inline inline
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p
+        | Will display the picker inline without the need of a input field. This will also hide borders and shadows.
+    h5 inline()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  variable with the currently set 
+        code.highlighter-rouge options.inline
+        |  option.
+    h5 inline(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  value.
+
+    h3#keepinvalid keepInvalid
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p
+        | Will cause the date picker to 
+        strong not
+        |  revert or overwrite invalid dates.
+    h5 keepInvalid()
+    p
+        | Returns a 
+        code.highlighter-rouge string
+        |  variable with the currently set 
+        code.highlighter-rouge options.keepInvalid
+        |  option.
+    h5 keepInvalid(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  value.
+    p
+        | If 
+        code.highlighter-rouge true
+        | , invalid dates will not be reverted to a previous selection or changed.
+
+    h3#keybinds keyBinds
+    figure.highlight
+        pre
+            code.js.
+                Default: up: function (widget) {
+                    if (widget.find('.datepicker').is(':visible')) {
+                        this.date(this.date().clone().subtract(7, 'd'));
+                    } else {
+                        this.date(this.date().clone().add(1, 'm'));
+                    }
+                },
+                down: function (widget) {
+                    if (!widget) {
+                        this.show();
+                    }
+                    else if (widget.find('.datepicker').is(':visible')) {
+                        this.date(this.date().clone().add(7, 'd'));
+                    } else {
+                        this.date(this.date().clone().subtract(1, 'm'));
+                    }
+                },
+                'control up': function (widget) {
+                    if (widget.find('.datepicker').is(':visible')) {
+                        this.date(this.date().clone().subtract(1, 'y'));
+                    } else {
+                        this.date(this.date().clone().add(1, 'h'));
+                    }
+                },
+                'control down': function (widget) {
+                    if (widget.find('.datepicker').is(':visible')) {
+                        this.date(this.date().clone().add(1, 'y'));
+                    } else {
+                        this.date(this.date().clone().subtract(1, 'h'));
+                    }
+                },
+                left: function (widget) {
+                    if (widget.find('.datepicker').is(':visible')) {
+                        this.date(this.date().clone().subtract(1, 'd'));
+                    }
+                },
+                right: function (widget) {
+                    if (widget.find('.datepicker').is(':visible')) {
+                        this.date(this.date().clone().add(1, 'd'));
+                    }
+                },
+                pageUp: function (widget) {
+                    if (widget.find('.datepicker').is(':visible')) {
+                        this.date(this.date().clone().subtract(1, 'M'));
+                    }
+                },
+                pageDown: function (widget) {
+                    if (widget.find('.datepicker').is(':visible')) {
+                        this.date(this.date().clone().add(1, 'M'));
+                    }
+                },
+                enter: function () {
+                    this.hide();
+                },
+                escape: function () {
+                    this.hide();
+                },
+                'control space': function (widget) {
+                    if (widget.find('.timepicker').is(':visible')) {
+                        widget.find('.btn[data-action="togglePeriod"]').click();
+                    }
+                },
+                t: function () {
+                    this.date(moment());
+                },
+                'delete': function () {
+                    this.clear();
+                }
+
+    p Allows for custom events to fire on keyboard press.
+    h5 keyBinds()
+    p
+    | Returns a 
+    code.highlighter-rouge string
+    |  variable with the currently set 
+    code.highlighter-rouge options.keyBinds
+    |  option.
+    h5 keyBinds(object)
+    p
+    | Takes an 
+    code.highlighter-rouge object
+    |  value.
+    p
+    | Allows for several keyBinding functions to be specified for ease of access or accessibility. See the options page for defaults.
+
+    h3#debug debug
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p Will cause the date picker to stay open after a 
+        code.highlighter-rouge blur 
+        | event.
+
+    h3#ignorereadonly ignoreReadonly
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p
+        | Allow date picker show event to fire even when the associated input element has the 
+        code.highlighter-rouge readonly="readonly"
+        | property.
+    h5 ignoreReadonly()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  variable with the currently set 
+        code.highlighter-rouge options.ignoreReadonly
+        |  option.
+    h5 ignoreReadonly(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  value.
+    p
+        | Set this to 
+        code.highlighter-rouge true
+        |  to allow the picker to be used even if the input field is 
+        code.highlighter-rouge readonly
+        | . This will 
+        strong not
+        |  bypass the 
+        code.highlighter-rouge disabled
+        |  property
+
+    h3#disabledtimeintervals disabledTimeIntervals
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p
+        | Disables time selection between the given 
+        code moments
+        | .
+    h5 disabledTimeIntervals()
+    p
+        | Returns an 
+        code.highlighter-rouge array
+        |  variable with the currently set 
+        code.highlighter-rouge options.disabledTimeIntervals
+        |  option.
+    h5 disabledTimeIntervals(array)
+    p
+        | Takes a 
+        code.highlighter-rouge array
+        |  value.
+    p
+        | The array 
+        strong must
+        |  be in the following format 
+        code.highlighter-rouge [moment(),moment()]
+    p For example:
+    figure.highlight
+        pre
+            code.js.
+                disabledTimeIntervals: [[moment({ h: 0 }), moment({ h: 8 })], [moment({ h: 18 }), moment({ h: 24 })]]
+    p Will disable times between 12-8am and 6-12pm today
+
+    h3#allowinputtoggle allowInputToggle
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p
+        | If 
+        code.highlighter-rouge true
+        | , the picker will show on textbox focus and icon click when used in a button group.
+    h5 allowInputToggle()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  variable with the currently set 
+        code.highlighter-rouge options.allowInputToggle
+        |  option.
+    h5 allowInputToggle(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  value.
+    p
+        | If 
+        code.highlighter-rouge true
+        | , the picker will show on textbox focus and icon click when used in a button group
+
+    h3#focusonshow focusOnShow
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p
+        | If 
+        code.highlighter-rouge false
+        | , the textbox will not be given focus when the picker is shown.
+    h5 focusOnShow()
+    p
+        | Returns a 
+        code.highlighter-rouge boolean
+        |  variable with the currently set 
+        code.highlighter-rouge options.focusOnShow
+        |  option.
+    h5 focusOnShow(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge boolean
+        |  value.
+    p
+        | If 
+        code.highlighter-rouge false
+        | , the textbox will not be given focus when the picker is shown
+
+    h3#endisabledhours en/disabledHours
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    h5 disabledHours()
+    p
+        | Returns an 
+        code.highlighter-rouge array
+        |  variable with the currently set 
+        code.highlighter-rouge options.en/disabledHours
+        |  option.
+    h5 disabledHours(boolean)
+    p
+        | Takes a 
+        code.highlighter-rouge array
+        |  value.
+    p
+        | Must be in 24 hour format. Will allow or disallow hour selections (much like 
+        code.highlighter-rouge disabledTimeIntervals
+        | ) but will affect all days.
+    p
+        | Like 
+        code.highlighter-rouge en/disabledDates
+        | , these options are mutually exclusive and will reset one of the options back to false.
+    figure.highlight
+        pre
+            code.js.
+                disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 8, 18, 19, 20, 21, 22, 23, 24]
+                enabledHours: [9, 10, 11, 12, 13, 14, 15, 16]
+    
+    h3#viewdate viewDate
+    figure.highlight
+        pre
+            code.js.
+                Default: false
+    p This will change the 
+        code.highlighter-rouge viewDate 
+        | without changing or setting the selected date.
+
+    h3#parseinputdate parseInputDate
+    h5 parseInputDate()
+    p
+        | Returns a 
+        code function
+        |  with the currently set 
+        code options.parseInputDate
+    h5 parseInputDate(function)
+    p
+        | Takes a 
+        code.highlighter-rouge function
+    p
+        | Allows custom input formatting For example: the user can enter 'yesterday' or '30 days ago'.
+    p Example:
+    figure.highlight
+        pre
+            code.js.
+                var parseRelativeDate = function(relativeDate) {
+
+                    switch (relativeDate) {
+                        case 'today':
+                            return moment()
+                        case 'yesterday':
+                            return moment().subtract(1, 'day');
+                        default:
+                            return moment()
+                                .subtract(Number(relativeDate.replace("days ago", "").trim()), 'days');
+                    }
+                }
+
+                var parseInputDate = function(inputDate) {
+                    var relativeDatePattern = /today|yesterday|[0-9]+\s+(days ago)/,
+                        resultDate;
+
+                    if (moment.isMoment(inputDate) || inputDate instanceof Date) {
+                        resultDate = moment(inputDate);
+                    } else {
+                        var relativeDate = inputDate.match(relativeDatePattern),
+                            parseDate = null;
+
+                        if (relativeDate !== null) 
+                        parseDate = this.parseRelativeDate(inputDate.match(relativeDatePattern)[0]);
+                        else 
+                        parseDate = moment();
+
+                        resultDate = moment(parseDate, "YYYY-MM-DD");
+                    }
+
+                    return resultDate;
+                }
+
+    h3#tooltips tooltips
+    figure.highlight
+        pre
+            code.js.
+                tooltips: {
+                    today: 'Go to today',
+                    clear: 'Clear selection',
+                    close: 'Close the picker',
+                    selectMonth: 'Select Month',
+                    prevMonth: 'Previous Month',
+                    nextMonth: 'Next Month',
+                    selectYear: 'Select Year',
+                    prevYear: 'Previous Year',
+                    nextYear: 'Next Year',
+                    selectDecade: 'Select Decade',
+                    prevDecade: 'Previous Decade',
+                    nextDecade: 'Next Decade',
+                    prevCentury: 'Previous Century',
+                    nextCentury: 'Next Century'
+                }
+    p
+        | This will change the 
+        code.highlighter-rouge tooltips
+        |  over each icon to a custom string.
+    h5 tooltips()
+    p
+        | Returns an 
+        code.highlighter-rouge Ojbect
+        |  of 
+        code.highlighter-rouge options.tooltips
+    h5 tooltips(tooltips)
+    p
+        | Takes an 
+        code.highlighter-rouge Ojbect
+        |  of 
+        code.highlighter-rouge strings
+        | .
+    p Throws
+    ul
+        li
+            code.highlighter-rouge TypeError
+            |  - if tooltips parameter is not an 
+            code.highlighter-rouge Ojbect
+    
+    h3#timezone timeZone
+    figure.highlight
+        pre
+            code.js.
+                timeZone: ''
+    p
+        | Allows the setting of the Time Zone. You must include 
+        a(href='http://momentjs.com/timezone/')
+            code.highlighter-rouge moment-timezone.js
+        |  and 
+        code.highlighter-rouge moment-timzone
+        |  data. See moment timezone documentation for usage.
+    h5 timeZone()
+    p
+        | Returns an 
+        code.highlighter-rouge string
+        |  of 
+        code.highlighter-rouge options.timeZone
+    h5 timeZone(timeZone)
+    p
+        | Takes an 
+        code.highlighter-rouge string
+        |  of a valid timezone.
+    p Throws
+    ul
+        li
+            code.highlighter-rouge TypeError
+            |  - if tooltips parameter is not an 
+            code.highlighter-rouge string
+
+    h2#events Events
+    h3#dphide dp.hide
+    p Fired when the widget is hidden.
+    p Parameters:
+    figure.highlight
+        pre
+            code.js.
+                e = {
+                    date //the currently set date. Type: moment object (clone)
+                }
+    p Emitted from:
+    ul
+        li toggle()
+        li hide()
+        li disable()
+    h3#dpshow dp.show
+    p Fired when the widget is shown.
+    p Parameters:
+    p
+        | No parameters are include, listen to 
+        code.highlighter-rouge dp.change
+        |  instead
+    p Emitted from:
+    ul
+        li toggle()
+        li show()
+
+    h3#dpchange dp.change
+    p
+        | Fired when the date is changed, including when changed to a non-date (e.g. When keepInvalid=true).
+    p Parameters:
+    figure.highlight
+        pre
+            code.js.
+                e = {
+                    date, //date the picker changed to. Type: moment object (clone)
+                    oldDate //previous date. Type: moment object (clone) or false in the event of a null
+                }
+    p Emitted from:
+    ul
+        li
+            | toggle() 
+            strong Note
+            | : Only fired when using 
+            code.highlighter-rouge useCurrent
+        li
+            | show() 
+            strong Note
+            | : Only fired when using 
+            code.highlighter-rouge useCurrent
+            |  or when or the date is changed to comply with date rules (min/max etc)
+        li date(newDate)
+        li minDate(minDate)
+        li maxDate(maxDate)
+        li daysOfWeekDisabled()
+
+    h3#dperror dp.error
+    p Fired when a selected date fails to pass validation.
+    p Parameters:
+    figure.highlight
+        pre
+            code.js.
+                e = {
+                    date //the invalid date. Type: moment object (clone)
+                    oldDate //previous date. Type: moment object (clone) or false in the event of a null
+                }
+    p Emmited from:
+    ul
+        li minDate(minDate)
+        li maxDate(maxDate)
+        li daysOfWeekDisabled()
+        li
+            | setValue() 
+            em private function
+
+    h3#dpupdate dp.update
+    p
+        | Fired (in most cases) when the 
+    code.highlighter-rouge viewDate
+        |  changes. E.g. Next and Previous buttons, selecting a year.
+    p Parameters:
+    figure.highlight
+        pre
+            code.js.
+                e = {
+                    change, //Change type as a momentjs format token. Type: string e.g. yyyy on year change
+                    viewDate //new viewDate. Type: moment object
+                }
+
+block js
+    script.
+        $(function () {
+            // Minimum Setup
+            $('#datetimepicker1').datetimepicker();
+            // Using Locales
+            $('#datetimepicker2').datetimepicker({
+                locale: 'vi'
+            });
+            // Time Only
+            $('#datetimepicker3').datetimepicker({
+                format: 'LT'
+            });
+            // Date Only
+            $('#datetimepicker4').datetimepicker({
+                format: 'L'
+            });
+            // No Icon (input field only):
+            $('#datetimepicker5').datetimepicker();
+            // Enabled/Disabled Dates
+            $('#datetimepicker6').datetimepicker({
+                defaultDate: "11/1/2018",
+                disabledDates: [
+                    moment("12/25/2018"),
+                    new Date(2018, 11 - 1, 21),
+                    "11/22/2018 00:53"
+                ]
+            });
+            // Linked Pickers
+            $('#datetimepicker7').datetimepicker();
+            $('#datetimepicker8').datetimepicker({
+                useCurrent: false
+            });
+            $("#datetimepicker7").on("dp.change", function (e) {
+                $('#datetimepicker8').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker8").on("dp.change", function (e) {
+                $('#datetimepicker7').data("DateTimePicker").maxDate(e.date);
+            });
+            // Custom Icons
+            $('#datetimepicker9').datetimepicker({
+                icons: {
+                    time: "icon_clock_alt",
+                    date: "icon_calendar",
+                    up: "arrow_carrot-up",
+                    down: "arrow_carrot-down"
+                }
+            });
+            // View Mode
+            $('#datetimepicker10').datetimepicker({
+                viewMode: 'years'
+            });
+            // Min View Mode
+            $('#datetimepicker11').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+            });
+            // Disabled Days of the Week
+            $('#datetimepicker12').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+            });
+            // Inline
+            $('#datetimepicker13').datetimepicker({
+                inline: true,
+                sideBySide: true
+            });
+        });

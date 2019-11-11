@@ -1,0 +1,208 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'spacing';
+    - title = "Utilities - Spacing"
+block navsection
+
+block content 
+    h1.bd-title#content Spacing
+    p.bd-lead Bootstrap includes a wide range of shorthand responsive margin and padding utility classes to modify an element’s appearance.
+    h2#how-it-works How it works
+    p
+        | Assign responsive-friendly 
+        code.highlighter-rouge margin
+        |  or 
+        code.highlighter-rouge padding
+        |  values to an element or a subset of its sides with shorthand classes. Includes support for individual properties, all properties, and vertical and horizontal properties. Classes are built from a default Sass map ranging from 
+        code.highlighter-rouge .25rem
+        |  to 
+        code.highlighter-rouge 3rem
+        | .
+    h2#notation Notation
+    p
+        | Spacing utilities that apply to all breakpoints, from 
+        code.highlighter-rouge xs
+        |  to 
+        code.highlighter-rouge xl
+        | , have no breakpoint abbreviation in them. This is because those classes are applied from 
+        code.highlighter-rouge min-width: 0
+        |  and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.
+    p
+        | The classes are named using the format 
+        code.highlighter-rouge {property}{sides}-{size}
+        |  for 
+        code.highlighter-rouge xs
+        |  and 
+        code.highlighter-rouge {property}{sides}-{breakpoint}-{size}
+        |  for 
+        code.highlighter-rouge sm
+        | , 
+        code.highlighter-rouge md
+        | , 
+        code.highlighter-rouge lg
+        | , and 
+        code.highlighter-rouge xl
+        | .
+    p
+        | Where 
+        em property
+        |  is one of:
+    ul
+        li
+            code.highlighter-rouge m
+            |  - for classes that set 
+            code.highlighter-rouge margin
+        li
+            code.highlighter-rouge p
+            |  - for classes that set 
+            code.highlighter-rouge padding
+    p
+        | Where 
+        em sides
+        |  is one of:
+    ul
+        li
+            code.highlighter-rouge t
+            |  - for classes that set 
+            code.highlighter-rouge margin-top
+            |  or 
+            code.highlighter-rouge padding-top
+        li
+            code.highlighter-rouge b
+            |  - for classes that set 
+            code.highlighter-rouge margin-bottom
+            |  or 
+            code.highlighter-rouge padding-bottom
+        li
+            code.highlighter-rouge l
+            |  - for classes that set 
+            code.highlighter-rouge margin-left
+            |  or 
+            code.highlighter-rouge padding-left
+        li
+            code.highlighter-rouge r
+            |  - for classes that set 
+            code.highlighter-rouge margin-right
+            |  or 
+            code.highlighter-rouge padding-right
+        li
+            code.highlighter-rouge x
+            |  - for classes that set both 
+            code.highlighter-rouge *-left
+            |  and 
+            code.highlighter-rouge *-right
+        li
+            code.highlighter-rouge y
+            |  - for classes that set both 
+            code.highlighter-rouge *-top
+            |  and 
+            code.highlighter-rouge *-bottom
+        li
+            | blank - for classes that set a 
+            code.highlighter-rouge margin
+            |  or 
+            code.highlighter-rouge padding
+            |  on all 4 sides of the element
+    p
+        | Where 
+        em size
+        |  is one of:
+    ul
+        li
+            code.highlighter-rouge 0
+            |  - for classes that eliminate the 
+            code.highlighter-rouge margin
+            |  or 
+            code.highlighter-rouge padding
+            |  by setting it to 
+            code.highlighter-rouge 0
+        li
+            code.highlighter-rouge 1
+            |  - (by default) for classes that set the 
+            code.highlighter-rouge margin
+            |  or 
+            code.highlighter-rouge padding
+            |  to 
+            code.highlighter-rouge $spacer * .25
+        li
+            code.highlighter-rouge 2
+            |  - (by default) for classes that set the 
+            code.highlighter-rouge margin
+            |  or 
+            code.highlighter-rouge padding
+            |  to 
+            code.highlighter-rouge $spacer * .5
+        li
+            code.highlighter-rouge 3
+            |  - (by default) for classes that set the 
+            code.highlighter-rouge margin
+            |  or 
+            code.highlighter-rouge padding
+            |  to 
+            code.highlighter-rouge $spacer
+        li
+            code.highlighter-rouge 4
+            |  - (by default) for classes that set the 
+            code.highlighter-rouge margin
+            |  or 
+            code.highlighter-rouge padding
+            |  to 
+            code.highlighter-rouge $spacer * 1.5
+        li
+            code.highlighter-rouge 5
+            |  - (by default) for classes that set the 
+            code.highlighter-rouge margin
+            |  or 
+            code.highlighter-rouge padding
+            |  to 
+            code.highlighter-rouge $spacer * 3
+        li
+            code.highlighter-rouge auto
+            |  - for classes that set the 
+            code.highlighter-rouge margin
+            |  to auto
+    p
+        | (You can add more sizes by adding entries to the 
+        code.highlighter-rouge $spacers
+        |  Sass map variable.)
+    h2#examples Examples
+    p Here are some representative examples of these classes:
+    figure.highlight
+        pre
+            code.css
+                | .mt-0 {
+                |     margin-top: 0 !important;
+                | }
+                | 
+                | .ml-1 {
+                |     margin-left: ($spacer * .25) !important;
+                | }
+                | 
+                | .px-2 {
+                |     padding-left: ($spacer * .5) !important;
+                |     padding-right: ($spacer * .5) !important;
+                | }
+                | 
+                | .p-3 {
+                |     padding: $spacer !important;
+                | }
+    h3#horizontal-centering Horizontal centering
+    p
+        | Additionally, Bootstrap also includes an 
+        code.highlighter-rouge .mx-auto
+        |  class for horizontally centering fixed-width block level content—that is, content that has 
+        code.highlighter-rouge display: block
+        |  and a 
+        code.highlighter-rouge width
+        |  set—by setting the horizontal margins to 
+        code.highlighter-rouge auto
+        | .
+    .bd-example
+        .mx-auto(style='width: 200px; background-color: rgba(86,61,124,.15);')
+            | Centered element
+    figure.highlight
+        pre
+            code.css
+                | .mx-auto(style='width: 200px;')
+                |     | Centered element

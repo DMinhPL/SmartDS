@@ -1,0 +1,204 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'badges';
+    - title = "Component - Badges"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#example') Example
+        li.toc-entry.toc-h2
+            a(href='#contextual-variations') Contextual variations
+        li.toc-entry.toc-h2
+            a(href='#pill-badges') Pill badges
+        li.toc-entry.toc-h2
+            a(href='#links') Links
+block content 
+    h1.bd-title#content Badges
+    p.bd-lead Documentation and examples for badges, our small count and labeling component.
+
+    h2#example Examples
+    p Badges scale to match the size of the immediate parent element by using relative font sizing and <code>em</code> units.
+    .bd-example
+        h1
+            | Example heading 
+            +badge-secondary('New')
+        h2
+            | Example heading 
+            +badge-secondary('New')
+        h3
+            | Example heading 
+            +badge-secondary('New')
+        h4
+            | Example heading 
+            +badge-secondary('New')
+        h5
+            | Example heading 
+            +badge-secondary('New')
+        h6
+            | Example heading 
+            +badge-secondary('New')
+
+    figure.highlight
+        pre
+            code.js.
+                h1
+                    | Example heading 
+                    +badge-secondary('New')
+                h2
+                    | Example heading 
+                    +badge-secondary('New')
+                h3
+                    | Example heading 
+                    +badge-secondary('New')
+                h4
+                    | Example heading 
+                    +badge-secondary('New')
+                h5
+                    | Example heading 
+                    +badge-secondary('New')
+                h6
+                    | Example heading 
+                    +badge-secondary('New')
+
+    p Badges can be used as part of links or buttons to provide a counter.
+    .bd-example
+        button.btn.btn-primary(type='button')
+            | Notifications 
+            +badge-light('4')
+
+    figure.highlight
+        pre
+            code.js.
+                button.btn.btn-primary(type='button')
+                    | Notifications 
+                    +badge-light('4')
+    
+    p Note that depending on how they are used, badges may be confusing for users of screen readers and similar assistive technologies. While the styling of badges provides a visual cue as to their purpose, these users will simply be presented with the content of the badge. Depending on the specific situation, these badges may seem like random additional words or numbers at the end of a sentence, link, or button.
+
+    p Unless the context is clear (as with the “Notifications” example, where it is understood that the “4” is the number of notifications), consider including additional context with a visually hidden piece of additional text.
+
+    .bd-example
+        button.btn.btn-primary(type='button')
+            | Profile 
+            +badge-light('9')
+            span.sr-only unread messages
+
+    figure.highlight
+        pre
+            code.js.
+                button.btn.btn-primary(type='button')
+                    | Profile 
+                    +badge-light('9')
+                    span.sr-only unread messages
+
+    h2#contextual-variations Contextual variations
+    p Add any of the below mentioned modifier classes to change the appearance of a badge.
+
+    .bd-example
+        +badge-primary('Primary')
+        | &nbsp;
+        +badge-secondary('Secondary')
+        | &nbsp;
+        +badge-success('Success')
+        | &nbsp;
+        +badge-danger('Danger')
+        | &nbsp;
+        +badge-warning('Warning')
+        | &nbsp;
+        +badge-info('Info')
+        | &nbsp;
+        +badge-light('Light')
+        | &nbsp;
+        +badge-dark('Dark')
+
+    figure.highlight
+        pre
+            code.js.
+                +badge-primary('Primary')
+                +badge-secondary('Secondary')
+                +badge-success('Success')
+                +badge-danger('Danger')
+                +badge-warning('Warning')
+                +badge-info('Info')
+                +badge-light('Light')
+                +badge-dark('Dark')
+    
+    .bd-callout.bd-callout-warning
+        h5#conveying-meaning-to-assistive-technologies Conveying meaning to assistive technologies
+        p
+            | Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies &ndash; such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the 
+            code.highlighter-rouge .sr-only
+            |  class.
+
+    h2#pill-badges Pill badges
+    p Use the <code>.badge-pill</code> modifier class to make badges more rounded (with a larger border-radius and additional horizontal padding). Useful if you miss the badges from v3.
+
+    .bd-example
+        +badge-primary('Primary','badge-pill')
+        | &nbsp;
+        +badge-secondary('Secondary','badge-pill')
+        | &nbsp;
+        +badge-success('Success','badge-pill')
+        | &nbsp;
+        +badge-danger('Danger','badge-pill')
+        | &nbsp;
+        +badge-warning('Warning','badge-pill')
+        | &nbsp;
+        +badge-info('Info','badge-pill')
+        | &nbsp;
+        +badge-light('Light','badge-pill')
+        | &nbsp;
+        +badge-dark('Dark','badge-pill')
+    
+    figure.highlight
+        pre
+            code.js.
+                +badge-primary('Primary','badge-pill')
+                +badge-secondary('Secondary','badge-pill')
+                +badge-success('Success','badge-pill')
+                +badge-danger('Danger','badge-pill')
+                +badge-warning('Warning','badge-pill')
+                +badge-info('Info','badge-pill')
+                +badge-light('Light','badge-pill')
+                +badge-dark('Dark','badge-pill')
+
+    h2#links Links
+    p
+        | Using the contextual 
+        code.highlighter-rouge .badge-*
+        |  classes on an 
+        code.highlighter-rouge <a>
+        |  element quickly provide 
+        em actionable
+        |  badges with hover and focus states.
+
+    .bd-example
+        +badge-a-primary('Primary','#')
+        | &nbsp;
+        +badge-a-secondary('Secondary','#')
+        | &nbsp;
+        +badge-a-success('Success','#')
+        | &nbsp;
+        +badge-a-danger('Danger','#')
+        | &nbsp;
+        +badge-a-warning('Warning','#')
+        | &nbsp;
+        +badge-a-info('Info','#')
+        | &nbsp;
+        +badge-a-light('Light','#')
+        | &nbsp;
+        +badge-a-dark('Dark','#')
+
+    figure.highlight
+        pre
+            code.js.
+                +badge-a-primary('Primary','#')
+                +badge-a-secondary('Secondary','#')
+                +badge-a-success('Success','#')
+                +badge-a-danger('Danger','#')
+                +badge-a-warning('Warning','#')
+                +badge-a-info('Info','#')
+                +badge-a-light('Light','#')
+                +badge-a-dark('Dark','#')

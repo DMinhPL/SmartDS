@@ -1,0 +1,627 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'sass';
+    - title = "Getting started - Sass"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href="#introduction") Introduction
+        li.toc-entry.toc-h2
+            a(href="#sass") Sass
+            ul
+                li.toc-entry.toc-h3
+                    a(href="#variable-defaults") Variable defaults
+                li.toc-entry.toc-h3
+                    a(href="#maps-and-loops") Maps and loops
+                    ul
+                        li.toc-entry.toc-h4
+                            a(href="#modify-map") Modify map
+                        li.toc-entry.toc-h4
+                            a(href="#add-to-map") Add to map
+                        li.toc-entry.toc-h4
+                            a(href="#remove-from-map") Remove from map
+                        li.toc-entry.toc-h4
+                            a(href="#required-keys") Required keys
+                li.toc-entry.toc-h3
+                    a(href="#functions") Functions
+                li.toc-entry.toc-h3
+                    a(href="#color-contrast") Color contrast
+        li.toc-entry.toc-h2
+            a(href="#sass-options") Sass options
+        li.toc-entry.toc-h2
+            a(href="#color") Color
+            ul
+                li.toc-entry.toc-h3
+                    a(href="#all-colors") All colors
+                li.toc-entry.toc-h3
+                    a(href="#theme-colors") Theme colors
+                li.toc-entry.toc-h3
+                    a(href="#grays") Grays
+        li.toc-entry.toc-h2
+            a(href="#components") Components
+            ul
+                li.toc-entry.toc-h3
+                    a(href="#modifiers") Modifiers
+                li.toc-entry.toc-h3
+                    a(href="#responsive") Responsive
+        li.toc-entry.toc-h2
+            a(href="#css-variables") CSS variables
+            ul
+                li.toc-entry.toc-h3
+                    a(href="#available-variables") Available variables
+                li.toc-entry.toc-h3
+                    a(href="#examples") Examples
+
+block content 
+    h1.bd-title#content Sass
+    p.bd-lead Customize Bootstrap 4 with our new built-in Sass variables for global style preferences for easy theming and component changes.
+
+    h2#introduction Introduction
+    p
+        | In Bootstrap 3, theming was largely driven by variable overrides in LESS, custom CSS, and a separate theme stylesheet that we included in our 
+        code.highlighter-rouge dist
+        |  files. With some effort, one could completely redesign the look of Bootstrap 3 without touching the core files. Bootstrap 4 provides a familiar, but slightly different approach.
+    p
+        | Now, theming is accomplished by Sass variables, Sass maps, and custom CSS. There’s no more dedicated theme stylesheet; instead, you can enable the built-in theme to add gradients, shadows, and more.
+    h2#sass Sass
+    p
+        | Utilize our source Sass files to take advantage of variables, maps, mixins, and more.
+    
+    h3#variable-defaults Variable defaults
+    p
+        | Every Sass variable in Bootstrap 4 includes the 
+        code.highlighter-rouge !default
+        |  flag allowing you to override the variable’s default value in your own Sass without modifying Bootstrap’s source code. Copy and paste variables as needed, modify their values, and remove the 
+        code.highlighter-rouge !default
+        |  flag. If a variable has already been assigned, then it won’t be re-assigned by the default values in Bootstrap.
+    p
+        | Variable overrides within the same Sass file can come before or after the default variables. However, when overriding across Sass files, your overrides must come before you import Bootstrap’s Sass files.
+    p
+        | Here’s an example that changes the 
+        code.highlighter-rouge background-color
+        |  and 
+        code.highlighter-rouge color
+        |  for the 
+        code.highlighter-rouge &lt;body&gt;
+        |  when importing and compiling Bootstrap via npm:
+    figure.highlight
+        pre
+            code.scss.
+                // Your variable overrides
+                $body-bg: #000;
+                $body-color: #111;
+
+                // Bootstrap and its default variables
+                @import "node_modules/bootstrap/scss/bootstrap";
+    p
+        | Repeat as necessary for any variable in Bootstrap, including the global options below.
+    h3#maps-and-loops Maps and loops
+    p
+        | Bootstrap 4 includes a handful of Sass maps, key value pairs that make it easier to generate families of related CSS. We use Sass maps for our colors, grid breakpoints, and more. Just like Sass variables, all Sass maps include the 
+        code.highlighter-rouge !default
+        |  flag and can be overridden and extended.
+    p
+        | Some of our Sass maps are merged into empty ones by default. This is done to allow easy expansion of a given Sass map, but comes at the cost of making 
+        em removing
+        |  items from a map slightly more difficult.
+    h4#modify-map Modify map
+    p
+        | To modify an existing color in our 
+        code.highlighter-rouge $theme-colors
+        |  map, add the following to your custom Sass file:
+    figure.highlight
+        pre
+            code.scss.
+                $theme-colors: (
+                    "primary": #0074d9,
+                    "danger": #ff4136
+                );
+    h4#add-to-map Add to map
+    p
+        | To add a new color to 
+        code.highlighter-rouge $theme-colors
+        | , add the new key and value:
+    figure.highlight
+        pre
+            code.sass.
+                $theme-colors: (
+                    "custom-color": #900
+                );
+            
+    h4#remove-from-map Remove from map
+    p
+        | To remove colors from 
+        code.highlighter-rouge $theme-colors
+        | , or any other map, use 
+        code.highlighter-rouge map-remove
+        | :
+    figure.highlight
+        pre
+            code.scss.
+                $theme-colors: map-remove($theme-colors, "success", "info", "danger");
+            
+    h4#required-keys Required keys
+    p
+        | Bootstrap assumes the presence of some specific keys within Sass maps as we used and extend these ourselves. As you customize the included maps, you may encounter errors where a specific Sass map’s key is being used.
+    p
+        | For example, we use the 
+        code.highlighter-rouge primary
+        | , 
+        code.highlighter-rouge success
+        | , and 
+        code.highlighter-rouge danger
+        |  keys from 
+        code.highlighter-rouge $theme-colors
+        |  for links, buttons, and form states. Replacing the values of these keys should present no issues, but removing them may cause Sass compilation issues. In these instances, you’ll need to modify the Sass code that makes use of those values.
+    h3#functions Functions
+    p
+        | Bootstrap utilizes several Sass functions, but only a subset are applicable to general theming. We’ve included three functions for getting values from the color maps:
+    figure.highlight
+        pre
+            code.scss.
+                @function color($key: "blue") {
+                    @return map-get($colors, $key);
+                }
+
+                @function theme-color($key: "primary") {
+                    @return map-get($theme-colors, $key);
+                }
+
+                @function gray($key: "100") {
+                    @return map-get($grays, $key);
+                }
+            
+    p
+        | These allow you to pick one color from a Sass map much like how you’d use a color variable from v3.
+    figure.highlight
+        pre
+            code.scss.
+                .custom-element {
+                    color: gray("100");
+                    background-color: theme-color("dark");
+                }
+            
+    p
+        | We also have another function for getting a particular 
+        em level
+        |  of color from the 
+        code.highlighter-rouge $theme-colors
+        |  map. Negative level values will lighten the color, while higher levels will darken.
+    figure.highlight
+        pre
+            code.scss.
+                 @function theme-color-level($color-name: "primary", $level: 0) {
+                    $color: theme-color($color-name);
+                    $color-base: if($level &gt; 0, #000, #fff);
+                    $level: abs($level);
+
+                    @return mix($color-base, $color, $level * $theme-color-interval);
+                }
+            
+    p
+        | In practice, you’d call the function and pass in two parameters: the name of the color from 
+        code.highlighter-rouge $theme-colors
+        |  (e.g., primary or danger) and a numeric level.
+    figure.highlight
+        pre
+            code.scss.
+                .custom-element {
+                    color: theme-color-level(primary, -10);
+                }
+            
+    p
+        | Additional functions could be added in the future or your own custom Sass to create level functions for additional Sass maps, or even a generic one if you wanted to be more verbose.
+    h3#color-contrast Color contrast
+    p
+        | One additional function we include in Bootstrap is the color contrast function, 
+        code.highlighter-rouge color-yiq
+        | . It utilizes the 
+        a(href="https://en.wikipedia.org/wiki/YIQ") YIQ color space
+        |  to automatically return a light (
+        code.highlighter-rouge #fff
+        | ) or dark (
+        code.highlighter-rouge #111
+        | ) contrast color based on the specified base color. This function is especially useful for mixins or loops where you’re generating multiple classes.
+    p
+        | For example, to generate color swatches from our 
+        code.highlighter-rouge $theme-colors
+        |  map:
+    figure.highlight
+        pre
+            code.scss.
+                @each $color, $value in $theme-colors {
+                    .swatch-\#{$color} {
+                        color: color-yiq($value);
+                    }
+                }
+            
+    p It can also be used for one-off contrast needs:
+    figure.highlight
+        pre
+            code.scss.
+                .custom-element {
+                    color: color-yiq(#000); // returns `color: #fff`
+                }
+            
+    p You can also specify a base color with our color map functions:
+    figure.highlight
+        pre
+            code.scss.
+                .custom-element {
+                    color: color-yiq(theme-color("dark")); // returns `color: #fff`
+                }
+            
+    h2#sass-options Sass options
+    p
+        | Customize Bootstrap 4 with our built-in custom variables file and easily toggle global CSS preferences with new 
+        code.highlighter-rouge $enable-*
+        |  Sass variables. Override a variable’s value and recompile with 
+        code.highlighter-rouge npm run test
+        |  as needed.
+    p
+        | You can find and customize these variables for key global options in our 
+        code.highlighter-rouge _variables.scss
+        |  file.
+    table
+        thead
+            tr
+                th Variable
+                th Values
+                th Description
+        tbody
+            tr
+                td
+                    code.highlighter-rouge $spacer
+                td
+                    code.highlighter-rouge 1rem
+                    |  (default), or any value &gt; 0
+                td
+                    | Specifies the default spacer value to programmatically generate our 
+                    a(href="/docs/utilities/spacing/") spacer utilities
+                    | .
+            tr
+                td
+                    code.highlighter-rouge $enable-rounded
+                td
+                    code.highlighter-rouge true
+                    |  (default) or 
+                    code.highlighter-rouge false
+                td
+                    | Enables predefined 
+                    code.highlighter-rouge border-radius
+                    |  styles on various components.
+            tr
+                td
+                    code.highlighter-rouge $enable-shadows
+                td
+                    code.highlighter-rouge true
+                    |  or 
+                    code.highlighter-rouge false
+                    |  (default)
+                td
+                    | Enables predefined 
+                    code.highlighter-rouge box-shadow
+                    |  styles on various components.
+            tr
+                td
+                    code.highlighter-rouge $enable-gradients
+                td
+                    code.highlighter-rouge true
+                    |  or 
+                    code.highlighter-rouge false
+                    |  (default)
+                td
+                    | Enables predefined gradients via 
+                    code.highlighter-rouge background-image
+                    |  styles on various components.
+            tr
+                td
+                    code.highlighter-rouge $enable-transitions
+                td
+                    code.highlighter-rouge true
+                    |  (default) or 
+                    code.highlighter-rouge false
+                td
+                    | Enables predefined 
+                    code.highlighter-rouge transition
+                    | s on various components.
+            tr
+                td
+                    code.highlighter-rouge $enable-hover-media-query
+                td
+                    code.highlighter-rouge true
+                    |  or 
+                    code.highlighter-rouge false
+                    |  (default)
+                td
+                    strong Deprecated
+            tr
+                td
+                    code.highlighter-rouge $enable-grid-classes
+                td
+                    code.highlighter-rouge true
+                    |  (default) or 
+                    code.highlighter-rouge false
+                td
+                    | Enables the generation of CSS classes for the grid system (e.g., 
+                    code.highlighter-rouge .container
+                    | , 
+                    code.highlighter-rouge .row
+                    | , 
+                    code.highlighter-rouge .col-md-1
+                    | , etc.).
+            tr
+                td
+                    code.highlighter-rouge $enable-caret
+                td
+                    code.highlighter-rouge true
+                    |  (default) or 
+                    code.highlighter-rouge false
+                td
+                    | Enables pseudo element caret on 
+                    code.highlighter-rouge .dropdown-toggle
+                    | .
+            tr
+                td
+                    code.highlighter-rouge $enable-print-styles
+                td
+                    code.highlighter-rouge true
+                    |  (default) or 
+                    code.highlighter-rouge false
+                td Enables styles for optimizing printing.
+    h2#color Color
+    p
+        | Many of Bootstrap’s various components and utilities are built through a series of colors defined in a Sass map. This map can be looped over in Sass to quickly generate a series of rulesets.
+    h3#all-colors All colors
+    p
+        | All colors available in Bootstrap 4, are available as Sass variables and a Sass map in our 
+        code.highlighter-rouge scss/_variables.scss
+        |  file. This will be expanded upon in subsequent minor releases to add additional shades, much like the 
+        a(href="#grays") grayscale palette
+        |  we already include.
+    .row
+        .col-md-4
+            .p-3.mb-3.swatch-blue Blue
+        .col-md-4
+            .p-3.mb-3.swatch-indigo Indigo
+        .col-md-4
+            .p-3.mb-3.swatch-purple Purple
+        .col-md-4
+            .p-3.mb-3.swatch-pink Pink
+        .col-md-4
+            .p-3.mb-3.swatch-red Red
+        .col-md-4
+            .p-3.mb-3.swatch-orange Orange
+        .col-md-4
+            .p-3.mb-3.swatch-yellow Yellow
+        .col-md-4
+            .p-3.mb-3.swatch-green Green
+        .col-md-4
+            .p-3.mb-3.swatch-teal Teal
+        .col-md-4
+            .p-3.mb-3.swatch-cyan Cyan
+    p Here’s how you can use these in your Sass:
+    figure.highlight
+        pre
+            code.scss.
+                // With variable
+                .alpha { color: $purple; }
+
+                // From the Sass map with our `color()` function
+                .beta { color: color("purple"); }
+            
+    p
+        a(href="/docs/utilities/colors/") Color utility classes
+        |  are also available for setting 
+        code.highlighter-rouge color
+        |  and 
+        code.highlighter-rouge background-color
+        | .
+    .bd-callout.bd-callout-info
+        p
+            | In the future, we’ll aim to provide Sass maps and variables for shades of each color as we’ve done with the grayscale colors below.
+    h3#theme-colors Theme colors
+    p
+        | We use a subset of all colors to create a smaller color palette for generating color schemes, also available as Sass variables and a Sass map in our 
+        code.highlighter-rouge scss/_variables.scss
+        |  file.
+    .row
+        .col-md-4
+            .p-3.mb-3.swatch-primary Primary
+        .col-md-4
+            .p-3.mb-3.swatch-secondary Secondary
+        .col-md-4
+            .p-3.mb-3.swatch-success Success
+        .col-md-4
+            .p-3.mb-3.swatch-danger Danger
+        .col-md-4
+            .p-3.mb-3.swatch-warning Warning
+        .col-md-4
+            .p-3.mb-3.swatch-info Info
+        .col-md-4
+            .p-3.mb-3.swatch-light Light
+        .col-md-4
+            .p-3.mb-3.swatch-dark Dark
+    h3#grays Grays
+    p
+        | An expansive set of gray variables and a Sass map in 
+        code.highlighter-rouge scss/_variables.scss
+        |  for consistent shades of gray across your project.
+    .row.mb-3
+        .col-md-4
+            .p-3.swatch-100 100
+            .p-3.swatch-200 200
+            .p-3.swatch-300 300
+            .p-3.swatch-400 400
+            .p-3.swatch-500 500
+            .p-3.swatch-600 600
+            .p-3.swatch-700 700
+            .p-3.swatch-800 800
+            .p-3.swatch-900 900
+    p
+        | Within 
+        code.highlighter-rouge _variables.scss
+        | , you’ll find our color variables and Sass map. Here’s an example of the 
+        code.highlighter-rouge $colors
+        |  Sass map:
+    figure.highlight
+        pre
+            code.scss.
+                $colors: (
+                    "blue": $blue,
+                    "indigo": $indigo,
+                    "purple": $purple,
+                    "pink": $pink,
+                    "red": $red,
+                    "orange": $orange,
+                    "yellow": $yellow,
+                    "green": $green,
+                    "teal": $teal,
+                    "cyan": $cyan,
+                    "white": $white,
+                    "gray": $gray-600,
+                    "gray-dark": $gray-800
+                ) !default;
+            
+    p
+        | Add, remove, or modify values within the map to update how they’re used in many other components. Unfortunately at this time, not 
+        em every
+        |  component utilizes this Sass map. Future updates will strive to improve upon this. Until then, plan on making use of the 
+        code.highlighter-rouge ${color}
+        |  variables and this Sass map.
+    h2#components Components
+    p
+        | Many of Bootstrap’s components and utilities are built with 
+        code.highlighter-rouge @each
+        |  loops that iterate over a Sass map. This is especially helpful for generating variants of a component by our 
+        code.highlighter-rouge $theme-colors
+        |  and creating responsive variants for each breakpoint. As you customize these Sass maps and recompile, you’ll automatically see your changes reflected in these loops.
+    h3#modifiers Modifiers
+    p
+        | Many of Bootstrap’s components are built with a base-modifier class approach. This means the bulk of the styling is contained to a base class (e.g., 
+        code.highlighter-rouge .btn
+        | ) while style variations are confined to modifier classes (e.g., 
+        code.highlighter-rouge .btn-danger
+        | ). These modifier classes are built from the 
+        code.highlighter-rouge $theme-colors
+        |  map to make customizing the number and name of our modifier classes.
+    p
+        | Here are two examples of how we loop over the 
+        code.highlighter-rouge $theme-colors
+        |  map to generate modifiers to the 
+        code.highlighter-rouge .alert
+        |  component and all our 
+        code.highlighter-rouge .bg-*
+        |  background utilities.
+    figure.highlight
+        pre
+            code.scss.
+                // Generate alert modifier classes
+                @each $color, $value in $theme-colors {
+                    .alert-\#{$color} {
+                        @include alert-variant(theme-color-level($color, -10), theme-color-level($color, -9), theme-color-level($color, 6));
+                    }
+                }
+
+                // Generate `.bg-*` color utilities
+                @each $color, $value in $theme-colors {
+                    @include bg-variant('.bg-\#{$color}', $value);
+                }
+            
+    h3#responsive Responsive
+    p
+        | These Sass loops aren’t limited to color maps, either. You can also generate responsive variations of your components or utilities. Take for example our responsive text alignment utilities where we mix an 
+        code.highlighter-rouge @each
+        |  loop for the 
+        code.highlighter-rouge $grid-breakpoints
+        |  Sass map with a media query include.
+    figure.highlight
+        pre
+            code.scss.
+                @each $breakpoint in map-keys($grid-breakpoints) {
+                    @include media-breakpoint-up($breakpoint) {
+                        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+                        .text\#{$infix}-left   { text-align: left !important; }
+                        .text\#{$infix}-right  { text-align: right !important; }
+                        .text\#{$infix}-center { text-align: center !important; }
+                    }
+                }
+            
+    p
+        | Should you need to modify your 
+        code.highlighter-rouge $grid-breakpoints
+        | , your changes will apply to all the loops iterating over that map.
+    h2#css-variables CSS variables
+    p
+        | Bootstrap 4 includes around two dozen 
+        a(href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables") CSS custom properties (variables)
+        |  in it’s compiled CSS. These provide easy access to commonly used values like our theme colors, breakpoints, and primary font stacks when working in your browser’s Inspector, a code sandbox, or general prototyping.
+    h3#available-variables Available variables
+    p
+        | Here are the variables we include (note that the 
+        code.highlighter-rouge :root
+        |  is required). They’re located in our 
+        code.highlighter-rouge _root.scss
+        |  file.
+    figure.highlight
+        pre
+            code.scss.
+                :root {
+                    --blue: #007bff;
+                    --indigo: #6610f2;
+                    --purple: #6f42c1;
+                    --pink: #e83e8c;
+                    --red: #dc3545;
+                    --orange: #fd7e14;
+                    --yellow: #ffc107;
+                    --green: #28a745;
+                    --teal: #20c997;
+                    --cyan: #17a2b8;
+                    --white: #fff;
+                    --gray: #6c757d;
+                    --gray-dark: #343a40;
+                    --primary: #007bff;
+                    --secondary: #6c757d;
+                    --success: #28a745;
+                    --info: #17a2b8;
+                    --warning: #ffc107;
+                    --danger: #dc3545;
+                    --light: #f8f9fa;
+                    --dark: #343a40;
+                    --breakpoint-xs: 0;
+                    --breakpoint-sm: 576px;
+                    --breakpoint-md: 768px;
+                    --breakpoint-lg: 992px;
+                    --breakpoint-xl: 1200px;
+                    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                }
+            
+    h3#examples Examples
+    p
+        | CSS variables offer similar flexibility to Sass’s variables, but without the need for compilation before being served to the browser. For example, here we’re resetting our page’s font and link styles with CSS variables.
+    figure.highlight
+        pre
+            code.scss.
+                body {
+                    font: 1rem/1.5 var(--font-family-sans-serif);
+                }
+                a {
+                    color: var(--blue);
+                }
+            
+    p You can also use our breakpoint variables in your media queries:
+    figure.highlight
+        pre
+            code.scss.
+                .content-secondary {
+                    display: none;
+                }
+
+                @media (min-width(var(--breakpoint-sm))) {
+                    .content-secondary {
+                        display: block;
+                    }
+                }

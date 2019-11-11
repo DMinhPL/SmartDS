@@ -1,0 +1,1005 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'notify';
+    - title = "Component - Notify"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#demo') Demo
+        li.toc-entry.toc-h2
+            a(href='#documentation') Documentation
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#do-not-do-the-following') Do Not Do The Following
+                li.toc-entry.toc-h3
+                    a(href='#instead-do-this') Instead Do This
+                li.toc-entry.toc-h3
+                    a(href='#full-list-of-options-settings') Full List Of Options/Settings                
+                li.toc-entry.toc-h3
+                    a(href='#options') Options
+                li.toc-entry.toc-h3
+                    a(href='#settings') Settings
+                li.toc-entry.toc-h3
+                    a(href='#default-template-setup') Default Template Setup
+        li.toc-entry.toc-h2
+            a(href='#methods') Methods
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#update') Update
+                li.toc-entry.toc-h3
+                    a(href='#close') Close
+                li.toc-entry.toc-h3
+                    a(href='#setting-defaults-globally') Setting Defaults Globally
+                li.toc-entry.toc-h3
+                    a(href='#close-all-notifications') Close All Notifications
+        li.toc-entry.toc-h2
+            a(href='#examples') Examples
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#basic-bootstrap-notify') Basic Bootstrap Notify
+                li.toc-entry.toc-h3
+                    a(href='#passing-in-a-title') Passing In A Title
+                li.toc-entry.toc-h3
+                    a(href='#passing-html') Passing HTML
+                li.toc-entry.toc-h3
+                    a(href='#passing-in-a-title') Passing In A Title
+                li.toc-entry.toc-h3
+                    a(href='#using-a-font-icon') Using A Font Icon
+                li.toc-entry.toc-h3
+                    a(href='#using-images-instead-of-font-icons') Using Images Instead Of Font Icons
+                li.toc-entry.toc-h3
+                    a(href='#using-a-url') Using A URL
+                li.toc-entry.toc-h3
+                    a(href='#using-a-url-with-a-specific-target') Using A URL With A Specific Target
+                li.toc-entry.toc-h3
+                    a(href='#using-offset') Using Offset
+                li.toc-entry.toc-h3
+                    a(href='#using-bootstrap-alert-types') Using Bootstrap Alert Types
+                    ul
+                        li.toc-entry.toc-h4
+                            a(href='#using-bootstrap-alert-types') Animating Bootstrap Notify
+                        li.toc-entry.toc-h4
+                            a(href='#newest-notifications-on-top') Newest Notifications On Top
+                li.toc-entry.toc-h3
+                    a(href='#customized-notifications') Customized Notifications
+block content 
+    h1.bd-title#content Notify
+    p.bd-lead This plugin helps to turn standard bootstrap alerts into "growl" like notifications.
+
+    .mt-5#demo
+        form.bd-example(action="#GenerateNotify")
+            .form-group
+                div: label Type
+                +radio-toggle()
+                    +radio-toggle-item('Primary','type','primary','primary',true)
+                    +radio-toggle-item('Success','type','success','success')
+                    +radio-toggle-item('Info','type','info','info')
+                    +radio-toggle-item('Warning','type','warning','warning')
+                    +radio-toggle-item('Danger','type','danger','danger')
+                    +radio-toggle-item('Secondary','type','secondary','secondary')
+            .row
+                .col-12.col-sm-6
+                    .form-group.mb-4
+                        div: label Postition
+                        +radio-toggle-primary('position',[{caption:'🡔', value:'top-left'},{caption:"🡑", value:'top-center'},{caption:"🡕", value:'top-right'},{caption:"🡗", value:'bottom-left'},{caption:"🡓", value:'bottom-left'},{caption:"🡖", value:'bottom-right'}], 2)                
+                    .row
+                        .col-6
+                            +checkboxui-box('Allow Dismiss','demo-allow-dismiss')
+                        .col-6
+                            +checkboxui-box('Pause on Hover','demo-pause-on-hover')
+                        .col-6
+                            +checkboxui-box('Newest on Top','demo-newest-on-top')
+                        .col-6
+                            +checkboxui-box('Show Progressbar','demo-show-progressbar')
+                    .row
+                        .col-6
+                            +input-box('number','demo-spacing','','Spacing',10)
+                        .col-6
+                            +input-box('number','demo-offset-x-axis','','Offset X Axis',20)
+                    .row
+                        .col-6
+                            +input-box('number','demo-offset-y-axis','','Offset Y Axis',20)
+                        .col-6
+                            +input-box('number','demo-delay','','Delay',4000)
+                    .row
+                        .col-12
+                            +input-box('number','demo-z-index','','Z-Index',1071)
+                .col-12.col-sm-6
+                    +input-box('text','demo-icon','','Icon','fa fa-gift')
+                    +input-box('text','demo-title','','Title','Bootstrap Notify')
+                    +textarea-box('','demo-message','Message','', 3)
+                        | Turning standard Bootstrap alerts into "Growl-like" notifications
+                    .row
+                        .col-8
+                            +input-box('text','demo-link','','URL','https://github.com/mouse0270/bootstrap-notify')
+                        .col-4
+                            +input-box('text','demo-target','','Target','_blank')
+            
+            +btn-submit-success('Generate Notify')
+
+        figure.highlight
+            pre
+                code.js#result
+
+    .mt-5#documentation
+        h2 Documentation
+        p Please make sure to read the documenation it exlains how to use this plugin and points out common mistakes people tend to make. It will also give you examples on how to use this plugin.
+        p
+            | If you are having any issues using this plugin please feel free to ask me on 
+            a(href='https://gitter.im/mouse0270/bootstrap-notify?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge', target='_blank') gitter
+            | . I must admit it is a wonderful site for quick questions about github plugins that may not actually be issues. Please feel free to make improvements by forking the plugin and making a 
+            a(href='https://github.com/mouse0270/bootstrap-notify/pulls', target='_blank') pull request
+            | . Lastly, if you do find an issue with the plugin please report it on the github 
+            a(href='https://github.com/mouse0270/bootstrap-notify/issues', target='_blank') issues
+            |  page.
+
+        .mt-4#do-not-do-the-following
+            h3 Do Not Do The Following
+            p This is wrong when using this plugin. I have tried to make Bootstrap Notify as flexible I could think by including both 
+                code options 
+                | and 
+                code settings.
+
+            figure.highlight
+                pre
+                    code.js.
+                        $('body').notify({
+                            message: 'Hello World',
+                            type: 'danger'
+                        });
+        
+        .mt-4#instead-do-this
+            h3 Instead Do This
+            p Below is an example showing all the correct way to use Bootstrap Notify.
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            // options
+                            message: 'Hello World' 
+                        },{
+                            // settings
+                            type: 'danger'
+                        });
+
+        .mt-4#full-list-of-options-settings
+            h3 Full List Of Options/Settings
+            p Below is a list of all the 
+                code options 
+                | and 
+                code settings 
+                | you are able to use and which each section belongs to.
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            // options
+                            icon: 'glyphicon glyphicon-warning-sign',
+                            title: 'Bootstrap notify',
+                            message: 'Turning standard Bootstrap alerts into "notify" like notifications',
+                            url: 'https://github.com/mouse0270/bootstrap-notify',
+                            target: '_blank'
+                        },{
+                            // settings
+                            element: 'body',
+                            position: null,
+                            type: "info",
+                            allow_dismiss: true,
+                            newest_on_top: false,
+                            showProgressbar: false,
+                            placement: {
+                                from: "top",
+                                align: "right"
+                            },
+                            offset: 20,
+                            spacing: 10,
+                            z_index: 1031,
+                            delay: 5000,
+                            timer: 1000,
+                            url_target: '_blank',
+                            mouse_over: null,
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            onShow: null,
+                            onShown: null,
+                            onClose: null,
+                            onClosed: null,
+                            icon_type: 'class',
+                            template: '&lt;div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert"&gt;' +
+                                '&lt;button type="button" aria-hidden="true" class="close" data-notify="dismiss"&gt;×&lt;/button&gt;' +
+                                '&lt;span data-notify="icon"&gt;&lt;/span&gt; ' +
+                                '&lt;span data-notify="title"&gt;{1}&lt;/span&gt; ' +
+                                '&lt;span data-notify="message"&gt;{2}&lt;/span&gt;' +
+                                '&lt;div class="progress" data-notify="progressbar"&gt;' +
+                                    '&lt;div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"&gt;&lt;/div&gt;' +
+                                '&lt;/div&gt;' +
+                                '&lt;a href="{3}" target="{4}" data-notify="url"&gt;&lt;/a&gt;' +
+                            '&lt;/div&gt;' 
+                        });
+
+        .mt-5#options
+            h3 Options
+            -
+                var head =  ['Name','Type / Values','Required','Description']
+                var data = [
+                            ['icon','<em>class | src</em>','<code>No</code>','This is the icon that will be displayed within the notify notification. This icon can either be a class (Font Icon) or an image url. Please keep in mind if you wish to use an image url that you must set icon_type to img in the options.'],
+                            ['title','<em>string</em>','<code>No</code>','This is the title that will be displayed within the notify notification. Please keep in mind unless you style the [data-notify="title"] in css this will look identical to the message.'],
+                            ['message','<em>string</em>','<code>Yes</code>','This is the message that will be displayed within the notify notification.'],
+                            ['url','<em>web address</em>','<code>No</code>','If this value is set it will make the entire notify (except the close button) a clickable area. If the user clicks on this area it will take them to the url specified here.'],
+                            ['target','<em>_blank | _self | _parent | _top</em>','<code>No</code>','	The target attribute specifies where to open the linked notification.']                        
+                        ]
+            +table(head,data,'table-bordered')
+        
+        .mt-5#settings
+            h3 Settings
+            -
+                var head =  ['Name','Type / Values','Default','Description']
+                var data = [
+                            ['element','<em>string</em>','<code>body</code>','Appends the notification to a specific element. If the element is set to anything other than the body of a document it switches from a position: fixed to position: absolute.'],
+                            ['position','<em>static | fixed | relative | absolute | <code>null</code></em>','<code>null</code>','Allows users to specify a custom position to the notification container element.'],
+                            ['type','<em>string</em>','<code>info</code>','Defines the style of the notification using bootstraps native alert styles. Please keep in mind that when the notification is generated the type gets prefixed with alert-. When using native alert styles this will not be an issue, but if you create a new style such as pink when setting up the css you have to use the class <code>alert-pink</code>.'],
+                            ['allow_dismiss','<em>boolean</em>','<code>true</code>','If this value is set to false it will hide the <code>data-grow="dismiss"</code> element. Please keep in mind if you modify the <code>template</code> setting and do not include a <code>data-notify="dismiss"</code> element even with this set to true there will be no element for a user to click to close the notification.'],
+                            ['showProgressbar','<em>boolean</em>','<code>false</code>','This <code>boolean</code> is used to determine if the notification should display a progress bar.'],
+                            ['placement.from','<em>string</em>','<code>top</code>','This controls where if the notification will be placed at the <code>top</code> or <code>bottom</code> of your element.'],
+                            ['placement.align','<em>string</em>','<code>right</code>','This controls if the notification will be placed in the <code>left</code>, <code>center</code> or <code>right</code> side of the element.'],
+                            ['offset','<em>integer</em>','<code>20</code>','This adds padding in <code>pixels</code> between the element and the notification creating a space between their edges.'],
+                            ['offset.x','<em>integer</em>','<code>20</code>','This adds adding on the <code>x</code> axis in <code>pixels</code> between the element and the notification creating a space between their edges.'],
+                            ['offset.y','<em>integer</em>','<code>20</code>','This adds adding on the <code>y</code> axis in <code>pixels</code> between the element and the notification creating a space between their edges.'],
+                            ['spacing','<em>integer</em>','<code>10</code>','This adds adding on the <code>y</code> axis in <code>pixels</code> between the element and the notification creating a space between their edges.'],
+                            ['z_index','<em>integer</em>','<code>1071</code>','Pretty simple, this sets the css property <code>z-index</code> for the notification. You may have to raise this number if you have other elements overlapping the notification.'],
+                            ['delay','<em>integer</em>','<code>4000</code>','If <code>delay</code> is set higher than <code>0</code> then the notification will auto-close after the <code>delay</code> period is up. Please keep in mind that delay uses milliseconds so <code>5000</code> is <code>5</code> seconds.'],
+                            ['timer','<em>integer</em>','<code>1000</code>','This is the amount of milliseconds removed from the notify at every <code>timer</code> milliseconds. So to make that a little less confusing every <code>1000 milliseconds</code> there will be <code>1000 milliseconds</code> removed from the remaining time of the notify delay. If this is set higher then delay the notify will not be removed until timer has run out.'],
+                            ['url_target','<em>_blank | _self | _parent | _top</em>','<code>\'_blank\'</code>','This sets the target of the url for a notification. please check <code>HTML &lt;a&gt; target Attribute</code> to learn more about these options'],
+                            ['mouse_over','<em>pause | null</em>','<code>null</code>','By default this does nothing. If you set this option to pause it will <code>pause</code> the timer on the notification delay. Since version 2.0.0 the timer will not reset it will continue from it\'s last tick.'],
+                            ['animate.enter','<em>string</em>','<code>animated fadeInDown</code>','This will control the animation used to bring the generate the notification on screen. Since version 2.0.0 all animations are controlled using css. This plugin is not com packaged with any animations. Please use <a href="http://daneden.github.io/animate.css/" target="_blank">Animate.css</a> by <a href="http://daneden.me/" target="_blank">Daniel Eden</a> or you can always write your own css animations.'],
+                            ['animate.exit','<em>string</em>','<code>animated fadeOutUp</code>','This will control the animation used to bring the generate the notification on screen. Since version 2.0.0 all animations are controlled using css. This plugin is not com packaged with any animations. Please use <a href="http://daneden.github.io/animate.css/" target="_blank">Animate.css</a> by <a href="http://daneden.me/" target="_blank">Daniel Eden</a> or you can always write your own css animations.'],
+                            ['onShow','<em>function</em>','<code>null</code>','This event fires immediately when the <code>show</code> instance method is called.'],
+                            ['onShown','<em>function</em>','<code>null</code>','This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete).'],
+                            ['onClose','<em>function</em>','<code>null</code>','This event is fired immediately when the notification is <code>closing</code>.'],
+                            ['onClosed','<em>function</em>','<code>null</code>','This event is fired when the modal has finished closing and is removed from the document (will wait for CSS transitions to complete).'],
+                            ['icon_type','<em>string</em>','<code>class</code>','This is used to let the plugin know if you are using an <code>icon font</code> for images or if you are using <code>image</code>. If this setting is not set to <code>class</code> it will assume you are using an <code>img</code>. Please keep in mind if you are using an <code>image</code> you to set <code>icon</code> to the <code>src</code> of the <code>image</code>.'],
+                            ['template','<em>HTML</em>','<code>code below</code>','Since version 3.0.0 the template option has been revamped in hopes of giving users more control over the layout. Please find the code for the default template below.'],
+                        ]
+            +table(head,data,'table-bordered')    
+        
+        .mt-5#default-template-setup
+            h3 Default Template Setup
+            p
+                | Bootrstrap Notify uses data attributes (
+                em
+                    code data-notify
+                | ) to place content with in the notification template.
+            ul
+                li
+                    code container
+                    | : Container of notification element
+                li
+                    code dismiss
+                    | : Element used to allow user to manually close notification
+                li
+                    code icon
+                    | : Either has a class for an icon image or will generate an html image tag
+                li
+                    code title
+                    | : Element that the notification will insert the title
+                li
+                    code message
+                    | : Element that the notification will insert the message
+                li
+                    code progressbar
+                    | : Element used to show progress bar.
+                li
+                    code url
+                    | : Element that will have href set if a url is passed.
+            p
+                | In version 3+ the  
+                code template setting
+                |  was modified to use a combination of data attributes and a 
+                a(href='https://msdn.microsoft.com/en-us/library/system.string.format(v=vs.110).aspx', target='_blank') C# string.format
+                |  like function to control the content within the notification.
+            ul
+                li
+                    code {0}
+                    |  = type
+                li
+                    code {1}
+                    |  = title
+                li
+                    code {2}
+                    |  = message
+                li
+                    code {3}
+                    |  = url
+                li
+                    code {4}
+                    |  = target
+
+            figure.highlight
+                pre
+                    code.html.
+                        &lt;div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert"&gt;
+                            &lt;button type="button" aria-hidden="true" class="close" data-notify="dismiss"&gt;×&lt;/button&gt;
+                            &lt;span data-notify="icon"&gt;&lt;/span&gt;
+                            &lt;b data-notify="title"&gt;{1}&lt;/b&gt;
+                            &lt;span data-notify="message"&gt;{2}&lt;/span&gt;
+                            &lt;div class="progress" data-notify="progressbar"&gt;
+                                &lt;div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                            &lt;a href="{3}" target="{4}" data-notify="url"&gt;&lt;/a&gt;
+                        &lt;/div&gt;
+    
+    #methods.mt-5
+        h2 Methods
+
+        p To use a method you have to assign the notification to a variable when it is created. The example below will show you how to create a notification then update the 
+            code type 
+            | and 
+            code message 
+            | then close it.
+        figure.highlight
+            pre
+                code.js.
+                    var notify = $.notify('&lt;strong&gt;Saving&lt;/strong&gt; Do not close this page...', {
+                        allow_dismiss: false,
+                        showProgressbar: true
+                    });
+
+                    setTimeout(function() {
+                        notify.update({'type': 'success', 'message': '&lt;strong&gt;Success&lt;/strong&gt; Your page has been saved!', 'progress': 25});
+                    }, 3500);
+
+            +a-btn-primary('Generate Notify!','#run-sample')
+        
+        figure.highlight
+            pre
+                code.js.
+                    var notify = $.notify('&lt;strong&gt;Saving&lt;/strong&gt; Do not close this page...', {
+                        type: 'success',
+                        allow_dismiss: false,
+                        showProgressbar: true
+                    });
+
+                    setTimeout(function() {
+                        notify.update('message', '&lt;strong&gt;Saving&lt;/strong&gt; Page Data.');
+                    }, 500);
+
+                    setTimeout(function() {
+                        notify.update('message', '&lt;strong&gt;Saving&lt;/strong&gt; User Data.');
+                    }, 1500);
+
+                    setTimeout(function() {
+                        notify.update('message', '&lt;strong&gt;Saving&lt;/strong&gt; Profile Data.');
+                    }, 2000);
+
+                    setTimeout(function() {
+                        notify.update('message', '&lt;strong&gt;Checking&lt;/strong&gt; for errors.');
+                    }, 2500);
+
+            +a-btn-primary('Generate Notify!','#run-sample')
+        
+        #update.mt-5
+            h3 Update
+            figure.highlight
+                pre
+                    code.js.
+                        var notify = $.notify('...');
+                        notify.update('title', '...');
+                        notify.update('message', '...');
+                        notify.update('icon', '...');
+                        notify.update('type', '...');
+                        notify.update('progress', '...');
+                        notify.update('url', '...');
+                        notify.update('target', '...');
+
+        #close.mt-5
+            h3 Close
+            figure.highlight
+                pre
+                    code.js.
+                        var notify = $.notify('...');
+                        notify.close();
+        
+        #setting-defaults-globally.mt-5
+            h3 Setting Defaults Globally
+            figure.highlight
+                pre
+                    code.js.
+                        $.notifyDefaults({
+                            type: 'success',
+                            allow_dismiss: false
+                        });
+                        $.notify('You can not close me!');
+                +a-btn-primary('Generate Notify!','#run-sample')
+        
+        #close-all-notifications.mt-5
+            h3 Close All Notifications
+            figure.highlight
+                pre
+                    code.js.
+                        $.notifyDefaults({
+                            allow_dismiss: false,
+                            delay: 0
+                        });
+                        var arrayAlign = ["left", "center", "right"];
+                        for (var iLoop = 0; iLoop &lt; arrayAlign.length; iLoop++) {
+                            $.notify('Top ' + arrayAlign[iLoop], {
+                                placement: {
+                                    align: arrayAlign[iLoop]
+                                }
+                            });
+                        }
+                        $.notifyDefaults({
+                            placement: {
+                                from: "bottom"
+                            },
+                            animate:{
+                                enter: "animated fadeInUp",
+                                exit: "animated fadeOutDown"
+                            }
+                        });
+                        for (var iLoop = 0; iLoop &lt; arrayAlign.length; iLoop++) {
+                            $.notify('Bottom ' + arrayAlign[iLoop], {
+                                placement: {
+                                    align: arrayAlign[iLoop]
+                                }
+                            });
+                        }
+                        setTimeout(function() {
+                            $.notifyClose();
+                        }, 3000);
+
+                +a-btn-primary('Generate Notify!','#run-sample')
+
+            figure.highlight
+                pre
+                    code.js.
+                        for (var iLoop = 0; iLoop &lt; 5; iLoop++) {
+                            $.notify('I will close before the delay!', {
+                                allow_dismiss: false
+                            });
+                        }
+                        $.notify('I will not close until my delay is up.', {
+                            allow_dismiss: false,
+                            placement: {
+                                from: 'bottom',
+                                align: 'left'
+                            }
+                        });
+                        setTimeout(function() {
+                            $.notifyClose('top-right');
+                        }, 3000);                        
+                +a-btn-primary('Generate Notify!','#run-sample')
+
+    #examples.mt-5
+        h2 Examples
+
+        #basic-bootstrap-notify.mt-5
+            h3 Basic Bootstrap Notify
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify("Hello World");                        
+                +a-btn-primary('Generate Notify!','#run-sample')
+
+        #passing-in-a-title.mt-5
+            h3 Passing In A Title
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            title: "Welcome:",
+                            message: "This plugin has been provided to you by Robert McIntosh aka mouse0270"
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+        
+        #passing-html.mt-5
+            h3 Passing HTML
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            title: "&lt;strong&gt;Welcome:&lt;/strong&gt;",
+                            message: "This plugin has been provided to you by Robert McIntosh aka mouse0270"
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            title: "&lt;strong&gt;Welcome:&lt;/strong&gt;",
+                            message: 'This plugin has been provided to you by Robert McIntosh aka &lt;a href="https://twitter.com/Mouse0270" target="_blank"&gt;@mouse0270"&lt;/a&gt;'
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+
+        #using-a-font-icon.mt-5
+            h3 Using A Font Icon
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({ 
+                            icon: 'icon_images',
+                            message: "Everyone loves font icons! Use them in your notification!"
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            icon: 'fa fa-paw',
+                            message: "You're not limited to just Bootstrap Font Icons"
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+        
+        #using-images-instead-of-font-icons.mt-5
+            h3 Using Images Instead Of Font Icons
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            icon: "http://bootstrap-notify.remabledesigns.com/img/growl_64x.png",
+                            message: " I am using an image."
+                        },{
+                            icon_type: 'image'
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+
+        #using-a-url.mt-5
+            h3 Using A URL
+            p
+                | By default the plugin will set the target to 
+                code _blankM
+                |  causing the browser to open another 
+                code window
+                | /
+                code tab
+                |  when clicking on the notification.
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            message: "Check out my twitter account by clicking on this notification!",
+                            url: "https://twitter.com/Mouse0270"
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+        
+        #using-a-url-with-a-specific-target.mt-5
+            h3 Using A URL With A Specific Target
+            p
+                | You are able to set the target using two ways. You can either pass it within the 
+                code options
+                |  or the 
+                code settings
+                | . The first example below is passing it as an 
+                code option
+                |  and the second example is passing it as a 
+                code setting
+                | .
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            message: "Check out my twitter account by clicking on this notification!",
+                            url: "https://twitter.com/Mouse0270",
+                            target: "_self"
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            message: "Check out my twitter account by clicking on this notification!",
+                            url: "https://twitter.com/Mouse0270"
+                        },{
+                            url_target: "_self"
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+            
+            p
+                | Please keep in mind that if you pass a target in the 
+                code options
+                |  it will override the 
+                code settings
+                | . Below is demonstarting this. The first example will open in the same window because we have update the notify defaults by setting 
+                code url_target
+                |  to 
+                code _self
+                | . The Second example will up in a new 
+                code window
+                | /
+                code tab
+                |  even though we have we set the default to 
+                code _self
+                |  because we passed the 
+                code target
+                |  as 
+                code _blank
+                | .
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notifyDefaults({
+                            url_target: "_self"
+                        });
+                        $.notify({
+                            message: "Check out my twitter account by clicking on this notification!",
+                            url: "https://twitter.com/Mouse0270"
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+            figure.highlight
+                pre
+                    code.js.
+                        $.notifyDefaults({
+                            url_target: "_self"
+                        });
+                        $.notify({
+                            message: "Check out my twitter account by clicking on this notification!",
+                            url: "https://twitter.com/Mouse0270",
+                            target: "_blank"
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+
+        #using-offset.mt-5
+            h3 Using Offset
+            p
+                | You can pass an offset to make the notifications start farther or closer to the edge of the browser. You can either pass an 
+                code integer
+                |  or an 
+                code object
+                | .
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify('Hello World', {
+                            offset: 50
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify('Hello World', {
+                            offset: {
+                                x: 50,
+                                y: 100
+                            }
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+        
+        #using-bootstrap-alert-types.mt-5
+            h3 Using Bootstrap Alert Types
+
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            title: '<strong>Heads up!</strong>',
+                            message: 'Bootstrap Notify uses Bootstrap Info Alert styling as its default setting.'
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            title: '<strong>Heads up!</strong>',
+                            message: 'You can use any of bootstraps other alert styles as well by default.'
+                        },{
+                            type: 'success'
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            title: '<strong>Heads up!</strong>',
+                            message: 'You can use any of bootstraps other alert styles as well by default.'
+                        },{
+                            type: 'warning'
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+            figure.highlight
+                pre
+                    code.js.
+                        $.notify({
+                            title: '<strong>Heads up!</strong>',
+                            message: 'You can use any of bootstraps other alert styles as well by default.'
+                        },{
+                            type: 'danger'
+                        });
+                +a-btn-primary('Generate Notify!','#run-sample')
+
+            #using-bootstrap-alert-types.mt-4
+                h4 Animating Bootstrap Notify
+                p One of the most powerful features in Bootstrap Notify is that you can easily animate how it enters and exits the screen using CSS (Please note that you can no longer animate the notifications using jquery).
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Enter: Fade In and DownExit: Fade Out and Up");
+                    +a-btn-primary('Generate Notify!','#run-sample')
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Enter: Fade In and RightExit: Fade Out and Right", {
+                                animate: {
+                                    enter: 'animated fadeInRight',
+                                    exit: 'animated fadeOutRight'
+                                }
+                            });
+                    +a-btn-primary('Generate Notify!','#run-sample')
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Enter: Bounce In from TopExit: Bounce Up and Out", {
+                                animate: {
+                                    enter: 'animated bounceInDown',
+                                    exit: 'animated bounceOutUp'
+                                }
+                            });
+                    +a-btn-primary('Generate Notify!','#run-sample')
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Enter: Bounce InExit: Bounce Out", {
+                                animate: {
+                                    enter: 'animated bounceIn',
+                                    exit: 'animated bounceOut'
+                                }
+                            });
+                    +a-btn-primary('Generate Notify!','#run-sample')
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Enter: Flip In on Y AxisExit: Flip Out on X Axis", {
+                                animate: {
+                                    enter: 'animated flipInY',
+                                    exit: 'animated flipOutX'
+                                }
+                            });
+                    +a-btn-primary('Generate Notify!','#run-sample')
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Enter: Light Speed InExit: Light Speed Out", {
+                                animate: {
+                                    enter: 'animated lightSpeedIn',
+                                    exit: 'animated lightSpeedOut'
+                                }
+                            });
+                    +a-btn-primary('Generate Notify!','#run-sample')
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Enter: Roll InExit: Roll Out", {
+                                animate: {
+                                    enter: 'animated rollIn',
+                                    exit: 'animated rollOut'
+                                }
+                            });
+                    +a-btn-primary('Generate Notify!','#run-sample')
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Enter: Zoom Down and InExit: Zoom Up and Out", {
+                                animate: {
+                                    enter: 'animated zoomInDown',
+                                    exit: 'animated zoomOutUp'
+                                }
+                            });
+                    +a-btn-primary('Generate Notify!','#run-sample')
+
+            #newest-notifications-on-top.mt-4
+                h4 Newest Notifications On Top
+                p As of Bootstrap Notify 3+ there is a new option that will allow you to have newer notifications push down older ones. If you click on the example below you will notice that each new notification is added after the last notification in the list. However in the second example you will see that it pushes the older notifications down leaving the newest on above the others.
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Hello World: I was added to the bottom.");
+                    +a-btn-primary('Generate Notify!','#run-sample')
+                figure.highlight
+                    pre
+                        code.js.
+                            $.notify("Hello World: I was added to the top.", {
+                                newest_on_top: true
+                            });
+                    +a-btn-primary('Generate Notify!','#run-sample')
+                +alert-warning('<strong>Warning!</strong> be careful when setting <code>newest_on_top</code> to <code>true</code> when a <code>placement</code> that already contains a notification has <code>newest_on_top</code> to <code>false</code>. It may cause issues with the plugins ability to place the notification in the correct location.')
+
+        #customized-notifications.mt-5
+            h3 Customized Notifications
+            p Below is a list custom styled notifications that you may use as a whole or a starting off point. I'll will occasionally update this list so please check back for more styles.
+            style.
+                .alert-minimalist {
+                    background-color: rgb(241, 242, 240);
+                    border-color: rgba(149, 149, 149, 0.3);
+                    border-radius: 3px;
+                    color: rgb(149, 149, 149);
+                    padding: 10px;
+                    line-height: 1.3;
+                }
+                .alert-minimalist > [data-notify="icon"] {
+                    height: 50px;
+                    margin-right: 12px;
+                    border-radius: 50%;
+                }
+                .alert-minimalist > [data-notify="title"] {
+                    color: rgb(51, 51, 51);
+                    display: block;
+                    font-weight: bold;
+                }
+                .alert-minimalist > [data-notify="message"] {
+                    font-size: 80%;
+                    line-height: 1.1;
+                }
+            figure.highlight
+                    pre
+                        code.css.
+                            .alert-minimalist {
+                                background-color: rgb(241, 242, 240);
+                                border-color: rgba(149, 149, 149, 0.3);
+                                border-radius: 3px;
+                                color: rgb(149, 149, 149);
+                                padding: 10px;
+                                line-height: 1.3;
+                            }
+                            .alert-minimalist &gt; [data-notify="icon"] {
+                                height: 50px;
+                                margin-right: 12px;
+                                border-radius: 50%;
+                            }
+                            .alert-minimalist &gt; [data-notify="title"] {
+                                color: rgb(51, 51, 51);
+                                display: block;
+                                font-weight: bold;
+                            }
+                            .alert-minimalist &gt; [data-notify="message"] {
+                                font-size: 80%;
+                                line-height: 1.1;
+                            }
+            figure.highlight
+                    pre
+                        code.js.
+                            $.notify({
+                                icon: 'https://randomuser.me/api/portraits/med/men/77.jpg',
+                                title: 'Byron Morgan',
+                                message: 'Momentum reduce child mortality effectiveness incubation empowerment connect.'
+                            },{
+                                type: 'minimalist',
+                                delay: 5000,
+                                icon_type: 'image',
+                                template: '&lt;div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert"&gt;' +
+                                    '&lt;img data-notify="icon" class="img-circle pull-left"&gt;' +
+                                    '&lt;span data-notify="title"&gt;{1}&lt;/span&gt;' +
+                                    '&lt;span data-notify="message"&gt;{2}&lt;/span&gt;' +
+                                '&lt;/div&gt;'
+                            });
+                    +a-btn-primary('Generate Notify!','#run-sample')
+            
+
+block js
+    script.
+        $('a[href="#run-sample"]').on('click', function(event) {
+            event.preventDefault();
+            var code = $(this).prev('pre').find('code');
+            eval(code.text());
+            $.notifyDefaults({
+                element: 'body',
+                position: null,
+                type: "info",
+                allow_dismiss: true,
+                newest_on_top: false,
+                placement: {
+                    from: "top",
+                    align: "right"
+                },
+                offset: 20,
+                spacing: 10,
+                z_index: 1071,
+                delay: 4000,
+                timer: 400,
+                url_target: '_blank',
+                mouse_over: null,
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                },
+                onShow: null,
+                onShown: null,
+                onClose: null,
+                onClosed: null,
+                icon_type: 'class',
+                template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert"><button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>'
+            });
+        });
+        $('form[action="#GenerateNotify"]').submit(function( event ) {
+            event.preventDefault();
+                // Option
+            var nfIcon          = $('#demo-icon').val(),
+                nfTitle         = $('#demo-title').val(),
+                nfMessage       = $('#demo-message').val(),
+                nfUrl           = $('#demo-link').val(),
+                nfTarget        = $('#demo-target').val(),
+                
+                // Seting
+                nfType          = $('input[name="type"]:checked').val(),
+                nfAllowDismiss  = $('#demo-allow-dismiss').is(':checked'),
+                nfNewestOnTop   = $('#demo-newest-on-top').is(':checked'),
+                nfProgressbar   = $('#demo-show-progressbar').is(':checked'),
+                nfPlacementFrom = $('input[name="position"]:checked').val().split("-")[0],
+                nfPlacementAlign= $('input[name="position"]:checked').val().split("-")[1],
+                nfOffsetX       = $('#demo-offset-x-axis').val(),
+                nfOffsetY       = $('#demo-offset-y-axis').val(),
+                nfSpacing       = $('#demo-spacing').val(),
+                nfZIndex        = $('#demo-z-index').val(),
+                nfDelay         = $('#demo-delay').val(),
+                nfMouseOver     = ($('#demo-pause-on-hover').is(':checked') ? "pause" : null)
+
+                // JS Result
+                nfResult = 'var notify = $.notify({\n';  
+                if(nfIcon != '') nfResult +='    icon:       \'' + nfIcon + '\',\n';
+                if(nfTitle != '') nfResult +='    title:      \'' + nfTitle + '\',\n';
+                if(nfMessage != '') nfResult +='    message:    \'' + nfMessage + '\',\n';
+                if(nfUrl != '') nfResult +='    url:        \'' + nfUrl + '\',\n';
+                if(nfTarget != '') nfResult +='    target:     \'' + nfTarget + '\'\n';
+                nfResult +='},{\n';
+                nfResult +='    type:           \'' + nfType + '\',\n';
+                nfResult +='    allow_dismiss:  ' + nfAllowDismiss + ',\n';
+                nfResult +='    newest_on_top:  ' + nfNewestOnTop + ',\n';
+                nfResult +='    showProgressbar: ' + nfProgressbar + ',\n';
+                nfResult +='    placement: {\n';
+                nfResult +='        from:       \'' + nfPlacementFrom + '\',\n';
+                nfResult +='        align:      \'' + nfPlacementAlign + '\'\n';
+                nfResult +='    },\n';
+                nfResult +='    offset: {\n';
+                nfResult +='        x:          ' + nfOffsetX + ',\n';
+                nfResult +='        y:          ' + nfOffsetY + '\n';
+                nfResult +='    },\n';
+                nfResult +='    spacing:        ' + nfSpacing + ',\n';
+                nfResult +='    z_index:        ' + nfZIndex + ',\n';
+                nfResult +='    delay:          ' + nfDelay + ',\n';
+                nfResult +='    mouse_over:     ' + nfMouseOver + '\n';
+                nfResult +='});';
+
+            var notify = $.notify({
+                icon:       nfIcon,
+                title:      nfTitle,
+                message:    nfMessage,
+                url:        nfUrl,
+                target:     nfTarget
+            },{
+                type:           nfType,
+                allow_dismiss:  nfAllowDismiss,
+                newest_on_top:  nfNewestOnTop,
+                showProgressbar: nfProgressbar,
+                placement: {
+                    from:       nfPlacementFrom,
+                    align:      nfPlacementAlign
+                },
+                offset: {
+                    x:          nfOffsetX,
+                    y:          nfOffsetY
+                },
+                spacing:        nfSpacing,
+                z_index:        nfZIndex,
+                delay:          nfDelay,
+                mouse_over:     nfMouseOver
+            });
+            
+            $('#result').html(nfResult);
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            return false;
+        });

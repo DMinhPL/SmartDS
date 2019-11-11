@@ -1,0 +1,93 @@
+//- #Elegant Icon ----------------------------------------------------
+
+//- @mixin +ic('name')
+//-	@param {string}	name: class name icon
+//-	@param {string}	cls: class name
+
+mixin ic(name, cls)
+	- var cls = (typeof cls === 'undefined') ? "" : cls
+	span(class=`${name} ${cls}`,aria-hidden="true")
+		block
+
+mixin ic-primary(name)
+	+ic(name, 'text-primary')
+mixin ic-secondary(name)
+	+ic(name, 'text-secondary')
+mixin ic-success(name)
+	+ic(name, 'text-success')
+mixin ic-info(name)
+	+ic(name, 'text-info')
+mixin ic-warning(name)
+	+ic(name, 'text-warning')
+mixin ic-danger(name)
+	+ic(name, 'text-danger')
+mixin ic-light(name)
+	+ic(name, 'text-light')
+mixin ic-dark(name)
+	+ic(name, 'text-dark')
+
+
+
+//- #Awesome Icon ----------------------------------------------------
+
+//- @mixin +fa('name')
+//-	@param {string}	name: class name icon
+//-	@param {string}	cls: class name
+
+mixin fa(name, cls)
+	- var cls = (typeof cls === 'undefined') ? "" : cls
+	i.fa(class=`fa-${name} ${cls}`,aria-hidden="true")
+		block
+
+mixin fa-primary(name)
+	+fa(name, 'text-primary')
+mixin fa-secondary(name)
+	+fa(name, 'text-secondary')
+mixin fa-success(name)
+	+fa(name, 'text-success')
+mixin fa-info(name)
+	+fa(name, 'text-info')
+mixin fa-warning(name)
+	+fa(name, 'text-warning')
+mixin fa-danger(name)
+	+fa(name, 'text-danger')
+mixin fa-light(name)
+	+fa(name, 'text-light')
+mixin fa-dark(name)
+	+fa(name, 'text-dark')
+
+//- Larger Icons
+//- To increase icon sizes relative to their container, use the fa-lg (33% increase), fa-2x, fa-3x, fa-4x, or fa-5x classes.
+//- @mixin +fa-size('name')
+//- @param {string}	name: name icon
+//- @param {string} size: 'lg', '2x', '3x', '4x', '5x'
+mixin fa-size(name, size)
+	+fa(name, `fa-${size}`)
+
+
+//- Fixed Width Icons
+//- @mixin +fa-fw('name') 
+//- @param {string} name: name icon
+mixin fa-fw(name)
+	+fa(name, `fa-fw`)
+
+//- Animated Icons
+//- @mixin +fa-spin('name') 
+//- @param {string} name: name icon
+mixin fa-spin(name)
+	+fa(name, `fa-spin`)
+
+//- Rotated Icons
+//- @mixin +fa-rotate('name') 
+//- @param {string} name: name icon
+//- @param {string} rotate: '90', '180', '270'
+mixin fa-rotate(name, rotate)
+	+fa(name, `fa-rotate-${rotate}`)
+
+//- Flipped Icons
+//- @mixin +fa-flip('name') 
+//- @param {string} name: name icon
+//- @param {string} flip: 'h' - horizontal, 'v' - vertical
+mixin fa-flip(name, flip)
+	- var flip = (flip === 'h') ? "horizontal" : "vertical"
+	+fa(name, `fa-flip-${flip}`)

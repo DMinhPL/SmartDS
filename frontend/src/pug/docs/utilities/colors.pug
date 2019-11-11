@@ -1,0 +1,191 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'colors';
+    - title = "Utilities - Colors"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#color') Color
+        li.toc-entry.toc-h2
+            a(href='#background-color') Background color
+        li.toc-entry.toc-h2
+            a(href='#background-gradient') Background gradient
+            ul
+                li.toc-entry.toc-h4
+                    a(href='#dealing-with-specificity') Dealing with specificity
+
+block content 
+    h1.bd-title#content Colors
+    p.bd-lead Convey meaning through color with a handful of color utility classes. Includes support for styling links with hover states, too.
+
+    h2#color Color
+    .bd-example
+        p.text-primary .text-primary
+        p.text-secondary .text-secondary
+        p.text-success .text-success
+        p.text-danger .text-danger
+        p.text-warning .text-warning
+        p.text-info .text-info
+        p.text-light.bg-dark .text-light
+        p.text-dark .text-dark
+        p.text-body .text-body
+        p.text-muted .text-muted
+        p.text-white.bg-dark .text-white
+        p.text-black-50 .text-black-50
+        p.text-white-50.bg-dark .text-white-50
+
+
+    figure.highlight
+        pre
+            code.css
+                | p.text-primary .text-primary
+                | p.text-secondary .text-secondary
+                | p.text-success .text-success
+                | p.text-danger .text-danger
+                | p.text-warning .text-warning
+                | p.text-info .text-info
+                | p.text-light.bg-dark .text-light
+                | p.text-dark .text-dark
+                | p.text-body .text-body
+                | p.text-muted .text-muted
+                | p.text-white.bg-dark .text-white
+                | p.text-black-50 .text-black-50
+                | p.text-white-50.bg-dark .text-white-50
+
+    p
+        | Contextual text classes also work well on anchors with the provided hover and focus states. 
+        strong
+            | Note that the 
+            code.highlighter-rouge .text-white
+            |  and 
+            code.highlighter-rouge .text-muted
+            |  class has no link styling.
+    .bd-example
+        p
+            a.text-primary(href='#') Primary link
+        p
+            a.text-secondary(href='#') Secondary link
+        p
+            a.text-success(href='#') Success link
+        p
+            a.text-danger(href='#') Danger link
+        p
+            a.text-warning(href='#') Warning link
+        p
+            a.text-info(href='#') Info link
+        p
+            a.text-light.bg-dark(href='#') Light link
+        p
+            a.text-dark(href='#') Dark link
+        p
+            a.text-muted(href='#') Muted link
+        p
+            a.text-white.bg-dark(href='#') White link
+
+    figure.highlight
+        pre
+            code.css
+                | p
+                |     a.text-primary(href='#') Primary link
+                | p
+                |     a.text-secondary(href='#') Secondary link
+                | p
+                |     a.text-success(href='#') Success link
+                | p
+                |     a.text-danger(href='#') Danger link
+                | p
+                |     a.text-warning(href='#') Warning link
+                | p
+                |     a.text-info(href='#') Info link
+                | p
+                |     a.text-light.bg-dark(href='#') Light link
+                | p
+                |     a.text-dark(href='#') Dark link
+                | p
+                |     a.text-muted(href='#') Muted link
+                | p
+                |     a.text-white.bg-dark(href='#') White link
+
+    h2#background-color Background color
+    p
+        | Similar to the contextual text color classes, easily set the background of an element to any contextual class. Anchor components will darken on hover, just like the text classes. Background utilities 
+        strong
+            | do not set 
+            code.highlighter-rouge color
+        | , so in some cases you’ll want to use 
+        code.highlighter-rouge .text-*
+        |  utilities.
+    .bd-example
+        .p-3.mb-2.bg-primary.text-white .bg-primary
+        .p-3.mb-2.bg-secondary.text-white .bg-secondary
+        .p-3.mb-2.bg-success.text-white .bg-success
+        .p-3.mb-2.bg-danger.text-white .bg-danger
+        .p-3.mb-2.bg-warning.text-dark .bg-warning
+        .p-3.mb-2.bg-info.text-white .bg-info
+        .p-3.mb-2.bg-light.text-dark .bg-light
+        .p-3.mb-2.bg-dark.text-white .bg-dark
+        .p-3.mb-2.bg-white.text-dark .bg-white
+        .p-3.mb-2.bg-transparent.text-dark .bg-transparent
+
+    figure.highlight
+        pre
+            code.css
+                | .p-3.mb-2.bg-primary.text-white .bg-primary
+                | .p-3.mb-2.bg-secondary.text-white .bg-secondary
+                | .p-3.mb-2.bg-success.text-white .bg-success
+                | .p-3.mb-2.bg-danger.text-white .bg-danger
+                | .p-3.mb-2.bg-warning.text-dark .bg-warning
+                | .p-3.mb-2.bg-info.text-white .bg-info
+                | .p-3.mb-2.bg-light.text-dark .bg-light
+                | .p-3.mb-2.bg-dark.text-white .bg-dark
+                | .p-3.mb-2.bg-white.text-dark .bg-white
+                | .p-3.mb-2.bg-transparent.text-dark .bg-transparent
+    
+    h2#background-gradient Background gradient
+    p
+        | When 
+        code.highlighter-rouge $enable-gradients
+        |  is set to true, you’ll be able to use 
+        code.highlighter-rouge .bg-gradient-
+        |  utility classes. 
+        strong
+            | By default, 
+            code.highlighter-rouge $enable-gradients
+            |  is disabled and the example below is intentionally broken.
+        |  This is done for easier customization from the moment you start using Bootstrap. 
+        a(href='/docs/getting-started/theming/#sass-options') Learn about our Sass options
+        |  to enable these classes and more.
+    .bd-example
+        .p-3.mb-2.bg-gradient-primary.text-white .bg-gradient-primary
+        .p-3.mb-2.bg-gradient-secondary.text-white .bg-gradient-secondary
+        .p-3.mb-2.bg-gradient-success.text-white .bg-gradient-success
+        .p-3.mb-2.bg-gradient-danger.text-white .bg-gradient-danger
+        .p-3.mb-2.bg-gradient-warning.text-dark .bg-gradient-warning
+        .p-3.mb-2.bg-gradient-info.text-white .bg-gradient-info
+        .p-3.mb-2.bg-gradient-light.text-dark .bg-gradient-light
+        .p-3.mb-2.bg-gradient-dark.text-white .bg-gradient-dark
+    figure.highlight
+        pre
+            code.css
+                | .p-3.mb-2.bg-gradient-primary.text-white .bg-gradient-primary
+                | .p-3.mb-2.bg-gradient-secondary.text-white .bg-gradient-secondary
+                | .p-3.mb-2.bg-gradient-success.text-white .bg-gradient-success
+                | .p-3.mb-2.bg-gradient-danger.text-white .bg-gradient-danger
+                | .p-3.mb-2.bg-gradient-warning.text-dark .bg-gradient-warning
+                | .p-3.mb-2.bg-gradient-info.text-white .bg-gradient-info
+                | .p-3.mb-2.bg-gradient-light.text-dark .bg-gradient-light
+                | .p-3.mb-2.bg-gradient-dark.text-white .bg-gradient-dark
+
+    .bd-callout.bd-callout-info
+        h4#dealing-with-specificity Dealing with specificity
+        p
+            | Sometimes contextual classes cannot be applied due to the specificity of another selector. In some cases, a sufficient workaround is to wrap your element’s content in a 
+            code.highlighter-rouge &lt;div&gt;
+            |  with the class.
+    .bd-callout.bd-callout-warning
+        h5#conveying-meaning-to-assistive-technologies Conveying meaning to assistive technologies
+        p
+            | Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the 
+            code.highlighter-rouge .sr-only
+            |  class.

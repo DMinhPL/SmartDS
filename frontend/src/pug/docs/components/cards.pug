@@ -1,0 +1,1177 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'cards';
+    - title = " Component - Cards"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#about') About
+        li.toc-entry.toc-h2
+            a(href='#example') Example
+        li.toc-entry.toc-h2
+            a(href='#content-types') Content types
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#body') Body
+                li.toc-entry.toc-h3
+                    a(href='#titles-text-and-links') Titles, text, and links
+                li.toc-entry.toc-h3
+                    a(href='#images') Images
+                li.toc-entry.toc-h3
+                    a(href='#list-groups') List groups
+                li.toc-entry.toc-h3
+                    a(href='#kitchen-sink') Kitchen sink
+                li.toc-entry.toc-h3
+                    a(href='#header-and-footer') Header and footer
+        li.toc-entry.toc-h2
+            a(href='#sizing') Sizing
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#using-grid-markup') Using grid markup
+                li.toc-entry.toc-h3
+                    a(href='#using-utilities') Using utilities
+                li.toc-entry.toc-h3
+                    a(href='#using-custom-css') Using custom CSS
+        li.toc-entry.toc-h2
+            a(href='#text-alignment') Text alignment
+        li.toc-entry.toc-h2
+            a(href='#navigation') Navigation
+        li.toc-entry.toc-h2
+            a(href='#images-1') Images
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#image-caps') Image caps
+                li.toc-entry.toc-h3
+                    a(href='#image-overlays') Image overlays
+        li.toc-entry.toc-h2
+            a(href='#card-styles') Card styles
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#background-and-color') Background and color
+                li.toc-entry.toc-h3
+                    a(href='#border') Border
+                li.toc-entry.toc-h3
+                    a(href='#mixins-utilities') Mixins utilities
+        li.toc-entry.toc-h2
+            a(href='#card-layout') Card layout
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#card-groups') Card groups
+                li.toc-entry.toc-h3
+                    a(href='#card-decks') Card decks
+                li.toc-entry.toc-h3
+                    a(href='#card-columns') Card columns
+
+block content 
+    h1.bd-title#content Cards
+    p.bd-lead Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.
+
+    h2#about About
+    p
+        | A 
+        strong card
+        |  is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options. If you’re familiar with Bootstrap 3, cards replace our old panels, wells, and thumbnails. Similar functionality to those components is available as modifier classes for cards.
+    h2#example Example
+    p
+        | Cards are built with as little markup and styles as possible, but still manage to deliver a ton of control and customization. Built with flexbox, they offer easy alignment and mix well with other Bootstrap components. They have no 
+        code.highlighter-rouge margin
+        |  by default, so use 
+        a(href='/docs/utilities/spacing/') spacing utilities
+        |  as needed.
+    p
+        | Below is an example of a basic card with mixed content and a fixed width. Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element. This is easily customized with our various 
+        a(href='#sizing') sizing options
+        | .
+    .bd-example
+        .card(style='width: 18rem;')
+            img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+            .card-body
+                h5.card-title Card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                a.btn.btn-primary(href='#') Go somewhere    
+    figure.highlight
+        pre
+            code.css
+                | .card(style='width: 18rem;')
+                |     img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                |     .card-body
+                |         h5.card-title Card title
+                |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                |         a.btn.btn-primary(href='#') Go somewhere
+    
+    h2#content-types Content types
+    p
+        | Cards support a wide variety of content, including images, text, list groups, links, and more. Below are examples of what’s supported.
+    h3#body Body
+    p
+        | The building block of a card is the 
+        code.highlighter-rouge .card-body
+        | . Use it whenever you need a padded section within a card.
+    .bd-example
+        .card
+            .card-body This is some text within a card body.
+    figure.highlight
+        pre
+            code.css
+                | .card
+                |     .card-body This is some text within a card body.
+
+    h3#titles-text-and-links Titles, text, and links
+    p
+        | Card titles are used by adding 
+        code.highlighter-rouge .card-title
+        |  to a 
+        code.highlighter-rouge &lt;h*&gt;
+        |  tag. In the same way, links are added and placed next to each other by adding 
+        code.highlighter-rouge .card-link
+        |  to an 
+        code.highlighter-rouge &lt;a&gt;
+        |  tag.
+    p
+        | Subtitles are used by adding a 
+        code.highlighter-rouge .card-subtitle
+        |  to a 
+        code.highlighter-rouge &lt;h*&gt;
+        |  tag. If the 
+        code.highlighter-rouge .card-title
+        |  and the 
+        code.highlighter-rouge .card-subtitle
+        |  items are placed in a 
+        code.highlighter-rouge .card-body
+        |  item, the card title and subtitle are aligned nicely.
+    .bd-example
+        .card(style='width: 18rem;')
+            .card-body
+                h5.card-title Card title
+                h6.card-subtitle.mb-2.text-muted Card subtitle
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+                a.card-link(href='#') Card link
+                a.card-link(href='#') Another link
+
+    figure.highlight
+        pre
+            code.css
+                | .card(style='width: 18rem;')
+                |     .card-body
+                |         h5.card-title Card title
+                |         h6.card-subtitle.mb-2.text-muted Card subtitle
+                |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                |         a.card-link(href='#') Card link
+                |         a.card-link(href='#') Another link
+
+    h3#images Images
+    p
+        code.highlighter-rouge .card-img-top
+        |  places an image to the top of the card. With 
+        code.highlighter-rouge .card-text
+        | , text can be added to the card. Text within 
+        code.highlighter-rouge .card-text
+        |  can also be styled with the standard HTML tags.
+    .bd-example
+        .card(style='width: 18rem;')
+            img.card-img-top(data-src='holder.js/100px180/?text=Image cap', alt='Card image cap')
+            .card-body
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+    figure.highlight
+        pre
+            code.css
+                | .card(style='width: 18rem;')
+                |     img.card-img-top(src='.../100px180/?text=Image cap', alt='Card image cap')
+                |     .card-body
+                |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+
+    h3#list-groups List groups
+    p Create lists of content in a card with a flush list group.
+    .bd-example
+        .card(style='width: 18rem;')
+            +list-group([
+                {text:'Cras justo odio'},
+                {text:'Dapibus ac facilisis in'},
+                {text:'Vestibulum at eros'}
+            ],'list-group-flush')
+    figure.highlight
+        pre
+            code.js.
+                .card(style='width: 18rem;')
+                    +list-group([
+                        {text:'Cras justo odio'},
+                        {text:'Dapibus ac facilisis in'},
+                        {text:'Vestibulum at eros'}
+                    ],'list-group-flush')
+    
+    .bd-example
+        .card(style='width: 18rem;')
+            .card-header  Featured
+            +list-group([
+                {text:'Cras justo odio'},
+                {text:'Dapibus ac facilisis in'},
+                {text:'Vestibulum at eros'}
+            ],'list-group-flush')
+
+    figure.highlight
+        pre
+            code.js.
+                .card(style='width: 18rem;')
+                    .card-header  Featured
+                    +list-group([
+                        {text:'Cras justo odio'},
+                        {text:'Dapibus ac facilisis in'},
+                        {text:'Vestibulum at eros'}
+                    ],'list-group-flush')
+    
+    h3#kitchen-sink Kitchen sink
+    p Mix and match multiple content types to create the card you need, or throw everything in there. Shown below are image styles, blocks, text styles, and a list group—all wrapped in a fixed-width card.
+    .bd-example
+        .card(style='width: 18rem;')
+            img.card-img-top(data-src='holder.js/100px180/?text=Image cap', alt='Card image cap')
+            .card-body
+                h5.card-title Card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+            +list-group([
+                {text:'Cras justo odio'},
+                {text:'Dapibus ac facilisis in'},
+                {text:'Vestibulum at eros'}
+            ],'list-group-flush')
+            .card-body
+                a.card-link(href='#') Card link
+                a.card-link(href='#') Another link
+    figure.highlight
+        pre
+            code.js.
+                .card(style='width: 18rem;')
+                    img.card-img-top(data-src='holder.js/100px180/?text=Image cap', alt='Card image cap')
+                    .card-body
+                        h5.card-title Card title
+                        p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    +list-group([
+                        {text:'Cras justo odio'},
+                        {text:'Dapibus ac facilisis in'},
+                        {text:'Vestibulum at eros'}
+                    ],'list-group-flush')
+                    .card-body
+                        a.card-link(href='#') Card link
+                        a.card-link(href='#') Another link
+
+    h3#header-and-footer Header and footer
+    p Add an optional header and/or footer within a card.
+    .bd-example
+        .card
+            .card-header Featured
+            .card-body
+                h5.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Go somewhere','#')
+
+    figure.highlight
+        pre
+            code.js.
+                .card
+                    .card-header Featured
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+
+    p Card headers can be styled by adding 
+        code .card-header to 
+        code &lt;h*&gt; elements.
+    .bd-example
+        .card
+            h5.card-header Featured
+            .card-body
+                h5.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Go somewhere','#')
+
+    figure.highlight
+        pre
+            code.js.
+                .card
+                    h5.card-header Featured
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+    
+    .bd-example
+        .card
+            .card-header Quote
+            .card-body
+                +blockquote('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.','Someone famous in','Source Title')
+
+    figure.highlight
+        pre
+            code.js.
+                .card
+                    .card-header Quote
+                    .card-body
+                        +blockquote('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.','Someone famous in','Source Title')
+
+    .bd-example
+        .card.text-center
+            .card-header  Featured 
+            .card-body
+                h5.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Go somewhere','#')
+            .card-footer.text-muted 2 days ago 
+
+    figure.highlight
+        pre
+            code.css.
+                .card.text-center
+                    .card-header  Featured 
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+                    .card-footer.text-muted 2 days ago 
+    
+    h2#sizing Sizing
+    p Cards assume no specific 
+        code.highlighter-rouge width
+        |  to start, so they’ll be 100% wide unless otherwise stated. You can change this as needed with custom CSS, grid classes, grid Sass mixins, or utilities.
+    h3#using-grid-markup Using grid markup
+    p Using the grid, wrap cards in columns and rows as needed.
+
+    .bd-example
+        .row
+            .col-sm-6
+                .card
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+            .col-sm-6
+                .card
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+
+    figure.highlight
+        pre
+            code.css.
+                .row
+                    .col-sm-6
+                        .card
+                            .card-body
+                                h5.card-title Special title treatment
+                                p.card-text With supporting text below as a natural lead-in to additional content.
+                                +a-btn-primary('Go somewhere','#')
+                    .col-sm-6
+                        .card
+                            .card-body
+                                h5.card-title Special title treatment
+                                p.card-text With supporting text below as a natural lead-in to additional content.
+                                +a-btn-primary('Go somewhere','#')
+
+    h3#using-utilities Using utilities
+    p Use our handful of 
+        a(href='/docs/utilities/sizing/') available sizing utilities
+        |  to quickly set a card’s width.
+    .bd-example
+        .card.w-75.mb-2
+            .card-body
+                h5.card-title Card title
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Button','#')
+        
+        .card.w-50
+            .card-body
+                h5.card-title Card title
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Button','#')
+
+    figure.highlight
+        pre
+            code.css.
+                .card.w-75.mb-2
+                    .card-body
+                        h5.card-title Card title
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Button','#')
+                
+                .card.w-50
+                    .card-body
+                        h5.card-title Card title
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Button','#')
+    
+    h3#using-custom-css Using custom CSS
+    p Use custom CSS in your stylesheets or as inline styles to set a width.
+    .bd-example
+        .card(style='width: 18rem;')
+            .card-body
+                h5.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Go somewhere','#')
+
+    figure.highlight
+        pre
+            code.css.
+                .card(style='width: 18rem;')
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+
+    h2#text-alignment Text alignment
+    p You can quickly change the text alignment of any card—in its entirety or specific parts—with our 
+        a(href='/docs/utilities/text/#text-alignment') text align classes
+        | .
+    .bd-example
+        .card.mb-2(style='width: 18rem;')
+            .card-body
+                h5.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Go somewhere','#')
+        .card.mb-2.text-center(style='width: 18rem;')
+            .card-body
+                h5.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Go somewhere','#')
+        .card.mb-2.text-right(style='width: 18rem;')
+            .card-body
+                h5.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Go somewhere','#')
+
+    figure.highlight
+        pre
+            code.css.
+                .card.mb-2(style='width: 18rem;')
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+                .card.mb-2.text-center(style='width: 18rem;')
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+                .card.mb-2.text-right(style='width: 18rem;')
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+
+    h2#navigation Navigation
+    p Add some navigation to a card’s header (or block) with Bootstrap’s 
+        a(href='/docs/components/navs/') nav components
+        | .
+    .bd-example
+        .card.text-center
+            .card-header
+                +nav-tabs([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ],'card-header-tabs')
+            .card-body
+                h5.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Go somewhere','#')
+
+    figure.highlight
+        pre
+            code.js.
+                .card.text-center
+                    .card-header
+                        +nav-tabs([
+                            {text:'Active',url:'#',class:'active'},
+                            {text:'Link',url:'#'},
+                            {text:'Disabled',url:'#',class:'disabled'},
+                        ],'card-header-tabs')
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+
+    .bd-example
+        .card.text-center
+            .card-header
+                +nav-pills([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ],'card-header-pills')
+            .card-body
+                h5.card-title Special title treatment
+                p.card-text With supporting text below as a natural lead-in to additional content.
+                +a-btn-primary('Go somewhere','#')
+
+    figure.highlight
+        pre
+            code.js.
+                .card.text-center
+                    .card-header
+                        +nav-pills([
+                            {text:'Active',url:'#',class:'active'},
+                            {text:'Link',url:'#'},
+                            {text:'Disabled',url:'#',class:'disabled'},
+                        ],'card-header-pills')
+                    .card-body
+                        h5.card-title Special title treatment
+                        p.card-text With supporting text below as a natural lead-in to additional content.
+                        +a-btn-primary('Go somewhere','#')
+
+
+    h2#images-1 Images
+    p Cards include a few options for working with images. Choose from appending “image caps” at either end of a card, overlaying images with card content, or simply embedding the image in a card.
+    h3#image-caps Image caps
+    p Similar to headers and footers, cards can include top and bottom “image caps”—images at the top or bottom of a card.
+    .bd-example
+        .card.mb-3
+            img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+            .card-body
+                h5.card-title Card title
+                p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                p.card-text
+                    small.text-muted Last updated 3 mins ago
+        .card
+            .card-body
+                h5.card-title Card title
+                p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                p.card-text
+                    small.text-muted Last updated 3 mins ago
+            img.card-img-bottom(data-src='holder.js/100px180/', alt='Card image cap')
+
+    figure.highlight
+            pre
+                code.css
+                    | .card.mb-3
+                    |     img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                    |     .card-body
+                    |         h5.card-title Card title
+                    |         p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. 
+                    |            | This content is a little bit longer.
+                    |         p.card-text
+                    |             small.text-muted Last updated 3 mins ago
+                    | .card
+                    |     .card-body
+                    |         h5.card-title Card title
+                    |         p.card-text This is a wider card with supporting text below as a natural lead-in to additional content.
+                    |            | This content is a little bit longer.
+                    |         p.card-text
+                    |             small.text-muted Last updated 3 mins ago
+                    |     img.card-img-bottom(data-src='holder.js/100px180/', alt='Card image cap')
+
+    h3#image-overlays Image overlays
+    p Turn an image into a card background and overlay your card’s text. Depending on the image, you may or may not need additional styles or utilities.
+    .bd-example
+        .card.bg-dark.text-white
+            img.card-img(data-src='holder.js/100px270/#767676:#373a3c/text:Card image', alt='Card image')
+            .card-img-overlay
+                h5.card-title Card title
+                p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                p.card-text Last updated 3 mins ago
+
+    figure.highlight
+            pre
+                code.css
+                    | .card.bg-dark.text-white
+                    |     img.card-img(data-src='holder.js/100px270/#55595c:#373a3c/text:Card image', alt='Card image')
+                    |     .card-img-overlay
+                    |         h5.card-title Card title
+                    |         p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. 
+                    |           | This content is a little bit longer.
+                    |         p.card-text Last updated 3 mins ago
+    
+    h2#card-styles Card styles
+    p Cards include various options for customizing their backgrounds, borders, and color.
+    h3#background-and-color Background and color
+    p Use 
+        a(href='/docs/utilities/colors/') text and background utilities
+        |  to change the appearance of a card.
+    .bd-example
+        .card.text-white.bg-primary.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body
+                h5.card-title Primary card title
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.text-white.bg-secondary.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body
+                h5.card-title Secondary card title
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.text-white.bg-success.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body
+                h5.card-title Success card title
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.text-white.bg-danger.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body
+                h5.card-title Danger card title
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.text-white.bg-warning.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body
+                h5.card-title Warning card title
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.text-white.bg-info.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body
+                h5.card-title Info card title
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.bg-light.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body
+                h5.card-title Light card title
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.text-white.bg-dark.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body
+                h5.card-title Dark card title
+                p.card-text
+                    | Some quick example text to build on the card title and make up the bulk of the card's content.
+    
+    figure.highlight
+            pre
+                code.css
+                    | .card.text-white.bg-primary.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body
+                    |         h5.card-title Primary card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.text-white.bg-secondary.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body
+                    |         h5.card-title Secondary card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.text-white.bg-success.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body
+                    |         h5.card-title Success card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.text-white.bg-danger.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body
+                    |         h5.card-title Danger card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.text-white.bg-warning.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body
+                    |         h5.card-title Warning card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.text-white.bg-info.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body
+                    |         h5.card-title Info card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.bg-light.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body
+                    |         h5.card-title Light card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.text-white.bg-dark.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body
+                    |         h5.card-title Dark card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+    
+    .bd-callout.bd-callout-warning
+        h5#conveying-meaning-to-assistive-technologies Conveying meaning to assistive technologies
+        p Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the 
+            code.highlighter-rouge .sr-only
+            |  class.
+    h3#border Border
+    p Use 
+        a(href='/docs/utilities/borders/') border utilities
+        |  to change just the 
+        code.highlighter-rouge border-color
+        |  of a card. Note that you can put 
+        code.highlighter-rouge .text-{color}
+        |  classes on the parent 
+        code.highlighter-rouge .card
+        |  or a subset of the card’s contents as shown below.
+    .bd-example
+        .card.border-primary.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body.text-primary
+                h5.card-title Primary card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.border-secondary.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body.text-secondary
+                h5.card-title Secondary card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.border-success.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body.text-success
+                h5.card-title Success card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.border-danger.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body.text-danger
+                h5.card-title Danger card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.border-warning.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body.text-warning
+                h5.card-title Warning card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.border-info.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body.text-info
+                h5.card-title Info card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.border-light.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body
+                h5.card-title Light card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+        .card.border-dark.mb-3(style='max-width: 18rem;')
+            .card-header Header
+            .card-body.text-dark
+                h5.card-title Dark card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+
+    figure.highlight
+            pre
+                code.css
+                    | .card.border-primary.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body.text-primary
+                    |         h5.card-title Primary card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.border-secondary.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body.text-secondary
+                    |         h5.card-title Secondary card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.border-success.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body.text-success
+                    |         h5.card-title Success card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.border-danger.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body.text-danger
+                    |         h5.card-title Danger card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.border-warning.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body.text-warning
+                    |         h5.card-title Warning card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.border-info.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body.text-info
+                    |         h5.card-title Info card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.border-light.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body
+                    |         h5.card-title Light card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    | .card.border-dark.mb-3(style='max-width: 18rem;')
+                    |     .card-header Header
+                    |     .card-body.text-dark
+                    |         h5.card-title Dark card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+    
+    h3#mixins-utilities Mixins utilities
+    p You can also change the borders on the card header and footer as needed, and even remove their 
+        code.highlighter-rouge background-color
+        |  with 
+        code.highlighter-rouge .bg-transparent
+        | .
+    .bd-example
+        .card.border-success.mb-3(style='max-width: 18rem;')
+            .card-header.bg-transparent.border-success Header
+            .card-body.text-success
+                h5.card-title Success card title
+                p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+            .card-footer.bg-transparent.border-success Footer
+
+    figure.highlight
+            pre
+                code.css
+                    | .card.border-success.mb-3(style='max-width: 18rem;')
+                    |     .card-header.bg-transparent.border-success Header
+                    |     .card-body.text-success
+                    |         h5.card-title Success card title
+                    |         p.card-text Some quick example text to build on the card title and make up the bulk of the card's content.
+                    |     .card-footer.bg-transparent.border-success Footer
+
+    h2#card-layout Card layout
+    p In addition to styling the content within cards, Bootstrap includes a few options for laying out series of cards. For the time being, 
+        strong these layout options are not yet responsive
+        | .
+    h3#card-groups Card groups
+    p Use card groups to render cards as a single, attached element with equal width and height columns. Card groups use 
+        code.highlighter-rouge display: flex;
+        |  to achieve their uniform sizing.
+    .bd-example
+        .card-group
+            .card
+                img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text
+                        | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                    p.card-text
+                        small.text-muted Last updated 3 mins ago
+            .card
+                img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text This card has supporting text below as a natural lead-in to additional content.
+                    p.card-text
+                        small.text-muted Last updated 3 mins ago
+            .card
+                img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text
+                        | This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                    p.card-text
+                        small.text-muted Last updated 3 mins ago
+    figure.highlight
+            pre
+                code.css
+                    | .card-group
+                    |     .card
+                    |         img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                    |         .card-body
+                    |             h5.card-title Card title
+                    |             p.card-text
+                    |                 | This is a wider card with supporting text below as a natural lead-in to additional content. 
+                    |                 | This content is a little bit longer.
+                    |             p.card-text
+                    |                 small.text-muted Last updated 3 mins ago
+                    |     .card
+                    |         img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                    |         .card-body
+                    |             h5.card-title Card title
+                    |             p.card-text This card has supporting text below as a natural lead-in to additional content.
+                    |             p.card-text
+                    |                 small.text-muted Last updated 3 mins ago
+                    |     .card
+                    |         img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                    |         .card-body
+                    |             h5.card-title Card title
+                    |             p.card-text
+                    |                 | This is a wider card with supporting text below as a natural lead-in to additional content.
+                    |                 | This card has even longer content than the first to show that equal height action.
+                    |             p.card-text
+                    |                 small.text-muted Last updated 3 mins ago
+    
+    p When using card groups with footers, their content will automatically line up.
+    .bd-example
+        .card-group
+            .card
+                img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text
+                        | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                .card-footer
+                    small.text-muted Last updated 3 mins ago
+            .card
+                img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text This card has supporting text below as a natural lead-in to additional content.
+                .card-footer
+                    small.text-muted Last updated 3 mins ago
+            .card
+                img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text
+                        | This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                .card-footer
+                    small.text-muted Last updated 3 mins ago
+
+    figure.highlight
+            pre
+                code.css
+                    | .card-group
+                    |     .card
+                    |         img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                    |         .card-body
+                    |             h5.card-title Card title
+                    |             p.card-text
+                    |                 | This is a wider card with supporting text below as a natural lead-in to additional content.
+                    |                 | This content is a little bit longer.
+                    |         .card-footer
+                    |             small.text-muted Last updated 3 mins ago
+                    |     .card
+                    |         img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                    |         .card-body
+                    |             h5.card-title Card title
+                    |             p.card-text This card has supporting text below as a natural lead-in to additional content.
+                    |         .card-footer
+                    |             small.text-muted Last updated 3 mins ago
+                    |     .card
+                    |         img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                    |         .card-body
+                    |             h5.card-title Card title
+                    |             p.card-text
+                    |                 | This is a wider card with supporting text below as a natural lead-in to additional content.
+                    |                 | This card has even longer content than the first to show that equal height action.
+                    |         .card-footer
+                    |             small.text-muted Last updated 3 mins ago
+
+    h3#card-decks Card decks
+    p Need a set of equal width and height cards that aren’t attached to one another? Use card decks.
+    .bd-example
+        .card-deck
+            .card
+                img.card-img-top(data-src='holder.js/100px200/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                    p.card-text
+                        small.text-muted Last updated 3 mins ago
+            .card
+                img.card-img-top(data-src='holder.js/100px200/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text This card has supporting text below as a natural lead-in to additional content.
+                    p.card-text
+                        small.text-muted Last updated 3 mins ago
+            .card
+                img.card-img-top(data-src='holder.js/100px200/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                    p.card-text
+                        small.text-muted Last updated 3 mins ago
+
+    figure.highlight
+        pre
+            code.css
+                | .card-deck
+                |     .card
+                |         img.card-img-top(data-src='holder.js/100px200/', alt='Card image cap')
+                |         .card-body
+                |             h5.card-title Card title
+                |             p.card-text 
+                |                 | This is a longer card with supporting text below as a natural lead-in to additional content. 
+                |                 | This content is a little bit longer.
+                |             p.card-text
+                |                 small.text-muted Last updated 3 mins ago
+                |     .card
+                |         img.card-img-top(data-src='holder.js/100px200/', alt='Card image cap')
+                |         .card-body
+                |             h5.card-title Card title
+                |             p.card-text 
+                |                 | This card has supporting text below as a natural lead-in to additional content.
+                |             p.card-text
+                |                 small.text-muted Last updated 3 mins ago
+                |     .card
+                |         img.card-img-top(data-src='holder.js/100px200/', alt='Card image cap')
+                |         .card-body
+                |             h5.card-title Card title
+                |             p.card-text 
+                |                 | This is a wider card with supporting text below as a natural lead-in to additional content. 
+                |                 | This card has even longer content than the first to show that equal height action.
+                |             p.card-text
+                |                 small.text-muted Last updated 3 mins ago
+
+
+    p Just like with card groups, card footers in decks will automatically line up.
+    .bd-example
+        .card-deck
+            .card
+                img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text
+                        | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                .card-footer
+                    small.text-muted Last updated 3 mins ago
+            .card
+                img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text This card has supporting text below as a natural lead-in to additional content.
+                .card-footer
+                    small.text-muted Last updated 3 mins ago
+            .card
+                img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text
+                        | This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                .card-footer
+                    small.text-muted Last updated 3 mins ago
+
+    figure.highlight
+        pre
+            code.css
+                | .card-deck
+                |     .card
+                |         img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                |         .card-body
+                |             h5.card-title Card title
+                |             p.card-text
+                |                 | This is a wider card with supporting text below as a natural lead-in to additional content. 
+                |                 | This content is a little bit longer.
+                |         .card-footer
+                |             small.text-muted Last updated 3 mins ago
+                |     .card
+                |         img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                |         .card-body
+                |             h5.card-title Card title
+                |             p.card-text 
+                |                 | This card has supporting text below as a natural lead-in to additional content.
+                |         .card-footer
+                |             small.text-muted Last updated 3 mins ago
+                |     .card
+                |         img.card-img-top(data-src='holder.js/100px180/', alt='Card image cap')
+                |         .card-body
+                |             h5.card-title Card title
+                |             p.card-text
+                |                 | This is a wider card with supporting text below as a natural lead-in to additional content. 
+                |                 | This card has even longer content than the first to show that equal height action.
+                |         .card-footer
+                |             small.text-muted Last updated 3 mins ago
+
+    h3#card-columns Card columns
+    p Cards can be organized into 
+        a(href='https://masonry.desandro.com/') Masonry
+        | -like columns with just CSS by wrapping them in 
+        code.highlighter-rouge .card-columns
+        | . Cards are built with CSS 
+        code.highlighter-rouge column
+        |  properties instead of flexbox for easier alignment. Cards are ordered from top to bottom and left to right.
+    p
+        strong Heads up!
+        |  Your mileage with card columns may vary. To prevent cards breaking across columns, we must set them to 
+        code.highlighter-rouge display: inline-block
+        |  as 
+        code.highlighter-rouge column-break-inside: avoid
+        |  isn’t a bulletproof solution yet.
+    .bd-example
+        .card-columns
+            .card
+                img.card-img-top(data-src='holder.js/100px160/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title that wraps to a new line
+                    p.card-text This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+            .card.p-3
+                blockquote.blockquote.mb-0.card-body
+                    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                    footer.blockquote-footer
+                        small.text-muted Someone famous in 
+                            cite(title='Source Title') Source Title
+            .card
+                img.card-img-top(data-src='holder.js/100px160/', alt='Card image cap')
+                .card-body
+                    h5.card-title Card title
+                    p.card-text This card has supporting text below as a natural lead-in to additional content.
+                    p.card-text
+                        small.text-muted Last updated 3 mins ago
+            .card.bg-primary.text-white.text-center.p-3
+                blockquote.blockquote.mb-0
+                    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.
+                    footer.blockquote-footer
+                        small Someone famous in 
+                            cite(title='Source Title') Source Title
+            .card.text-center
+                .card-body
+                    h5.card-title Card title
+                    p.card-text This card has supporting text below as a natural lead-in to additional content.
+                    p.card-text
+                        small.text-muted Last updated 3 mins ago
+            .card
+                img.card-img(data-src='holder.js/100px260/', alt='Card image')
+            .card.p-3.text-right
+                blockquote.blockquote.mb-0
+                    p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                    footer.blockquote-footer
+                        small.text-muted Someone famous in 
+                            cite(title='Source Title') Source Title
+            .card
+                .card-body
+                    h5.card-title Card title
+                    p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+                    p.card-text
+                        small.text-muted Last updated 3 mins ago
+
+    figure.highlight
+        pre
+            code.css
+                | .card-columns
+                |     .card
+                |         img.card-img-top(data-src='holder.js/100px160/', alt='Card image cap')
+                |         .card-body
+                |             h5.card-title Card title that wraps to a new line
+                |             p.card-text 
+                |                 | This is a longer card with supporting text below as a natural lead-in to additional content. 
+                |                 | This content is a little bit longer.
+                |     .card.p-3
+                |         blockquote.blockquote.mb-0.card-body
+                |             p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                |             footer.blockquote-footer
+                |                 small.text-muted Someone famous in 
+                |                     cite(title='Source Title') Source Title
+                |     .card
+                |         img.card-img-top(data-src='holder.js/100px160/', alt='Card image cap')
+                |         .card-body
+                |             h5.card-title Card title
+                |             p.card-text 
+                |                 | This card has supporting text below as a natural lead-in to additional content.
+                |             p.card-text
+                |                 small.text-muted Last updated 3 mins ago
+                |     .card.bg-primary.text-white.text-center.p-3
+                |         blockquote.blockquote.mb-0
+                |             p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.
+                |             footer.blockquote-footer
+                |                 small Someone famous in 
+                |                     cite(title='Source Title') Source Title
+                |     .card.text-center
+                |         .card-body
+                |             h5.card-title Card title
+                |             p.card-text 
+                |                 | This card has supporting text below as a natural lead-in to additional content.
+                |             p.card-text
+                |                 small.text-muted Last updated 3 mins ago
+                |     .card
+                |         img.card-img(data-src='holder.js/100px260/', alt='Card image')
+                |     .card.p-3.text-right
+                |         blockquote.blockquote.mb-0
+                |             p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                |             footer.blockquote-footer
+                |                 small.text-muted Someone famous in 
+                |                     cite(title='Source Title') Source Title
+                |     .card
+                |         .card-body
+                |             h5.card-title Card title
+                |             p.card-text 
+                |                 | This is a wider card with supporting text below as a natural lead-in to additional content. 
+                |                 | This card has even longer content than the first to show that equal height action.
+                |             p.card-text
+                |                 small.text-muted Last updated 3 mins ago
+
+    p
+        | Card columns can also be extended and customized with some additional code. Shown below is an extension of the 
+        code.highlighter-rouge .card-columns
+        |  class using the same CSS we use—CSS columns— to generate a set of responsive tiers for changing the number of columns.
+
+    figure.highlight
+        pre
+            code.css
+                | .card-columns {
+                |     @include media-breakpoint-only(lg) {
+                |         column-count: 4;
+                |     }
+                |     @include media-breakpoint-only(xl) {
+                |         column-count: 5;
+                |     }
+                | }

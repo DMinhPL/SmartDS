@@ -1,0 +1,20 @@
+@mixin positionG($top, $left, $width, $wG, $hG) {
+    top: ($top/$hG) * 100%;
+    left: ($left/$wG) * 100%;
+    width: ($width/$wG) * 100%;
+}
+@mixin bg-box($width: 1, $height: 1) {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    &:after {
+      content: "";
+      padding-top: ($height/$width) * 100%;
+      display: block;
+    }
+    img {
+      display: none;
+    }
+}
+  

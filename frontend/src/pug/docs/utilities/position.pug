@@ -1,0 +1,67 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'position';
+    - title = "Utilities - Position"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#common-values') Common values
+        li.toc-entry.toc-h2
+            a(href='#fixed-top') Fixed top
+        li.toc-entry.toc-h2
+            a(href='#fixed-bottom') Fixed bottom
+        li.toc-entry.toc-h2
+            a(href='#sticky-top') Sticky top
+
+block content 
+    h1.bd-title#content Position
+    p.bd-lead Use these shorthand utilities for quickly configuring the position of an element.
+
+    h2#common-values Common values
+    p Quick positioning classes are available, though they are not responsive.
+    figure.highlight
+        pre
+            code.css
+                | .position-static ...
+                | .position-relative ...
+                | .position-absolute ...
+                | .position-fixed ...
+                | .position-sticky ...
+
+    h2#fixed-top Fixed top
+    p
+        | Position an element at the top of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS.
+    figure.highlight
+        pre
+            code.css
+                | .fixed-top ...
+
+    h2#fixed-bottom Fixed bottom
+    p
+        | Position an element at the bottom of the viewport, from edge to edge. Be sure you understand the ramifications of fixed position in your project; you may need to add additional CSS.
+    figure.highlight
+        pre
+            code.css
+                | .fixed-bottom ...
+    h2#sticky-top Sticky top
+    p
+        | Position an element at the top of the viewport, from edge to edge, but only after you scroll past it. The 
+        code.highlighter-rouge .sticky-top
+        |  utility uses CSS’s 
+        code.highlighter-rouge position: sticky
+        | , which isn’t fully supported in all browsers.
+    p
+        strong
+            | IE11 and IE10 will render 
+            code.highlighter-rouge position: sticky
+            |  as 
+            code.highlighter-rouge position: relative
+            | .
+        |  As such, we wrap the styles in a 
+        code.highlighter-rouge @supports
+        |  query, limiting the stickiness to only browsers that can render it properly.
+    figure.highlight
+        pre
+            code.css
+                | .fixed-top ...

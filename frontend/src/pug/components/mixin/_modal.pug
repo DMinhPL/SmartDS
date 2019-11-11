@@ -1,0 +1,26 @@
+//- modal
+mixin modal(title,_id,_class,size)
+	unless _id
+		- var _id = 'modal-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+	unless _class
+		- var _class = ''
+	unless size
+		- var size = ''
+	.modal.fade(id=_id,class=_class,tabindex="-1",role="dialog",aria-labelledby=`${_id}Label` aria-hidden="true")
+		.modal-dialog.modal-dialog-centered(role='document',class=`modal-${size}`)
+			.modal-content
+				+modal-head(title,true)
+				block
+
+
+mixin modal-head(title,dismiss)
+	.modal-header
+		h5.modal-title!= title
+		if (typeof dismiss !== 'undefined' && dismiss==true)
+			+close("modal")
+		block
+
+mixin modal-footer()
+	.modal-footer 
+		button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+		block

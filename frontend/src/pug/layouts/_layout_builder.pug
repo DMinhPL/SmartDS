@@ -1,0 +1,26 @@
+doctype html
+include ../components/_var
+include ../components/_mixin
+html(lang=language)
+    head
+        block setting   
+            -var mainActive = 'builder';
+            -var slideActive = 'builder';
+
+        include ../components/_meta
+
+        //- Add Custom Styles
+        block styles
+    body
+        include ../components/_header
+
+        .wrapper
+            block content
+                        
+
+        //- include ../components/_footer
+        script(src="/assets/js/library.js")
+        script.
+            $(document).ready(function() {
+                $('#builderWrapper').builder();
+            });

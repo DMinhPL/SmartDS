@@ -1,0 +1,85 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'utilities-for-layout';
+    - title = "Layout - Utilities for layout"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#example') Example
+        li.toc-entry.toc-h2
+            a(href='#nesting') Nesting
+        li.toc-entry.toc-h2
+            a(href='#alignment') Alignment
+        li.toc-entry.toc-h2
+            a(href='#order') Order
+        li.toc-entry.toc-h2
+            a(href='#media-list') Media list
+
+block content 
+    h1.bd-title#content Utilities for layout
+    p.bd-lead For faster mobile-friendly and responsive development, Bootstrap includes dozens of utility classes for showing, hiding, aligning, and spacing content.
+
+    h2#changing-display
+        | Changing 
+        code.highlighter-rouge display
+    p
+        | Use our 
+        a(href='/docs/utilities/display/') display utilities
+        |  for responsively toggling common values of the 
+        code.highlighter-rouge display
+        |  property. Mix it with our grid system, content, or components to show or hide them across specific viewports.
+    h2#flexbox-options Flexbox options
+    p
+        | Bootstrap 4 is built with flexbox, but not every element’s 
+        code.highlighter-rouge display
+        |  has been changed to 
+        code.highlighter-rouge display: flex
+        |  as this would add many unnecessary overrides and unexpectedly change key browser behaviors. Most of 
+        a(href='/docs/components/alerts/') our components
+        |  are built with flexbox enabled.
+    p
+        | Should you need to add 
+        code.highlighter-rouge display: flex
+        |  to an element, do so with 
+        code.highlighter-rouge .d-flex
+        |  or one of the responsive variants (e.g., 
+        code.highlighter-rouge .d-sm-flex
+        | ). You’ll need this class or 
+        code.highlighter-rouge display
+        |  value to allow the use of our extra 
+        a(href='/docs/utilities/flex/') flexbox utilities
+        |  for sizing, alignment, spacing, and more.
+    h2#margin-and-padding Margin and padding
+    p
+        | Use the 
+        code.highlighter-rouge margin
+        |  and 
+        code.highlighter-rouge padding
+        a(href='/docs/utilities/spacing/') spacing utilities
+        |  to control how elements and components are spaced and sized. Bootstrap 4 includes a five-level scale for spacing utilities, based on a 
+        code.highlighter-rouge 1rem
+        |  value default 
+        code.highlighter-rouge $spacer
+        |  variable. Choose values for all viewports (e.g., 
+        code.highlighter-rouge .mr-3
+        |  for 
+        code.highlighter-rouge margin-right: 1rem
+        | ), or pick responsive variants to target specific viewports (e.g., 
+        code.highlighter-rouge .mr-md-3
+        |  for 
+        code.highlighter-rouge margin-right: 1rem
+        |  starting at the 
+        code.highlighter-rouge md
+        |  breakpoint).
+    h2#toggle-visibility
+        | Toggle 
+        code.highlighter-rouge visibility
+    p
+        | When toggling 
+        code.highlighter-rouge display
+        |  isn’t needed, you can toggle the 
+        code.highlighter-rouge visibility
+        |  of an element with our 
+        a(href='/docs/utilities/visibility/') visibility utilities
+        | . Invisible elements will still affect the layout of the page, but are visually hidden from visitors.

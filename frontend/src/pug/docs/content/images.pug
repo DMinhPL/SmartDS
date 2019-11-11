@@ -1,0 +1,137 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'images';
+    - title = "Layout - Images"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#responsive-images') Responsive images
+        li.toc-entry.toc-h2
+            a(href='#image-thumbnails') Image thumbnails
+        li.toc-entry.toc-h2
+            a(href='#aligning-images') Aligning images
+        li.toc-entry.toc-h2
+            a(href='#picture') Picture
+
+block content 
+    h1.bd-title#content Images
+    p.bd-lead Documentation and examples for opting images into responsive behavior (so they never become larger than their parent elements) and add lightweight styles to them—all via classes.
+    
+    h2#responsive-images Basic images
+    .bd-example
+        +img('holder.js/100px250', 'Generic responsive image')
+    figure.highlight
+        pre
+            code.js.
+                +img('...', 'Generic responsive image')
+
+    h2#responsive-images Responsive images
+    p
+        | Images in Bootstrap are made responsive with 
+        code.highlighter-rouge .img-fluid
+        | . 
+        code.highlighter-rouge max-width: 100%;
+        |  and 
+        code.highlighter-rouge height: auto;
+        |  are applied to the image so that it scales with the parent element.
+    .bd-example
+        +img-responsive('holder.js/100px250', 'Generic responsive image')
+    figure.highlight
+        pre
+            code.js.
+                +img-responsive('...', 'Generic responsive image')
+    .bd-callout.bd-callout-warning
+        h5#svg-images-and-ie-10 SVG images and IE 10
+        p
+            | In Internet Explorer 10, SVG images with 
+            code.highlighter-rouge .img-fluid
+            |  are disproportionately sized. To fix this, add 
+            code.highlighter-rouge width: 100% \9;
+            |  where necessary. This fix improperly sizes other image formats, so Bootstrap doesn’t apply it automatically.
+    h2#image-thumbnails Image thumbnails
+    p
+        | In addition to our 
+        a(href='/docs/utilities/borders/') border-radius utilities
+        | , you can use 
+        code.highlighter-rouge .img-thumbnail
+        |  to give an image a rounded 1px border appearance.
+    .bd-example.bd-example-images
+        +img-thumbnail('holder.js/200x200', 'A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera')
+
+    figure.highlight
+        pre
+            code.js.
+                +img-thumbnail('...', '...')
+    h2#aligning-images Aligning images
+    p
+        | Align images with the 
+        a(href='/docs/utilities/float') helper float classes
+        |  or 
+        a(href='/docs/utilities/text/#text-alignment') text alignment classes
+        | . 
+        code.highlighter-rouge block
+        | -level images can be centered using 
+        a(href='/docs/utilities/spacing/#horizontal-centering')
+            | the 
+            code.highlighter-rouge .mx-auto
+            |  margin utility class
+        | .
+    .bd-example.bd-example-images
+        +img-left('holder.js/200x200','A generic square placeholder image with rounded corners','rounded')
+        +img-right('holder.js/200x200','A generic square placeholder image with rounded corners','rounded')
+    figure.highlight
+        pre
+            code.js.
+                +img-left('...','...','rounded')
+                +img-right('...','...','rounded')
+
+    .bd-example.bd-example-images
+        +img-center('holder.js/200x200','A generic square placeholder image with rounded corners','rounded')
+    figure.highlight
+        pre
+            code.js.
+                +img-center('...','...','rounded')
+    .bd-example.bd-example-images
+        .text-center
+            +img-center-wrap('holder.js/200x200','A generic square placeholder image with rounded corners','rounded')
+    figure.highlight
+        pre
+            code.js.
+                +img-center-wrap('...','...','rounded')
+    
+    h2#image-thumbnails Image Background
+    .bd-example.bd-example-images
+        .img-thumbnail.pull-left.mr-5(style="width: 200px")
+            +img-bg('https://www.3forcom.com/assets/images/dalat-hasfarm.png', 'making it resemble a photograph taken with an old instant camera', 'class-name')
+        
+        .img-thumbnail.pull-left(style="width: 200px")
+            +img-bg('https://www.3forcom.com/assets/images/dalat-hasfarm.png', 'making it resemble a photograph taken with an old instant camera', 'class-name', 'http://3forcom.com')
+
+    figure.highlight
+        pre
+            code.js.
+                +img-bg('src', 'alt', 'class')
+
+                With link
+                +img-bg('src', 'alt', 'class', 'link')
+
+    h2#picture Picture
+    p
+        | If you are using the 
+        code.highlighter-rouge &lt;picture&gt;
+        |  element to specify multiple 
+        code.highlighter-rouge &lt;source&gt;
+        |  elements for a specific 
+        code.highlighter-rouge &lt;img&gt;
+        | , make sure to add the 
+        code.highlighter-rouge .img-*
+        |  classes to the 
+        code.highlighter-rouge &lt;img&gt;
+        |  and not to the 
+        code.highlighter-rouge &lt;picture&gt;
+        |  tag.
+    figure.highlight
+        pre
+            code.js.
+                +picture('src/image.png', 'alt content', 'class_name')

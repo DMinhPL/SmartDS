@@ -1,0 +1,76 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'contents';
+    - title = "Getting started - Contents"
+block navsection
+block content 
+    h1.bd-title#content Contents
+    p.bd-lead Discover what’s included in Bootstrap, including our precompiled and source code flavors. Remember, Bootstrap’s JavaScript plugins require jQuery.
+
+    h2#precompiled-bootstrap Frontend source code
+    figure.highlight
+        pre
+            code.css.
+                Frontend/
+                ├── src/
+                │   ├── images/
+                │   │   ├── *.png
+                │   │   ├── *.jpg
+                │   │   ├── *.gift
+                │   │   └── *.svg
+                │   ├── js/
+                │   │   ├── library.js
+                │   │   └── main.js
+                │   ├── public/
+                │   │   ├── fonts/
+                │   │   ├── images/
+                │   │   │   └── icons/
+                │   │   └── manifest.json
+                │   ├── pug/
+                │   │   ├── components/
+                │   │   │   ├── mixin/
+                │   │   │   ├── _footer.pug
+                │   │   │   ├── _header.pug
+                │   │   │   ├── _meta.pug
+                │   │   │   ├── _mixin.pug
+                │   │   │   └── _var.pug
+                │   │   ├── */
+                │   │   │   ├── */
+                │   │   │   │   └── *.pug
+                │   │   │   └── *.pug
+                │   │   ├── layouts/
+                │   │   │   ├── _layout_default.pug
+                │   │   │   └── _layout_*.pug
+                │   │   └── index.pug
+                │   └── sass
+                │       ├── base/
+                │       │   ├── mixin/
+                │       │   │   └── *.scss
+                │       │   ├── utilities/
+                │       │   │   └── *.scss
+                │       │   ├── functions.scss
+                │       │   ├── mixin.scss
+                │       │   ├── reboots.scss
+                │       │   ├── root.scss
+                │       │   ├── type.scss
+                │       │   ├── utilities.scss
+                │       │   └── variables.scss
+                │       ├── components/
+                │       │   ├── alert.scss
+                │       │   └── *.scss
+                │       ├── modules/
+                │       │   ├── headings.scss
+                │       │   └── *.scss
+                │       ├── pages/
+                │       │   ├── home.scss
+                │       │   └── *.scss
+                │       ├── template/
+                │       │   ├── footer.scss
+                │       │   ├── header.scss
+                │       │   └── main.scss
+                │       └── styles.scss
+                ├── .gitignore
+                ├── Gruntfile.js
+                ├── package.json
+                └── README.md

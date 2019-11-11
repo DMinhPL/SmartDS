@@ -1,0 +1,237 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'display';
+    - title = "Utilities - Display property"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#how-it-works') How it works
+        li.toc-entry.toc-h2
+            a(href='#notation') Notation
+        li.toc-entry.toc-h2
+            a(href='#examples') Examples
+        li.toc-entry.toc-h2
+            a(href='#hiding-elements') Hiding elements
+        li.toc-entry.toc-h2
+            a(href='#display-in-print') Display in print
+
+
+block content 
+    h1.bd-title#content Display property
+    p.bd-lead Quickly and responsively toggle the display value of components and more with our display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.
+
+    h2#how-it-works How it works
+    p
+        | Change the value of the 
+        a(href='https://developer.mozilla.org/en-US/docs/Web/CSS/display')
+            code.highlighter-rouge display
+            |  property
+        |  with our responsive display utility classes. We purposely support only a subset of all possible values for 
+        code.highlighter-rouge display
+        | . Classes can be combined for various effects as you need.
+    h2#notation Notation
+    p
+        | Display utility classes that apply to all 
+        a(href='/docs/layout/overview/#responsive-breakpoints') breakpoints
+        | , from 
+        code.highlighter-rouge xs
+        |  to 
+        code.highlighter-rouge xl
+        | , have no breakpoint abbreviation in them. This is because those classes are applied from 
+        code.highlighter-rouge min-width: 0;
+        |  and up, and thus are not bound by a media query. The remaining breakpoints, however, do include a breakpoint abbreviation.
+    p As such, the classes are named using the format:
+    ul
+        li
+            code.highlighter-rouge .d-{value}
+            |  for 
+            code.highlighter-rouge xs
+        li
+            code.highlighter-rouge .d-{breakpoint}-{value}
+            |  for 
+            code.highlighter-rouge sm
+            | , 
+            code.highlighter-rouge md
+            | , 
+            code.highlighter-rouge lg
+            | , and 
+            code.highlighter-rouge xl
+            | .
+    p
+        | Where 
+        em value
+        |  is one of:
+    ul
+        li
+            code.highlighter-rouge none
+        li
+            code.highlighter-rouge inline
+        li
+            code.highlighter-rouge inline-block
+        li
+            code.highlighter-rouge block
+        li
+            code.highlighter-rouge table
+        li
+            code.highlighter-rouge table-cell
+        li
+            code.highlighter-rouge table-row
+        li
+            code.highlighter-rouge flex
+        li
+            code.highlighter-rouge inline-flex
+    p
+        | The media queries effect screen widths with the given breakpoint 
+        em or larger
+        | . For example, 
+        code.highlighter-rouge .d-lg-none
+        |  sets 
+        code.highlighter-rouge display: none;
+        |  on both 
+        code.highlighter-rouge lg
+        |  and 
+        code.highlighter-rouge xl
+        |  screens.
+    h2#examples Examples
+    .bd-example
+        .d-inline.p-2.bg-primary.text-white d-inline
+        .d-inline.p-2.bg-dark.text-white d-inline
+
+    figure.highlight
+        pre
+            code.css
+                | .d-inline.p-2.bg-primary.text-white d-inline
+                | .d-inline.p-2.bg-dark.text-white d-inline
+
+    .bd-example
+        span.d-block.p-2.bg-primary.text-white d-block
+        span.d-block.p-2.bg-dark.text-white d-block
+
+    figure.highlight
+        pre
+            code.css
+                | span.d-block.p-2.bg-primary.text-white d-block
+                | span.d-block.p-2.bg-dark.text-white d-block
+
+    h2#hiding-elements Hiding elements
+    p
+        | For faster mobile-friendly development, use responsive display classes for showing and hiding elements by device. Avoid creating entirely different versions of the same site, instead hide element responsively for each screen size.
+    p
+        | To hide elements simply use the 
+        code.highlighter-rouge .d-none
+        |  class or one of the 
+        code.highlighter-rouge .d-{sm,md,lg,xl}-none
+        |  classes for any responsive screen variation.
+    p
+        | To show an element only on a given interval of screen sizes you can combine one 
+        code.highlighter-rouge .d-*-none
+        |  class with a 
+        code.highlighter-rouge .d-*-*
+        |  class, for example 
+        code.highlighter-rouge .d-none .d-md-block .d-xl-none
+        |  will hide the element for all screen sizes except on medium and large devices.
+    table
+        thead
+            tr
+                th Screen Size
+                th Class
+        tbody
+            tr
+                td Hidden on all
+                td
+                    code.highlighter-rouge .d-none
+            tr
+                td Hidden only on xs
+                td
+                    code.highlighter-rouge .d-none .d-sm-block
+            tr
+                td Hidden only on sm
+                td
+                    code.highlighter-rouge .d-sm-none .d-md-block
+            tr
+                td Hidden only on md
+                td
+                    code.highlighter-rouge .d-md-none .d-lg-block
+            tr
+                td Hidden only on lg
+                td
+                    code.highlighter-rouge .d-lg-none .d-xl-block
+            tr
+                td Hidden only on xl
+                td
+                    code.highlighter-rouge .d-xl-none
+            tr
+                td Visible on all
+                td
+                    code.highlighter-rouge .d-block
+            tr
+                td Visible only on xs
+                td
+                    code.highlighter-rouge .d-block .d-sm-none
+            tr
+                td Visible only on sm
+                td
+                    code.highlighter-rouge .d-none .d-sm-block .d-md-none
+            tr
+                td Visible only on md
+                td
+                    code.highlighter-rouge .d-none .d-md-block .d-lg-none
+            tr
+                td Visible only on lg
+                td
+                    code.highlighter-rouge .d-none .d-lg-block .d-xl-none
+            tr
+                td Visible only on xl
+                td
+                    code.highlighter-rouge .d-none .d-xl-block
+    .bd-example
+        .d-lg-none hide on screens wider than lg
+        .d-none.d-lg-block hide on screens smaller than lg
+
+    figure.highlight
+        pre
+            code.css
+                | .d-lg-none hide on screens wider than lg
+                | .d-none.d-lg-block hide on screens smaller than lg
+    
+    h2#display-in-print Display in print
+    p
+        | Change the 
+        code.highlighter-rouge display
+        |  value of elements when printing with our print display utility classes. Includes support for the same 
+        code.highlighter-rouge display
+        |  values as our responsive 
+        code.highlighter-rouge .d-*
+        |  utilities.
+    ul
+        li
+            code.highlighter-rouge .d-print-none
+        li
+            code.highlighter-rouge .d-print-inline
+        li
+            code.highlighter-rouge .d-print-inline-block
+        li
+            code.highlighter-rouge .d-print-block
+        li
+            code.highlighter-rouge .d-print-table
+        li
+            code.highlighter-rouge .d-print-table-row
+        li
+            code.highlighter-rouge .d-print-table-cell
+        li
+            code.highlighter-rouge .d-print-flex
+        li
+            code.highlighter-rouge .d-print-inline-flex
+    p The print and display classes can be combined.
+    .bd-example
+        .d-print-none Screen Only (Hide on print only)
+        .d-none.d-print-block Print Only (Hide on screen only)
+        .d-none.d-lg-block.d-print-block Hide up to large on screen, but always show on print
+
+    figure.highlight
+        pre
+            code.css
+                | .d-print-none Screen Only (Hide on print only)
+                | .d-none.d-print-block Print Only (Hide on screen only)
+                | .d-none.d-lg-block.d-print-block Hide up to large on screen, but always show on print

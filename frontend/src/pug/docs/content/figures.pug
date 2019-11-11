@@ -1,0 +1,47 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'figures';
+    - title = "Layout - Figures"
+block navsection
+
+block content 
+    h1.bd-title#content Figures
+    p.bd-lead Documentation and examples for displaying related images and text with the figure component in Bootstrap.
+    
+    p
+        | Anytime you need to display a piece of content—like an image with an optional caption, consider using a 
+        code.highlighter-rouge figure
+        | .
+    p
+        | Use the included 
+        code.highlighter-rouge .figure
+        |  , 
+        code.highlighter-rouge .figure-img
+        |  and 
+        code.highlighter-rouge .figure-caption
+        |  classes to provide some baseline styles for the HTML5 
+        code.highlighter-rouge figure
+        |  and 
+        code.highlighter-rouge figcaption
+        |  elements. Images in figures have no explicit size, so be sure to add the 
+        code.highlighter-rouge .img-fluid
+        |  class to your 
+        code.highlighter-rouge img
+        |  to make it responsive.
+    .bd-example
+        +figure('holder.js/400x300', 'A caption for the above image.')
+    figure.highlight
+        pre
+            code.js.
+                +figure('image-path', 'A caption for the above image.')
+    p
+        | Aligning the figure’s caption is easy with our 
+        a(href='/docs/utilities/text/#text-alignment') text utilities
+        | .
+    .bd-example
+        +figure('holder.js/400x300', 'A caption for the above image.', 'right')
+    figure.highlight
+        pre
+            code.js.
+                +figure('image-path', 'A caption for the above image.', 'right')

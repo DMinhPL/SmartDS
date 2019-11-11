@@ -1,0 +1,127 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'text';
+    - title = "Utilities - Text"
+block navsection
+
+block content 
+    h1.bd-title#content Text
+    p.bd-lead Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.
+    h2#text-alignment Text alignment
+    p Easily realign text to components with text alignment classes.
+    .bd-example
+        p.text-justify
+            | Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi. At nos hinc posthac, sitientis piros Afros. Petierunt uti sibi concilium totius Galliae in diem certam indicere. Cras mattis iudicium purus sit amet fermentum.
+    figure.highlight
+        pre
+            code.css
+                | p.text-justify
+                |     | Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. 
+                |     | Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi. 
+                |     | At nos hinc posthac, sitientis piros Afros. Petierunt uti sibi concilium totius 
+                |     | Galliae in diem certam indicere. Cras mattis iudicium purus sit amet fermentum.
+    p
+        | For left, right, and center alignment, responsive classes are available that use the same viewport width breakpoints as the grid system.
+    .bd-example
+        p.text-left Left aligned text on all viewport sizes.
+        p.text-center Center aligned text on all viewport sizes.
+        p.text-right Right aligned text on all viewport sizes.
+        p.text-sm-left Left aligned text on viewports sized SM (small) or wider.
+        p.text-md-left Left aligned text on viewports sized MD (medium) or wider.
+        p.text-lg-left Left aligned text on viewports sized LG (large) or wider.
+        p.text-xl-left Left aligned text on viewports sized XL (extra-large) or wider.
+    figure.highlight
+        pre
+            code.css
+                | p.text-left Left aligned text on all viewport sizes.
+                | p.text-center Center aligned text on all viewport sizes.
+                | p.text-right Right aligned text on all viewport sizes.
+                |
+                | p.text-sm-left Left aligned text on viewports sized SM (small) or wider.
+                | p.text-md-left Left aligned text on viewports sized MD (medium) or wider.
+                | p.text-lg-left Left aligned text on viewports sized LG (large) or wider.
+                | p.text-xl-left Left aligned text on viewports sized XL (extra-large) or wider.
+    h2#text-wrapping-and-overflow Text wrapping and overflow
+    p
+        | Prevent text from wrapping with a 
+        code.highlighter-rouge .text-nowrap
+        |  class.
+    .bd-example
+        .text-nowrap.bd-highlight(style='width: 8rem;')
+            | This text should overflow the parent.
+    figure.highlight
+        pre
+            code.css
+                | .text-nowrap.bd-highlight(style='width: 8rem;')
+                |     | This text should overflow the parent.
+    p
+        | For longer content, you can add a 
+        code.highlighter-rouge .text-truncate
+        |  class to truncate the text with an ellipsis. 
+        strong
+            | Requires 
+            code.highlighter-rouge display: inline-block
+            |  or 
+            code.highlighter-rouge display: block
+            | .
+    .bd-example
+        // Block level
+        .row
+            .col-2.text-truncate
+                | Praeterea iter est quasdam res quas ex communi.
+        // Inline level
+        span.d-inline-block.text-truncate(style='max-width: 150px;')
+            | Praeterea iter est quasdam res quas ex communi.
+    figure.highlight
+        pre
+            code.css
+                | // Block level
+                | .row
+                |     .col-2.text-truncate
+                |         | Praeterea iter est quasdam res quas ex communi.
+                |
+                | // Inline level
+                | span.d-inline-block.text-truncate(style='max-width: 150px;')
+                |     | Praeterea iter est quasdam res quas ex communi.
+    h2#text-transform Text transform
+    p Transform text in components with text capitalization classes.
+    .bd-example
+        p.text-lowercase Lowercased text.
+        p.text-uppercase Uppercased text.
+        p.text-capitalize CapiTaliZed text.
+    figure.highlight
+        pre
+            code.css
+                | p.text-lowercase Lowercased text.
+                | p.text-uppercase Uppercased text.
+                | p.text-capitalize CapiTaliZed text.
+    p
+        | Note how 
+        code.highlighter-rouge text-capitalize
+        |  only changes the first letter of each word, leaving the case of any other letters unaffected.
+    h2#font-weight-and-italics Font weight and italics
+    p Quickly change the weight (boldness) of text or italicize text.
+    .bd-example
+        p.font-weight-bold Bold text.
+        p.font-weight-normal Normal weight text.
+        p.font-weight-light Light weight text.
+        p.font-italic Italic text.
+    figure.highlight
+        pre
+            code.css.
+                p.font-weight-bold Bold text.
+                p.font-weight-normal Normal weight text.
+                p.font-weight-light Light weight text.
+                p.font-italic Italic text.
+    h2#monospace Monospace
+    p
+        | Change a selection to our monospace font stack with 
+        code.highlighter-rouge .text-monospace
+        | .
+    .bd-example
+        p.text-monospace This is in monospace
+    figure.highlight
+        pre
+            code.css.
+                p.text-monospace This is in monospace

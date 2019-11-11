@@ -1,0 +1,210 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs'
+    -var slideActive = 'alerts'
+    - title = 'Component - Alerts'
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#examples') Examples
+            ul  
+                li.toc-entry.toc-h3
+                    a(href='#icon') Icon
+                li.toc-entry.toc-h3
+                    a(href='#link-color') Link color
+                li.toc-entry.toc-h3
+                    a(href='#additional-content') Additional content
+                    ul
+                        li.toc-entry.toc-h4
+                            a(href='#well-done') Well done!
+                li.toc-entry.toc-h3
+                    a(href='#dismissing') Dismissing
+        li.toc-entry.toc-h2
+            a(href='#javascript-behavior') JavaScript behavior
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#triggers') Triggers
+                li.toc-entry.toc-h3
+                    a(href='#methods') Methods
+                li.toc-entry.toc-h3
+                    a(href='#events') Events
+block content 
+    h1.bd-title#content Alerts
+    p.bd-lead Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.
+
+    h2#examples Examples
+    .bd-example
+        +alert('A simple default alert—check it out!')
+        +alert-primary('A simple primary alert—check it out!')
+        +alert-secondary('A simple secondary alert—check it out!') 
+        +alert-success('A simple success alert—check it out!') 
+        +alert-danger('A simple danger alert—check it out!') 
+        +alert-warning('A simple warning alert—check it out!') 
+        +alert-info('A simple info alert—check it out!') 
+        +alert-light('A simple light alert—check it out!') 
+        +alert-dark('A simple dark alert—check it out!') 
+    figure.highlight
+        pre
+            code.js.
+                +alert('A simple default alert—check it out!')
+                +alert-primary('A simple primary alert—check it out!')
+                +alert-secondary('A simple secondary alert—check it out!') 
+                +alert-success('A simple success alert—check it out!') 
+                +alert-danger('A simple danger alert—check it out!') 
+                +alert-warning('A simple warning alert—check it out!') 
+                +alert-info('A simple info alert—check it out!') 
+                +alert-light('A simple light alert—check it out!') 
+                +alert-dark('A simple dark alert—check it out!')      
+
+    h3#icon Icon
+    .bd-example        
+        +alert-primary('A simple primary alert—check it out!','icon_folder-alt')
+        +alert-secondary('A simple secondary alert—check it out!', 'icon_images') 
+        +alert-success('A simple success alert—check it out!', 'icon_key_alt') 
+        +alert-danger('A simple danger alert—check it out!', 'icon_error-oct_alt') 
+        +alert-warning('A simple warning alert—check it out!', 'icon_error-triangle_alt') 
+        +alert-info('A simple info alert—check it out!', 'icon_error-circle_alt') 
+        +alert-light('A simple light alert—check it out!', 'icon_cloud-download_alt') 
+        +alert-dark('A simple dark alert—check it out!', 'icon_gift_alt') 
+    figure.highlight
+        pre
+            code.js.
+                +alert-primary('A simple primary alert—check it out!','icon_folder-alt')
+                +alert-secondary('A simple secondary alert—check it out!', 'icon_images') 
+                +alert-success('A simple success alert—check it out!', 'icon_key_alt') 
+                +alert-danger('A simple danger alert—check it out!', 'icon_error-oct_alt') 
+                +alert-warning('A simple warning alert—check it out!', 'icon_error-triangle_alt') 
+                +alert-info('A simple info alert—check it out!', 'icon_error-circle_alt') 
+                +alert-light('A simple light alert—check it out!', 'icon_cloud-download_alt') 
+                +alert-dark('A simple dark alert—check it out!', 'icon_gift_alt') 
+    h3#link-color Link color
+    .bd-example
+        +alert-primary('A simple primary alert with <a class="alert-link" href="#">an example link</a>. Give it a click if you like.')
+        +alert-secondary('A simple primary alert with <a class="alert-link" href="#">an example link</a>. Give it a click if you like.')
+        +alert-success('A simple primary alert with <a class="alert-link" href="#">an example link</a>. Give it a click if you like.')
+        +alert-danger('A simple primary alert with <a class="alert-link" href="#">an example link</a>. Give it a click if you like.')
+        +alert-warning('A simple primary alert with <a class="alert-link" href="#">an example link</a>. Give it a click if you like.')
+        +alert-info('A simple primary alert with <a class="alert-link" href="#">an example link</a>. Give it a click if you like.')
+        +alert-light('A simple primary alert with <a class="alert-link" href="#">an example link</a>. Give it a click if you like.')
+        +alert-dark('A simple primary alert with <a class="alert-link" href="#">an example link</a>. Give it a click if you like.')
+    figure.highlight
+        pre
+            code.js.
+                +alert-primary('A simple primary alert with &lt;a class="alert-link" href="#"&gt;an example link&lt;/a&gt;. Give it a click if you like.')
+                +alert-secondary('A simple primary alert with &lt;a class="alert-link" href="#"&gt;an example link&lt;/a&gt;. Give it a click if you like.')
+                +alert-success('A simple primary alert with &lt;a class="alert-link" href="#"&gt;an example link&lt;/a&gt;. Give it a click if you like.')
+                +alert-danger('A simple primary alert with &lt;a class="alert-link" href="#"&gt;an example link&lt;/a&gt;. Give it a click if you like.')
+                +alert-warning('A simple primary alert with &lt;a class="alert-link" href="#"&gt;an example link&lt;/a&gt;. Give it a click if you like.')
+                +alert-info('A simple primary alert with &lt;a class="alert-link" href="#"&gt;an example link&lt;/a&gt;. Give it a click if you like.')
+                +alert-light('A simple primary alert with &lt;a class="alert-link" href="#"&gt;an example link&lt;/a&gt;. Give it a click if you like.')
+                +alert-dark('A simple primary alert with &lt;a class="alert-link" href="#"&gt;an example link&lt;/a&gt;. Give it a click if you like.')
+    
+    h3#additional-content Additional content
+    p Alerts can also contain additional HTML elements like headings, paragraphs and dividers.
+    .bd-example
+        +alert-add('Well done!','success')
+            p
+                | Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.
+            hr
+            p.mb-0
+                | Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
+
+    figure.highlight
+        pre
+            code.js.
+                +alert-add('Well done!','success')
+                    p
+                        | Aww yeah, you successfully read this important alert message. 
+                        | This example text is going to run a bit longer so that you 
+                        | can see how spacing within an alert works with this kind of content.
+                    hr
+                    p.mb-0
+                        | Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
+
+    h3#dismissing Dismissing
+    p Using the alert JavaScript plugin, it’s possible to dismiss any alert inline. You can see this in action with a live demo:
+
+    .bd-example
+        +alert-x-warning('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
+
+    figure.highlight
+        pre
+            code.js.
+                +alert-x('&lt;strong&gt;Holy guacamole!&lt;/strong&gt; You should check in on some of those fields below.','warning')
+
+                | or
+
+                +alert-x-warning('&lt;strong&gt;Holy guacamole!&lt;/strong&gt; You should check in on some of those fields below.')
+
+    h2#javascript-behavior JavaScript behavior
+    h3#triggers Triggers
+    p Enable dismissal of an alert via JavaScript:
+    figure.highlight
+        pre
+            code.js
+                | $('.alert').alert()
+
+    p Or with data attributes on a button within the alert, as demonstrated above:
+    figure.highlight
+        pre
+            code.css
+                | button.close(type='button' data-dismiss='alert' aria-label='Close')
+                |     span(aria-hidden='true') &times;
+    p Note that closing an alert will remove it from the DOM.
+
+    h3#methods Methods
+
+    table
+        thead
+            tr
+            th Method
+            th Description
+        tbody
+            tr
+            td
+                code.highlighter-rouge $().alert()
+            td
+                | Makes an alert listen for click events on descendant elements which have the 
+                code.highlighter-rouge data-dismiss=&quot;alert&quot;
+                |  attribute. (Not necessary when using the data-api&rsquo;s auto-initialization.)
+            tr
+            td
+                code.highlighter-rouge $().alert(&apos;close&apos;)
+            td
+                | Closes an alert by removing it from the DOM. If the 
+                code.highlighter-rouge .fade
+                |  and 
+                code.highlighter-rouge .show
+                |  classes are present on the element, the alert will fade out before it is removed.
+            tr
+            td
+                code.highlighter-rouge $().alert(&apos;dispose&apos;)
+            td Destroys an element&rsquo;s alert.
+    h3#events Events
+    p Bootstrap’s alert plugin exposes a few events for hooking into alert functionality.
+
+    table
+        thead
+            tr
+            th Event
+            th Description
+        tbody
+            tr
+            td
+                code.highlighter-rouge close.bs.alert
+            td
+                | This event fires immediately when the 
+                code close
+                |  instance method is called.
+            tr
+            td
+                code.highlighter-rouge closed.bs.alert
+            td
+                | This event is fired when the alert has been closed (will wait for CSS transitions to complete).
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myAlert').on('closed.bs.alert', function () {
+                |     // do something…
+                | });

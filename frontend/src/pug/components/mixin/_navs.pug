@@ -1,0 +1,60 @@
+//- Nav mixins
+//- @mixin +nav(items,style,simple)
+//- @param {array} items: data of nav
+//- @param {string} style: class name of nav
+//- @param {boolean} simple: set ul or nav element (true) wrapper
+mixin nav(items,style,simple)
+	- var element = 'ul'
+	if(typeof simple!=='undefined' && simple===true)
+		- element = 'nav'
+	else 
+		- simple = false
+
+	#{element}.nav(class=style)
+		unless !items
+			each item in items
+				+nav-item(item.text,item.url,item.class,simple)
+		block
+
+//- Nav item mixins
+//- @mixin +nav-item(text,url,_class,simple)
+mixin nav-item(text,url,_class,simple)
+	- var element = 'a'
+	if(typeof url==="undefined" || url==="")
+		- element = 'span'
+	if(typeof simple!=='undefined' && simple===true)
+		#{element}.nav-link(class=_class href=url)!= text
+	else 
+		li.nav-item
+			#{element}.nav-link(class=_class href=url)!= text
+			block
+
+mixin nav-center(items,style,simple)
+	unless style
+		- var style = ''
+	+nav(items, `justify-content-center ${style}`,simple)
+		block
+
+mixin nav-right(items,style,simple)
+	unless style
+		- var style = ''
+	+nav(items, `justify-content-end ${style}`,simple)
+		block
+
+mixin nav-vertical(items,style,simple)
+	unless style
+		- var style = ''
+	+nav(items, `flex-column ${style}`,simple)
+		block
+
+mixin nav-tabs(items,style,simple)
+	unless style
+		- var style = ''
+	+nav(items, `nav-tabs ${style}`,simple)
+		block
+
+mixin nav-pills(items,style,simple)
+	unless style
+		- var style = ''
+	+nav(items, `nav-pills ${style}`,simple)
+		block

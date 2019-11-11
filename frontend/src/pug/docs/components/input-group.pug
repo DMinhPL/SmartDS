@@ -1,0 +1,425 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'input-group';
+    - title = "Component - Input group"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#basic-example') Basic example
+        li.toc-entry.toc-h2
+            a(href='#sizing') Sizing
+        li.toc-entry.toc-h2
+            a(href='#checkboxes-and-radios') Checkboxes and radios
+        li.toc-entry.toc-h2
+            a(href='#multiple-inputs') Multiple inputs
+        li.toc-entry.toc-h2
+            a(href='#multiple-addons') Multiple addons
+        li.toc-entry.toc-h2
+            a(href='#button-addons') Button addons
+        li.toc-entry.toc-h2
+            a(href='#buttons-with-dropdowns') Buttons with dropdowns
+        li.toc-entry.toc-h2
+            a(href='#segmented-buttons') Segmented buttons
+        li.toc-entry.toc-h2
+            a(href='#custom-forms') Custom forms
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#custom-select') Custom select
+                li.toc-entry.toc-h3
+                    a(href='#custom-file-input') Custom file input
+        li.toc-entry.toc-h2
+            a(href='#accessibility') Accessibility
+block content 
+    h1.bd-title#content Input group
+    p.bd-lead Easily extend form controls by adding text, buttons, or button groups on either side of textual inputs, custom selects, and custom file inputs.
+    h2#basic-example Basic example
+    p
+        | Place one add-on or button on either side of an input. You may also place one on both sides of an input. Remember to place 
+        code.highlighter-rouge <label>
+        | s outside the input group.
+    .bd-example
+        +input-group('@','','mb-3')
+            +input-simple('text','textUsername','Username')
+        +input-group('','@example.com','mb-3')
+            +input-simple('text','textRecipientUsername','Recipient\'s username')
+
+        label(for='basic-url') Your vanity URL
+        +input-group('https://example.com/users/','','mb-3')
+            +input-simple('text','basic-url')
+        +input-group('$','.00','mb-3')
+            +input-simple('text','amount')
+        +input-group('With textarea')
+            +textarea()
+    
+    figure.highlight
+        pre
+            code.js.
+                +input-group('@','','mb-3')
+                    +input-simple('text','textUsername','Username')
+                +input-group('','@example.com','mb-3')
+                    +input-simple('text','textRecipientUsername','Recipient\'s username')
+
+                label(for='basic-url') Your vanity URL
+                +input-group('https://example.com/users/','','mb-3')
+                    +input-simple('text','basic-url')
+                +input-group('$','.00','mb-3')
+                    +input-simple('text','amount')
+                +input-group('With textarea')
+                    +textarea()
+    h2#sizing Sizing
+    p
+        | Add the relative form sizing classes to the 
+        code.highlighter-rouge .input-group
+        |  itself and contents within will automatically resize—no need for repeating the form control size classes on each element.
+    p
+        strong Sizing on the individual input group elements isn’t supported.
+    .bd-example
+        +input-group('Small','','mb-3','sm')
+            +input-simple('text','textSmall')
+        +input-group('Default','','mb-3')
+            +input-simple('text','textDefault')
+        +input-group('Large','','mb-3','lg')
+            +input-simple('text','textLarge')
+    
+    figure.highlight
+        pre
+            code.js.
+                +input-group('Small','','mb-3','sm')
+                    +input-simple('text','textSmall')
+                +input-group('Default','','mb-3')
+                    +input-simple('text','textDefault')
+                +input-group('Large','','mb-3','lg')
+                    +input-simple('text','textLarge')
+
+    h2#checkboxes-and-radios Checkboxes and radios
+    p
+        | Place any checkbox or radio option within an input group’s addon instead of text.
+    .bd-example
+        +input-group('<input type="checkbox" aria-label="Checkbox for following text input">','','mb-3')
+            +input-simple('text','textSmall')
+        +input-group('<input type="radio" aria-label="Radio button for following text input">')
+            +input-simple('text','textSmall')
+
+    figure.highlight
+        pre
+            code.js.
+                +input-group('&lt;input type="checkbox" aria-label="Checkbox for following text input"&gt;','','mb-3')
+                    +input-simple('text','textSmall')
+                +input-group('&lt;input type="radio" aria-label="Radio button for following text input"&gt;')
+                    +input-simple('text','textSmall')
+
+    h2#multiple-inputs Multiple inputs
+    p
+        | While multiple 
+        code.highlighter-rouge &lt;input&gt;
+        | s are supported visually, validation styles are only available for input groups with a single 
+        code.highlighter-rouge &lt;input&gt;
+        | .
+    .bd-example
+        +input-group('First and last name')
+            +input-simple('text','textSmall')
+            +input-simple('text','textSmall')
+
+    figure.highlight
+        pre
+            code.js.
+                +input-group('First and last name')
+                    +input-simple('text','textSmall')
+                    +input-simple('text','textSmall')
+
+    h2#multiple-addons Multiple addons
+    p Multiple add-ons are supported and can be mixed with checkbox and radio input versions.
+    .bd-example
+        .input-group.mb-3
+            .input-group-prepend
+                span.input-group-text $
+                span.input-group-text 0.00
+            +input-simple('text','textSmall')
+        .input-group
+            +input-simple('text','textSmall')
+            .input-group-append
+                span.input-group-text $
+                span.input-group-text 0.00
+
+    figure.highlight
+        pre
+            code.js.
+                .input-group.mb-3
+                    .input-group-prepend
+                        span.input-group-text $
+                        span.input-group-text 0.00
+                    +input-simple('text','textSmall')
+                .input-group
+                    +input-simple('text','textSmall')
+                    .input-group-append
+                        span.input-group-text $
+                        span.input-group-text 0.00
+
+    h2#button-addons Button addons
+    .bd-example
+        .input-group.mb-3
+            .input-group-prepend
+                +btn-outline-secondary('Button') 
+            +input-simple('text','textSmall')
+        .input-group.mb-3
+            +input-simple('text','textSmall', "Recipient's username")
+            .input-group-append
+                +btn-outline-secondary('Button') 
+        .input-group.mb-3
+            .input-group-prepend
+                +btn-outline-secondary('Button') 
+                +btn-outline-secondary('Button') 
+            +input-simple('text','textSmall')
+        .input-group
+            +input-simple('text','textSmall', "Recipient's username")
+            .input-group-append
+                +btn-outline-secondary('Button') 
+                +btn-outline-secondary('Button') 
+    
+    figure.highlight
+        pre
+            code.js.
+                .input-group.mb-3
+                    .input-group-prepend
+                        +btn-outline-secondary('Button') 
+                    +input-simple('text','textSmall')
+                .input-group.mb-3
+                    +input-simple('text','textSmall', "Recipient's username")
+                    .input-group-append
+                        +btn-outline-secondary('Button') 
+                .input-group.mb-3
+                    .input-group-prepend
+                        +btn-outline-secondary('Button') 
+                        +btn-outline-secondary('Button') 
+                    +input-simple('text','textSmall')
+                .input-group
+                    +input-simple('text','textSmall', "Recipient's username")
+                    .input-group-append
+                        +btn-outline-secondary('Button') 
+                        +btn-outline-secondary('Button') 
+    
+    h2#buttons-with-dropdowns Buttons with dropdowns
+    .bd-example
+        .input-group.mb-3
+            .input-group-prepend
+                button.btn.btn-outline-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Dropdown
+                +dropdown-menu([
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'},
+                    {},
+                    {text:'Separated link',data:'#'},
+                ])
+            +input-simple('text')
+        .input-group
+            +input-simple('text')
+            .input-group-append
+                button.btn.btn-outline-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Dropdown
+                +dropdown-menu([
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'},
+                    {},
+                    {text:'Separated link',data:'#'},
+                ])
+
+    figure.highlight
+        pre
+            code.js.
+                .input-group.mb-3
+                    .input-group-prepend
+                        button.btn.btn-outline-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Dropdown
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {text:'Something else here',data:'#'},
+                            {},
+                            {text:'Separated link',data:'#'},
+                        ])
+                    +input-simple('text')
+                .input-group
+                    +input-simple('text')
+                    .input-group-append
+                        button.btn.btn-outline-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Dropdown
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {text:'Something else here',data:'#'},
+                            {},
+                            {text:'Separated link',data:'#'},
+                        ])
+    
+    h2#segmented-buttons Segmented buttons
+    .bd-example
+        .input-group.mb-3
+            .input-group-prepend
+                +btn-outline-secondary('Action') 
+                button.btn.btn-outline-secondary.dropdown-toggle.dropdown-toggle-split(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    span.sr-only Toggle Dropdown
+                +dropdown-menu([
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'},
+                    {},
+                    {text:'Separated link',data:'#'},
+                ])
+            +input-simple('text')
+        .input-group
+            +input-simple('text')
+            .input-group-append
+                +btn-outline-secondary('Action') 
+                button.btn.btn-outline-secondary.dropdown-toggle.dropdown-toggle-split(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    span.sr-only Toggle Dropdown
+                +dropdown-menu([
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'},
+                    {},
+                    {text:'Separated link',data:'#'},
+                ])
+
+    figure.highlight
+        pre
+            code.js.
+                .input-group.mb-3
+                    .input-group-prepend
+                        +btn-outline-secondary('Action') 
+                        button.btn.btn-outline-secondary.dropdown-toggle.dropdown-toggle-split(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                            span.sr-only Toggle Dropdown
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {text:'Something else here',data:'#'},
+                            {},
+                            {text:'Separated link',data:'#'},
+                        ])
+                    +input-simple('text')
+                .input-group
+                    +input-simple('text')
+                    .input-group-append
+                        +btn-outline-secondary('Action') 
+                        button.btn.btn-outline-secondary.dropdown-toggle.dropdown-toggle-split(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                            span.sr-only Toggle Dropdown
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {text:'Something else here',data:'#'},
+                            {},
+                            {text:'Separated link',data:'#'},
+                        ])
+
+    h2#custom-forms Custom forms
+    p Input groups include support for custom selects and custom file inputs. Browser default versions of these are not supported.
+    h3#custom-select Custom select
+    .bd-example
+        +input-group('Options','','mb-3')
+            +selectui('inputGroupSelect01','Choose...')
+                +option('One','1') 
+                +option('Two','2') 
+                +option('Three','3') 
+
+        +input-group('','Options','mb-3')
+            +selectui('inputGroupSelect02','Choose...')
+                +option('One','1') 
+                +option('Two','2') 
+                +option('Three','3')
+        
+        .input-group.mb-3
+            .input-group-prepend
+                +btn-outline-secondary('Button') 
+            +selectui('inputGroupSelect06','Choose...')
+                +option('One','1') 
+                +option('Two','2') 
+                +option('Three','3') 
+
+        .input-group
+            +selectui('inputGroupSelect07','Choose...')
+                +option('One','1') 
+                +option('Two','2') 
+                +option('Three','3') 
+            .input-group-append
+                +btn-outline-secondary('Button') 
+
+    figure.highlight
+        pre
+            code.js.
+                +input-group('Options','','mb-3')
+                    +selectui('inputGroupSelect01','Choose...')
+                        +option('One','1') 
+                        +option('Two','2') 
+                        +option('Three','3') 
+
+                +input-group('','Options','mb-3')
+                    +selectui('inputGroupSelect02','Choose...')
+                        +option('One','1') 
+                        +option('Two','2') 
+                        +option('Three','3')
+                
+                .input-group.mb-3
+                    .input-group-prepend
+                        +btn-outline-secondary('Button') 
+                    +selectui('inputGroupSelect06','Choose...')
+                        +option('One','1') 
+                        +option('Two','2') 
+                        +option('Three','3') 
+                        
+                .input-group
+                    +selectui('inputGroupSelect07','Choose...')
+                        +option('One','1') 
+                        +option('Two','2') 
+                        +option('Three','3') 
+                    .input-group-append
+                        +btn-outline-secondary('Button')
+
+    h3#custom-file-input Custom file input
+    .bd-example
+        +input-group('Upload','','mb-3')
+            +fileui('inputGroupFile01','Choose file')
+
+        +input-group('','Upload','mb-3')
+            +fileui('inputGroupFile02','Choose file')
+
+        .input-group.mb-3
+            .input-group-prepend
+                +btn-outline-secondary('Button') 
+            +fileui('inputGroupFile03','Choose file')
+
+        .input-group
+            +fileui('inputGroupFile03','Choose file')
+            .input-group-append
+                +btn-outline-secondary('Button') 
+    
+    figure.highlight
+        pre
+            code.js.
+                +input-group('Upload','','mb-3')
+                    +fileui('inputGroupFile01','Choose file')
+
+                +input-group('','Upload','mb-3')
+                    +fileui('inputGroupFile02','Choose file')
+
+                .input-group.mb-3
+                    .input-group-prepend
+                        +btn-outline-secondary('Button') 
+                    +fileui('inputGroupFile03','Choose file')
+                    
+                .input-group
+                    +fileui('inputGroupFile03','Choose file')
+                    .input-group-append
+                        +btn-outline-secondary('Button') 
+
+    h2#accessibility Accessibility
+    p Screen readers will have trouble with your forms if you don’t include a label for every input. For these input groups, ensure that any additional label or functionality is conveyed to assistive technologies.
+    p The exact technique to be used (
+        code.highlighter-rouge &lt;label&gt;
+        |  elements hidden using the 
+        code.highlighter-rouge .sr-only
+        |  class, or use of the 
+        code.highlighter-rouge aria-label
+        |  and 
+        code.highlighter-rouge aria-labelledby
+        |  attributes, possibly in combination with 
+        code.highlighter-rouge aria-describedby
+        | ) and what additional information will need to be conveyed will vary depending on the exact type of interface widget you’re implementing. The examples in this section provide a few suggested, case-specific approaches.

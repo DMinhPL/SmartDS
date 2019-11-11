@@ -1,0 +1,117 @@
+mixin list(e,style,data)
+	#{e}(class=style)
+		unless !data
+			for item in data
+				+li(item.text,item.style,item.type)
+		block
+
+mixin li(text,style,type,color)
+	unless style
+		- var style =''
+	unless !color
+		- style = style + ` ${color}`
+	unless type
+		li(class=style)
+			!=  text
+			block
+	else
+		if(type='button')
+			button(class=style, type="button")
+				!= text
+				block
+		else
+			a(class=style, href="button")
+				!= text
+				block
+
+
+
+//- list-group mixins
+mixin list-group(items,style)
+	unless style
+		- var style = ''
+	ul.list-group(class=style)
+		unless !items
+			- var args = Array.prototype.slice.call(arguments);
+		else
+			- var args = ['']
+		for item in args[0]
+			unless item.style
+				- var itemstyle = ''
+			else 
+				- var itemstyle = ` ${item.style}`
+
+			unless item.color
+				- var color = ''
+			else 
+				- var color = item.color
+
+			+li(item.text,`list-group-item${itemstyle}`,'', ` list-group-item-${color}`)
+		block
+
+mixin list-group-a(items,style)
+	unless style
+		- var style = ''
+	.list-group(class=style)
+		unless !items
+			- var args = Array.prototype.slice.call(arguments);
+		else
+			- var args = ['']
+		for item in args[0]
+			unless item.style
+				- var itemstyle = ''
+			else 
+				- var itemstyle = ` ${item.style}`
+
+			unless item.color
+				- var color = ''
+			else 
+				- var color = item.color
+			
+			+li(item.text,`list-group-item list-group-item-action${itemstyle}`,item.url, ` list-group-item-${color}`)
+		block
+
+mixin list-group-button(items,style)
+	unless style
+		- var style = ''
+	.list-group(class=style)
+		unless !items
+			- var args = Array.prototype.slice.call(arguments);
+		else
+			- var args = ['']
+		for item in args[0]
+			unless item.style
+				- var itemstyle = ''
+			else 
+				- var itemstyle = ` ${item.style}`
+
+			unless item.color
+				- var color = ''
+			else 
+				- var color = item.color
+
+			+li(item.text,`list-group-item list-group-item-action${itemstyle}`,'button', ` list-group-item-${color}`)
+		block
+
+mixin list-group-custom(style)
+	.list-group(class=style)
+		block
+
+mixin list-item(text,style,type,color)
+	unless style
+			- var style =''
+	unless !color
+		- style = style + ` ${color}`
+	unless type
+		li.list-group-item(class=style)
+			!=  text
+			block
+	else
+		if(type='button')
+			button.list-group-item.list-group-item-action(class=style, type="button")
+				!= text
+				block
+		else
+			a.list-group-item.list-group-item-action(class=style, href="button")
+				!= text
+				block

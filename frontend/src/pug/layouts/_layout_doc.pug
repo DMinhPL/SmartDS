@@ -1,0 +1,53 @@
+doctype html
+include ../components/_var
+include ../components/_mixin
+html(lang=language)
+    head
+        block setting   
+            -var mainActive = 'docs';
+            -var slideActive = 'docs';
+
+        include ../components/_meta
+
+        //- Add Custom Styles
+        link(rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css')
+        block styles
+    body
+        include ../components/_header
+
+        .wrapper
+            .container-fluid
+                .row.flex-xl-nowrap
+                    .col-12.col-md-3.col-xl-2.bd-sidebar
+                        form.bd-search.d-flex.align-items-center
+                            span.algolia-autocomplete(style='position: relative; display: inline-block; direction: ltr;')
+                                input#search-input.form-control.ds-input(type='search', placeholder='Search...', autocomplete='off', data-siteurl='https://getbootstrap.com', data-docs-version='4.1', spellcheck='false', role='combobox', aria-autocomplete='list', aria-expanded='false', aria-owns='algolia-autocomplete-listbox-0', dir='auto', style='position: relative; vertical-align: top;')
+                                //- pre(aria-hidden='true', style='position: absolute; visibility: hidden; white-space: pre; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;').
+                                span#algolia-autocomplete-listbox-0.ds-dropdown-menu(role='listbox', style='position: absolute; top: 100%; z-index: 100; left: 0px; right: auto; display: none;')
+                                    .ds-dataset-1
+                            button.btn.btn-link.bd-search-docs-toggle.d-md-none.p-0.ml-3(type='button', data-toggle='collapse', data-target='#bd-docs-nav', aria-controls='bd-docs-nav', aria-expanded='false', aria-label='Toggle docs navigation')
+                                svg(xmlns='http://www.w3.org/2000/svg', viewbox='0 0 30 30', width='30', height='30', focusable='false')
+                                    title Menu
+                                    path(stroke='currentColor', stroke-width='2', stroke-linecap='round', stroke-miterlimit='10', d='M4 7h22M4 15h22M4 23h22')            
+                       
+                        +menuNav(slideActive,slideMenu, 'nav', 'bd-docs-nav', 'collapse bd-links', 'div' ,'bd-toc-item', 'bd-toc-link', '', '', 'nav bd-sidenav')
+                            
+                    .d-none.d-xl-block.col-xl-2.bd-toc
+                        block navsection
+                    main.col-12.col-md-9.col-xl-8.py-md-3.pl-md-5.bd-content
+                        block content
+
+        //- include ../components/_footer
+
+        script(src="/assets/js/library.js")
+        script(async src="/assets/js/main.js")
+        script(async src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js')
+        script(type='text/javascript').
+            (function (i) { "use strict"; i(function () { i(".tooltip-demo").tooltip({ selector: '[data-toggle="tooltip"]', container: "body" }); i('[data-toggle="popover"]').popover(); i(".tooltip-test").tooltip(); i(".popover-test").popover(); i('.bd-example-indeterminate [type="checkbox"]').prop("indeterminate", true); i('.bd-content [href="#"]').click(function (e) { e.preventDefault() }); i("#exampleModal").on("show.bs.modal", function (e) { var t = i(e.relatedTarget); var n = t.data("whatever"); var r = i(this); r.find(".modal-title").text("New message to " + n); r.find(".modal-body input").val(n) }); i(".bd-toggle-animated-progress").on("click", function () { i(this).siblings(".progress").find(".progress-bar-striped").toggleClass("progress-bar-animated") }); i("figure.highlight, div.highlight").each(function () { var e = '<div class="bd-clipboard"><button class="btn-clipboard" title="Copy to clipboard">Copy</button></div>'; i(this).before(e); i(".btn-clipboard").tooltip().on("mouseleave", function () { i(this).tooltip("hide") }) }); var e = new ClipboardJS(".btn-clipboard", { target: function (e) { return e.parentNode.nextElementSibling } }); e.on("success", function (e) { i(e.trigger).attr("title", "Copied!").tooltip("_fixTitle").tooltip("show").attr("title", "Copy to clipboard").tooltip("_fixTitle"); e.clearSelection() }); e.on("error", function (e) { var t = /Mac/i.test(navigator.userAgent) ? "⌘" : "Ctrl-"; var n = "Press " + t + "C to copy"; i(e.trigger).attr("title", n).tooltip("_fixTitle").tooltip("show").attr("title", "Copy to clipboard").tooltip("_fixTitle") }); i(".bd-content > h2, .bd-content > h3, .bd-content > h4, .bd-content > h5").wrapInner("<div></div>"); Holder.addTheme("gray", {bg: "#777",fg: "rgba(255,255,255,.75)",font: "Helvetica",fontweight: "normal"}) }) })(jQuery);
+            $(document).ready(function() {
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+        //- Add Custom Js
+        block js

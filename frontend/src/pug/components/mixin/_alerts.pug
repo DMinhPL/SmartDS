@@ -1,0 +1,107 @@
+//- Generic Simple alert
+//- @mixin +alert(message,type,icon,dismissing)
+//- @param {string} type: type of alert - primary, secondary, info, success, danger, waring, light, dark
+//- @param {string} massage: alert content
+//- @param {string} icon: icon of alert
+//- @param {boolean} dismissing: active dismissing
+mixin alert(message,type,icon,dismissing)
+	unless message
+		- var message = ""
+	unless type
+		- var _class = ""
+	else 
+		- var _class = `alert-${type}`
+
+	.alert(role="alert",class=_class)
+		if(typeof icon != "undefined" && icon!='')
+			+ic(icon)
+			|  &nbsp;
+		if(typeof dismissing != "undefined" && dismissing==true)
+			+close('alert')
+		!= message
+		block
+		
+mixin alert-primary(message,icon,dismissing)
+	+alert(message,"primary",icon,dismissing)
+		block
+mixin alert-secondary(message,icon,dismissing)
+	+alert(message,"secondary",icon,dismissing)
+		block
+mixin alert-success(message,icon,dismissing)
+	+alert(message,"success",icon,dismissing)
+		block
+mixin alert-danger(message,icon,dismissing)
+	+alert(message,"danger",icon,dismissing)
+		block
+mixin alert-warning(message,icon,dismissing)
+	+alert(message,"warning",icon,dismissing)
+		block
+mixin alert-info(message,icon,dismissing)
+	+alert(message,"info",icon,dismissing)
+		block
+mixin alert-light(message,icon,dismissing)
+	+alert(message,"light",icon,dismissing)
+		block
+mixin alert-dark(message,icon,dismissing)
+	+alert(message,"dark",icon,dismissing)
+		block
+
+//- DISMISSIBLE ALERTS
+mixin alert-x(message,type,icon)
+	+alert(message,`${type} alert-dismissible`,icon,true)
+		block
+	
+mixin alert-x-primary(message,icon)
+	+alert(message,"primary",icon,true)
+		block
+mixin alert-x-secondary(message,icon)
+	+alert(message,"secondary",icon,true)
+		block
+mixin alert-x-success(message,icon)
+	+alert(message,"success",icon,true)
+		block
+mixin alert-x-danger(message,icon)
+	+alert(message,"danger",icon,true)
+		block
+mixin alert-x-warning(message,icon)
+	+alert(message,"warning",icon,true)
+		block
+mixin alert-x-info(message,icon)
+	+alert(message,"info",icon,true)
+		block
+mixin alert-x-light(message,icon)
+	+alert(message,"light",icon,true)
+		block
+mixin alert-x-dark(message,icon)
+	+alert(message,"dark",icon,true)
+		block
+
+
+//- Alert Additional content
+//- Generic Simple alert
+//- @mixin +alert-add(message,type,icon,dismissing)
+//- @param {string} type: type of alert - primary, secondary, info, success, danger, waring, light, dark
+//- @param {string} massage: alert content
+//- @icon {string} icon: icon of alert
+//- @dismissing {boolean} dismissing: active dismissing
+mixin alert-add(message,type,icon,dismissing)
+	unless message
+		- var message = ""
+	unless type
+		- var _class = ""
+	else 
+		- var _class = `alert-${type}`
+
+	.alert(role="alert",class=_class)
+		if(typeof dismissing != "undefined" && dismissing==true)
+			+close('alert')
+		h4.alert-heading
+			if(typeof icon != "undefined" && icon!='')
+				+ic(icon)
+				|  &nbsp;
+			!= message
+		block
+
+//- Alert Additional content
+mixin alert-addx(message,type,icon)
+	+alert-add(message,type,icon,true)

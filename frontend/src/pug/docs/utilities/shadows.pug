@@ -1,0 +1,31 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'shadows';
+    - title = "Utilities - Shadows"
+block navsection
+
+block content 
+    h1.bd-title#content Shadows
+    p.bd-lead Add or remove shadows to elements with `box-shadow` utilities.
+    h2#examples Examples
+    p
+        | While shadows on components are disabled by default in Bootstrap and can be enabled via 
+        code.highlighter-rouge $enable-shadows
+        | , you can also quickly add or remove a shadow with our 
+        code.highlighter-rouge box-shadow
+        |  utility classes. Includes support for 
+        code.highlighter-rouge .shadow-none
+        |  and three default sizes (which have associated variables to match).
+    .bd-example
+        .shadow-none.p-3.mb-5.bg-light.rounded No shadow
+        .shadow-sm.p-3.mb-5.bg-white.rounded Small shadow
+        .shadow.p-3.mb-5.bg-white.rounded Regular shadow
+        .shadow-lg.p-3.mb-5.bg-white.rounded Larger shadow
+    figure.highlight
+        pre
+            code.css
+                | .shadow-none.p-3.mb-5.bg-light.rounded No shadow
+                | .shadow-sm.p-3.mb-5.bg-white.rounded Small shadow
+                | .shadow.p-3.mb-5.bg-white.rounded Regular shadow
+                | .shadow-lg.p-3.mb-5.bg-white.rounded Larger shadow

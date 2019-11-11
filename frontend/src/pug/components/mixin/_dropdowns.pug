@@ -1,0 +1,166 @@
+//- Dropdown
+//- @mixin +dropdown(caption,items,style,size,type)
+//- @param {string} caption: text off button
+//- @param {array} items: data item - [{text:'Dropdown Item',data:'#',style=''}]
+//- @param {string} style: style off button - primary, secondary....
+//- @param {string} size: size off button - sm, ld
+//- @param {string} type: type off dropdown - dropup, dropright, dropleft, split
+mixin dropdown(caption,items,style,size,type,split)
+	- var _id = 'dMenu-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+	- var drop = 'btn-group'
+	unless !type
+		case type
+			when 'dropup'
+				- drop = 'btn-group dropup'
+			when 'dropright'
+				- drop = 'btn-group dropright'
+			when 'dropleft'
+				- drop = 'btn-group dropleft'
+			when 'dropdown'
+				- drop = 'btn-group dropdown'
+			default
+				- drop = 'btn-group'
+	unless style
+		- var style = ''
+	else 
+		- style = `btn-${style}`
+	unless !size
+		- var style = style + ` btn-${size}`
+
+	div(class=drop)
+		if(typeof split!=='undefined' && split==true)
+			button.btn(class=style type='button')= caption
+			button.btn.dropdown-toggle.dropdown-toggle-split(class=style type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+				span.sr-only Toggle Dropdown
+		else
+			button.btn.dropdown-toggle(class=style type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false', id=`${_id}`)
+				= caption
+		+dropdown-menu(items,_id)
+			block
+
+mixin dropdown-menu(items,_id)
+	unless items
+		- var items = []	
+	unless _id
+		- var _id = 'dMenu-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+	.dropdown-menu(aria-labelledby=`${_id}`)
+		- var args = Array.prototype.slice.call(arguments);
+		for item in args[0]
+			+dropdown-item(item.text,item.data,item.style)
+		block
+
+//- Dropdown Item
+//- @mixin +dropdown-item(text,data,style)
+//- @param {string} text: text off item
+//- @param {string} data: data item - url or button, header, span if empty
+//- @param {string} style: style off item - active or disabled
+mixin dropdown-item(text,data,style)
+	unless text
+		.dropdown-divider
+	else
+		unless data
+			span.dropdown-item-text(class=style)= text
+		else
+			if(data=='button')
+				button.dropdown-item(type='button', class=style)= text
+			else
+				if(data=='header')
+					h6.dropdown-header= text
+				else
+					a.dropdown-item(href=data, class=style)= text
+
+
+mixin dropdown-primary(caption,items,size,type,split)
+	+dropdown(caption,items,'primary',size,type,split)
+		block
+mixin dropdown-secondary(caption,items,size,type,split)
+	+dropdown(caption,items,'secondary',size,type,split)
+		block
+mixin dropdown-success(caption,items,size,type,split)
+	+dropdown(caption,items,'success',size,type,split)
+		block
+mixin dropdown-danger(caption,items,size,type,split)
+	+dropdown(caption,items,'danger',size,type,split)
+		block
+mixin dropdown-warning(caption,items,size,type,split)
+	+dropdown(caption,items,'warning',size,type,split)
+		block
+mixin dropdown-info(caption,items,size,type,split)
+	+dropdown(caption,items,'info',size,type,split)
+		block
+mixin dropdown-light(caption,items,size,type,split)
+	+dropdown(caption,items,'light',size,type,split)
+		block
+mixin dropdown-dark(caption,items,size,type,split)
+	+dropdown(caption,items,'dark',size,type,split)
+		block
+
+mixin dropdown-lg-primary(caption,items,type,split)
+	+dropdown(caption,items,'primary','lg',type,split)
+		block
+mixin dropdown-lg-secondary(caption,items,type,split)
+	+dropdown(caption,items,'secondary','lg',type,split)
+		block
+mixin dropdown-lg-success(caption,items,type,split)
+	+dropdown(caption,items,'success','lg',type,split)
+		block
+mixin dropdown-lg-danger(caption,items,type,split)
+	+dropdown(caption,items,'danger','lg',type,split)
+		block
+mixin dropdown-lg-warning(caption,items,type,split)
+	+dropdown(caption,items,'warning','lg',type,split)
+		block
+mixin dropdown-lg-info(caption,items,type,split)
+	+dropdown(caption,items,'info','lg',type,split)
+		block
+mixin dropdown-lg-light(caption,items,type,split)
+	+dropdown(caption,items,'light','lg',type,split)
+		block
+mixin dropdown-lg-dark(caption,items,type,split)
+	+dropdown(caption,items,'dark','lg',type,split)
+		block
+
+mixin dropdown-sm-primary(caption,items,type,split)
+	+dropdown(caption,items,'primary','sm',type,split)
+		block
+mixin dropdown-sm-secondary(caption,items,type,split)
+	+dropdown(caption,items,'secondary','sm',type,split)
+		block
+mixin dropdown-sm-success(caption,items,type,split)
+	+dropdown(caption,items,'success','sm',type,split)
+		block
+mixin dropdown-sm-danger(caption,items,type,split)
+	+dropdown(caption,items,'danger','sm',type,split)
+		block
+mixin dropdown-sm-warning(caption,items,type,split)
+	+dropdown(caption,items,'warning','sm',type,split)
+		block
+mixin dropdown-sm-info(caption,items,type,split)
+	+dropdown(caption,items,'info','sm',type,split)
+		block
+mixin dropdown-sm-light(caption,items,type,split)
+	+dropdown(caption,items,'light','sm',type,split)
+		block
+mixin dropdown-sm-dark(caption,items,type,split)
+	+dropdown(caption,items,'dark','sm',type,split)
+		block
+
+//- Dropup
+mixin dropup(caption,items,style,size,split)
+	+dropdown(caption,items,style,size,'dropup',split)
+		block
+
+//- Dropleft
+mixin dropleft(caption,items,style,size,split)
+	+dropdown(caption,items,style,size,'dropleft',split)
+		block
+
+//- Dropright
+mixin dropright(caption,items,style,size,split)
+	+dropdown(caption,items,style,size,'dropright',split)
+		block
+
+//- Split Button
+mixin dropsplit(caption,items,style,size,type)
+	+dropdown(caption,items,style,size,type,true)
+		block

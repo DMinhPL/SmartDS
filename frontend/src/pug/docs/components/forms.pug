@@ -1,0 +1,954 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'forms';
+    - title = "Component - Forms"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#overview') Overview
+        li.toc-entry.toc-h2
+            a(href='#form-controls') Form controls
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#sizing') Sizing
+        li.toc-entry.toc-h2
+            a(href='#range-inputs') Range Inputs
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#readonly') Readonly
+                li.toc-entry.toc-h3
+                    a(href='#readonly-plain-text') Readonly plain text
+        li.toc-entry.toc-h2
+            a(href='#checkboxes-and-radios') Checkboxes and radios
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#default-stacked') Default (stacked)
+                li.toc-entry.toc-h3
+                    a(href='#inline') Inline
+                li.toc-entry.toc-h3
+                    a(href='#without-labels') Without labels
+        li.toc-entry.toc-h2
+            a(href='#layout') Layout
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#form-groups') Form groups
+                li.toc-entry.toc-h3
+                    a(href='#form-grid') Form grid
+                    ul
+                        li.toc-entry.toc-h4
+                            a(href='#form-row') Form row
+                        li.toc-entry.toc-h4
+                            a(href='#horizontal-form') Horizontal form
+                        li.toc-entry.toc-h4
+                            a(href='#column-sizing') Column sizing
+                        li.toc-entry.toc-h4
+                            a(href='#auto-sizing') Auto-sizing
+                li.toc-entry.toc-h3
+                    a(href='#inline-forms') Inline forms
+        li.toc-entry.toc-h2
+            a(href='#help-text') Help text
+        li.toc-entry.toc-h2
+            a(href='#disabled-forms') Disabled forms
+            ul
+                li.toc-entry.toc-h4
+                    a(href='#cross-browser-compatibility') Cross-browser compatibility
+        
+block content 
+    h1.bd-title#content Forms
+    p.bd-lead Toggle the visibility of content across your project with a few classes and our JavaScript plugins.
+    h2#overview Overview
+    p
+        | Bootstrap’s form controls expand on 
+        a(href='/docs/4.1/content/reboot/#forms') our Rebooted form styles
+        |  with classes. Use these classes to opt into their customized displays for a more consistent rendering across browsers and devices.
+    p
+        | Be sure to use an appropriate 
+        code.highlighter-rouge type
+        |  attribute on all inputs (e.g., 
+        code.highlighter-rouge email
+        |  for email address or 
+        code.highlighter-rouge number
+        |  for numerical information) to take advantage of newer input controls like email verification, number selection, and more.
+    p
+        | Here’s a quick example to demonstrate Bootstrap’s form styles. Keep reading for documentation on required classes, form layout, and more.
+    .bd-example
+        form()
+            +input-box("text","exampleInputEmail1","Enter email","Email address",'','We\'ll never share your email with anyone else.')
+            +input-box("password","exampleInputPassword1","Enter Password","Password")
+            +checkbox-box('Check me out','check','exampleCheck1')
+            +btn-submit-primary('Submit')
+    
+    figure.highlight
+        pre
+            code.js.
+                +input-box("text","exampleInputEmail1","Enter email","Email address",'','We\'ll never share your email with anyone else.')
+                +input-box("password","exampleInputPassword1","Enter Password","Password")
+                +checkbox-box('Check me out','check','exampleCheck1')
+                +btn-submit-primary('Submit')
+
+    h2#form-controls Form controls
+    p
+        | Textual form controls—like 
+        code.highlighter-rouge &lt;input&gt;
+        | s, 
+        code.highlighter-rouge &lt;select&gt;
+        | s, and 
+        code.highlighter-rouge &lt;textarea&gt;
+        | s—are styled with the 
+        code.highlighter-rouge .form-control
+        |  class. Included are styles for general appearance, focus state, sizing, and more.
+    p
+        | Be sure to explore our 
+        a(href='#custom-forms') custom forms
+        |  to further style 
+        code.highlighter-rouge &lt;select&gt;
+        | s.
+    .bd-example
+        form
+            +input-box("email","exampleFormControlInput1","name@example.com","Email address")
+            +select-box('exampleFormControlSelect1','Example select')
+                +option('1')
+                +option('2')
+                +option('3')
+                +option('4')
+                +option('5')
+            +select-box('exampleFormControlSelect2','Example multiple select',true)
+                +option('1')
+                +option('2')
+                +option('3')
+                +option('4')
+                +option('5')
+            +textarea-box('','exampleFormControlTextarea1','Example textarea','','3')
+    figure.highlight
+        pre
+            code.js.
+                +input-box("email","exampleFormControlInput1","name@example.com","Email address")
+                +select-box('exampleFormControlSelect1','Example select')
+                    +option('1')
+                    +option('2')
+                    +option('3')
+                    +option('4')
+                    +option('5')
+                +select-box('exampleFormControlSelect2','Example multiple select',true)
+                    +option('1')
+                    +option('2')
+                    +option('3')
+                    +option('4')
+                    +option('5')
+                +textarea-box('','exampleFormControlTextarea1','Example textarea','','3')
+    p
+        | For file inputs, swap the 
+        code.highlighter-rouge .form-control
+        |  for 
+        code.highlighter-rouge .form-control-file
+        | .
+    .bd-example
+        form
+            +input-box("file","exampleFormControlFile1","","Example file input")
+
+    figure.highlight
+        pre
+            code.js.
+                +input-box("file","exampleFormControlFile1","","Example file input")
+
+    h3#sizing Sizing
+    p
+        | Set heights using classes like 
+        code.highlighter-rouge .form-control-lg
+        |  and 
+        code.highlighter-rouge .form-control-sm
+        | .
+    .bd-example
+        +input-simple-lg('text','input-lg','.form-control-lg')
+        +input-simple('text','input-default','Default input')
+        +input-simple-sm('text','input-sm','.form-control-sm')
+    figure.highlight
+        pre
+            code.js.
+                +input-simple-lg('text','input-lg','.form-control-lg')
+                +input-simple('text','input-default','Default input')
+                +input-simple-sm('text','input-sm','.form-control-sm')
+    
+    .bd-example
+        +select-lg()
+            +option('Large select')
+        +select()
+            +option('Default select')
+        +select-sm()
+            +option('Small select')
+    figure.highlight
+        pre
+            code.js.
+                +select-lg()
+                    +option('Large select')
+                +select()
+                    +option('Default select')
+                +select-sm()
+                    +option('Small select')
+    
+    h2#range-inputs Range Inputs
+    p
+        | Set horizontally scrollable range inputs using 
+        code.highlighter-rouge .form-control-range
+        | .
+    .bd-example
+        form
+            +input-box('range','formControlRange','','Example Range input')
+    
+    figure.highlight
+        pre
+            code.js.
+                +input-box('range','formControlRange','','Example Range input')
+
+    h3#readonly Readonly
+    p
+        | Add the 
+        code.highlighter-rouge readonly
+        |  boolean attribute on an input to prevent modification of the input’s value. Read-only inputs appear lighter (just like disabled inputs), but retain the standard cursor.
+    .bd-example
+        +input-simple('text','textReadonly','Readonly input here…','','',true)
+
+    figure.highlight
+        pre
+            code.js.
+                +input-simple('text','textReadonly','Readonly input here…','','',true)
+
+    h3#readonly-plain-text Readonly plain text
+    p
+        | If you want to have 
+        code.highlighter-rouge &lt;input readonly&gt;
+        |  elements in your form styled as plain text, use the 
+        code.highlighter-rouge .form-control-plaintext
+        |  class to remove the default form field styling and preserve the correct margin and padding.
+    .bd-example
+        form
+            .form-group.row
+                label.col-sm-2.col-form-label(for='staticEmail') Email
+                .col-sm-10
+                    +input-simple('text','staticEmail','','email@example.com','',true,true)
+            .form-group.row
+                label.col-sm-2.col-form-label(for='inputPassword') Password
+                .col-sm-10
+                    +input-simple('text','inputPassword','Password')
+
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .form-group.row
+                        label.col-sm-2.col-form-label(for='staticEmail') Email
+                        .col-sm-10
+                            +input-simple('text','staticEmail','','email@example.com','',true,true)
+                    .form-group.row
+                        label.col-sm-2.col-form-label(for='inputPassword') Password
+                        .col-sm-10
+                            +input-simple('text','inputPassword','Password')
+
+    .bd-example
+        form.form-inline
+            +input-box('text','staticEmail2','','','email@example.com','','mb-2',true,true)
+            +input-box('password','inputPassword2','Password','','','','mx-sm-3 mb-2')
+            +btn-submit-primary('Confirm identity', ' mb-2')
+
+    figure.highlight
+        pre
+            code.js.
+                +input-box('text','staticEmail2','','','email@example.com','','mb-2',true,true)
+                +input-box('password','inputPassword2','Password','','','','mx-sm-3 mb-2')
+                +btn-submit-primary('Confirm identity', ' mb-2')
+
+    h2#checkboxes-and-radios Checkboxes and radios
+    p
+        | Default checkboxes and radios are improved upon with the help of 
+        code.highlighter-rouge .form-check
+        | , 
+        strong
+            | a single class for both input types that improves the layout and behavior of their HTML elements
+        | . Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
+    p
+        | Disabled checkboxes and radios are supported, but to provide a 
+        code.highlighter-rouge not-allowed
+        |  cursor on hover of the parent 
+        code.highlighter-rouge &lt;label&gt;
+        | , you’ll need to add the 
+        code.highlighter-rouge disabled
+        |  attribute to the 
+        code.highlighter-rouge .form-check-input
+        | . The disabled attribute will apply a lighter color to help indicate the input’s state.
+    p
+        | Checkboxes and radios use are built to support HTML-based form validation and provide concise, accessible labels. As such, our 
+        code.highlighter-rouge &lt;input&gt;
+        | s and 
+        code.highlighter-rouge &lt;label&gt;
+        | s are sibling elements as opposed to an 
+        code.highlighter-rouge &lt;input&gt;
+        |  within a 
+        code.highlighter-rouge &lt;label&gt;
+        | . This is slightly more verbose as you must specify 
+        code.highlighter-rouge id
+        |  and 
+        code.highlighter-rouge for
+        |  attributes to relate the 
+        code.highlighter-rouge &lt;input&gt;
+        |  and 
+        code.highlighter-rouge &lt;label&gt;
+        | .
+    h3#default-stacked Default (stacked)
+    p
+        | By default, any number of checkboxes and radios that are immediate sibling will be vertically stacked and appropriately spaced with 
+        code.highlighter-rouge .form-check
+        | .
+    .bd-example
+        +checkbox('Default checkbox','defaultCheck1')
+        +checkbox('Disabled checkbox','defaultCheck2',true)
+                
+    figure.highlight
+        pre
+            code.js.
+                +checkbox('Default checkbox','defaultCheck1')
+                +checkbox('Disabled checkbox','defaultCheck2',true)
+
+    .bd-example
+        +radio('Default radio','exampleRadios','exampleRadios1','option1',true)
+        +radio('Second default radio','exampleRadios','exampleRadios2','option2')
+        +radio('Disabled radio','exampleRadios','exampleRadios3','option3','',true)
+
+    figure.highlight
+        pre
+            code.js.
+                +radio('Default radio','exampleRadios','exampleRadios1','option1',true)
+                +radio('Second default radio','exampleRadios','exampleRadios2','option2')
+                +radio('Disabled radio','exampleRadios','exampleRadios3','option3','',true)
+
+    h3#inline Inline
+    p
+        | Group checkboxes or radios on the same horizontal row by adding 
+        code.highlighter-rouge .form-check-inline
+        |  to any 
+        code.highlighter-rouge .form-check
+        | .
+    .bd-example
+        +checkbox-inline('1','inlineCheckbox1','option1')
+        +checkbox-inline('2','inlineCheckbox2','option2')
+        +checkbox-inline('3 (disabled)','inlineCheckbox3','option3',true)
+
+    figure.highlight
+        pre
+            code.js.
+                +checkbox-inline('1','inlineCheckbox1','option1')
+                +checkbox-inline('2','inlineCheckbox2','option2')
+                +checkbox-inline('3 (disabled)','inlineCheckbox3','option3','',true)
+
+    .bd-example
+        +radio-inline('1','inlineRadioOptions','inlineRadio1','option1',true)
+        +radio-inline('2','inlineRadioOptions','inlineRadio2','option2')
+        +radio-inline('3 (disabled)','inlineRadioOptions','inlineRadio3','option3','',true)
+
+    figure.highlight
+        pre
+            code.js.
+                +radio-inline('1','inlineRadioOptions','inlineRadio1','option1',true)
+                +radio-inline('2','inlineRadioOptions','inlineRadio2','option2')
+                +radio-inline('3 (disabled)','inlineRadioOptions','inlineRadio3','option3','',true)
+
+    h3#without-labels Without labels
+    p
+        | Add 
+        code.highlighter-rouge .position-static
+        |  to inputs within 
+        code.highlighter-rouge .form-check
+        |  that don’t have any label text. Remember to still provide some form of label for assistive technologies (for instance, using 
+        code.highlighter-rouge aria-label
+        | ).
+    .bd-example
+        .form-check
+            input#blankCheckbox.form-check-input.position-static(type='checkbox', value='option1', aria-label='...')
+        .form-check
+            input#blankRadio1.form-check-input.position-static(type='radio', name='blankRadio', value='option1', aria-label='...')
+
+    figure.highlight
+        pre
+            code.css
+                | .form-check
+                |     input#blankCheckbox.form-check-input.position-static(type='checkbox', value='option1', aria-label='...')
+                | .form-check
+                |     input#blankRadio1.form-check-input.position-static(type='radio', name='blankRadio', value='option1', aria-label='...')
+
+    h2#layout Layout
+    p
+        | Since Bootstrap applies 
+        code.highlighter-rouge display: block
+        |  and 
+        code.highlighter-rouge width: 100%
+        |  to almost all our form controls, forms will by default stack vertically. Additional classes can be used to vary this layout on a per-form basis.
+    h3#form-groups Form groups
+    p
+        | The 
+        code.highlighter-rouge .form-group
+        |  class is the easiest way to add some structure to forms. It provides a flexible class that encourages proper grouping of labels, controls, optional help text, and form validation messaging. By default it only applies 
+        code.highlighter-rouge margin-bottom
+        | , but it picks up additional styles in 
+        code.highlighter-rouge .form-inline
+        |  as needed. Use it with 
+        code.highlighter-rouge &lt;fieldset&gt;
+        | s, 
+        code.highlighter-rouge &lt;div&gt;
+        | s, or nearly any other element.
+    .bd-example
+        form
+            +input-box('text','formGroupExampleInput','Example input','Example label')
+            +input-box('text','formGroupExampleInput2','Another input','Another label')
+
+    figure.highlight
+        pre
+            code.js.
+                +input-box('text','formGroupExampleInput','Example input','Example label')
+                +input-box('text','formGroupExampleInput2','Another input','Another label')
+
+    h3#form-grid Form grid
+    p
+        | More complex forms can be built using our grid classes. Use these for form layouts that require multiple columns, varied widths, and additional alignment options.
+    .bd-example
+        form
+            .row
+                .col
+                    +input-simple('text','firstName','First name')
+                .col
+                    +input-simple('text','lastName','Last name')
+    
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .row
+                        .col
+                            +input-simple('text','firstName','First name')
+                        .col
+                            +input-simple('text','lastName','Last name')
+
+    h4#form-row Form row
+    p
+        | You may also swap 
+        code.highlighter-rouge .row
+        |  for 
+        code.highlighter-rouge .form-row
+        | , a variation of our standard grid row that overrides the default column gutters for tighter and more compact layouts.
+    .bd-example
+        form
+            .form-row
+                .col
+                    +input-simple('text','firstName2','First name')
+                .col
+                    +input-simple('text','lastName2','Last name')
+    
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .form-row
+                        .col
+                            +input-simple('text','firstName2','First name')
+                        .col
+                            +input-simple('text','lastName2','Last name')
+
+    p More complex layouts can also be created with the grid system.
+    .bd-example
+        form
+            .form-row
+                +input-box('email','inputEmail4','Email','Email','','','col-md-6')
+                +input-box('password','inputPassword4','Password','Password','','','col-md-6')
+            +input-box('text','inputAddress','1234 Main St','Address 2')
+            +input-box('text','inputAddress2','Apartment, studio, or floor','Address')
+            .form-row
+                +input-box('text','inputCity','','City','','','col-md-6')
+                +select-box('inputState','State','','col-md-4')
+                    +option('Choose...','option1',true)
+                    +option('...','option2')
+                +input-box('text','inputZip','','Zip','','','col-md-2')
+            +checkbox-box('Check me out','gridCheck')
+            +btn-submit-primary('Sign in')
+
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .form-row
+                        +input-box('email','inputEmail4','Email','Email','','','col-md-6')
+                        +input-box('password','inputPassword4','Password','Password','','','col-md-6')
+                    +input-box('text','inputAddress','1234 Main St','Address 2')
+                    +input-box('text','inputAddress2','Apartment, studio, or floor','Address')
+                    .form-row
+                        +input-box('text','inputCity','','City','','','col-md-6')
+                        +select-box('inputState','State','','col-md-4')
+                            +option('Choose...','option1',true)
+                            +option('...','option2')
+                        +input-box('text','inputZip','','Zip','','','col-md-2')
+                    +checkbox-box('Check me out','gridCheck')
+                    +btn-submit-primary('Sign in')
+
+    h4#horizontal-form Horizontal form
+    p
+        | Create horizontal forms with the grid by adding the 
+        code.highlighter-rouge .row
+        |  class to form groups and using the 
+        code.highlighter-rouge .col-*-*
+        |  classes to specify the width of your labels and controls. Be sure to add 
+        code.highlighter-rouge .col-form-label
+        |  to your 
+        code.highlighter-rouge &lt;label&gt;
+        | s as well so they’re vertically centered with their associated form controls.
+    p
+        | At times, you maybe need to use margin or padding utilities to create that perfect alignment you need. For example, we’ve removed the 
+        code.highlighter-rouge padding-top
+        |  on our stacked radio inputs label to better align the text baseline.
+    .bd-example
+        form
+            .form-group.row
+                label.col-sm-2.col-form-label(for='inputEmail3') Email
+                .col-sm-10
+                    +input-simple('email','inputEmail3','Email')
+            .form-group.row
+                label.col-sm-2.col-form-label(for='inputPassword3') Password
+                .col-sm-10
+                    +input-simple('password','inputPassword3','Password')
+            fieldset.form-group
+                .row
+                    legend.col-form-label.col-sm-2.pt-0 Radios
+                    .col-sm-10
+                        +radio('First radio','gridRadios','gridRadios1','option1',true)
+                        +radio('Second radio','gridRadios','gridRadios2','option2')
+                        +radio('Third disabled radio','gridRadios','gridRadios3','option3','',true)
+            .form-group.row
+                .col-sm-2 Checkbox
+                .col-sm-10
+                    +checkbox('Example checkbox','gridCheck1')
+            .form-group.row
+                .col-sm-10
+                    +btn-submit-primary('Sign in')
+
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .form-group.row
+                        label.col-sm-2.col-form-label(for='inputEmail3') Email
+                        .col-sm-10
+                            +input-simple('email','inputEmail3','Email')
+                    .form-group.row
+                        label.col-sm-2.col-form-label(for='inputPassword3') Password
+                        .col-sm-10
+                            +input-simple('password','inputPassword3','Password')
+                    fieldset.form-group
+                        .row
+                            legend.col-form-label.col-sm-2.pt-0 Radios
+                            .col-sm-10
+                                +radio('First radio','gridRadios','gridRadios1','option1',true)
+                                +radio('Second radio','gridRadios','gridRadios2','option2')
+                                +radio('Third disabled radio','gridRadios','gridRadios3','option3','',true)
+                    .form-group.row
+                        .col-sm-2 Checkbox
+                        .col-sm-10
+                            +checkbox('Example checkbox','gridCheck1')
+                    .form-group.row
+                        .col-sm-10
+                            +btn-submit-primary('Sign in')
+
+    h5#horizontal-form-label-sizing Horizontal form label sizing
+    p
+        | Be sure to use 
+        code.highlighter-rouge .col-form-label-sm
+        |  or 
+        code.highlighter-rouge .col-form-label-lg
+        |  to your 
+        code.highlighter-rouge &lt;label&gt;
+        | s or 
+        code.highlighter-rouge &lt;legend&gt;
+        | s to correctly follow the size of 
+        code.highlighter-rouge .form-control-lg
+        |  and 
+        code.highlighter-rouge .form-control-sm
+        | .
+    .bd-example
+        form
+            .form-group.row
+                label.col-sm-2.col-form-label.col-form-label-sm(for='colFormLabelSm') Email
+                .col-sm-10
+                    +input-simple-sm('email','colFormLabelSm','col-form-label-sm')
+            .form-group.row
+                label.col-sm-2.col-form-label(for='colFormLabel') Email
+                .col-sm-10
+                    +input-simple('email','colFormLabel','col-form-label')
+            .form-group.row
+                label.col-sm-2.col-form-label.col-form-label-lg(for='colFormLabelLg') Email
+                .col-sm-10
+                    +input-simple-lg('email','colFormLabelLg','col-form-label-lg')
+
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .form-group.row
+                        label.col-sm-2.col-form-label.col-form-label-sm(for='colFormLabelSm') Email
+                        .col-sm-10
+                            input#colFormLabelSm.form-control.form-control-sm(type='email', placeholder='col-form-label-sm')
+                            +input-simple-sm('email','colFormLabelSm','col-form-label-sm')
+                    .form-group.row
+                        label.col-sm-2.col-form-label(for='colFormLabel') Email
+                        .col-sm-10
+                            +input-simple('email','colFormLabel','col-form-label')
+                    .form-group.row
+                        label.col-sm-2.col-form-label.col-form-label-lg(for='colFormLabelLg') Email
+                        .col-sm-10
+                            +input-simple-lg('email','colFormLabelLg','col-form-label-lg')
+
+    h4#column-sizing Column sizing
+    p
+        | As shown in the previous examples, our grid system allows you to place any number of 
+        code.highlighter-rouge .col
+        | s within a 
+        code.highlighter-rouge .row
+        |  or 
+        code.highlighter-rouge .form-row
+        | . They’ll split the available width equally between them. You may also pick a subset of your columns to take up more or less space, while the remaining 
+        code.highlighter-rouge .col
+        | s equally split the rest, with specific column classes like 
+        code.highlighter-rouge .col-7
+        | .
+    .bd-example
+        form
+            .form-row
+                .col-7
+                    +input-simple('text','','City')
+                .col
+                    +input-simple('text','','State')
+                .col
+                    +input-simple('text','','Zip')
+
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .form-row
+                        .col-7
+                            +input-simple('text','','City')
+                        .col
+                            +input-simple('text','','State')
+                        .col
+                            +input-simple('text','','Zip')
+    
+    h4#auto-sizing Auto-sizing
+    p
+        | The example below uses a flexbox utility to vertically center the contents and changes 
+        code.highlighter-rouge .col
+        |  to 
+        code.highlighter-rouge .col-auto
+        |  so that your columns only take up as much space as needed. Put another way, the column sizes itself based on the contents.
+    .bd-example
+        form
+            .form-row.align-items-center
+                .col-auto
+                    +input-simple('text','inlineFormInput','Jane Doe','','mb-2')
+                .col-auto
+                    label.sr-only(for='inlineFormInputGroup') Username
+                    +input-group('@','','mb-2')
+                        +input-simple('text','inlineFormInputGroup','Username','')
+                .col-auto
+                    +checkbox('Remember me','autoSizingCheck','','','mb-2')
+                .col-auto
+                    +btn-submit-primary('Submit',' mb-2')
+    
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .form-row.align-items-center
+                        .col-auto
+                            +input-simple('text','inlineFormInput','Jane Doe','','mb-2')
+                        .col-auto
+                            label.sr-only(for='inlineFormInputGroup') Username
+                            +input-group('@','','mb-2')
+                                +input-simple('text','inlineFormInputGroup','Username','')
+                        .col-auto
+                            +checkbox('Remember me','autoSizingCheck','','','mb-2')
+                        .col-auto
+                            +btn-submit-primary('Submit',' mb-2')
+
+    p You can then remix that once again with size-specific column classes.
+    .bd-example
+        form
+            .form-row.align-items-center
+                .col-sm-3.my-1
+                    label.sr-only(for='inlineFormInputName') Name
+                    +input-simple('text','inlineFormInput','Jane Doe','','mb-2')
+                .col-sm-3.my-1
+                    label.sr-only(for='inlineFormInputGroupUsername') Username
+                    +input-group('@','','mb-2')
+                                +input-simple('text','inlineFormInputGroupUsername','Username','')
+                .col-auto.my-1
+                    +checkbox('Remember me','autoSizingCheck2','','','mb-2')
+                .col-auto.my-1
+                    +btn-submit-primary('Submit',' mb-2')
+
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .form-row.align-items-center
+                        .col-sm-3.my-1
+                            label.sr-only(for='inlineFormInputName') Name
+                            +input-simple('text','inlineFormInput','Jane Doe','','mb-2')
+                        .col-sm-3.my-1
+                            label.sr-only(for='inlineFormInputGroupUsername') Username
+                            +input-group('@','','mb-2')
+                                        +input-simple('text','inlineFormInputGroupUsername','Username','')
+                        .col-auto.my-1
+                            +checkbox('Remember me','autoSizingCheck2','','','mb-2')
+                        .col-auto.my-1
+                            +btn-submit-primary('Submit',' mb-2')
+
+    p
+        | And of course 
+        a(href='#custom-forms') custom form controls
+        |  are supported.
+    .bd-example
+        form
+            .form-row.align-items-center
+                .col-auto.my-1
+                    label.mr-sm-2(for='inlineFormCustomSelect') Preference
+                    +select('inlineFormCustomSelect','','custom-select mr-sm-2')
+                        +option('Choose...','',true)
+                        +option('One','1')
+                        +option('Two','2')
+                        +option('Three','3')
+                .col-auto.my-1
+                    .custom-control.custom-checkbox.mr-sm-2
+                        input#customControlAutosizing.custom-control-input(type='checkbox')
+                        label.custom-control-label(for='customControlAutosizing') Remember my preference
+                .col-auto.my-1
+                    +btn-submit-primary('Submit')
+
+    figure.highlight
+        pre
+            code.js.
+                form
+                    .form-row.align-items-center
+                        .col-auto.my-1
+                            label.mr-sm-2(for='inlineFormCustomSelect') Preference
+                            +select('inlineFormCustomSelect','','custom-select mr-sm-2')
+                                +option('Choose...','',true)
+                                +option('One','1')
+                                +option('Two','2')
+                                +option('Three','3')
+                        .col-auto.my-1
+                            .custom-control.custom-checkbox.mr-sm-2
+                                input#customControlAutosizing.custom-control-input(type='checkbox')
+                                label.custom-control-label(for='customControlAutosizing') Remember my preference
+                        .col-auto.my-1
+                            +btn-submit-primary('Submit')
+
+    h3#inline-forms Inline forms
+    p
+        | Use the 
+        code.highlighter-rouge .form-inline
+        |  class to display a series of labels, form controls, and buttons on a single horizontal row. Form controls within inline forms vary slightly from their default states.
+    ul
+        li
+            | Controls are 
+            code.highlighter-rouge display: flex
+            | , collapsing any HTML white space and allowing you to provide alignment control with 
+            a(href='/docs/utilities/spacing/') spacing
+            |  and 
+            a(href='/docs/utilities/flex/') flexbox
+            |  utilities.
+        li
+            | Controls and input groups receive 
+            code.highlighter-rouge width: auto
+            |  to override the Bootstrap default 
+            code.highlighter-rouge width: 100%
+            | .
+        li
+            | Controls 
+            strong only appear inline in viewports that are at least 576px wide
+            |  to account for narrow viewports on mobile devices.
+    p
+        | You may need to manually address the width and alignment of individual form controls with 
+        a(href='/docs/utilities/spacing/') spacing utilities
+        |  (as shown below). Lastly, be sure to always include a 
+        code.highlighter-rouge <label>
+        |  with each form control, even if you need to hide it from non-screenreader visitors with 
+        code.highlighter-rouge .sr-only
+        | .
+    .bd-example
+        form.form-inline
+            +input-simple('text','inlineFormInputName2','Jane Doe','','mb-2 mr-sm-2')
+            +input-group('@','','mb-2 mr-sm-2')
+                +input-simple('text','inlineFormInputGroupUsername2','Username')
+            +checkbox('Remember me','inlineFormCheck','','','mb-2 mr-sm-2')
+            +btn-submit-primary('Submit')
+
+    figure.highlight
+        pre
+            code.js.
+                form.form-inline
+                    +input-simple('text','inlineFormInputName2','Jane Doe')
+                    +input-group('@','','mb-2 mr-sm-2')
+                        +input-simple('text','inlineFormInputGroupUsername2','Username')
+                    +checkbox('Remember me','inlineFormCheck','','','mb-2 mr-sm-2')
+                    +btn-submit-primary('Submit')
+
+    p Custom form controls and selects are also supported.
+    .bd-example
+        form.form-inline
+            label.my-1.mr-2(for='inlineFormCustomSelectPref') Preference
+            +select('inlineFormCustomSelectPref','','custom-select my-1 mr-sm-2')
+                +option('Choose...','',true)
+                +option('One','1')
+                +option('Two','2')
+                +option('Three','3')
+            .custom-control.custom-checkbox.my-1.mr-sm-2
+                input#customControlInline.custom-control-input(type='checkbox')
+                label.custom-control-label(for='customControlInline') Remember my preference
+            +btn-submit-primary('Submit')
+
+    figure.highlight
+        pre
+            code.js.
+                form.form-inline
+                    label.my-1.mr-2(for='inlineFormCustomSelectPref') Preference
+                    +select('inlineFormCustomSelectPref','','custom-select my-1 mr-sm-2')
+                        +option('Choose...','',true)
+                        +option('One','1')
+                        +option('Two','2')
+                        +option('Three','3')
+                    .custom-control.custom-checkbox.my-1.mr-sm-2
+                        input#customControlInline.custom-control-input(type='checkbox')
+                        label.custom-control-label(for='customControlInline') Remember my preference
+                    +btn-submit-primary('Submit')
+    
+    .bd-callout.bd-callout-warning
+        h5#alternatives-to-hidden-labels Alternatives to hidden labels
+        p
+            | Assistive technologies such as screen readers will have trouble with your forms if you don’t include a label for every input. For these inline forms, you can hide the labels using the 
+            code.highlighter-rouge .sr-only
+            |  class. There are further alternative methods of providing a label for assistive technologies, such as the 
+            code.highlighter-rouge aria-label
+            | , 
+            code.highlighter-rouge aria-labelledby
+            |  or 
+            code.highlighter-rouge title
+            |  attribute. If none of these are present, assistive technologies may resort to using the 
+            code.highlighter-rouge placeholder
+            |  attribute, if present, but note that use of 
+            code.highlighter-rouge placeholder
+            |  as a replacement for other labelling methods is not advised.
+    h2#help-text Help text
+    p
+        | Block-level help text in forms can be created using 
+        code.highlighter-rouge .form-text
+        |  (previously known as 
+        code.highlighter-rouge .help-block
+        |  in v3). Inline help text can be flexibly implemented using any inline HTML element and utility classes like 
+        code.highlighter-rouge .text-muted
+        | .
+    .bd-callout.bd-callout-warning
+        h5#associating-help-text-with-form-controls Associating help text with form controls
+        p
+            | Help text should be explicitly associated with the form control it relates to using the 
+            code.highlighter-rouge aria-describedby
+            |  attribute. This will ensure that assistive technologies—such as screen readers—will announce this help text when the user focuses or enters the control.
+    p
+        | Help text below inputs can be styled with 
+        code.highlighter-rouge .form-text
+        | . This class includes 
+        code.highlighter-rouge display: block
+        |  and adds some top margin for easy spacing from the inputs above.
+    .bd-example
+        +input('password','inputPassword5','','Password','','Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.')
+    figure.highlight
+        pre
+            code.js.
+                +input('password','inputPassword5','','Password','','Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.')
+
+    p
+        | Inline text can use any typical inline HTML element (be it a 
+        code.highlighter-rouge &lt;small&gt;
+        | , 
+        code.highlighter-rouge &lt;span&gt;
+        | , or something else) with nothing more than a utility class.
+    .bd-example
+        form.form-inline
+            +input('password','inputPassword6','','Password','','Must be 8-20 characters long.','mx-sm-3')
+    figure.highlight
+        pre
+            code.css
+                | form.form-inline
+                |     .form-group
+                |         label(for='inputPassword6') Password
+                |         input#inputPassword6.form-control.mx-sm-3(type='password', aria-describedby='passwordHelpInline')
+                |         small#passwordHelpInline.text-muted
+                |             | Must be 8-20 characters long.
+    
+    h2#disabled-forms Disabled forms
+    p
+        | Add the 
+        code.highlighter-rouge disabled
+        |  boolean attribute on an input to prevent user interactions and make it appear lighter.
+    .bd-example
+        +input-simple('text','disabledInput','Disabled input here...','', '','','',true)
+    figure.highlight
+        pre
+            code.js.
+                +input-simple('text','disabledInput','Disabled input here...','', '','','',true)
+    p
+        | Add the 
+        code.highlighter-rouge disabled
+        |  attribute to a 
+        code.highlighter-rouge &lt;fieldset&gt;
+        |  to disable all the controls within.
+    .bd-example
+        form
+            fieldset(disabled='')
+                +input-box('text','disabledTextInput','Disabled input','Disabled input')
+                +select-box('disabledSelect','Disabled select menu')
+                    +option('Disabled select')
+                +checkbox-box('Can\'t check this','disabledFieldsetCheck','',true)
+                +btn-submit-primary('Submit')
+    figure.highlight
+        pre
+            code.js.
+                form
+                    fieldset(disabled='')
+                        +input-box('text','disabledTextInput','Disabled input','Disabled input')
+                        +select-box('disabledSelect','Disabled select menu')
+                            +option('Disabled select')
+                        +checkbox-box('Can\'t check this','disabledFieldsetCheck','',true)
+                        +btn-submit-primary('Submit')
+
+    .bd-callout.bd-callout-warning
+        h5#caveat-with-anchors Caveat with anchors
+        p
+            | By default, browsers will treat all native form controls (
+            code.highlighter-rouge &lt;input&gt;
+            | , 
+            code.highlighter-rouge &lt;select&gt;
+            |  and 
+            code.highlighter-rouge &lt;button&gt;
+            |  elements) inside a 
+            code.highlighter-rouge &lt;fieldset disabled&gt;
+            |  as disabled, preventing both keyboard and mouse interactions on them. However, if your form also includes 
+            code.highlighter-rouge &lt;a ... class="btn btn-*"&gt;
+            |  elements, these will only be given a style of 
+            code.highlighter-rouge pointer-events: none
+            | . As noted in the section about 
+            a(href='/docs/4.1/components/buttons/#disabled-state') disabled state for buttons
+            |  (and specifically in the sub-section for anchor elements), this CSS property is not yet standardized and isn’t fully supported in Internet Explorer 10, and won’t prevent keyboard users from being able to focus or activate these links. So to be safe, use custom JavaScript to disable such links.
+    .bd-callout.bd-callout-danger
+        h4#cross-browser-compatibility Cross-browser compatibility
+        p
+            | While Bootstrap will apply these styles in all browsers, Internet Explorer 11 and below don’t fully support the 
+            code.highlighter-rouge disabled
+            |  attribute on a 
+            code.highlighter-rouge &lt;fieldset&gt;
+            | . Use custom JavaScript to disable the fieldset in these browsers.

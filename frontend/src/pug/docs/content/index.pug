@@ -1,0 +1,525 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'reboot';
+    - title = "Layout - Reboot"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#approach') Approach
+        li.toc-entry.toc-h2
+            a(href='#page-defaults') Page defaults
+        li.toc-entry.toc-h2
+            a(href='#native-font-stack') Native font stack
+        li.toc-entry.toc-h2
+            a(href='#headings-and-paragraphs') Headings and paragraphs
+        li.toc-entry.toc-h2
+            a(href='#lists') Lists
+        li.toc-entry.toc-h2
+            a(href='#preformatted-text') Preformatted text
+        li.toc-entry.toc-h2
+            a(href='#tables') Tables
+        li.toc-entry.toc-h2
+            a(href='#forms') Forms
+        li.toc-entry.toc-h2
+            a(href='#misc-elements') Misc elements
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#address') Address
+                li.toc-entry.toc-h3
+                    a(href='#blockquote') Blockquote
+                li.toc-entry.toc-h3
+                    a(href='#inline-elements') Inline elements
+                li.toc-entry.toc-h3
+                    a(href='#summary') Summary
+        li.toc-entry.toc-h2
+            a(href='#html5-hidden-attribute') HTML5 [hidden] attribute
+
+block content 
+    h1.bd-title#content  Reboot
+    p.bd-lead Reboot, a collection of element-specific CSS changes in a single file, kickstart Bootstrap to provide an elegant, consistent, and simple baseline to build upon.
+    h2#approach Approach
+    p
+        | Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element selectors. Additional styling is done only with classes. For example, we reboot some 
+        code.highlighter-rouge &lt;table&gt;
+        |  styles for a simpler baseline and later provide 
+        code.highlighter-rouge .table
+        | , 
+        code.highlighter-rouge .table-bordered
+        | , and more.
+    p Here are our guidelines and reasons for choosing what to override in Reboot:
+    ul
+        li
+            | Update some browser default values to use 
+            code.highlighter-rouge rem
+            | s instead of 
+            code.highlighter-rouge em
+            | s for scalable component spacing.
+        li
+            | Avoid 
+            code.highlighter-rouge margin-top
+            | . Vertical margins can collapse, yielding unexpected results. More importantly though, a single direction of 
+            code.highlighter-rouge margin
+            |  is a simpler mental model.
+        li
+            | For easier scaling across device sizes, block elements should use 
+            code.highlighter-rouge rem
+            | s for 
+            code.highlighter-rouge margin
+            | s.
+        li
+            | Keep declarations of 
+            code.highlighter-rouge font
+            | -related properties to a minimum, using 
+            code.highlighter-rouge inherit
+            |  whenever possible.
+    h2#page-defaults Page defaults
+    p
+        | The 
+        code.highlighter-rouge
+            span.nt <html>
+        |  and 
+        code.highlighter-rouge &lt;body&gt;
+        |  elements are updated to provide better page-wide defaults. More specifically:
+    ul
+        li
+            | The 
+            code.highlighter-rouge box-sizing
+            |  is globally set on every element—including 
+            code.highlighter-rouge *::before
+            |  and 
+            code.highlighter-rouge *::after
+            | , to 
+            code.highlighter-rouge border-box
+            | . This ensures that the declared width of element is never exceeded due to padding or border.
+            ul
+                li
+                    | No base 
+                    code.highlighter-rouge font-size
+                    |  is declared on the 
+                    code.highlighter-rouge
+                        span.nt &lt;html&gt;
+                    | , but 
+                    code.highlighter-rouge 16px
+                    |  is assumed (the browser default). 
+                    code.highlighter-rouge font-size: 1rem
+                    |  is applied on the 
+                    code.highlighter-rouge &lt;body&gt;
+                    |  for easy responsive type-scaling via media queries while respecting user preferences and ensuring a more accessible approach.
+        li
+            | The 
+            code.highlighter-rouge &lt;body&gt;
+            |  also sets a global 
+            code.highlighter-rouge font-family
+            | , 
+            code.highlighter-rouge line-height
+            | , and 
+            code.highlighter-rouge text-align
+            | . This is inherited later by some form elements to prevent font inconsistencies.
+        li
+            | For safety, the 
+            code.highlighter-rouge &lt;body&gt;
+            |  has a declared 
+            code.highlighter-rouge background-color
+            | , defaulting to 
+            code.highlighter-rouge #fff
+            | .
+    h2#native-font-stack Native font stack
+    p
+        | The default web fonts (Helvetica Neue, Helvetica, and Arial) have been dropped in Bootstrap 4 and replaced with a “native font stack” for optimum text rendering on every device and OS. Read more about 
+        a(href='https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/')
+            | native font stacks in this 
+            em Smashing Magazine
+            |  article
+        | .
+    figure.highlight
+        pre.
+    p
+        | This 
+        code.highlighter-rouge font-family
+        |  is applied to the 
+        code.highlighter-rouge &lt;body&gt;
+        |  and automatically inherited globally throughout Bootstrap. To switch the global 
+        code.highlighter-rouge font-family
+        | , update 
+        code.highlighter-rouge $font-family-base
+        |  and recompile Bootstrap.
+    h2#headings-and-paragraphs Headings and paragraphs
+    p
+        | All heading elements—e.g., 
+        code.highlighter-rouge &lt;h1&gt;
+        | —and 
+        code.highlighter-rouge &lt;p&gt;
+        |  are reset to have their 
+        code.highlighter-rouge margin-top
+        |  removed. Headings have 
+        code.highlighter-rouge margin-bottom: .5rem
+        |  added and paragraphs 
+        code.highlighter-rouge margin-bottom: 1rem
+        |  for easy spacing.
+    table
+        thead
+            tr
+                th Heading
+                th Example
+        tbody
+            tr
+                td
+                    p
+                        code.highlighter-rouge &lt;h1&gt;&lt;/h1&gt;
+                td
+                    span.h1 h1. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge &lt;h2&gt;&lt;/h2&gt;
+                td
+                    span.h2 h2. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge &lt;h3&gt;&lt;/h3&gt;
+                td
+                    span.h3 h3. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge &lt;h4&gt;&lt;/h4&lt;
+                td
+                    span.h4 h4. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge &lt;h5&gt;&lt;/h5&gt;
+                td
+                    span.h5 h5. Bootstrap heading
+            tr
+                td
+                    p
+                        code.highlighter-rouge &lt;h6&gt;&lt;/h6&gt;
+                td
+                    span.h6 h6. Bootstrap heading
+    h2#lists Lists
+    p
+        | All lists—
+        code.highlighter-rouge &lt;ul&gt;
+        | , 
+        code.highlighter-rouge &lt;ol&gt;
+        | , and 
+        code.highlighter-rouge &lt;dl&gt;
+        | —have their 
+        code.highlighter-rouge margin-top
+        |  removed and a 
+        code.highlighter-rouge margin-bottom: 1rem
+        | . Nested lists have no 
+        code.highlighter-rouge margin-bottom
+        | .
+    .bd-example
+        ul
+            li Lorem ipsum dolor sit amet
+            li Consectetur adipiscing elit
+            li Integer molestie lorem at massa
+            li Facilisis in pretium nisl aliquet
+            li
+                | Nulla volutpat aliquam velit
+                ul
+                    li Phasellus iaculis neque
+                    li Purus sodales ultricies
+                    li Vestibulum laoreet porttitor sem
+                    li Ac tristique libero volutpat at
+            li Faucibus porta lacus fringilla vel
+            li Aenean sit amet erat nunc
+            li Eget porttitor lorem
+        ol
+            li Lorem ipsum dolor sit amet
+            li Consectetur adipiscing elit
+            li Integer molestie lorem at massa
+            li Facilisis in pretium nisl aliquet
+            li Nulla volutpat aliquam velit
+            li Faucibus porta lacus fringilla vel
+            li Aenean sit amet erat nunc
+            li Eget porttitor lorem
+    p
+        | For simpler styling, clear hierarchy, and better spacing, description lists have updated 
+        code.highlighter-rouge margin
+        | s. 
+        code.highlighter-rouge &lt;dd&gt;
+        | s reset 
+        code.highlighter-rouge margin-left
+        |  to 
+        code.highlighter-rouge 0
+        |  and add 
+        code.highlighter-rouge margin-bottom: .5rem
+        | . 
+        code.highlighter-rouge &lt;dt&gt;
+        | s are 
+        strong bolded
+        | .
+    .bd-example
+        dl
+            dt Description lists
+            dd A description list is perfect for defining terms.
+            dt Euismod
+            dd Vestibulum id ligula porta felis euismod semper eget lacinia odio sem.
+            dd Donec id elit non mi porta gravida at eget metus.
+            dt Malesuada porta
+            dd Etiam porta sem malesuada magna mollis euismod.
+    h2#preformatted-text Preformatted text
+    p
+        | The 
+        code.highlighter-rouge &lt;pre&gt;
+        |  element is reset to remove its 
+        code.highlighter-rouge margin-top
+        |  and use 
+        code.highlighter-rouge rem
+        |  units for its 
+        code.highlighter-rouge margin-bottom
+        | .
+    .bd-example
+        pre.
+            \n.example-element {
+            margin-bottom: 1rem;
+            }
+    h2#tables Tables
+    p
+        | Tables are slightly adjusted to style 
+        code.highlighter-rouge &lt;caption&gt;
+        | s, collapse borders, and ensure consistent 
+        code.highlighter-rouge text-align
+        |  throughout. Additional changes for borders, padding, and more come with 
+        a(href='/docs/content/tables/')
+            | the 
+            code.highlighter-rouge .table
+            |  class
+        | .
+    .bd-example
+        table
+            caption
+                | This is an example table, and this is its caption to describe the contents.
+            thead
+                tr
+                    th Table heading
+                    th Table heading
+                    th Table heading
+                    th Table heading
+            tbody
+                tr
+                    td Table cell
+                    td Table cell
+                    td Table cell
+                    td Table cell
+                tr
+                    td Table cell
+                    td Table cell
+                    td Table cell
+                    td Table cell
+                tr
+                    td Table cell
+                    td Table cell
+                    td Table cell
+                    td Table cell
+    h2#forms Forms
+    p
+        | Various form elements have been rebooted for simpler base styles. Here are some of the most notable changes:
+    ul
+        li
+            code.highlighter-rouge &lt;fieldset&gt;
+            | s have no borders, padding, or margin so they can be easily used as wrappers for individual inputs or groups of inputs.
+        li
+            code.highlighter-rouge &lt;legend&gt;
+            | s, like fieldsets, have also been restyled to be displayed as a heading of sorts.
+        li
+            code.highlighter-rouge &lt;label&gt;
+            | s are set to 
+            code.highlighter-rouge display: inline-block
+            |  to allow 
+            code.highlighter-rouge margin
+            |  to be applied.
+        li
+            code.highlighter-rouge &lt;input&gt;
+            | s, 
+            code.highlighter-rouge &lt;select&gt;
+            | s, 
+            code.highlighter-rouge &lt;textarea&gt;
+            | s, and 
+            code.highlighter-rouge &lt;button&gt;
+            | s are mostly addressed by Normalize, but Reboot removes their 
+            code.highlighter-rouge margin
+            |  and sets 
+            code.highlighter-rouge line-height: inherit
+            | , too.
+        li
+            code.highlighter-rouge &lt;textarea&gt;
+            | s are modified to only be resizable vertically as horizontal resizing often “breaks” page layout.
+    p These changes, and more, are demonstrated below.
+    form.bd-example
+        fieldset
+            legend Example legend
+            p
+                label(for='input') Example input
+                input#input(type='text', placeholder='Example input')
+            p
+                label(for='select') Example select
+                select#select
+                    option(value='') Choose...
+                    optgroup(label='Option group 1')
+                        option(value='') Option 1
+                        option(value='') Option 2
+                        option(value='') Option 3
+                    optgroup(label='Option group 2')
+                        option(value='') Option 4
+                        option(value='') Option 5
+                        option(value='') Option 6
+            p
+                label
+                    input(type='checkbox', value='')
+                    |         Check this checkbox
+            p
+                label
+                    input#optionsRadios1(type='radio', name='optionsRadios', value='option1', checked='')
+                    |         Option one is this and that
+                label
+                    input#optionsRadios2(type='radio', name='optionsRadios', value='option2')
+                    |         Option two is something else that's also super long to demonstrate the wrapping of these fancy form controls.
+                label
+                    input#optionsRadios3(type='radio', name='optionsRadios', value='option3', disabled='')
+                    |         Option three is disabled
+            p
+                label(for='textarea') Example textarea
+                textarea#textarea(rows='3')
+            p
+                label(for='date') Example date
+                input#date(type='date')
+            p
+                label(for='time') Example time
+                input#time(type='time')
+            p
+                label(for='output') Example output
+                output#output(name='result') 100
+            p
+                button(type='submit') Button submit
+                input(type='submit', value='Input submit button')
+                input(type='button', value='Input button')
+            p
+                button(type='submit', disabled='') Button submit
+                input(type='submit', value='Input submit button', disabled='')
+                input(type='button', value='Input button', disabled='')
+    h2#misc-elements Misc elements
+    h3#address Address
+    p
+        | The 
+        code.highlighter-rouge &lt;address&gt;
+        |  element is updated to reset the browser default 
+        code.highlighter-rouge font-style
+        |  from 
+        code.highlighter-rouge italic
+        |  to 
+        code.highlighter-rouge normal
+        | . 
+        code.highlighter-rouge line-height
+        |  is also now inherited, and 
+        code.highlighter-rouge margin-bottom: 1rem
+        |  has been added. 
+        code.highlighter-rouge &lt;address&gt;
+        | s are for presenting contact information for the nearest ancestor (or an entire body of work). Preserve formatting by ending lines with 
+        code.highlighter-rouge &lt;br&gt;
+        | .
+    .bd-example
+        address
+            strong Twitter, Inc.
+            br
+            |     1355 Market St, Suite 900
+            br
+            |     San Francisco, CA 94103
+            br
+            abbr(title='Phone') P:
+            |  (123) 456-7890
+        address
+            strong Full Name
+            br
+            a(href='mailto:#') first.last@example.com
+    h3#blockquote Blockquote
+    p
+        | The default 
+        code.highlighter-rouge margin
+        |  on blockquotes is 
+        code.highlighter-rouge 1em 40px
+        | , so we reset that to 
+        code.highlighter-rouge 0 0 1rem
+        |  for something more consistent with other elements.
+    .bd-example
+        blockquote.blockquote
+            p
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+            footer
+                | Someone famous in 
+                cite(title='Source Title') Source Title
+    h3#inline-elements Inline elements
+    p
+        | The 
+        code.highlighter-rouge &lt;abbr&gt;
+        |  element receives basic styling to make it stand out amongst paragraph text.
+    .bd-example
+        | Nulla 
+        abbr(title='attribute') attr
+        |  vitae elit libero, a pharetra augue.
+    h3#summary Summary
+    p
+        | The default 
+        code.highlighter-rouge cursor
+        |  on summary is 
+        code.highlighter-rouge text
+        | , so we reset that to 
+        code.highlighter-rouge pointer
+        |  to convey that the element can be interacted with by clicking on it.
+    .bd-example
+        details
+            summary Some details
+            p More info about the details.
+        details(open='')
+            summary Even more details
+            p Here are even more details about the details.
+    h2#html5-hidden-attribute
+        | HTML5 
+        code.highlighter-rouge [hidden]
+        |  attribute
+    p
+        | HTML5 adds 
+        a(href='https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden')
+            | a new global attribute named 
+            code.highlighter-rouge [hidden]
+        | , which is styled as 
+        code.highlighter-rouge display: none
+        |  by default. Borrowing an idea from 
+        a(href='https://purecss.io/') PureCSS
+        | , we improve upon this default by making 
+        code.highlighter-rouge [hidden] { display: none !important; }
+        |  to help prevent its 
+        code.highlighter-rouge display
+        |  from getting accidentally overridden. While 
+        code.highlighter-rouge [hidden]
+        |  isn’t natively supported by IE10, the explicit declaration in our CSS gets around that problem.
+    figure.highlight
+        pre.
+    .bd-callout.bd-callout-warning
+        h5#jquery-incompatibility jQuery incompatibility
+        p
+            code.highlighter-rouge [hidden]
+            |  is not compatible with jQuery’s 
+            code.highlighter-rouge $(...).hide()
+            |  and 
+            code.highlighter-rouge $(...).show()
+            |  methods. Therefore, we don’t currently especially endorse 
+            code.highlighter-rouge [hidden]
+            |  over other techniques for managing the 
+            code.highlighter-rouge display
+            |  of elements.
+    p
+        | To merely toggle the visibility of an element, meaning its 
+        code.highlighter-rouge display
+        |  is not modified and the element can still affect the flow of the document, use 
+        a(href='/docs/utilities/visibility/')
+            | the 
+            code.highlighter-rouge .invisible
+            |  class
+        |  instead.

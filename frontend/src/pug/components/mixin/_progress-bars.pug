@@ -1,0 +1,97 @@
+//- progress mixins
+//- @mixin +progress(value,color,striped,animated,_class,label,_style)
+//- @param {number} value: 
+//- @param {string} color: 
+//- @param {boolean} striped: 
+//- @param {boolean} animated: 
+//- @param {string} _class: 
+//- @param {boolean} label: 
+//- @param {string} _style: 
+mixin progress(value,color,striped,animated,_class,label,_style)
+	-var _style = _style || ""
+	.progress(style=_style)
+		unless !value
+			+progress-bar(value,color,striped,animated,_class,label)
+		block
+
+mixin progress-bar(value,color,striped,animated,_class,label)
+	unless _class
+		- var _class = ''
+	unless !color
+		- _class = _class + ' bg-' + color
+	if(typeof striped!=='undefined' && striped===true)
+		- _class = _class + ' progress-bar-striped'
+	if(typeof animated!=='undefined' && animated===true)
+		- _class = _class + ' progress-bar-animated'
+
+	.progress-bar(class=_class,role='progressbar', aria-valuenow=value, aria-valuemin='0', aria-valuemax='100', style=`width: ${value}%;`)
+		if(typeof label!=='undefined' && label===true)
+			span.progress-label= value + '%'
+
+mixin progress-bar-success(value,striped,animated,_class,label)
+	+progress-bar(value,'success',striped,animated,_class,label)
+mixin progress-bar-info(value,striped,animated,_class,label)
+	+progress-bar(value,'info',striped,animated,_class,label)
+mixin progress-bar-warning(value,striped,animated,_class,label)
+	+progress-bar(value,'warning',striped,animated,_class,label)
+mixin progress-bar-danger(value,striped,animated,_class,label)
+	+progress-bar(value,'danger',striped,animated,_class,label)
+mixin progress-bar-dark(value,striped,animated,_class,label)
+	+progress-bar(value,'dark',striped,animated,_class,label)
+
+mixin progress-bar-striped(value,color,animated,_class,label)
+	+progress-bar(value,color,true,animated,_class,label)
+
+mixin progress-bar-striped-success(value,animated,_class,label)
+	+progress-bar(value,'success',true,animated,_class,label)
+mixin progress-bar-striped-info(value,animated,_class,label)
+	+progress-bar(value,'info',true,animated,_class,label)
+mixin progress-bar-striped-warning(value,animated,_class,label)
+	+progress-bar(value,'warning',true,animated,_class,label)
+mixin progress-bar-striped-danger(value,animated,_class,label)
+	+progress-bar(value,'danger',true,animated,_class,label)
+mixin progress-bar-striped-dark(value,animated,_class,label)
+	+progress-bar(value,'dark',true,animated,_class,label)
+mixin progress-bar-label(value,color,striped,animated,_class)
+	+progress-bar(value,color,striped,animated,_class,true)
+
+mixin progress-success(value,striped,animated,_class,label,_style)
+	+progress(value,'success',striped,animated,_class,label,_style)
+mixin progress-info(value,striped,animated,_class,label,_style)
+	+progress(value,'info',striped,animated,_class,label,_style)
+mixin progress-warning(value,striped,animated,_class,label,_style)
+	+progress(value,'warning',striped,animated,_class,label,_style)
+mixin progress-danger(value,striped,animated,_class,label,_style)
+	+progress(value,'danger',striped,animated,_class,label,_style)
+mixin progress-dark(value,striped,animated,_class,label,_style)
+	+progress(value,'dark',striped,animated,_class,label,_style)
+
+mixin progress-striped(value,color,animated,_class,label,_style)
+	+progress(value,color,true,animated,_class,label,_style)
+
+mixin progress-striped-success(value,animated,_class,label,_style)
+	+progress-striped(value,'success',animated,_class,label,_style)
+mixin progress-striped-info(value,animated,_class,label,_style)
+	+progress-striped(value,'info',animated,_class,label,_style)
+mixin progress-striped-warning(value,animated,_class,label,_style)
+	+progress-striped(value,'warning',animated,_class,label,_style)
+mixin progress-striped-danger(value,animated,_class,label,_style)
+	+progress-striped(value,'danger',animated,_class,label,_style)
+mixin progress-striped-dark(value,animated,_class,label,_style)
+	+progress-striped(value,'dark',animated,_class,label,_style)
+
+mixin progress-label(value,color,striped,animated,_class,_style)
+	+progress(value,color,striped,animated,_class,true,_style)
+mixin progress-label-success(value,striped,animated,_class,_style)
+	+progress-label(value,'success',striped,animated,_class,_style)
+mixin progress-label-info(value,striped,animated,_class,_style)
+	+progress-label(value,'info',striped,animated,_class,_style)
+mixin progress-label-warning(value,striped,animated,_class,_style)
+	+progress-label(value,'warning',striped,animated,_class,_style)
+mixin progress-label-danger(value,striped,animated,_class,_style)
+	+progress-label(value,'danger',striped,animated,_class,_style)
+mixin progress-label-dark(value,striped,animated,_class,_style)
+	+progress-label(value,'dark',striped,animated,_class,_style)
+
+mixin progress-style(value,_style,color,striped,animated,_class,label)
+	+progress(value,color,striped,animated,_class,label,_style)

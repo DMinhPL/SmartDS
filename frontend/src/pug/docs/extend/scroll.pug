@@ -1,0 +1,50 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'scroll';
+    - title = "Component - Scroll UI"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#default') Default
+        li.toc-entry.toc-h2
+            a(href='#autohide') AutoHide
+        li.toc-entry.toc-h2
+            a(href='#forcevisible') forceVisible
+                
+block content 
+    h1.bd-title#content Scroll UI (Simplebar)
+    p Custom scrollbars made simple, lightweight, easy to use and cross-browser.
+    p SimpleBar does only one thing: replace the browser's default scrollbars with a custom CSS-styled scrollbar without losing performance.
+        | Unlike some popular plugins, SimpleBar doesn't mimic scroll with Javascript, causing janks and strange scrolling behaviours...
+        | You keep the awesomeness of native scrolling...with a custom scrollbar!
+    
+    h2#default Default
+    .bd-example
+        div(style="height: 200px;" data-simplebar)
+            +lipsum(10,'paragraphs')
+    figure.highlight
+        pre
+            code.js.
+                .scroll-ui(style="height: 200px;")
+                    +lipsum(10,'paragraphs')
+    
+    h2#autohide AutoHide
+    .bd-example
+        div(style="height: 200px;" data-simplebar data-simplebar-auto-hide="false")
+            +lipsum(15,'paragraphs')
+    figure.highlight
+        pre
+            code.js.
+                div(style="height: 200px;" data-simplebar data-simplebar-auto-hide="false")
+                    +lipsum(15,'paragraphs')
+
+    h2#forcevisible forceVisible
+    .bd-example
+        div(style="height: 200px;" data-simplebar data-simplebar-force-visible="true")
+            +lipsum(15,'paragraphs')
+    figure.highlight
+        pre
+            code.js.
+                div(style="height: 200px;" data-simplebar data-simplebar-force-visible="true")
+                    +lipsum(15,'paragraphs')

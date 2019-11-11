@@ -1,0 +1,183 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'progress';
+    - title = "Component - Progress"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#how-it-works') How it works
+        li.toc-entry.toc-h2
+            a(href='#labels') Labels
+        li.toc-entry.toc-h2
+            a(href='#height') Height
+        li.toc-entry.toc-h2
+            a(href='#backgrounds') Backgrounds
+        li.toc-entry.toc-h2
+            a(href='#multiple-bars') Multiple bars
+        li.toc-entry.toc-h2
+            a(href='#striped') Striped
+        li.toc-entry.toc-h2
+            a(href='#animated-stripes') Animated stripes
+
+block content 
+    h1.bd-title#content Progress
+    p.bd-lead Documentation and examples for using Bootstrap custom progress bars featuring support for stacked bars, animated backgrounds, and text labels.
+    
+    h2#how-it-works How it works
+    p
+        | Progress components are built with two HTML elements, some CSS to set the width, and a few attributes. We don’t use 
+        a(href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress')
+            | the HTML5 
+            code.highlighter-rouge &lt;progress&gt;
+            |  element
+        | , ensuring you can stack progress bars, animate them, and place text labels over them.
+    ul
+        li
+            | We use the 
+            code.highlighter-rouge .progress
+            |  as a wrapper to indicate the max value of the progress bar.
+        li
+            | We use the inner 
+            code.highlighter-rouge .progress-bar
+            |  to indicate the progress so far.
+        li
+            | The 
+            code.highlighter-rouge .progress-bar
+            |  requires an inline style, utility class, or custom CSS to set their width.
+        li
+            | The 
+            code.highlighter-rouge .progress-bar
+            |  also requires some 
+            code.highlighter-rouge role
+            |  and 
+            code.highlighter-rouge aria
+            |  attributes to make it accessible.
+    p Put that all together, and you have the following examples.
+    .bd-example
+        +progress()
+        +progress(25)
+        +progress(50)
+        +progress(75)
+        +progress(100)
+    figure.highlight
+        pre
+            code.js.
+                +progress()
+                +progress(25)
+                +progress(50)
+                +progress(75)
+                +progress(100)
+    
+    h2#labels Labels
+    p
+        | Add labels to your progress bars by placing text within the 
+        code.highlighter-rouge .progress-bar
+        | .
+    .bd-example
+        +progress-label(10)
+        +progress-label-success(25)
+        +progress-label-info(50)
+        +progress-label-warning(75)
+        +progress-label-danger(100)
+    figure.highlight
+        pre
+            code.js.
+                +progress-label(10)
+                +progress-label-success(25)
+                +progress-label-info(50)
+                +progress-label-warning(75)
+                +progress-label-danger(100)
+    
+    h2#height Height
+    p
+        | We only set a 
+        code.highlighter-rouge height
+        |  value on the 
+        code.highlighter-rouge .progress
+        | , so if you change that value the inner 
+        code.highlighter-rouge .progress-bar
+        |  will automatically resize accordingly.
+    .bd-example
+        +progress-style(25,'height: 1px;')
+        +progress-style(25,'height: 20px;')
+
+    figure.highlight
+        pre
+            code.js.
+                +progress-style(25,'height: 1px;')
+                +progress-style(25,'height: 20px;')
+    
+    h2#backgrounds Backgrounds
+    p
+        | Use background utility classes to change the appearance of individual progress bars.
+    .bd-example
+        +progress-success(25)
+        +progress-info(50)
+        +progress-warning(75)
+        +progress-danger(100)
+
+    figure.highlight
+        pre
+            code.js.
+                +progress-success(25)
+                +progress-info(50)
+                +progress-warning(75)
+                +progress-danger(100)
+    
+    h2#multiple-bars Multiple bars
+    p Include multiple progress bars in a progress component if you need.
+    .bd-example
+        +progress()
+            +progress-bar(15)
+            +progress-bar-success(30)
+            +progress-bar-info(20)
+    figure.highlight
+        pre
+            code.js.
+                +progress()
+                    +progress-bar(15)
+                    +progress-bar-success(30)
+                    +progress-bar-info(20)
+    h2#striped Striped
+    p
+        | Add 
+        code.highlighter-rouge .progress-bar-striped
+        |  to any 
+        code.highlighter-rouge .progress-bar
+        |  to apply a stripe via CSS gradient over the progress bar’s background color.
+    .bd-example
+        +progress-striped(10)
+        +progress-striped-success(25)
+        +progress-striped-info(50)
+        +progress-striped-warning(75)
+        +progress-striped-danger(100)
+
+    figure.highlight
+        pre
+            code.js.
+                +progress-striped(10)
+                +progress-striped-success(25)
+                +progress-striped-info(50)
+                +progress-striped-warning(75)
+                +progress-striped-danger(100)
+
+    h2#animated-stripes Animated stripes
+    p
+        | The striped gradient can also be animated. Add 
+        code.highlighter-rouge .progress-bar-animated
+        |  to 
+        code.highlighter-rouge .progress-bar
+        |  to animate the stripes right to left via CSS3 animations.
+    .bd-example
+        +progress-striped-success(50,true)
+        +progress-striped(75)
+        button.btn.btn-secondary.bd-toggle-animated-progress(type='button', data-toggle='button', aria-pressed='false', autocomplete='off')
+            | Toggle animation
+
+    figure.highlight
+        pre
+            code.js.
+                +progress-striped(75,'',true)
+                +progress-striped-success(75,true)

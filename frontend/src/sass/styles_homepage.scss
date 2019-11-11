@@ -1,0 +1,66 @@
+// Base ----------------------------------------------------------------
+@import "base/functions";
+@import "base/variables";
+@import "base/mixins";
+@import "base/root";
+@import "base/reboot";
+@import "base/type";
+@import "base/utilities";
+// End Base ------------------------------------------------------------
+// Start component -----------------------------------------------------
+// @import "components/alert";
+// @import "components/badge";
+// @import "components/breadcrumb";
+// @import "components/button-group";
+@import "components/buttons";
+// @import "components/card";
+// @import "components/carousel";
+// @import "components/close";
+// @import "components/code";
+// @import "components/custom-forms";
+// @import "components/dropdown";
+@import "components/fonts";
+@import "components/forms";
+@import "components/grid";
+@import "components/icons";
+@import "components/images";
+// @import "components/input-group";
+// @import "components/jumbotron";
+// @import "components/list-group";
+// @import "components/media";
+@import "components/modal";
+@import "components/nav";
+@import "components/navbar";
+// @import "components/pagination";
+// @import "components/popover";
+@import "components/print";
+@import "components/swiper";
+// @import "components/progress";
+// @import "components/slick-lightbox";
+// @import "components/slick";
+// @import "components/tables";
+// @import "components/tooltip";
+// @import "components/transitions";
+// Extend
+// @import "components/datetime";
+// @import "components/notify";
+// @import "components/range";
+// @import "components/scroll";
+// @import "components/select";
+// @import "components/waypoint";
+@import "components/animate";
+// End component -------------------------------------------------------
+// Start Modules -------------------------------------------------------
+@import "modules/headings";
+@import "modules/commons.scss";
+// End Modules ---------------------------------------------------------
+// Start Tempmlate
+@import "template/header";
+@import "template/main";
+@import "template/footer";
+// End Tempmlate
+// Start Page  ---------------------------------------------------------
+@import "pages/docs"; // Example HTML
+@import "pages/builder"; // Builder preview html
+@import "pages/home";
+// End Page ------------------------------------------------------------

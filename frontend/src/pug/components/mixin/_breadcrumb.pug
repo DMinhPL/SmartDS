@@ -1,0 +1,29 @@
+//- Generic Simple Breadcrumb
+//- @mixin +breadcrumb(data,home,_class)
+//- @param {array} data: data of breadcrumb - [{'title','title value'},{'link','link value'}]
+//- @param {string} home: home title
+//- @param {string} class: class name
+mixin breadcrumb(data,home,_class)
+    unless home
+        - var home  = home || 'Home'
+    unless data
+    unless _class
+        - var _class = ''
+
+    nav(aria-label="breadcrumb" class=_class)
+        ol.breadcrumb
+            if(typeof data=="undefined" || data==[])
+                li.breadcrumb-item.active(aria-current="page")= home
+            else
+                li.breadcrumb-item
+                    a(href="/", title=home)= home
+                each item, index in data
+                    if(index < data.length - 1)
+                        li.breadcrumb-item
+                            if(item.link)
+                                a(href=item.link, title=item.title)= item.title
+                            else
+                                = item.title
+                    else 
+                        li.breadcrumb-item.active(aria-current="page")= item.title
+

@@ -1,0 +1,718 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'slick';
+    - title = "Component - Slick"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#usage') Usage
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#single-item') Single Item
+                li.toc-entry.toc-h3
+                    a(href='#multiple-items') Multiple Items
+                li.toc-entry.toc-h3
+                    a(href='#responsive-display') Responsive display
+                li.toc-entry.toc-h3
+                    a(href='#variable-width') Variable width
+                li.toc-entry.toc-h3
+                    a(href='#adaptive-height') Adaptive height
+                li.toc-entry.toc-h3
+                    a(href='#data-attribute-settings') Data attribute settings
+                li.toc-entry.toc-h3
+                    a(href='#center-mode') Center mode
+                li.toc-entry.toc-h3
+                    a(href='#lazy-loading') Lazy loading
+                li.toc-entry.toc-h3
+                    a(href='#autoplay') Autoplay
+                li.toc-entry.toc-h3
+                    a(href='#fade') Fade
+                li.toc-entry.toc-h3
+                    a(href='#add-remove') Add & Remove
+                li.toc-entry.toc-h3
+                    a(href='#filtering') Filtering
+                li.toc-entry.toc-h3
+                    a(href='#destroy') Destroy
+                li.toc-entry.toc-h3
+                    a(href='#slider-syncing') Slider Syncing
+        li.toc-entry.toc-h2
+            a(href='#settings') Settings
+        
+
+block content 
+    h1.bd-title#content Slick
+    p.bd-lead ...the last carousel you'll ever need
+    ul
+        li Fully responsive. Scales with its container.
+        li Separate settings per breakpoint
+        li Uses CSS3 when available. Fully functional when not.
+        li Swipe enabled. Or disabled, if you prefer.
+        li Desktop mouse dragging
+        li Infinite looping.
+        li Fully accessible with arrow key navigation
+        li Add, remove, filter & unfilter slides
+        li Autoplay, dots, arrows, callbacks, etc...
+
+    .mt-5#usage
+        h2 Usage
+
+        .mt-4#single-item
+            h3 Single Item
+            .bd-example
+                <div class="slider single-item">
+                    <div>
+                        <h3>1</h3>
+                    </div>
+                    <div>
+                        <h3>2</h3>
+                    </div>
+                    <div>
+                        <h3>3</h3>
+                    </div>
+                    <div>
+                        <h3>4</h3>
+                    </div>
+                    <div>
+                        <h3>5</h3>
+                    </div>
+                    <div>
+                        <h3>6</h3>
+                    </div>
+                </div>
+
+            figure.highlight
+                pre
+                    code.js.
+                        $('.single-item').slick();     
+
+        .mt-4#multiple-items
+            h3 Multiple Items
+            .bd-example
+                <div class="slider multiple-items">
+                    <div>
+                        <h3>1</h3>
+                    </div>
+                    <div>
+                        <h3>2</h3>
+                    </div>
+                    <div>
+                        <h3>3</h3>
+                    </div>
+                    <div>
+                        <h3>4</h3>
+                    </div>
+                    <div>
+                        <h3>5</h3>
+                    </div>
+                    <div>
+                        <h3>6</h3>
+                    </div>
+                </div>
+
+            figure.highlight
+                pre
+                    code.js.
+                        $('.multiple-items').slick({
+                            infinite: true,
+                            slidesToShow: 3,
+                            slidesToScroll: 3
+                        });    
+        
+        .mt-4#responsive-display
+            h3 Responsive Display
+            .bd-example
+                <div class="slider responsive-items">
+                    <div>
+                        <h3>1</h3>
+                    </div>
+                    <div>
+                        <h3>2</h3>
+                    </div>
+                    <div>
+                        <h3>3</h3>
+                    </div>
+                    <div>
+                        <h3>4</h3>
+                    </div>
+                    <div>
+                        <h3>5</h3>
+                    </div>
+                    <div>
+                        <h3>6</h3>
+                    </div>
+                </div>
+
+            figure.highlight
+                pre
+                    code.js.
+                        $('.responsive-items').slick({
+                            dots: true,
+                            infinite: false,
+                            speed: 300,
+                            slidesToShow: 4,
+                            slidesToScroll: 4,
+                            responsive: [
+                                {
+                                breakpoint: 1024,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 3,
+                                    infinite: true,
+                                    dots: true
+                                }
+                                },
+                                {
+                                breakpoint: 600,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 2
+                                }
+                                },
+                                {
+                                breakpoint: 480,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1
+                                }
+                                }
+                                // You can unslick at a given breakpoint now by adding:
+                                // settings: "unslick"
+                                // instead of a settings object
+                            ]
+                        });
+
+        .mt-4#variable-width
+            h3 Variable Width
+            .bd-example
+                .slider.variable-width
+                    div
+                        h3(style='width: 200px;') 200
+                    div
+                        h3(style='width: 175px;') 175
+                    div
+                        h3(style='width: 150px;') 150
+                    div
+                        h3(style='width: 300px;') 300
+                    div
+                        h3(style='width: 225px;') 225
+                    div
+                        h3(style='width: 125px;') 125
+
+            figure.highlight
+                pre
+                    code.js.
+                        $('.variable-width').slick({
+                            dots: true,
+                            infinite: true,
+                            speed: 300,
+                            slidesToShow: 1,
+                            centerMode: true,
+                            variableWidth: true
+                        });
+        
+        .mt-4#adaptive-height
+            h3 Adaptive Height
+            .bd-example
+                .slider.one-time
+                    div
+                        h3 1
+                    div
+                        h3 2
+                        p Look ma!
+                    div
+                        h3 3
+                        p
+                            | Check
+                            br
+                            | this out!
+                    div
+                        h3 4
+                        p Woo!
+
+
+            figure.highlight
+                pre
+                    code.js.
+                        $('.one-time').slick({
+                            dots: true,
+                            infinite: true,
+                            speed: 300,
+                            slidesToShow: 1,
+                            adaptiveHeight: true
+                        });
+        
+        .mt-4#data-attribute-settings
+            h3 Data Attribute Settings
+            p In slick 1.5 you can now add settings using the data-slick attribute. You still need to call $(element).slick() to initialize slick on the element.
+
+            .bd-example
+                .slider.data(data-slick='{"slidesToShow": 4, "slidesToScroll": 4}')
+                    div
+                        h3 1
+                    div
+                        h3 2
+                    div
+                        h3 3
+                    div
+                        h3 4
+                    div
+                        h3 5
+                    div
+                        h3 6
+            figure.highlight
+                pre
+                    code.js.
+                        .slider.data(data-slick='{"slidesToShow": 4, "slidesToScroll": 4}')
+                            div
+                                h3 1
+                            div
+                                h3 2
+                            div
+                                h3 3
+                            div
+                                h3 4
+                            div
+                                h3 5
+                            div
+                                h3 6
+
+        .mt-4#center-mode
+            h3 Center Mode
+            .bd-example
+                .slider.center
+                    div
+                        h3 1
+                    div
+                        h3 2
+                    div
+                        h3 3
+                    div
+                        h3 4
+                    div
+                        h3 5
+                    div
+                        h3 6
+
+            figure.highlight
+                pre
+                    code.js.
+                        $('.center').slick({
+                            centerMode: true,
+                            centerPadding: '60px',
+                            slidesToShow: 3,
+                            responsive: [
+                                {
+                                breakpoint: 768,
+                                settings: {
+                                    arrows: false,
+                                    centerMode: true,
+                                    centerPadding: '40px',
+                                    slidesToShow: 3
+                                }
+                                },
+                                {
+                                breakpoint: 480,
+                                settings: {
+                                    arrows: false,
+                                    centerMode: true,
+                                    centerPadding: '40px',
+                                    slidesToShow: 1
+                                }
+                                }
+                            ]
+                        });
+                                    
+        .mt-4#lazy-loading
+            h3 Lazy Loading
+            .bd-example
+                .slider.lazy
+                    div
+                        .image
+                            img(data-lazy='https://picsum.photos/300/300/?image=863')
+                    div
+                        .image
+                            img(data-lazy='https://picsum.photos/300/300/?image=864')
+                    div
+                        .image
+                            img(data-lazy='https://picsum.photos/300/300/?image=865')
+                    div
+                        .image
+                            img(data-lazy='https://picsum.photos/300/300/?image=866')
+                    div
+                        .image
+                            img(data-lazy='https://picsum.photos/300/300/?image=867')
+                    div
+                        .image
+                            img(data-lazy='https://picsum.photos/300/300/?image=868')
+
+            figure.highlight
+                pre
+                    code.js.
+                        // To use lazy loading, set a data-lazy attribute
+                        // on your img tags and leave off the src
+
+                        img(data-lazy="https://picsum.photos/300/?random")
+
+                        $('.lazy').slick({
+                            lazyLoad: 'ondemand',
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        });
+        
+        .mt-4#autoplay
+            h3 Autoplay
+            .bd-example
+                .slider.autoplay
+                    div
+                        h3 1
+                    div
+                        h3 2
+                    div
+                        h3 3
+                    div
+                        h3 4
+                    div
+                        h3 5
+                    div
+                        h3 6
+            figure.highlight
+                pre
+                    code.js.
+                        $('.autoplay').slick({
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            autoplay: true,
+                            autoplaySpeed: 2000,
+                        });
+        
+        .mt-4#fade
+            h3 Fade
+            .bd-example
+                .slider.fadeEffect
+                    div
+                        .image
+                            img(src='https://picsum.photos/700/400/?image=807')
+                    div
+                        .image
+                            img(src='https://picsum.photos/700/400/?image=808')
+                    div
+                        .image
+                            img(src='https://picsum.photos/700/400/?image=809')
+
+            figure.highlight
+                pre
+                    code.js.
+                        $('.fadeEffect').slick({
+                            dots: true,
+                            infinite: true,
+                            speed: 500,
+                            fade: true,
+                            cssEase: 'linear'
+                        });
+        
+        .mt-4#add-remove
+            h3 Add & Remove
+            .bd-example
+                .slider.add-remove
+                    div
+                        h3 1
+
+                .text-center
+                    a.btn.btn-primary.js-add-slide(href='javascript:void(0)') Add Slide
+                    a.ml-2.btn.btn-warning.js-remove-slide(href='javascript:void(0)') Remove Slide
+
+
+            figure.highlight
+                pre
+                    code.js.
+                        var slideIndex = 1;
+                        $('.add-remove').slick({
+                            slidesToShow: 3,
+                            slidesToScroll: 3
+                        });
+                        $('.js-add-slide').on('click', function() {
+                            slideIndex++;
+                            $('.add-remove').slick('slickAdd','&lt;div&gt;&lt;h3&gt;' + slideIndex + '&lt;/h3&gt;&lt;/div&gt;');
+                        });
+
+                        $('.js-remove-slide').on('click', function() {
+                            $('.add-remove').slick('slickRemove',slideIndex - 1);
+                            if (slideIndex !== 0){
+                                slideIndex--;
+                            }
+                        });
+        
+        .mt-4#filtering
+            h3 Filtering
+            .bd-example
+                .slider.filtering
+                    div
+                        h3 1
+                    div
+                        h3 2
+                    div
+                        h3 3
+                    div
+                        h3 4
+                    div
+                        h3 5
+                    div
+                        h3 6
+                    div
+                        h3 7
+                    div
+                        h3 8
+                    div
+                        h3 9
+                    div
+                        h3 10
+                    div
+                        h3 11
+                    div
+                        h3 12
+
+                .text-center
+                    a.btn.btn-primary.js-filter(href='javascript:void(0)') Filter Slides
+
+            figure.highlight
+                pre
+                    code.js.
+                        $('.filtering').slick({
+                            slidesToShow: 4,
+                            slidesToScroll: 4
+                        });
+
+                        var filtered = false;
+
+                        $('.js-filter').on('click', function(){
+                            if (filtered === false) {
+                                $('.filtering').slick('slickFilter',':even');
+                                $(this).text('Unfilter Slides');
+                                filtered = true;
+                            } else {
+                                $('.filtering').slick('slickUnfilter');
+                                $(this).text('Filter Slides');
+                                filtered = false;
+                            }
+                        });
+        
+        .mt-4#destroy
+            h3 Destroy
+            p If you really want to be that guy...
+            
+            figure.highlight
+                pre
+                    code.js.
+                        $('.your-slider').slick('unslick');
+
+        .mt-4#slider-syncing
+            h3 Slider Syncing
+            .bd-example
+                .slider.slider-for
+                    div
+                        h3 1
+                    div
+                        h3 2
+                    div
+                        h3 3
+                    div
+                        h3 4
+                    div
+                        h3 5
+                .slider.slider-nav
+                    div
+                        h3 1
+                    div
+                        h3 2
+                    div
+                        h3 3
+                    div
+                        h3 4
+                    div
+                        h3 5
+
+
+            figure.highlight
+                pre
+                    code.js.
+                         $('.slider-for').slick({
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: false,
+                            fade: true,
+                            asNavFor: '.slider-nav'
+                        });
+                        $('.slider-nav').slick({
+                            slidesToShow: 3,
+                            slidesToScroll: 1,
+                            asNavFor: '.slider-for',
+                            dots: true,
+                            centerMode: true,
+                            focusOnSelect: true
+                        });
+
+    .mt-5#settings
+        h2 Settings
+
+        -
+            var data = [
+                ['<code>accessibility</code>',          '<p><strong>Type</strong> boolean</p> <p><strong>Default</strong> true</p>  <p>Enables tabbing and arrow key navigation</p>'],
+                ['<code>adaptiveHeight</code>',         '<p><strong>Type</strong> boolean</p> <p><strong>Default</strong> false</p> <p>Enables adaptive height for single slide horizontal carousels.</p>'],
+                ['<code>autoplay</code>',               '<p><strong>Type</strong> boolean</p> <p><strong>Default</strong> false</p> <p>Enables Autoplay</p>'],
+                ['<code>autoplaySpeed</code>',          '<p><strong>Type</strong> int(ms)</p> <p><strong>Default</strong> 3000</p>  <p>Autoplay Speed in milliseconds</p>'],
+                ['<code>arrows</code>',                 '<p><strong>Type</strong> boolean</p> <p><strong>Default</strong> true</p>  <p>Prev/Next Arrows</p>'],
+            ]
+        +table-bordered([],data)
+block js
+    script.
+        $(function(){
+            $('.single-item').slick();
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3
+            });
+            $('.responsive-items').slick({
+                dots: true,
+                infinite: false,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                responsive: [
+                    {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                    },
+                    {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                    },
+                    {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                    }
+                    // You can unslick at a given breakpoint now by adding:
+                    // settings: "unslick"
+                    // instead of a settings object
+                ]
+            });
+            $('.variable-width').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                centerMode: true,
+                variableWidth: true
+            });
+            $('.one-time').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
+            $('.data').slick();
+            $('.center').slick({
+                centerMode: true,
+                centerPadding: '60px',
+                slidesToShow: 3,
+                responsive: [
+                    {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                    },
+                    {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                    }
+                ]
+            });
+            $('.lazy').slick({
+                lazyLoad: 'ondemand',
+                slidesToShow: 3,
+                slidesToScroll: 1
+            });
+            $('.autoplay').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
+            $('.fadeEffect').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear'
+            });
+            var slideIndex = 1;
+            $('.add-remove').slick({
+                slidesToShow: 3,
+                slidesToScroll: 3
+            });
+            $('.js-add-slide').on('click', function() {
+                slideIndex++;
+                $('.add-remove').slick('slickAdd','<div><h3>' + slideIndex + '</h3></div>');
+            });
+            $('.js-remove-slide').on('click', function() {
+                $('.add-remove').slick('slickRemove',slideIndex - 1);
+                if (slideIndex !== 0){
+                    slideIndex--;
+                }
+            });
+            $('.filtering').slick({
+                slidesToShow: 4,
+                slidesToScroll: 4
+            });
+            var filtered = false;
+            $('.js-filter').on('click', function(){
+                if (filtered === false) {
+                    $('.filtering').slick('slickFilter',':even');
+                    $(this).text('Unfilter Slides');
+                    filtered = true;
+                } else {
+                    $('.filtering').slick('slickUnfilter');
+                    $(this).text('Filter Slides');
+                    filtered = false;
+                }
+            });
+            $('.slider-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                fade: true,
+                asNavFor: '.slider-nav'
+            });
+            $('.slider-nav').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                asNavFor: '.slider-for',
+                dots: true,
+                centerMode: true,
+                focusOnSelect: true
+            });
+                            
+        });

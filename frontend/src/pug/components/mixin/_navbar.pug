@@ -1,0 +1,49 @@
+//- Navbar mixins by Kezz Bracey
+//- https://github.com/tutsplus/baking-bootstrap-snippets-with-jade
+//- Author:  http://tutsplus.com/authors/kezz-bracey
+mixin navbar(_class,_style)
+  nav(class=["navbar", _class] style=_style)
+    block
+
+mixin navbar-brand(url,text,image,size)
+  unless text
+    - var text = ''
+  unless size
+    - var size = 'auto'
+
+  unless url
+    span.navbar-brand.mb-0.h1
+      unless !image
+        img.d-inline-block.align-top(src=image, width=size, height=size, alt=text)
+      != text
+  else
+    a.navbar-brand(href=url)
+      unless !image
+        img.d-inline-block.align-top(src=image, width=size, height=size, alt=text)
+      != text
+
+mixin navbar-toggle(_id)
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target=`#${_id}`, aria-controls=_id, aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+
+mixin navbar-menu(_id)
+  +navbar-toggle(_id)
+  .navbar-collapse.collapse(id=_id)
+    block
+
+mixin navbar-nav(_class)
+  - var _class = _class || ''
+  ul.navbar-nav(class=_class)
+    block
+
+mixin nav-item(text,url,_class)
+  li.nav-item(class=_class)
+    a( href=url title=text)= text
+    if(_class==='active')
+      span.sr-only (current)
+    block    
+
+mixin nav-item-dropdown(text,url,_id,_class)
+  li.nav-item(class=["dropdown", _class])
+    a.nav-link.dropdown-toggle(id=_id href=url role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")= text
+    block

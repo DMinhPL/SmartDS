@@ -1,0 +1,747 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'dropdowns';
+    - title = "Component - Dropdowns"
+
+block content 
+    h1.bd-title#content Dropdowns
+    p.bd-lead Toggle contextual overlays for displaying lists of links and more with the Bootstrap dropdown plugin.
+
+    h2#overview Overview
+    p Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They’re made interactive with the included Bootstrap dropdown JavaScript plugin. They’re toggled by clicking, not by hovering; this is 
+        a(href='http://markdotto.com/2012/02/27/bootstrap-explained-dropdowns/') an intentional design decision.
+    p Dropdowns are built on a third party library, 
+        a(href='https://popper.js.org/') Popper.js
+        | , which provides dynamic positioning and viewport detection. Be sure to include 
+        a(href='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js') popper.min.js
+        |  before Bootstrap’s JavaScript or use 
+        code.highlighter-rouge bootstrap.bundle.min.js
+        |  / 
+        code.highlighter-rouge bootstrap.bundle.js
+        |  which contains Popper.js. Popper.js isn’t used to position dropdowns in navbars though as dynamic positioning isn’t required.
+    p If you’re building our JavaScript from source, it 
+        a(href='/docs/4.1/getting-started/javascript/#util')
+            | requires 
+            code.highlighter-rouge util.js
+        | .
+    h2#accessibility Accessibility
+    p The 
+        a(href='https://www.w3.org/TR/wai-aria/')
+            abbr(title='Web Accessibility Initiative') WAI
+            abbr(title='Accessible Rich Internet Applications') ARIA
+        |  standard defines an actual 
+        a(href='https://www.w3.org/WAI/PF/aria/roles#menu')
+            code.highlighter-rouge role="menu"
+            |  widget
+        | , but this is specific to application-like menus which trigger actions or functions. 
+        abbr(title='Accessible Rich Internet Applications') ARIA
+        |  menus can only contain menu items, checkbox menu items, radio button menu items, radio button groups, and sub-menus.
+    p Bootstrap’s dropdowns, on the other hand, are designed to be generic and applicable to a variety of situations and markup structures. For instance, it is possible to create dropdowns that contain additional inputs and form controls, such as search fields or login forms. For this reason, Bootstrap does not expect (nor automatically add) any of the 
+        code.highlighter-rouge role
+        |  and 
+        code.highlighter-rouge aria-
+        |  attributes required for true 
+        abbr(title='Accessible Rich Internet Applications') ARIA
+        |  menus. Authors will have to include these more specific attributes themselves.
+    p However, Bootstrap does add built-in support for most standard keyboard menu interactions, such as the ability to move through individual 
+        code.highlighter-rouge .dropdown-item
+        |  elements using the cursor keys and close the menu with the 
+        kbd ESC
+        |  key.
+    h2#examples Examples
+    p Wrap the dropdown’s toggle (your button or link) and the dropdown menu within 
+        code.highlighter-rouge .dropdown
+        | , or another element that declares 
+        code.highlighter-rouge position: relative;
+        | . Dropdowns can be triggered from 
+        code.highlighter-rouge &lt;a&gt;
+        |  or 
+        code.highlighter-rouge &lt;button&gt;
+        |  elements to better fit your potential needs.
+    h3#single-button Single button
+    p Any single 
+        code.highlighter-rouge .btn
+        |  can be turned into a dropdown toggle with some markup changes. Here’s how you can put them to work with either 
+        code.highlighter-rouge &lt;button&gt;
+        |  elements:
+    .bd-example
+        +dropdown-secondary('Dropdown button',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'}])
+
+    figure.highlight
+        pre
+            code.js.
+                +dropdown-secondary('Dropdown button',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'}])
+
+    p
+        | And with 
+        code.highlighter-rouge &lt;a&gt;
+        |  elements:
+    .bd-example
+        .dropdown
+            a#dropdownMenuLink.btn.btn-secondary.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                | Dropdown link
+            +dropdown-menu([
+                {text:'Action',data:'#'},
+                {text:'Another action',data:'#'},
+                {text:'Something else here',data:'#'}
+            ],'dropdownMenuLink')
+    
+    figure.highlight
+        pre
+            code.js.
+                .dropdown
+                    a#dropdownMenuLink.btn.btn-secondary.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                        | Dropdown link
+                    +dropdown-menu([
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'}
+                    ],'dropdownMenuLink')
+
+    p The best part is you can do this with any button variant, too:
+    .bd-example
+        +dropdown-primary('Primary',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}])
+        +dropdown-secondary('Secondary',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}])
+        +dropdown-success('Success',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}])
+        +dropdown-info('Info',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}])
+        +dropdown-warning('Warning',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}])
+        +dropdown-danger('Danger',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}])
+        
+    figure.highlight
+        pre
+            code.js.
+                // Example split danger button
+                +dropdown-danger('Danger',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}])
+
+    h3#split-button Split button
+    p
+        | Similarly, create split button dropdowns with virtually the same markup as single button dropdowns, but with the addition of 
+        code.highlighter-rouge .dropdown-toggle-split
+        |  for proper spacing around the dropdown caret.
+    p
+        | We use this extra class to reduce the horizontal 
+        code.highlighter-rouge padding
+        |  on either side of the caret by 25% and remove the 
+        code.highlighter-rouge margin-left
+        |  that’s added for regular button dropdowns. Those extra changes keep the caret centered in the split button and provide a more appropriately sized hit area next to the main button.
+    .bd-example
+        +dropdown-primary('Primary',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'','split')
+        +dropdown-secondary('Secondary',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'','split')
+        +dropdown-success('Success',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'','split')
+        +dropdown-info('Info',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'','split')
+        +dropdown-warning('Warning',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'','split')
+        +dropdown-danger('Danger',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'','split')
+
+    figure.highlight
+        pre
+            code.js.
+                // Example split danger button
+                +dropdown-danger('Danger',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ],'','split')
+
+    h2#sizing Sizing
+    p Button dropdowns work with buttons of all sizes, including default and split dropdown buttons.
+    .bd-example
+        .btn-toolbar(role='toolbar')
+            +dropdown-lg-secondary('Large button',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}])
+            |  &nbsp;
+            +dropdown-lg-secondary('Large split button',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'split')
+        .btn-toolbar(role='toolbar')
+            +dropdown-sm-secondary('Large button',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}])
+            |  &nbsp;
+            +dropdown-sm-secondary('Large split button',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'split')
+    // /example
+
+    figure.highlight
+        pre
+            code.js.
+                // Large button groups (default and split)
+                +dropdown-lg-secondary('Large button',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ])
+                +dropdown-lg-secondary('Large split button',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ],'split')
+                
+                // Small button groups (default and split)
+                +dropdown-sm-secondary('Large button',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ])
+                +dropdown-sm-secondary('Large split button',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ],'split')
+
+    h2#directions Directions
+    h3#dropup Dropup
+    p
+        | Trigger dropdown menus above elements by adding 
+        code.highlighter-rouge .dropup
+        |  to the parent element.
+    .bd-example
+        +dropup('Dropup',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'secondary')
+        |  &nbsp;
+        +dropup('Split dropup',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'secondary','',true)
+    figure.highlight
+        pre
+            code.js.
+                // Default dropup button
+                +dropup('Dropup',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ],'secondary')
+
+                // Split dropup button
+                +dropup('Split dropup',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ],'secondary','',true)
+
+    h3#dropright Dropright
+    p
+        | Trigger dropdown menus at the right of the elements by adding 
+        code.highlighter-rouge .dropright
+        |  to the parent element.
+    .bd-example
+        +dropright('Dropup',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'secondary')
+        |  &nbsp;
+        +dropright('Split dropup',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'secondary','',true)
+
+    figure.highlight
+        pre
+            code.js.
+                // Default dropright button
+                +dropright('Dropup',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ],'secondary')
+
+                // Split dropright button
+                +dropright('Split dropup',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ],'secondary')
+
+    h3#dropleft Dropleft
+    p
+        | Trigger dropdown menus at the left of the elements by adding 
+        code.highlighter-rouge .dropleft
+        |  to the parent element.
+    .bd-example
+        +dropleft('Dropup',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'secondary')
+        |  &nbsp;
+        +dropleft('Split dropup',[{text:'Action',data:'#'},{text:'Another action',data:'#'},{text:'Something else here',data:'#'},{},{text:'Separated link',data:'#'}],'secondary','',true)
+
+    figure.highlight
+        pre
+            code.js.
+                // Default dropleft button
+                +dropleft('Dropup',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ],'secondary')
+
+                // Split dropleft button
+                +dropleft('Split dropup',
+                    [
+                        {text:'Action',data:'#'},
+                        {text:'Another action',data:'#'},
+                        {text:'Something else here',data:'#'},
+                        {},
+                        {text:'Separated link',data:'#'}
+                    ],'secondary','',true)
+
+    h2#menu-items Menu items
+    p
+        | Historically dropdown menu contents 
+        em had
+        |  to be links, but that’s no longer the case with v4. Now you can optionally use 
+        code.highlighter-rouge &lt;button&gt;
+        |  elements in your dropdowns instead of just 
+        code.highlighter-rouge &lt;a&gt;
+        | s.
+    .bd-example
+        +dropdown-secondary('Dropdown',
+                    [
+                        {text:'Action',data:'button'},
+                        {text:'Another action',data:'button'},
+                        {text:'Something else here',data:'button'},
+                    ])
+
+    figure.highlight
+        pre
+            code.js.
+                +dropdown-secondary('Dropdown',
+                    [
+                        {text:'Action',data:'button'},
+                        {text:'Another action',data:'button'},
+                        {text:'Something else here',data:'button'},
+                    ])
+
+    p
+        | You can also create non-interactive dropdown items with 
+        code.highlighter-rouge {text:'Dropdown item text'}
+        | . Feel free to style further with custom CSS or text utilities.
+    .bd-example
+        +dropdown-menu([   
+            {text:'Dropdown item text'},
+            {text:'Action',data:'#'},
+            {text:'Another action',data:'#'},
+            {text:'Something else here',data:'#'},
+        ])
+    
+    figure.highlight
+        pre
+            code.js.
+                +dropdown-menu([   
+                    {text:'Dropdown item text'},
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'},
+                ])
+
+    h3#active Active
+    p
+        | Add 
+        code.highlighter-rouge style:'active'
+        |  to items in the dropdown to 
+        strong style them as active
+        | .
+    .bd-example
+        +dropdown-menu([
+            {text:'Regular link',data:'#'},
+            {text:'Active link',data:'#',style:'active'},
+            {text:'Another link',data:'#'},
+        ])
+        .dropdown-menu
+            a.dropdown-item(href='#') Regular link
+            a.dropdown-item.active(href='#') Active link
+            a.dropdown-item(href='#') Another link
+
+    figure.highlight
+        pre
+            code.js.
+                +dropdown-menu([
+                    {text:'Regular link',data:'#'},
+                    {text:'Active link',data:'#',style:'active'},
+                    {text:'Another link',data:'#'},
+                ])
+
+    h3#disabled Disabled
+    p
+        | Add 
+        code.highlighter-rouge style:'disabled'
+        |  to items in the dropdown to 
+        strong style them as disabled
+        | .
+    .bd-example
+        +dropdown-menu([
+            {text:'Regular link',data:'#'},
+            {text:'Disabled link',data:'#',style:'disabled'},
+            {text:'Another link',data:'#'},
+        ])         
+
+    figure.highlight
+        pre
+            code.js.
+                +dropdown-menu([
+                    {text:'Regular link',data:'#'},
+                    {text:'Disabled link',data:'#',style:'disabled'},
+                    {text:'Another link',data:'#'},
+                ]) 
+    
+    h2#menu-alignment Menu alignment
+    p
+        | By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. Add 
+        code.highlighter-rouge .dropdown-menu-right
+        |  to a 
+        code.highlighter-rouge .dropdown-menu
+        |  to right align the dropdown menu.
+    .bd-callout.bd-callout-info
+        p
+            strong Heads up!
+            |  Dropdowns are positioned thanks to Popper.js (except when they are contained in a navbar).
+    .bd-example
+        .btn-group
+            button.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                | Right-aligned menu
+            .dropdown-menu.dropdown-menu-right
+                +dropdown-item('Action','#')
+                +dropdown-item('Another action','#')
+                +dropdown-item('Something else here','#')
+    
+    figure.highlight
+        pre
+            code.js.
+                .btn-group
+                    button.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                        | Right-aligned menu
+                    .dropdown-menu.dropdown-menu-right
+                        +dropdown-item('Action','#')
+                        +dropdown-item('Another action','#')
+                        +dropdown-item('Something else here','#')
+    
+    h2#menu-content Menu content
+    h3#headers Headers
+    p Add a header to label sections of actions in any dropdown menu.
+    .bd-example
+        +dropdown-menu([
+            {text:'Dropdown header',data:'header'},
+            {text:'Action',data:'#'},
+            {text:'Another action',data:'#'},
+        ])
+
+    figure.highlight
+        pre
+            code.js.
+                +dropdown-menu([
+                    {text:'Dropdown header',data:'header'},
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                ])
+                
+    h3#dividers Dividers
+    p Separate groups of related menu items with a divider.
+    .bd-example
+        +dropdown-menu([
+            {text:'Action',data:'#'},
+            {text:'Another action',data:'#'},
+            {text:'Something else here',data:'#'},
+            {},
+            {text:'Separated link',data:'#'}
+        ])
+    figure.highlight
+        pre
+            code.js.
+                +dropdown-menu([
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'},
+                    {},
+                    {text:'Separated link',data:'#'}
+                ])
+    
+    h3#text Text
+    p
+        | Place any freeform text within a dropdown menu with text and use 
+        a(href='/docs/4.1/utilities/spacing/') spacing utilities
+        | . Note that you’ll likely need additional sizing styles to constrain the menu width.
+    .bd-example
+        +dropdown-secondary('Sample text')
+            .p-4.text-muted(style='max-width: 200px;')
+                p
+                    | Some example text that's free-flowing within the dropdown menu.
+                p.mb-0
+                    | And this is more example text.
+    
+    figure.highlight
+        pre
+            code.js.
+                +dropdown-secondary('Sample text')
+                    .p-4.text-muted(style='max-width: 200px;')
+                        p
+                            | Some example text that's free-flowing within the dropdown menu.
+                        p.mb-0
+                            | And this is more example text.
+    
+    h3#forms Forms
+    p
+        | Put a form within a dropdown menu, or make it into a dropdown menu, and use 
+        a(href='/docs/4.1/utilities/spacing/') margin or padding utilities
+        |  to give it the negative space you require.
+    .bd-example
+        +dropdown-secondary('Sample Form')
+            form.px-4.py-3
+                +input-box('email','fEmail','email@example.com','Email address')
+                +input-box('password','fPassword','Password','Password')
+                +checkbox-box('Remember me','dropdownCheck')
+                +btn-submit-primary('Sign in')
+            +dropdown-item() 
+            +dropdown-item('New around here? Sign up','#') 
+            +dropdown-item('Forgot password?','#') 
+
+    figure.highlight
+        pre
+            code.js.
+                +dropdown-secondary('Sample Form')
+                    form.px-4.py-3
+                        +input-box('email','fEmail','email@example.com','Email address')
+                        +input-box('password','fPassword','Password','Password')
+                        +checkbox-box('Remember me','dropdownCheck')
+                        +btn-submit-primary('Sign in')
+                    +dropdown-item() 
+                    +dropdown-item('New around here? Sign up','#') 
+                    +dropdown-item('Forgot password?','#') 
+
+    
+    h2#dropdown-options Dropdown options
+    p
+        | Use 
+        code.highlighter-rouge data-offset
+        |  or 
+        code.highlighter-rouge data-reference
+        |  to change the location of the dropdown.
+    .bd-example
+        .d-flex
+            .dropdown.mr-1
+                button#dropdownMenuOffset.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false', data-offset='10,20')
+                    | Offset
+                +dropdown-menu([
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'}
+                ],'dropdownMenuOffset')
+            .btn-group
+                button.btn.btn-secondary(type='button') Reference
+                button#dropdownMenuReference.btn.btn-secondary.dropdown-toggle.dropdown-toggle-split(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false', data-reference='parent')
+                    span.sr-only Toggle Dropdown
+                +dropdown-menu([
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'},
+                    {},
+                    {text:'Separated link',data:'#'}
+                ],'dropdownMenuReference')
+
+    figure.highlight
+        pre
+            code.js.
+                .d-flex
+                    .dropdown.mr-1
+                        button#dropdownMenuOffset.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false', data-offset='10,20')
+                            | Offset
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {text:'Something else here',data:'#'}
+                        ],'dropdownMenuOffset')
+                    .btn-group
+                        button.btn.btn-secondary(type='button') Reference
+                        button#dropdownMenuReference.btn.btn-secondary.dropdown-toggle.dropdown-toggle-split(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false', data-reference='parent')
+                            span.sr-only Toggle Dropdown
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {text:'Something else here',data:'#'},
+                            {},
+                            {text:'Separated link',data:'#'}
+                        ],'dropdownMenuReference')
+    
+    h2#usage Usage
+    p
+        | Via data attributes or JavaScript, the dropdown plugin toggles hidden content (dropdown menus) by toggling the 
+        code.highlighter-rouge .show
+        |  class on the parent list item. The 
+        code.highlighter-rouge data-toggle="dropdown"
+        |  attribute is relied on for closing dropdown menus at an application level, so it’s a good idea to always use it.
+    .bd-callout.bd-callout-info
+        p
+            | On touch-enabled devices, opening a dropdown adds empty (
+            code.highlighter-rouge $.noop
+            | ) 
+            code.highlighter-rouge mouseover
+            |  handlers to the immediate children of the 
+            code.highlighter-rouge <body>
+            |  element. This admittedly ugly hack is necessary to work around a 
+            a(href='https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html') quirk in iOS’ event delegation
+            | , which would otherwise prevent a tap anywhere outside of the dropdown from triggering the code that closes the dropdown. Once the dropdown is closed, these additional empty 
+            code.highlighter-rouge mouseover
+            |  handlers are removed.
+    h3#via-data-attributes Via data attributes
+    p
+        | Add 
+        code.highlighter-rouge data-toggle="dropdown"
+        |  to a link or button to toggle a dropdown.
+
+    figure.highlight
+        pre
+            code.css
+                | .dropdown
+                |     button#dLabel(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                |         | Dropdown trigger
+                |     .dropdown-menu(aria-labelledby='dLabel')
+                |         | ...
+    h3#via-javascript Via JavaScript
+    p Call the dropdowns via JavaScript:
+    figure.highlight
+        pre
+            code.js
+                | $('.dropdown-toggle').dropdown()  
+    
+    .bd-callout.bd-callout-info
+        h5#data-toggledropdown-still-required
+            code.highlighter-rouge data-toggle="dropdown"
+            |  still required
+        p
+            | Regardless of whether you call your dropdown via JavaScript or instead use the data-api, 
+            code.highlighter-rouge data-toggle="dropdown"
+            |  is always required to be present on the dropdown’s trigger element.
+    h3#options Options
+    p
+        | Options can be passed via data attributes or JavaScript. For data attributes, append the option name to 
+        code.highlighter-rouge data-
+        | , as in 
+        code.highlighter-rouge data-offset=""
+        | .
+    table.table.table-bordered.table-striped
+        thead
+            tr
+                th(style='width: 100px;') Name
+                th(style='width: 100px;') Type
+                th(style='width: 50px;') Default
+                th Description
+        tbody
+            tr
+                td offset
+                td number | string | function
+                td 0
+                td Offset of the dropdown relative to its target. For more information refer to Popper.js's 
+                    a(href='https://popper.js.org/popper-documentation.html#modifiers..offset.offset') offset docs
+                    | .
+            tr
+                td flip
+                td boolean
+                td true
+                td Allow Dropdown to flip in case of an overlapping on the reference element. For more information refer to Popper.js's 
+                    a(href='https://popper.js.org/popper-documentation.html#modifiers..flip.enabled') flip docs
+                    | .
+            tr
+                td boundary
+                td string | element
+                td 'scrollParent'
+                td Overflow constraint boundary of the dropdown menu. Accepts the values of 
+                    code 'viewport'
+                    | , 
+                    code 'window'
+                    | , 
+                    code 'scrollParent'
+                    | , or an HTMLElement reference (JavaScript only). For more information refer to Popper.js's 
+                    a(href='https://popper.js.org/popper-documentation.html#modifiers..preventOverflow.boundariesElement') preventOverflow docs
+                    | .
+            tr
+                td reference
+                td string | element
+                td 'toggle'
+                td Reference element of the dropdown menu. Accepts the values of 
+                    code 'toggle'
+                    | , 
+                    code 'parent'
+                    | , or an HTMLElement reference. For more information refer to Popper.js's 
+                    a(href='https://popper.js.org/popper-documentation.html#referenceObject') referenceObject docs
+                    | .
+            tr
+                td display
+                td string
+                td 'dynamic'
+                td By default, we use Popper.js for dynamic positioning. Disable this with `static`.
+    p
+        | Note when 
+        code.highlighter-rouge boundary
+        |  is set to any value other than 
+        code.highlighter-rouge 'scrollParent'
+        | , the style 
+        code.highlighter-rouge position: static
+        |  is applied to the 
+        code.highlighter-rouge .dropdown
+        |  container.
+    h3#methods Methods
+    table
+        thead
+            tr
+                th Method
+                th Description
+        tbody
+            tr
+                td
+                    code.highlighter-rouge $().dropdown('toggle')
+                td Toggles the dropdown menu of a given navbar or tabbed navigation.
+            tr
+                td
+                    code.highlighter-rouge $().dropdown('update')
+                td Updates the position of an element’s dropdown.
+            tr
+                td
+                    code.highlighter-rouge $().dropdown('dispose')
+                td Destroys an element’s dropdown.
+    h3#events Events
+    p
+        | All dropdown events are fired at the 
+        code.highlighter-rouge .dropdown-menu
+        | ’s parent element and have a 
+        code.highlighter-rouge relatedTarget
+        |  property, whose value is the toggling anchor element.
+    table
+        thead
+            tr
+                th Event
+                th Description
+        tbody
+            tr
+                td
+                    code.highlighter-rouge show.bs.dropdown
+                td This event fires immediately when the show instance method is called.
+            tr
+                td
+                    code.highlighter-rouge shown.bs.dropdown
+                td This event is fired when the dropdown has been made visible to the user (will wait for CSS transitions, to complete).
+            tr
+                td
+                    code.highlighter-rouge hide.bs.dropdown
+                td This event is fired immediately when the hide instance method has been called.
+            tr
+                td
+                    code.highlighter-rouge hidden.bs.dropdown
+                td This event is fired when the dropdown has finished being hidden from the user (will wait for CSS transitions, to complete).
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myDropdown').on('show.bs.dropdown', function () {
+                |     // do something…
+                | })

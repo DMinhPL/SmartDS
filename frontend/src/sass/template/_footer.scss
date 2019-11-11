@@ -1,0 +1,68 @@
+// Sample code
+footer{
+    hr{
+        background-color: rgb(21, 158, 238);
+        width: 50px;
+        height: 3px;
+        margin-top: 0px;
+        display: inline-block;
+        border-top: 1px solid rgb(52, 54, 62);
+    }
+    a{
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        &:hover{
+            color: rgb(21, 158, 238);
+            text-decoration: none;
+        }
+        i{
+            color: rgb(255, 255, 255);
+        }
+    }
+    #footer {
+        position: relative;
+        background-color: rgb(52, 54, 62);
+        color: rgb(255, 255, 255);
+        display: block;
+        padding: 50px 0px;
+        .footer-block {
+            h4{
+                font-size: 24px;
+            }
+
+            ul.footer-links {
+                list-style: none;
+                margin: 0px;
+                padding: 0px;
+                li{
+                    border-bottom: 1px solid rgb(62, 71, 82);
+                    padding: 5px 0px;
+                    a.post{
+                        text-transform: uppercase;
+                    }
+                    p.post-date{
+                        color: rgb(147, 148, 152);
+                    }
+                }
+            }
+        }
+    }
+    #bottom-footer{
+        font-size: 14px;
+        background-color: rgb(39, 41, 48);
+        color: rgb(255, 255, 255);
+        padding: 15px 0px;
+        .btm-footer-links a {
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .copyright{
+            @include media-breakpoint-up(md){
+                text-align: right;
+            }
+            a{
+                color: rgb(21, 158, 238);
+            }
+        }
+    }
+}

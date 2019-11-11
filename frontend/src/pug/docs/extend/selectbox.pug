@@ -1,0 +1,351 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'selectbox';
+    - title = "Component - Select UI"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#getting-started') Getting Started
+        li.toc-entry.toc-h2
+            a(href='#appearance') Appearance
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#disabling-a-select2-control') Disabling a Select2 control
+                li.toc-entry.toc-h3
+                    a(href='#labels') Labels
+                li.toc-entry.toc-h3
+                    a(href='#sizing') Sizing
+                
+block content 
+    h1.bd-title#content Select UI (Select2)
+    p.bd-lead Select2 gives you a customizable select box with support for searching, tagging, remote data sets, infinite scrolling, and many other highly used options.
+
+    h2#getting-started Getting Started
+    p 
+        | Select2 was designed to be a replacement for the standard 
+        code.highlighter-rouge select
+        | box that is displayed by the browser. By default it supports all options and operations that are available in a standard select box, but with added flexibility.
+    p Select2 can take a regular select box like this...
+    .bd-example
+        +selectui('select1', 'Select a state')        
+            +optgroup("Alaskan/Hawaiian Time Zone")
+                +option("Alaska","AK")
+                +option("Hawaii","HI")
+            +optgroup("Pacific Time Zone")
+                +option("California","CA")
+                +option("Nevada","NV")
+                +option("Oregon","OR")
+                +option("Washington","WA")
+            +optgroup("Mountain Time Zone")
+                +option("Arizona","AZ")
+                +option("Colorado","CO")
+                +option("Idaho","ID")
+                +option("Montana","MT")
+                +option("Nebraska","NE")
+                +option("New Mexico","NM")
+                +option("North Dakota","ND")
+                +option("Utah","UT")
+                +option("Wyoming","WY")
+            +optgroup("Central Time Zone")
+                +option("Alabama","AL")
+                +option("Arkansas","AR")
+                +option("Illinois","IL")
+                +option("Iowa","IA")
+                +option("Kansas","KS")
+                +option("Kentucky","KY")
+                +option("Louisiana","LA")
+                +option("Minnesota","MN")
+                +option("Mississippi","MS")
+                +option("Missouri","MO")
+                +option("Oklahoma","OK")
+                +option("South Dakota","SD")
+                +option("Texas","TX")
+                +option("Tennessee","TN")
+                +option("Wisconsin","WI")            
+            +optgroup("Eastern Time Zone")
+                +option("Connecticut","CT")
+                +option("Delaware","DE")
+                +option("Florida","FL")
+                +option("Georgia","GA")
+                +option("Indiana","IN")
+                +option("Maine","ME")
+                +option("Maryland","MD")
+                +option("Massachusetts","MA")
+                +option("Michigan","MI")
+                +option("New Hampshire","NH")
+                +option("New Jersey","NJ")
+                +option("New York","NY")
+                +option("North Carolina","NC")
+                +option("Ohio","OH")
+                +option("Pennsylvania","PA")
+                +option("Rhode Island","RI")
+                +option("South Carolina","SC")
+                +option("Vermont","VT")
+                +option("Virginia","VA")
+                +option("West Virginia","WV")
+    figure.highlight
+        pre
+            code.js.
+                +selectui('select1', 'Select a state')
+                    ...
+
+    p Select2 also supports multi-value select boxes. The select below is declared with the multiple attribute.
+    .bd-example
+        +selectui('select2', 'Select a state',true)        
+            +optgroup("Alaskan/Hawaiian Time Zone")
+                +option("Alaska","AK")
+                +option("Hawaii","HI")
+            +optgroup("Pacific Time Zone")
+                +option("California","CA")
+                +option("Nevada","NV")
+                +option("Oregon","OR")
+                +option("Washington","WA")
+            +optgroup("Mountain Time Zone")
+                +option("Arizona","AZ")
+                +option("Colorado","CO")
+                +option("Idaho","ID")
+                +option("Montana","MT")
+                +option("Nebraska","NE")
+                +option("New Mexico","NM")
+                +option("North Dakota","ND")
+                +option("Utah","UT")
+                +option("Wyoming","WY")
+            +optgroup("Central Time Zone")
+                +option("Alabama","AL")
+                +option("Arkansas","AR")
+                +option("Illinois","IL")
+                +option("Iowa","IA")
+                +option("Kansas","KS")
+                +option("Kentucky","KY")
+                +option("Louisiana","LA")
+                +option("Minnesota","MN")
+                +option("Mississippi","MS")
+                +option("Missouri","MO")
+                +option("Oklahoma","OK")
+                +option("South Dakota","SD")
+                +option("Texas","TX")
+                +option("Tennessee","TN")
+                +option("Wisconsin","WI")            
+            +optgroup("Eastern Time Zone")
+                +option("Connecticut","CT")
+                +option("Delaware","DE")
+                +option("Florida","FL")
+                +option("Georgia","GA")
+                +option("Indiana","IN")
+                +option("Maine","ME")
+                +option("Maryland","MD")
+                +option("Massachusetts","MA")
+                +option("Michigan","MI")
+                +option("New Hampshire","NH")
+                +option("New Jersey","NJ")
+                +option("New York","NY")
+                +option("North Carolina","NC")
+                +option("Ohio","OH")
+                +option("Pennsylvania","PA")
+                +option("Rhode Island","RI")
+                +option("South Carolina","SC")
+                +option("Vermont","VT")
+                +option("Virginia","VA")
+                +option("West Virginia","WV")
+    figure.highlight
+        pre
+            code.js.
+                +selectui('select1', 'Select a state',true)
+    
+    h2#appearance Appearance
+    p The appearance of your Select2 controls can be customized via the standard HTML attributes for 
+        code.highlighter-rouge select 
+        | elements
+
+    h3#disabling-a-select2-control Disabling a Select2 control
+    p 
+        | Select2 will respond to the 
+        code.highlighter-rouge disabled 
+        | attribute on 
+        code.highlighter-rouge select 
+        | elements. You can also initialize Select2 with 
+        code.highlighter-rouge disabled: true 
+        | to get the same effect.
+
+    .bd-example
+        +selectui-disabled('select3','Select an option')
+            +option("Alaska","AK")
+            +option("Hawaii","HI")
+
+    figure.highlight
+        pre
+            code.js.
+                +selectui-disabled('select3','Select an option')
+                    ...
+
+
+    h3#labels Labels
+    
+    p 
+        | You can, and should, use a 
+        code.highlighter-rouge label 
+        | with Select2, just like any other 
+        code.highlighter-rouge select 
+        | element.
+
+    .bd-example
+        +selectui-box('select4','Select a state','Click this to focus the single select element')
+            +optgroup("Alaskan/Hawaiian Time Zone")
+                +option("Alaska","AK")
+                +option("Hawaii","HI")
+            +optgroup("Pacific Time Zone")
+                +option("California","CA")
+                +option("Nevada","NV")
+                +option("Oregon","OR")
+                +option("Washington","WA")
+            +optgroup("Mountain Time Zone")
+                +option("Arizona","AZ")
+                +option("Colorado","CO")
+                +option("Idaho","ID")
+                +option("Montana","MT")
+                +option("Nebraska","NE")
+                +option("New Mexico","NM")
+                +option("North Dakota","ND")
+                +option("Utah","UT")
+                +option("Wyoming","WY")
+            +optgroup("Central Time Zone")
+                +option("Alabama","AL")
+                +option("Arkansas","AR")
+                +option("Illinois","IL")
+                +option("Iowa","IA")
+                +option("Kansas","KS")
+                +option("Kentucky","KY")
+                +option("Louisiana","LA")
+                +option("Minnesota","MN")
+                +option("Mississippi","MS")
+                +option("Missouri","MO")
+                +option("Oklahoma","OK")
+                +option("South Dakota","SD")
+                +option("Texas","TX")
+                +option("Tennessee","TN")
+                +option("Wisconsin","WI")            
+            +optgroup("Eastern Time Zone")
+                +option("Connecticut","CT")
+                +option("Delaware","DE")
+                +option("Florida","FL")
+                +option("Georgia","GA")
+                +option("Indiana","IN")
+                +option("Maine","ME")
+                +option("Maryland","MD")
+                +option("Massachusetts","MA")
+                +option("Michigan","MI")
+                +option("New Hampshire","NH")
+                +option("New Jersey","NJ")
+                +option("New York","NY")
+                +option("North Carolina","NC")
+                +option("Ohio","OH")
+                +option("Pennsylvania","PA")
+                +option("Rhode Island","RI")
+                +option("South Carolina","SC")
+                +option("Vermont","VT")
+                +option("Virginia","VA")
+                +option("West Virginia","WV")
+
+        +selectui-box('select5','Select a state','Click this to focus the multiple select element',true)
+            +optgroup("Alaskan/Hawaiian Time Zone")
+                +option("Alaska","AK")
+                +option("Hawaii","HI")
+            +optgroup("Pacific Time Zone")
+                +option("California","CA")
+                +option("Nevada","NV")
+                +option("Oregon","OR")
+                +option("Washington","WA")
+            +optgroup("Mountain Time Zone")
+                +option("Arizona","AZ")
+                +option("Colorado","CO")
+                +option("Idaho","ID")
+                +option("Montana","MT")
+                +option("Nebraska","NE")
+                +option("New Mexico","NM")
+                +option("North Dakota","ND")
+                +option("Utah","UT")
+                +option("Wyoming","WY")
+            +optgroup("Central Time Zone")
+                +option("Alabama","AL")
+                +option("Arkansas","AR")
+                +option("Illinois","IL")
+                +option("Iowa","IA")
+                +option("Kansas","KS")
+                +option("Kentucky","KY")
+                +option("Louisiana","LA")
+                +option("Minnesota","MN")
+                +option("Mississippi","MS")
+                +option("Missouri","MO")
+                +option("Oklahoma","OK")
+                +option("South Dakota","SD")
+                +option("Texas","TX")
+                +option("Tennessee","TN")
+                +option("Wisconsin","WI")            
+            +optgroup("Eastern Time Zone")
+                +option("Connecticut","CT")
+                +option("Delaware","DE")
+                +option("Florida","FL")
+                +option("Georgia","GA")
+                +option("Indiana","IN")
+                +option("Maine","ME")
+                +option("Maryland","MD")
+                +option("Massachusetts","MA")
+                +option("Michigan","MI")
+                +option("New Hampshire","NH")
+                +option("New Jersey","NJ")
+                +option("New York","NY")
+                +option("North Carolina","NC")
+                +option("Ohio","OH")
+                +option("Pennsylvania","PA")
+                +option("Rhode Island","RI")
+                +option("South Carolina","SC")
+                +option("Vermont","VT")
+                +option("Virginia","VA")
+                +option("West Virginia","WV")
+    
+    figure.highlight
+        pre
+            code.js.
+                +selectui-box('select4','Select a state','Click this to focus the single select element')
+                    ...
+                +selectui-box('select4','Select a state','Click this to focus the single select element',true)
+    
+
+    h3#sizing Sizing
+    p Set heights using classes like 
+    code.highlighter-rouge .form-control-lg 
+    | and 
+    code.highlighter-rouge .form-control-sm.
+
+    .bd-example
+        .form-group
+            +selectui-lg('select6','Large select')
+                +option('Option 1','option-1')
+                +option('Option 2','option-2')
+                +option('Option 3','option-3')
+        .form-group
+            +selectui('select7','Default select')
+                +option('Option 1','option-1')
+                +option('Option 2','option-2')
+                +option('Option 3','option-3')
+        .form-group
+            +selectui-sm('select8','Small select')
+                +option('Option 1','option-1')
+                +option('Option 2','option-2')
+                +option('Option 3','option-3')
+
+    figure.highlight
+        pre
+            code.js.
+                .form-group
+                    +selectui-lg('select6','Large select')
+                        +option('Large select') 
+                .form-group
+                    +selectui('select7','Default select')
+                        +option('Default select') 
+                .form-group
+                    +selectui-sm('select6','Small select')
+                        +option('Small select')
+
+    

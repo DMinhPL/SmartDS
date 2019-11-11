@@ -1,0 +1,77 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'file';
+    - title = "Component - File browser"
+
+block content 
+    h1.bd-title#content File browser
+    p.bd-lead The file input is the most gnarly of the bunch and requires additional JavaScript if you’d like to hook them up with functional Choose file… and selected file name text.
+
+    .bd-example
+        +fileui('customFile','Choose file')
+    figure.highlight
+        pre
+            code.js.
+                +fileui('customFile','Choose file')
+    p
+        | We hide the default file 
+        code.highlighter-rouge input
+        |  via 
+        code.highlighter-rouge opacity
+        |  and instead style the 
+        code.highlighter-rouge label
+        | . The button is generated and positioned with 
+        code.highlighter-rouge ::after
+        | . Lastly, we declare a 
+        code.highlighter-rouge width
+        |  and 
+        code.highlighter-rouge height
+        |  on the 
+        code.highlighter-rouge input
+        |  for proper spacing for surrounding content.
+    h4#translating-or-customizing-the-strings Translating or customizing the strings
+    p
+        | The 
+        a(href='https://developer.mozilla.org/en-US/docs/Web/CSS/:lang')
+            code.highlighter-rouge :lang()
+            |  pseudo-class
+        |  is used to allow for translation of the “Browse” text into other languages. Override or add entries to the 
+        code.highlighter-rouge $custom-file-text
+        |  Sass variable with the relevant 
+        a(href='https://en.wikipedia.org/wiki/IETF_language_tag') language tag
+        |  and localized strings. The English strings can be customized the same way. For example, here’s how one might add a Spanish translation (Spanish’s language code is 
+        code.highlighter-rouge es
+        | ):
+    figure.highlight
+        pre
+            code.js.
+                $custom-file-text: (
+                    en: "Browse",
+                    es: "Elegir",
+                    vi: "Duyệt"
+                );
+    p
+        | Here’s 
+        code.highlighter-rouge lang(es)
+        |  in action on the custom file input for a Spanish translation:
+    .bd-example
+        +fileui('customFileLang','Seleccionar Archivo','','es')
+    figure.highlight
+        pre
+            code.js.
+                +fileui('customFileLang','Seleccionar Archivo','','es')
+    p
+        | You’ll need to set the language of your document (or subtree thereof) correctly in order for the correct text to be shown. This can be done using 
+        a(href='https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang')
+            | the 
+            code.highlighter-rouge lang
+            |  attribute
+        |  on the 
+        code.highlighter-rouge
+            span.nt html
+        |  element or the 
+        a(href='https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.12')
+            code.highlighter-rouge Content-Language
+            |  HTTP header
+        | , among other methods.

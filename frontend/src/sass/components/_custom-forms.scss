@@ -1,0 +1,355 @@
+// Embedded icons from Open Iconic.
+// Released under MIT and copyright 2014 Waybury.
+// https://useiconic.com/open
+
+
+// Checkboxes and radios
+//
+// Base class takes care of all the key behavioral aspects.
+
+.ctr-ui {
+  position: relative;
+  display: block;
+  min-height: (1rem * $line-height-base);
+  padding-left: $ctr-ui-gutter;
+}
+
+.ctr-ui-inline {
+  display: inline-flex;
+  margin-right: $ctr-ui-spacer-x;
+}
+
+.ctr-ui-input {
+  position: absolute;
+  z-index: -1; // Put the input behind the label so it doesn't overlay text
+  opacity: 0;
+
+  &:checked ~ .ctr-ui-label::before {
+    color: $ctr-ui-indicator-checked-color;
+    @include gradient-bg($ctr-ui-indicator-checked-bg);
+    @include box-shadow($ctr-ui-indicator-checked-box-shadow);
+  }
+
+  &:focus ~ .ctr-ui-label::before {
+    // the mixin is not used here to make sure there is feedback
+    box-shadow: $ctr-ui-indicator-focus-box-shadow;
+  }
+
+  &:active ~ .ctr-ui-label::before {
+    color: $ctr-ui-indicator-active-color;
+    background-color: $ctr-ui-indicator-active-bg;
+    @include box-shadow($ctr-ui-indicator-active-box-shadow);
+  }
+
+  &:disabled {
+    ~ .ctr-ui-label {
+      color: $ctr-ui-label-disabled-color;
+
+      &::before {
+        background-color: $ctr-ui-indicator-disabled-bg;
+      }
+    }
+  }
+}
+
+// Custom control indicators
+//
+// Build the custom controls out of psuedo-elements.
+
+.ctr-ui-label {
+  margin-bottom: 0;
+
+  // Background-color and (when enabled) gradient
+  &::before {
+    position: absolute;
+    top: (($line-height-base - $ctr-ui-indicator-size) / 2);
+    left: 0;
+    display: block;
+    width: $ctr-ui-indicator-size;
+    height: $ctr-ui-indicator-size;
+    pointer-events: none;
+    content: "";
+    user-select: none;
+    background-color: $ctr-ui-indicator-bg;
+    @include box-shadow($ctr-ui-indicator-box-shadow);
+  }
+
+  // Foreground (icon)
+  &::after {
+    position: absolute;
+    top: (($line-height-base - $ctr-ui-indicator-size) / 2);
+    left: 0;
+    display: block;
+    width: $ctr-ui-indicator-size;
+    height: $ctr-ui-indicator-size;
+    content: "";
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: $ctr-ui-indicator-bg-size;
+  }
+}
+
+
+// Checkboxes
+//
+// Tweak just a few things for checkboxes.
+
+.checkbox-ui {
+  .ctr-ui-label::before {
+    @include border-radius($checkbox-ui-indicator-border-radius);
+  }
+
+  .ctr-ui-input:checked ~ .ctr-ui-label {
+    &::before {
+      @include gradient-bg($ctr-ui-indicator-checked-bg);
+    }
+    &::after {
+      background-image: $checkbox-ui-indicator-icon-checked;
+    }
+  }
+
+  .ctr-ui-input:indeterminate ~ .ctr-ui-label {
+    &::before {
+      @include gradient-bg($checkbox-ui-indicator-indeterminate-bg);
+      @include box-shadow($checkbox-ui-indicator-indeterminate-box-shadow);
+    }
+    &::after {
+      background-image: $checkbox-ui-indicator-icon-indeterminate;
+    }
+  }
+
+  .ctr-ui-input:disabled {
+    &:checked ~ .ctr-ui-label::before {
+      background-color: $ctr-ui-indicator-checked-disabled-bg;
+    }
+    &:indeterminate ~ .ctr-ui-label::before {
+      background-color: $ctr-ui-indicator-checked-disabled-bg;
+    }
+  }
+}
+
+// Radios
+//
+// Tweak just a few things for radios.
+
+.radio-ui {
+  .ctr-ui-label::before {
+    border-radius: $radio-ui-indicator-border-radius;
+  }
+
+  .ctr-ui-input:checked ~ .ctr-ui-label {
+    &::before {
+      @include gradient-bg($ctr-ui-indicator-checked-bg);
+    }
+    &::after {
+      background-image: $radio-ui-indicator-icon-checked;
+    }
+  }
+
+  .ctr-ui-input:disabled {
+    &:checked ~ .ctr-ui-label::before {
+      background-color: $ctr-ui-indicator-checked-disabled-bg;
+    }
+  }
+}
+
+
+// File
+//
+// Custom file input.
+
+.file-ui {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: $file-ui-height;
+  margin-bottom: 0;
+}
+
+.file-ui-input {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: $file-ui-height;
+  margin: 0;
+  opacity: 0;
+
+  &:focus ~ .file-ui-label {
+    border-color: $file-ui-focus-border-color;
+    box-shadow: $file-ui-focus-box-shadow;
+
+    &::after {
+      border-color: $file-ui-focus-border-color;
+    }
+  }
+
+  @each $lang, $value in $file-ui-text {
+    &:lang(#{$lang}) ~ .file-ui-label::after {
+      content: $value;
+    }
+  }
+}
+
+.file-ui-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  height: $file-ui-height;
+  padding: $file-ui-padding-y $file-ui-padding-x;
+  line-height: $file-ui-line-height;
+  color: $file-ui-color;
+  background-color: $file-ui-bg;
+  border: $file-ui-border-width solid $file-ui-border-color;
+  @include border-radius($file-ui-border-radius);
+  @include box-shadow($file-ui-box-shadow);
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: calc(#{$file-ui-height} - #{$file-ui-border-width} * 2);
+    padding: $file-ui-padding-y $file-ui-padding-x;
+    line-height: $file-ui-line-height;
+    color: $file-ui-button-color;
+    content: "Browse";
+    @include gradient-bg($file-ui-button-bg);
+    border-left: $file-ui-border-width solid $file-ui-border-color;
+    @include border-radius(0 $file-ui-border-radius $file-ui-border-radius 0);
+  }
+}
+
+// Range
+//
+// Style range inputs the same across browsers. Vendor-specific rules for psuedo
+// elements cannot be mixed. As such, there are no shared styles for focus or
+// active states on prefixed selectors.
+
+.custom-range {
+  width: 100%;
+  padding-left: 0; // Firefox specific
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &::-webkit-slider-thumb {
+    width: $custom-range-thumb-width;
+    height: $custom-range-thumb-height;
+    margin-top: -($custom-range-thumb-width * .25); // Webkit specific?
+    @include gradient-bg($custom-range-thumb-bg);
+    border: $custom-range-thumb-border;
+    @include border-radius($custom-range-thumb-border-radius);
+    @include box-shadow($custom-range-thumb-box-shadow);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: $custom-range-thumb-focus-box-shadow; // No mixin for focus accessibility
+    }
+
+    &:active {
+      @include gradient-bg($custom-range-thumb-active-bg);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: $custom-range-track-width;
+    height: $custom-range-track-height;
+    color: transparent; // Why?
+    cursor: $custom-range-track-cursor;
+    background-color: $custom-range-track-bg;
+    border-color: transparent;
+    @include border-radius($custom-range-track-border-radius);
+    @include box-shadow($custom-range-track-box-shadow);
+  }
+
+  &::-moz-range-thumb {
+    width: $custom-range-thumb-width;
+    height: $custom-range-thumb-height;
+    @include gradient-bg($custom-range-thumb-bg);
+    border: $custom-range-thumb-border;
+    @include border-radius($custom-range-thumb-border-radius);
+    @include box-shadow($custom-range-thumb-box-shadow);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: $custom-range-thumb-focus-box-shadow; // No mixin for focus accessibility
+    }
+
+    &:active {
+      @include gradient-bg($custom-range-thumb-active-bg);
+    }
+  }
+
+  &::-moz-range-track {
+    width: $custom-range-track-width;
+    height: $custom-range-track-height;
+    color: transparent;
+    cursor: $custom-range-track-cursor;
+    background-color: $custom-range-track-bg;
+    border-color: transparent; // Firefox specific?
+    @include border-radius($custom-range-track-border-radius);
+    @include box-shadow($custom-range-track-box-shadow);
+  }
+
+  &::-ms-thumb {
+    width: $custom-range-thumb-width;
+    height: $custom-range-thumb-height;
+    @include gradient-bg($custom-range-thumb-bg);
+    border: $custom-range-thumb-border;
+    @include border-radius($custom-range-thumb-border-radius);
+    @include box-shadow($custom-range-thumb-box-shadow);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: $custom-range-thumb-focus-box-shadow; // No mixin for focus accessibility
+    }
+
+    &:active {
+      @include gradient-bg($custom-range-thumb-active-bg);
+    }
+  }
+
+  &::-ms-track {
+    width: $custom-range-track-width;
+    height: $custom-range-track-height;
+    color: transparent;
+    cursor: $custom-range-track-cursor;
+    background-color: transparent;
+    border-color: transparent;
+    border-width: ($custom-range-thumb-height * .5);
+    @include box-shadow($custom-range-track-box-shadow);
+  }
+
+  &::-ms-fill-lower {
+    background-color: $custom-range-track-bg;
+    @include border-radius($custom-range-track-border-radius);
+  }
+
+  &::-ms-fill-upper {
+    margin-right: 15px; // arbitrary?
+    background-color: $custom-range-track-bg;
+    @include border-radius($custom-range-track-border-radius);
+  }
+}

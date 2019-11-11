@@ -1,0 +1,64 @@
+//- +e('strong', 'This will appear 10 times')
+//-   p This will appear 10 times
+mixin e(element, text)
+	- var element = typeof element != "undefined" ? element : 'div'
+	- element = element != "" ? element : 'div'
+	#{element}&attributes(attributes)= text
+		block
+
+//- Pre mixin
+//- @mixin +pre(class)
+//- @param {string} cls: class name
+mixin pre(cls)
+	unless cls
+		- cls = ''
+	pre(class=cls)
+		code
+			block
+
+//- close mixin
+//- @mixin +close(dismiss)
+//- @param {string} dismiss: ex - alert, modal
+mixin close(dismiss)
+	unless dismiss
+		- var dismiss = ''
+	button.close(type='button', data-dismiss=dismiss aria-label='Close')
+		span(aria-hidden='true') ×
+
+//- embed mixin
+//- @mixin +embed()
+//- @param {string} _src: link of media
+//- @param {string} ratios: ratio of embed
+mixin embed(_src, ratios)
+	unless !_src
+	.embed-responsive(class=`embed-responsive-${ratios}`)
+		iframe.embed-responsive-item(src=_src, allowfullscreen='')
+
+mixin embed-21by9(_src)
+	+embed(_src, '21by9')
+mixin embed-16by9(_src)
+	+embed(_src, '16by9')
+mixin embed-4by3(_src)
+	+embed(_src, '4by3')
+mixin embed-1by1(_src)
+	+embed(_src, '1by1')
+
+mixin blockquote(text,footer,author,style)
+	- var text = text || ''
+	- var style = style || ''
+	- var footer = footer || ''
+	- var author = author || ''
+	blockquote.blockquote(class=style)
+		!= text
+		block
+		if(footer !=='' || author !=='' )
+			footer.blockquote-footer!= footer + ' '
+				cite(title=author)!= author
+
+mixin blockquote-center(text,footer,author,style)
+	- var style = ' ' + style || ''
+	+blockquote(text,footer,author,'text-center' + style)
+
+mixin blockquote-right(text,footer,author,style)
+	- var style = ' ' + style || ''
+	+blockquote(text,footer,author,'text-right' + style)

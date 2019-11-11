@@ -1,0 +1,128 @@
+extends ../layouts/_layout_builder
+block setting
+    -var mainActive = 'build';
+    -var slideActive = 'build';
+
+block content 
+    #builderWrapper
+        // Download Form
+        #preloaded-download.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editImageLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#editImageLabel.modal-title Download
+                        button.close(type='button', data-dismiss='modal', aria-label='Close'): span(aria-hidden='true') ×
+                    .modal-body
+                        .form-group
+                            label.col-form-label File name: 
+                                small.text-muted (Ex: HomePage, AboutPage...)
+                            input.form-control.downloadfilename(type='text', value="file-name")
+                    .modal-footer
+                        button.btn.btn-secondary.btn-cancel(type='button', data-dismiss='modal') Cancel
+                        button#builderDownloadBtn.btn.btn-primary.btn-save(type='button')
+                            i.fa.fa-download 
+                            |  Save
+        // Export Form
+        #preloaded-export
+        // Export Modal
+        #sim-edit-export.sim-edit
+            .sim-edit-box(style='height:390px;')
+                .sim-edit-box-title Export Template
+                .sim-edit-box-content
+                    .sim-edit-box-content-text Select and copy the entire text below
+                    .sim-edit-box-content-field
+                        textarea.sim-edit-box-content-field-textarea.text
+                .sim-edit-box-buttons
+                    .sim-edit-box-buttons-cancel(style='margin-left:0px;') Cancel
+        // Image Modal
+        #editImage.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editImageLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#editImageLabel.modal-title Edit Image
+                        button.close(type='button', data-dismiss='modal', aria-label='Close'): span(aria-hidden='true') ×
+                    .modal-body
+                        .form-group
+                            label.col-form-label URL: 
+                                small.text-muted (full address including http://)
+                            input.form-control.image(type='text')
+                    .modal-footer
+                        button.btn.btn-secondary.btn-cancel(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary.btn-save(type='button') Save
+        // Link Modal
+        #editLink.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editLinkLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#editLinkLabel.modal-title Edit Link
+                        button.close(type='button', data-dismiss='modal', aria-label='Close'): span(aria-hidden='true') ×
+                    .modal-body
+                        .form-group
+                            label.col-form-label Title: 
+                            input.form-control.title(type='text')
+                        .form-group
+                            label.col-form-label URL: 
+                                small.text-muted (full address including http://)
+                            input.form-control.url(type='text')
+                    .modal-footer
+                        button.btn.btn-secondary.btn-cancel(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary.btn-save(type='button') Save
+        // Title Modal
+        #editTitle.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editTitleLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#editTitleLabel.modal-title Edit Title
+                        button.close(type='button', data-dismiss='modal', aria-label='Close'): span(aria-hidden='true') ×
+                    .modal-body
+                        .form-group
+                            label.col-form-label Title: 
+                            input.form-control.title(type='text')
+                    .modal-footer
+                        button.btn.btn-secondary.btn-cancel(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary.btn-save(type='button') Save
+        // Text Modal
+        #editText.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editTextLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#editTitleLabel.modal-title Edit Text
+                        button.close(type='button', data-dismiss='modal', aria-label='Close'): span(aria-hidden='true') ×
+                    .modal-body
+                        .form-group
+                            label.col-form-label Text: 
+                            textarea.form-control.text(rows=5)
+                    .modal-footer
+                        button.btn.btn-secondary.btn-cancel(type='button', data-dismiss='modal') Close
+                        button.btn.btn-primary.btn-save(type='button') Save
+        // Icon Modal
+        #editIcon.modal.fade(tabindex='-1', role='dialog', aria-labelledby='editIconLabel', aria-hidden='true')
+            .modal-dialog.modal-lg(role='document')
+                .modal-content
+                    .modal-header
+                        h5#editIconLabel.modal-title Edit Icon
+                        button.close(type='button', data-dismiss='modal', aria-label='Close'): span(aria-hidden='true') ×
+                    .modal-body
+                        .form-group
+                            label.col-form-label Select Icon
+                            .builder__icons
+                                include _icon
+                    .modal-footer
+                        button.btn.btn-secondary.btn-cancel(type='button', data-dismiss='modal') Close
+
+        .builder.resize-height
+            .builder__buttons
+                .btn.btn-primary.builder__buttons__add
+                    | Add  
+                    i.fa.fa-caret-down
+                    .builder__buttons__dropdown
+                        .builder__buttons__content
+                #builderDownload.btn.btn-success.builder__buttons__download
+                    | Download
+                    i.fa.fa-download
+                
+                a.btn.btn-danger.builder__buttons__reset(href='./')
+                    |   Reset
+                    i.fa.fa-undo
+            #builder-content
+                // content

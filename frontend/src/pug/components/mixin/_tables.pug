@@ -1,0 +1,144 @@
+//- Table mixins
+//- @mixin +table(header, data, type,typehead, typerow, typecol, itemrow, itemcol, responsive)
+//- @param {array} header: data header - ['head 1', 'head 2', '...']
+//- @param {array} data: data content - [['col 1', 'col 2', '...'], ['col 1', 'col 2', '...'],['...', '...', '...']]
+//- @param {string} type: type of table
+//- @param {string} typehead: type of header 
+//- @param {string} typerow: type of row 
+//- @param {string} typecol: type of col
+//- @param {number} itemrow: number type of row (0, 1, 2, 3, ... 'all')
+//- @param {number} itemcol: number type of col
+//- @param {boolean} responsive: responsive table: '', 'sm', 'md', 'lg', 'xl'
+
+mixin table(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	- var data 		= data || ""
+	- var type 		= type || ""
+	- var typehead 	= typehead || ""
+	- var typerow 	= typerow || ""
+	- var typecol 	= typecol || ""
+	- var itemrow 	= itemrow || 0
+	- var itemcol 	= itemcol || 0
+	if(typeof responsive != "undefined")
+		if(responsive != '')
+			div(class=`table-responsive-${responsive}`)
+				table.table(class=`${type}`)
+					if(header != '')
+						thead(class=`${typehead}`)
+							tr
+								each head, i in header
+									th(scope="col")!= head			
+					tbody
+						if(data != '')
+							each row,j in data
+								+row(row, typerow, typecol, itemcol)
+						block
+		else
+			.table-responsive
+				table.table(class=`${type}`)
+					if(header != '')
+						thead(class=`${typehead}`)
+							tr
+								each head, i in header
+									th(scope="col")!= head			
+					tbody
+						if(data != '')
+							each row,j in data
+								+row(row, typerow, typecol, itemcol)
+						block
+	else
+		table.table(class=`${type}`)
+			if(header != '')
+				thead(class=`${typehead}`)
+					tr
+						each head, i in header
+							th(scope="col")!= head			
+			tbody
+				if(data != '')
+					each row,j in data
+						+row(row, typerow, typecol, itemcol)
+				block
+
+
+
+mixin row(data, type, typecol, itemcol)
+	- var data 		= data || ""
+	- var type 		= type || ""
+	- var typecol 	= typecol || ''
+	- var itemcol 	= itemcol || 0
+	tr(class=`${type}`)
+		if(data != '')
+			each col,j in data
+				if(typecol=="head" && j==itemcol)
+					+col(col, "head")
+				else 
+					+col(col, type)
+				
+		block
+
+mixin col(data, type, _colspan)
+	- var data 		= data || ""
+	- var type 		= type || ""
+	- var _colspan 		= _colspan || 0
+	
+	if(_colspan != 0)
+		if(type=='head')
+			th(scope="row" class=`${type}` colspan=_colspan)!= data
+				block
+		else 
+			td(class=`${type}` colspan=_colspan)!= data
+				block
+	else 
+		if(type=='head')
+			th(scope="row" class=`${type}`)!= data
+				block
+		else 
+			td(class=`${type}`)!= data
+				block
+			
+		
+//- Table Style
+mixin table-striped(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-striped ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+
+mixin table-bordered(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-bordered ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+
+mixin table-borderless(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-borderless ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+
+mixin table-sm(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-sm ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+
+mixin table-hover(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-hover ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+
+mixin table-condensed(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-condensed ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+
+//- Table Color
+mixin table-primary(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-primary ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+mixin table-secondary(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-secondary ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+mixin table-success(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-success ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+mixin table-info(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-info ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+mixin table-warning(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-warning ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+mixin table-danger(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-danger ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+mixin table-light(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-light ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+mixin table-dark(header,data,type,typehead,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,`table-dark ${type}`,typehead, typerow, typecol, itemrow, itemcol)
+
+//- Header table color
+mixin table-thead-dark(header,data,type,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,type,'thead-dark', typerow, typecol, itemrow, itemcol)
+mixin table-thead-light(header,data,type,typerow,typecol,itemrow,itemcol,responsive)
+	+table(header,data,type,'thead-light', typerow, typecol, itemrow, itemcol)
+
+//- Table Responsive
+mixin table-responsive(_responsive, header,data,type,typehead,typerow,typecol,itemrow,itemcol)
+	+table(header, data, type,typehead, typerow, typecol, itemrow, itemcol, _responsive)

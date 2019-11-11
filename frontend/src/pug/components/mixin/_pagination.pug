@@ -1,0 +1,55 @@
+mixin pagination(items,size,_class)
+    unless _class
+        - var _class = ""
+    unless !size
+        - _class = _class + ' pagination-' + size
+    nav(aria-label='Page navigation')
+        ul.pagination(class=_class)
+            each item in items
+                +pagintion-item(item.text,item.url,item.icon,item.style)
+
+mixin pagintion-item(text,url,icon,_class)
+    if(typeof _class!=='undefined')
+        if( _class==='active')
+            li.page-item(class='active')
+                a.page-link(href=url)
+                    unless icon
+                        != text
+                        span.sr-only (current)
+                    else
+                        span(aria-hidden='true')!= icon
+                        span.sr-only= text
+        if( _class==='disabled')
+            li.page-item(class='disabled')
+                a.page-link(href=url)
+                    unless icon
+                        != text
+                    else
+                        span(aria-hidden='true')!= icon
+                        span.sr-only= text                    
+        
+    else
+        li.page-item(class=_class)
+            a.page-link(href=url)
+                unless icon
+                    != text
+                else
+                    span(aria-hidden='true')!= icon
+                    span.sr-only= text
+
+mixin pagination-lg(items,_class)
+    +pagination(items,'lg',_class)
+mixin pagination-sm(items,_class)
+    +pagination(items,'sm',_class)
+mixin pagination-center(items,size,_class)
+    unless _class
+        - var _class = ""
+    else
+        - _class = ' ' + _class
+    +pagination(items,size, 'justify-content-center' + _class)
+mixin pagination-right(items,size,_class)
+    unless _class
+        - var _class = ""
+    else
+        - _class = ' ' + _class
+    +pagination(items,size, 'justify-content-end' + _class)

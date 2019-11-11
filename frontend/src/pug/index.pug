@@ -1,0 +1,148 @@
+extends layouts/_layout_default
+
+
+block setting
+    - title = "Smart SDS"
+    - ishomepage = true 
+
+block content 
+    //- +pre-loading
+    .drop-filter-panel
+    .page-internal-wrapper.home-wrapper
+        // HOME: BANNER
+        .banner-page-small.banner-home
+            //- .img-bg(style="background-image:url('images/banner-1.jpg')")
+            //-     img(src="images/banner-1.jpg", alt="banner-home")
+            .overlay-dark
+            .swiper-container
+                .parallax-bg(style='background-image:url(/images/banner-1.jpg)' data-swiper-parallax='-23%')
+                    img(src="images/banner-1.jpg", alt="banner-home")
+                .swiper-wrapper
+                    each val in [1,2,3]
+                        .swiper-slide
+                            .container.text-center
+                                h1.banner-title(data-swiper-parallax="-300") PROVIDING THE HIGHEST LOREM
+                                h5.banner-title.small(data-swiper-parallax="-200") Lorem ipsum dolor sit amet sit legimus copiosae instructior eiut vix denique fierentis ea saperet inimicu utqui dolor oratio mnesarchum.
+                                .group-btn
+                                    .btn-sds.small.white Learn more
+                                    .btn-sds.small.blue Learn more
+                .swiper-pagination
+                .swiper-button-next
+                .swiper-button-prev
+            
+            //- .overlay-dark
+        //FEATURES SECTION
+        section.features-section
+            .container
+                .row   
+                    .col-lg-4
+                        .block-content.flex.no-pad
+                            i.icon.icon-laptop
+                            .inner-content
+                                h4.box-title.smaller 100% RESPONSIVE
+                                .box-subtitle.mb-14 Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum.
+                                a(href="#").readmore READMORE
+                                    i.fa.fa-caret-right
+                    .col-lg-4
+                        .block-content.flex.no-pad
+                            i.icon.icon-bullhorn
+                            .inner-content
+                                h4.box-title.smaller POWERFUL FEATURES
+                                .box-subtitle.mb-14 Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum.
+                                a(href="#").readmore READMORE
+                                    i.fa.fa-caret-right
+                    .col-lg-4
+                        .block-content.flex.no-pad
+                            i.icon.icon-support
+                            .inner-content
+                                h4.box-title.smaller CUSTOMER SUPPORT
+                                .box-subtitle.mb-14 Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum.
+                                a(href="#").readmore READMORE
+                                    i.fa.fa-caret-right
+        //ABOUT SECTION
+        section.about-section
+            .image-holder.col-lg-6.col-md-6.col-sm-12.pull-left
+                .background-imgholder
+                    img.img-responsive(src='/images/about.jpg', alt='about', style='display:none;')
+            .container-fluid.wow.slideInRight( data-wow-duration="1.5s" data-wow-delay=".5s")
+                .col-md-7.col-md-offset-5.col-sm-12.text-inner
+                    .text-block
+                        .section-heading
+                            h1.title
+                                | ABOUT 
+                                span US
+                            p.subheading Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut.
+                        ul.aboutul
+                            li
+                                i.fa.fa-check
+                                | Vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum.
+                            li
+                                i.fa.fa-check
+                                | legimus copiosae instructior ei ut vix denique fierentis atqui mucius consequat ad pro.
+                            li
+                                i.fa.fa-check
+                                | Ea saperet inimicu ut qui dolor oratio maiestatis ubique mnesarchum.
+                            li
+                                i.fa.fa-check
+                                | Sanctus voluptatibus et per illum noluisse facilisis quo atqui mucius ad pro.
+                            li
+                                i.fa.fa-check
+                                | At illum noluisse facilisis quo te dictas epicurei suavitate qui his ad.
+                            li
+                                i.fa.fa-check
+                                | Tantas propriae mediocritatem id vix qui everti efficiantur an ocurreret consetetur.
+                        a(href="#").btn-sds.small.transparent
+                            | Learn More  
+                            i.fa.fa-caret-right
+
+        //WHAT WE DO SECTION
+        section.available-section.padding-section.wow.slideInLeft( data-wow-duration="1.5s" data-wow-delay=".5s")
+            .container
+                .block-content
+                    .text-block.text-center
+                        h1.title WHAT #[span WE DO]
+                        .subtext Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum ea utamur impetus fuisset nam nostrud euismod volumus ne mei.
+                    .box-img
+                        .inner-item
+                            .swiper-container
+                                .swiper-wrapper
+                                    +available_icon_item('IDEA','lightbulb-o')
+                                    +available_icon_item('CONCEPT','cloud-download')
+                                    +available_icon_item('DESIGN','magic')
+                                    +available_icon_item('DEVELOP','cog')
+
+        //CONTACT SECTION
+        section.contact-section.padding-section(style="background:url('/images/contact.jpg')")
+            .container
+                .text-block.text-center
+                    .section-heading
+                        h1.title
+                            | DROP YOUR 
+                            span MESSAGE
+                        p.subheading Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut.
+                .block-content
+                    form(action="#")
+                        .form-style
+                            .row
+                                .col-lg-6.col-md-6
+                                    .form-line
+                                        label.d-block Name *
+                                            input(type="text" required)
+                                    .form-line
+                                        label.d-block Phone *
+                                            input(type="text" required)
+                                    .form-line
+                                        label.d-block Email *
+                                            input(type="email" required)
+                                    .form-line
+                                        label.d-block Company Name 
+                                            input(type="text")
+                                .col-lg-6.col-md-6
+                                    .form-line
+                                        label.d-block Subject *
+                                            input(type="text" required)
+                                    .form-line
+                                        label.d-block Message *
+                                            textarea(rows="8" required)
+                                    button(type="submit").btn-sds.big.blue Submit message
+                            

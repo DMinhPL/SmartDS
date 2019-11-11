@@ -1,0 +1,364 @@
+include _icons
+//- Input control with form-group wrapper
+//- @mixin +input(type,id,placeholder,label,name,caption)
+//- @param {string} type: text, password, color, date, datetime, datetime-local, email, month, number, range, search, tel, time, url, week, file
+//- @param {string} name: name/id of input
+//- @param {string} placeholder: placeholder of input
+//- @param {string} label: text of label
+//- @param {string} _value: _value of input
+//- @param {string} caption: text of small note
+mixin input(type,name,placeholder,label,_value,caption,_class,readonly,plaintext,disabled)
+    - var name = name || 'input-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    - var _value = _value || ''
+    unless !label  
+        label(for=name) #{label}
+    - var _class = _class || ''
+    unless !type
+        case type
+            when 'file'
+                - _class = 'form-control-file ' + _class
+            when 'range'
+                - _class = 'form-control-range ' + _class
+            default
+                if(typeof plaintext!=='undefined' && plaintext===true)
+                    - _class = 'form-control-plaintext ' + _class
+                else
+                    - _class = 'form-control ' + _class
+    unless caption
+        if( (typeof readonly!=='undefined' && readonly===true) || (typeof plaintext!=='undefined' && plaintext===true) )
+            input(class=_class type=type, id=name, placeholder=placeholder, name=name, value=_value readonly)
+        else
+            if(typeof disabled!=='undefined' && disabled===true)
+                input(class=_class type=type, id=name, placeholder=placeholder, name=name, value=_value, disabled='')
+            else
+                input(class=_class type=type, id=name, placeholder=placeholder, name=name, value=_value)
+                
+    else
+        if( (typeof readonly!=='undefined' && readonly===true) || (typeof plaintext!=='undefined' && plaintext===true) )
+            input(class=_class type=type, id=name, placeholder=placeholder, aria-describedby=`${name}Help`, name=name, value=value readonly)
+        else
+            if(typeof disabled!=='undefined' && disabled===true)
+                input(class=_class type=type, id=name, placeholder=placeholder, aria-describedby=`${name}Help`, name=name, value=value, disabled='')
+            else
+                input(class=_class type=type, id=name, placeholder=placeholder, aria-describedby=`${name}Help`, name=name, value=value)
+                
+        small.form-text.text-muted(id=`${name}Help`)!= caption
+
+mixin input-simple(type,name,placeholder,_value,_class,readonly,plaintext,disabled)
+    +input(type,name,placeholder,'',_value,'',_class,readonly,plaintext,disabled)
+
+mixin input-simple-lg(type,name,placeholder,_value,_class,readonly,plaintext,disabled)
+    - var _class = ' ' + _class || ''
+    +input(type,name,placeholder,'',_value,'', 'form-control-lg' + _class,readonly,plaintext,disabled)
+
+mixin input-simple-sm(type,name,placeholder,_value,_class,readonly,plaintext,disabled)
+    - var _class = ' ' + _class || ''
+    +input(type,name,placeholder,'',_value,'', 'form-control-sm' + _class,readonly,plaintext,disabled)
+
+//- input control with a form-group
+mixin input-box(type,name,placeholder,label,_value,caption,_class,readonly,plaintext,disabled)
+    unless _class
+        - var _class = ''
+    else
+        - _class = ' ' + _class
+    .form-group(class=_class)
+        +input(type,name,placeholder,label,_value,caption,'',readonly,plaintext,disabled)
+
+//- Checkbox - Block style
+//- @mixin +checkbox(text,name)
+//- @param {string} text: text of input
+//- @param {string} name: name/id of input
+//- @param {boolean} disabled: set disabled checkbox
+mixin checkbox(text,name,value,disabled,_class)
+    - var name = name || 'checkbox-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    - var value = value || ''
+    - var _class = _class || ''
+    .form-check(class=_class)
+        label.form-check-label(for=name)
+            if(typeof disabled!=='undefined' && disabled===true)
+                input.form-check-input(type="checkbox" name=name id=name disabled='' value=value)
+            else
+                input.form-check-input(type="checkbox" name=name id=name value=value)
+            unless !text
+                span!= text
+
+mixin checkbox-box(text,name,value,disabled,_class)
+    - var _class = _class || ''
+    .form-group(class=_class)
+        +checkbox(text,name,value,disabled)
+
+//- Checkbox - Inline style
+mixin checkbox-inline(text,name,value,disabled)
+    +checkbox(text,name,value,disabled,'form-check-inline')
+
+
+
+//- Radio box
+mixin radio(text,name,_id,value,checked,disabled,_class)
+    - var name = name || 'radio-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    - var _id = _id || name
+    - var _class = _class || ''
+    .form-check(class=_class)
+        if(typeof checked!=='undefined' && checked===true)
+            if(typeof disabled!=='undefined' && disabled===true)
+                input.form-check-input(type='radio' name=name value=value checked='' disabled='' id=_id)
+            else 
+                input.form-check-input(type='radio' name=name value=value checked='' id=_id)
+        else
+            if(typeof disabled!=='undefined' && disabled===true)
+                input.form-check-input(type='radio' name=name  value=value disabled='' id=_id)
+            else 
+                input.form-check-input(type='radio' name=name  value=value id=_id)
+        label.form-check-label(for=_id)
+            != text
+
+mixin radio-box(text,name,_id,value,checked,disabled,_class)
+    - var _class = _class || ''
+    .form-group(class=_class)
+        +radio(text,name,_id,value,checked,disabled)
+
+//- Radio box - Inline style
+mixin radio-inline(text,name,_id,value,checked,disabled)
+    +radio(text,name,_id,value,checked,disabled,'form-check-inline')
+
+//- textarea
+mixin textarea(text,name,cols,rows,_class)
+    - var text = text || ''
+    - var name = name || 'textarea-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    - var cols = cols || ''
+    - var rows = rows || ''
+    - var _class = _class || ''
+    textarea.form-control(aria-label=text placeholder=text name=name id=name cols=cols rows=rows class=_class)
+        block
+
+mixin textarea-box(text,name,label,cols,rows,_class)
+    .form-group
+        unless !label
+            label(for=name)!= label
+        +textarea(text,name,cols,rows,_class)
+            block
+    
+mixin select(name,multiple,_class,items)
+    - var name = name || 'select-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    if(typeof multiple!=='undefined'  && multiple===true)
+        select.form-control(name=name id=name multiple class=_class)
+            unless !items
+                each item in items
+                    +option(item.text,item.value,item.selected)
+            block
+    else
+        select.form-control(name=name id=name class=_class)
+            unless !items
+                each item in items
+                    +option(item.text,item.value,item.selected)
+            block
+
+mixin select-lg(name,multiple,_class,items)
+    - var _class = ' ' + _class || ''
+    +select(name,multiple,'form-control-lg' + _class,items)
+        block
+mixin select-sm(name,multiple,_class,items)
+    - var _class = ' ' + _class || ''
+    +select(name,multiple,'form-control-sm' + _class,items)
+        block
+
+mixin select-box(name,label,multiple,_class,items)
+    - var name = name || 'select-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    - var _class = ' ' + _class || ''
+    .form-group(class=_class)
+        unless !label
+            label(for=name)= label
+        +select(name,multiple,'',items)
+            block
+            
+mixin option(text,value,selected)
+    - var text = text || ''
+    - var value = value || ''
+    unless selected
+        option(value=value)= text
+    else
+        option(value=value selected='')= text
+mixin optgroup(text)
+    unless text
+        - var text = ''
+    optgroup(label=text)
+        block
+
+//- Input group - both prepend and append options available, and block is passed
+//- @mixin +checkbox(text,name,id)
+//- @param {string} text: text of input
+//- @param {string} name: name of input
+//- @param {string} id: id of checkbox
+//- @param {string} id: id of checkbox
+mixin input-group(prepend,append,_class,size,_id)
+    unless _class
+        - var _class = '';
+    unless !size
+        - var _class = _class + ` input-group-${size}`;
+    unless _id
+        - var _id = '';
+    .input-group(class=_class id=_id)
+        unless !prepend
+            .input-group-prepend
+                span.input-group-text!= prepend
+        block
+        unless !append
+            .input-group-append
+                span.input-group-text!= append
+
+
+//- Custome UI 
+
+//- Select UI - Select2
+mixin selectui(name,placeholder,multiple,_class,disabled)
+    unless name
+        - var name = 'select-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+
+    unless placeholder
+        - var placeholder = ""
+    if(typeof disabled!=='undefined'  && disabled===true)
+        if(typeof multiple!=='undefined'  && multiple===true)
+            select.form-control.select-ui(name=name id=name multiple data-placeholder=placeholder class=_class disabled='') 
+                if(typeof placeholder!=='undefined'  && placeholder!=="")
+                    +option('','')
+                unless !items
+                    each item in items
+                        +option(item.text,item.value,item.selected)
+                block
+        else
+            select.form-control.select-ui(name=name id=name class=_class data-placeholder=placeholder disabled='')
+                if(typeof placeholder!=='undefined'  && placeholder!=="")
+                    +option('','')
+                unless !items
+                    each item in items
+                        +option(item.text,item.value,item.selected)
+                block
+    else
+        if(typeof multiple!=='undefined'  && multiple===true)
+            select.form-control.select-ui(name=name id=name multiple data-placeholder=placeholder class=_class)
+                if(typeof placeholder!=='undefined'  && placeholder!=="")
+                    +option('','')
+                unless !items
+                    each item in items
+                        +option(item.text,item.value,item.selected)
+                block
+        else
+            select.form-control.select-ui(name=name id=name class=_class data-placeholder=placeholder)
+                if(typeof placeholder!=='undefined'  && placeholder!=="")
+                    +option('','')
+                unless !items
+                    each item in items
+                        +option(item.text,item.value,item.selected)
+                block
+
+mixin selectui-lg(name,placeholder,multiple,_class,disabled)
+    unless _class
+        - var _class = ''
+    else 
+        - _class = ' ' + _class
+    +selectui(name,placeholder,multiple,'form-control-lg' + _class,disabled)
+        block
+
+mixin selectui-sm(name,placeholder,multiple,_class,disabled)
+    unless _class
+        - var _class = ''
+    else 
+        - _class = ' ' + _class
+    +selectui(name,placeholder,multiple,'form-control-sm' + _class,disabled)
+        block
+
+mixin selectui-disabled(name,placeholder,multiple,_class)
+    unless _class
+        - var _class = ''
+    else 
+        - _class = ' ' + _class
+    +selectui(name,placeholder,multiple,_class,true)
+        block
+
+mixin selectui-box(name,placeholder,label,multiple,_class,disabled)
+    unless name
+        - var name = 'select-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    unless _class
+        - var _class = ''
+    else
+        - _class = ' ' + _class
+    .form-group(class=_class)
+        unless !label
+            label(for=name)= label
+        +selectui(name,placeholder,multiple,'',disabled)
+            block
+
+
+mixin fileui(name,text,_class,lang,accept)
+    unless name
+        - var name = 'fileui-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    unless lang
+        - var lang = ''
+    unless _class
+        - var _class = ''
+    .file-ui(class=_class)
+        unless accept
+            input.file-ui-input(id=name name=name type='file' lang=lang)
+        else
+            input.file-ui-input(id=name name=name type='file' lang=lang accept=accept)
+        unless !text
+            label.file-ui-label(for=name)= text
+
+mixin fileui-box(name,text,label,_class,lang,accept)
+    unless _class
+        - var _class = ''
+    .form-group(class=_class)
+        unless !label
+            label(for=name)= label
+        +fileui(name,text,_class,lang,accept)
+
+
+mixin checkboxui(text,name,value,disabled,_class)
+    - var name = name || 'checkbox-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    - var value = value || ''
+    - var _class = _class || ''
+    .ctr-ui.checkbox-ui(class=_class)
+        if(typeof disabled!=='undefined' && disabled===true)
+            input.ctr-ui-input(type="checkbox" name=name id=name disabled='' value=value)
+        else
+            input.ctr-ui-input(type="checkbox" name=name id=name value=value)
+        label.ctr-ui-label(for=name)!= text
+                
+mixin checkboxui-box(text,name,value,disabled,_class)
+    - var _class = _class || ''
+    .form-group(class=_class)
+        +checkboxui(text,name,value,disabled)
+
+//- Checkbox - Inline style
+mixin checkboxui-inline(text,name,value,disabled)
+    +checkboxui(text,name,value,disabled,'ctr-ui-inline')
+
+
+
+//- Radio box
+mixin radioui(text,name,_id,value,checked,disabled,_class)
+    - var name = name || 'radio-' + Math.floor(Math.random() * (15 - 1300) + 1300)
+    - var _id = _id || name
+    - var _class = _class || ''
+    .ctr-ui.radio-ui(class=_class)
+        if(typeof checked!=='undefined' && checked===true)
+            if(typeof disabled!=='undefined' && disabled===true)
+                input.ctr-ui-input(type='radio' name=name value=value checked='' disabled='' id=_id)
+            else 
+                input.ctr-ui-input(type='radio' name=name value=value checked='' id=_id)
+        else
+            if(typeof disabled!=='undefined' && disabled===true)
+                input.ctr-ui-input(type='radio' name=name  value=value disabled='' id=_id)
+            else 
+                input.ctr-ui-input(type='radio' name=name  value=value id=_id)
+        label.ctr-ui-label(for=_id)
+            != text
+
+mixin radioui-box(text,name,_id,value,checked,disabled,_class)
+    - var _class = _class || ''
+    .form-group(class=_class)
+        +radioui(text,name,_id,value,checked,disabled)
+
+//- Radio box - Inline style
+mixin radioui-inline(text,name,_id,value,checked,disabled)
+    +radioui(text,name,_id,value,checked,disabled,'ctr-ui-inline')

@@ -1,0 +1,805 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'navs';
+    - title = "Component - Navs"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#base-nav') Base nav
+        li.toc-entry.toc-h2
+            a(href='#available-styles') Available styles
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#horizontal-alignment') Horizontal alignment
+                li.toc-entry.toc-h3
+                    a(href='#vertical') Vertical
+                li.toc-entry.toc-h3
+                    a(href='#tabs') Tabs
+                li.toc-entry.toc-h3
+                    a(href='#pills') Pills
+                li.toc-entry.toc-h3
+                    a(href='#fill-and-justify') Fill and justify
+        li.toc-entry.toc-h2
+            a(href='#working-with-flex-utilities') Working with flex utilities
+        li.toc-entry.toc-h2
+            a(href='#regarding-accessibility') Regarding accessibility
+        li.toc-entry.toc-h2
+            a(href='#using-dropdowns') Using dropdowns
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#tabs-with-dropdowns') Tabs with dropdowns
+                li.toc-entry.toc-h3
+                    a(href='#pills-with-dropdowns') Pills with dropdowns
+        li.toc-entry.toc-h2
+            a(href='#javascript-behavior') JavaScript behavior
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#using-data-attributes') Using data attributes
+                li.toc-entry.toc-h3
+                    a(href='#via-javascript') Via JavaScript
+                li.toc-entry.toc-h3
+                    a(href='#fade-effect') Fade effect
+                li.toc-entry.toc-h3
+                    a(href='#methods') Methods
+                    ul
+                        li.toc-entry.toc-h4
+                            a(href='#asynchronous-methods-and-transitions') Asynchronous methods and transitions
+                        li.toc-entry.toc-h4
+                            a(href='#tab') $().tab
+                        li.toc-entry.toc-h4
+                            a(href='#tabshow') .tab(‘show’)
+                        li.toc-entry.toc-h4
+                            a(href='#tabdispose') .tab(‘dispose’)
+                li.toc-entry.toc-h3
+                    a(href='#events') Events
+
+
+block content 
+    h1.bd-title#content Navs
+    p.bd-lead Documentation and examples for how to use Bootstrap’s included navigation components.
+    
+    h2#base-nav Base nav
+    p
+        | Navigation available in Bootstrap share general markup and styles, from the base 
+        code.highlighter-rouge .nav
+        |  class to the active and disabled states. Swap modifier classes to switch between each style.
+    p
+        | The base 
+        code.highlighter-rouge .nav
+        |  component is built with flexbox and provide a strong foundation for building all types of navigation components. It includes some style overrides (for working with lists), some link padding for larger hit areas, and basic disabled styling.
+    .bd-callout.bd-callout-info
+        p
+            | The base 
+            code.highlighter-rouge .nav
+            |  component does not include any 
+            code.highlighter-rouge .active
+            |  state. The following examples include the class, mainly to demonstrate that this particular class does not trigger any special styling.
+    .bd-example
+        +nav([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ])
+    figure.highlight
+        pre
+            code.js.
+                +nav([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ])
+
+    p
+        | Classes are used throughout, so your markup can be super flexible. Use 
+        code.highlighter-rouge &lt;ul&gt;
+        | s like above, or roll your own with say a 
+        code.highlighter-rouge &lt;nav&gt;
+        |  element. Because the 
+        code.highlighter-rouge .nav
+        |  uses 
+        code.highlighter-rouge display: flex
+        | , the nav links behave the same as nav items would, but without the extra markup.
+    .bd-example
+        +nav([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ],'',true)
+
+    figure.highlight
+        pre
+            code.js.
+                +nav([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ],'',true)
+
+    h2#available-styles Available styles
+    p
+        | Change the style of 
+        code.highlighter-rouge .nav
+        | s component with modifiers and utilities. Mix and match as needed, or build your own.
+    h3#horizontal-alignment Horizontal alignment
+    p
+        | Change the horizontal alignment of your nav with 
+        a(href='/docs/layout/grid/#horizontal-alignment') flexbox utilities
+        | . By default, navs are left-aligned, but you can easily change them to center or right aligned.
+    p
+        | Centered with 
+        code.highlighter-rouge .justify-content-center
+        | :
+    .bd-example
+        +nav-center([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ])
+
+    figure.highlight
+        pre
+            code.js.
+                +nav-center([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ])
+    
+    p
+        | Right-aligned with 
+        code.highlighter-rouge .justify-content-end
+        | :
+    .bd-example
+        +nav-right([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ])
+
+    figure.highlight
+        pre
+            code.js.
+                +nav-right([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ])
+    
+    h3#vertical Vertical
+    p
+        | Stack your navigation by changing the flex item direction with the 
+        code.highlighter-rouge .flex-column
+        |  utility. Need to stack them on some viewports but not others? Use the responsive versions (e.g., 
+        code.highlighter-rouge .flex-sm-column
+        | ).
+    .bd-example
+        +nav-vertical([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ])
+
+    figure.highlight
+        pre
+            code.js.
+                +nav-vertical([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ])
+
+    p
+        | As always, vertical navigation is possible without 
+        code.highlighter-rouge &lt;ul&gt;
+        | s, too.
+    .bd-example
+        +nav-vertical([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ],'',true)
+    
+    figure.highlight
+        pre
+            code.js.
+                +nav-vertical([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ],'',true)
+
+    h3#tabs Tabs
+    p
+        | Takes the basic nav from above and adds the 
+        code.highlighter-rouge .nav-tabs
+        |  class to generate a tabbed interface. Use them to create tabbable regions with our 
+        a(href='#javascript-behavior') tab JavaScript plugin
+        | .
+    .bd-example
+        +nav-tabs([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ])
+    
+    figure.highlight
+        pre
+            code.js.
+                +nav-tabs([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ])
+
+    h3#pills Pills
+    p
+        | Take that same HTML, but use 
+        code.highlighter-rouge .nav-pills
+        |  instead:
+    .bd-example
+        +nav-pills([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ])
+    
+    figure.highlight
+        pre
+            code.js.
+                +nav-pills([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ])
+    
+    h3#fill-and-justify Fill and justify
+    p
+        | Force your 
+        code.highlighter-rouge .nav
+        | ’s contents to extend the full available width one of two modifier classes. To proportionately fill all available space with your 
+        code.highlighter-rouge .nav-item
+        | s, use 
+        code.highlighter-rouge .nav-fill
+        | . Notice that all horizontal space is occupied, but not every nav item has the same width.
+    .bd-example
+        +nav-pills([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ],'nav-fill')
+
+    figure.highlight
+        pre
+            code.js.
+                +nav-pills([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ],'nav-fill')
+    p
+        | When using a 
+        code.highlighter-rouge &lt;nav&gt;
+        | -based navigation, be sure to include 
+        code.highlighter-rouge .nav-item
+        |  on the anchors.
+    .bd-example
+        +nav-pills([
+            {text:'Active',url:'#',class:'nav-item active'},
+            {text:'Link',url:'#',class:'nav-item'},
+            {text:'Link',url:'#',class:'nav-item'},
+            {text:'Disabled',url:'#',class:'nav-item disabled'},
+        ],'nav-fill',true)
+
+    figure.highlight
+        pre
+            code.js.
+                +nav-pills([
+                    {text:'Active',url:'#',class:'nav-item active'},
+                    {text:'Link',url:'#',class:'nav-item'},
+                    {text:'Link',url:'#',class:'nav-item'},
+                    {text:'Disabled',url:'#',class:'nav-item disabled'},
+                ],'nav-fill',true)
+
+    p
+        | For equal-width elements, use 
+        code.highlighter-rouge .nav-justified
+        | . All horizontal space will be occupied by nav links, but unlike the 
+        code.highlighter-rouge .nav-fill
+        |  above, every nav item will be the same width.
+    .bd-example
+        +nav-pills([
+            {text:'Active',url:'#',class:'active'},
+            {text:'Longer nav link',url:'#'},
+            {text:'Link',url:'#'},
+            {text:'Disabled',url:'#',class:'disabled'},
+        ],'nav-justified',true)
+    figure.highlight
+        pre
+            code.js.
+                +nav-pills([
+                    {text:'Active',url:'#',class:'active'},
+                    {text:'Longer nav link',url:'#'},
+                    {text:'Link',url:'#'},
+                    {text:'Disabled',url:'#',class:'disabled'},
+                ],'nav-justified',true)
+
+    p
+        | Similar to the 
+        code.highlighter-rouge .nav-fill
+        |  example using a 
+        code.highlighter-rouge <nav>
+        | -based navigation, be sure to include 
+        code.highlighter-rouge .nav-item
+        |  on the anchors.
+    .bd-example
+        +nav-pills([
+            {text:'Active',url:'#',class:'nav-item active'},
+            {text:'Longer nav link',class:'nav-item',url:'#'},
+            {text:'Link',url:'#',class:'nav-item'},
+            {text:'Disabled',url:'#',class:'nav-item disabled'},
+        ],'nav-justified',true)
+
+    figure.highlight
+        pre
+            code.js.
+                +nav-pills([
+                    {text:'Active',url:'#',class:'nav-item active'},
+                    {text:'Longer nav link',class:'nav-item',url:'#'},
+                    {text:'Link',url:'#',class:'nav-item'},
+                    {text:'Disabled',url:'#',class:'nav-item disabled'},
+                ],'nav-justified',true)
+    
+    h2#working-with-flex-utilities Working with flex utilities
+    p
+        | If you need responsive nav variations, consider using a series of 
+        a(href='/docs/utilities/flex/') flexbox utilities
+        | . While more verbose, these utilities offer greater customization across responsive breakpoints. In the example below, our nav will be stacked on the lowest breakpoint, then adapt to a horizontal layout that fills the available width starting from the small breakpoint.
+    .bd-example
+        +nav-pills([
+            {text:'Active',url:'#',class:'flex-sm-fill text-sm-center active'},
+            {text:'Link',class:'flex-sm-fill text-sm-center',url:'#'},
+            {text:'Link',url:'#',class:'flex-sm-fill text-sm-center'},
+            {text:'Disabled',url:'#',class:'flex-sm-fill text-sm-center disabled'},
+        ],'flex-column flex-sm-row',true)
+    figure.highlight
+        pre
+            code.js.
+                +nav-pills([
+                    {text:'Active',url:'#',class:'flex-sm-fill text-sm-center active'},
+                    {text:'Link',class:'flex-sm-fill text-sm-center',url:'#'},
+                    {text:'Link',url:'#',class:'flex-sm-fill text-sm-center'},
+                    {text:'Disabled',url:'#',class:'flex-sm-fill text-sm-center disabled'},
+                ],'flex-column flex-sm-row',true)
+
+    h2#regarding-accessibility Regarding accessibility
+    p
+        | If you’re using navs to provide a navigation bar, be sure to add a 
+        code.highlighter-rouge role="navigation"
+        |  to the most logical parent container of the 
+        code.highlighter-rouge &lt;ul&gt;
+        | , or wrap a 
+        code.highlighter-rouge &lt;nav&gt;
+        |  element around the whole navigation. Do not add the role to the 
+        code.highlighter-rouge &lt;ul&gt;
+        |  itself, as this would prevent it from being announced as an actual list by assistive technologies.
+    p
+        | Note that navigation bars, even if visually styled as tabs with the 
+        code.highlighter-rouge .nav-tabs
+        |  class, should 
+        strong not
+        |  be given 
+        code.highlighter-rouge role="tablist"
+        | , 
+        code.highlighter-rouge role="tab"
+        |  or 
+        code.highlighter-rouge role="tabpanel"
+        |  attributes. These are only appropriate for dynamic tabbed interfaces, as described in the 
+        a(href='https://www.w3.org/TR/wai-aria-practices/#tabpanel')
+            abbr(title='Web Accessibility Initiative') WAI
+            abbr(title='Accessible Rich Internet Applications') ARIA
+            |  Authoring Practices
+        | . See 
+        a(href='#javascript-behavior') JavaScript behavior
+        |  for dynamic tabbed interfaces in this section for an example.
+    h2#using-dropdowns Using dropdowns
+    p
+        | Add dropdown menus with a little extra HTML and the 
+        a(href='/docs/components/dropdowns/#usage') dropdowns JavaScript plugin
+        | .
+    h3#tabs-with-dropdowns Tabs with dropdowns
+    .bd-example
+        +nav-tabs()
+            +nav-item('Active','#','active')
+            li.nav-item.dropdown
+                a.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') Dropdown
+                +dropdown-menu([
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'},
+                    {},
+                    {text:'Separated link',data:'#'}
+                ])
+            +nav-item('Link','#')
+            +nav-item('Disabled','#','disabled')
+
+    figure.highlight
+        pre
+            code.js.
+                +nav-tabs()
+                    +nav-item('Active','#','active')
+                    li.nav-item.dropdown
+                        a.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') Dropdown
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {text:'Something else here',data:'#'},
+                            {},
+                            {text:'Separated link',data:'#'}
+                        ])
+                    +nav-item('Link','#')
+                    +nav-item('Disabled','#','disabled')
+
+    h3#pills-with-dropdowns Pills with dropdowns
+    .bd-example
+        +nav-pills()
+            +nav-item('Active','#','active')
+            li.nav-item.dropdown
+                a.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') Dropdown
+                +dropdown-menu([
+                    {text:'Action',data:'#'},
+                    {text:'Another action',data:'#'},
+                    {text:'Something else here',data:'#'},
+                    {},
+                    {text:'Separated link',data:'#'}
+                ])
+            +nav-item('Link','#')
+            +nav-item('Disabled','#','disabled')
+
+    figure.highlight
+        pre
+            code.js.
+                +nav-pills()
+                    +nav-item('Active','#','active')
+                    li.nav-item.dropdown
+                        a.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') Dropdown
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {text:'Something else here',data:'#'},
+                            {},
+                            {text:'Separated link',data:'#'}
+                        ])
+                    +nav-item('Link','#')
+                    +nav-item('Disabled','#','disabled')
+
+    h2#javascript-behavior JavaScript behavior
+    p
+        | Use the tab JavaScript plugin—include it individually or through the compiled 
+        code.highlighter-rouge bootstrap.js
+        |  file—to extend our navigational tabs and pills to create tabbable panes of local content, even via dropdown menus.
+    p
+        | If you’re building our JavaScript from source, it 
+        a(href='/docs/4.1/getting-started/javascript/#util')
+            | requires 
+            code.highlighter-rouge util.js
+        | .
+    p
+        | Dynamic tabbed interfaces, as described in the 
+        a(href='https://www.w3.org/TR/wai-aria-practices/#tabpanel')
+            abbr(title='Web Accessibility Initiative') WAI
+            abbr(title='Accessible Rich Internet Applications') ARIA
+            |  Authoring Practices
+        | , require 
+        code.highlighter-rouge role="tablist"
+        | , 
+        code.highlighter-rouge role="tab"
+        | , 
+        code.highlighter-rouge role="tabpanel"
+        | , and additional 
+        code.highlighter-rouge aria-
+        |  attributes in order to convey their structure, functionality and current state to users of assistive technologies (such as screen readers).
+    p
+        | Note that dynamic tabbed interfaces should 
+        em not
+        |  contain dropdown menus, as this causes both usability and accessibility issues. From a usability perspective, the fact that the currently displayed tab’s trigger element is not immediately visible (as it’s inside the closed dropdown menu) can cause confusion. From an accessibility point of view, there is currently no sensible way to map this sort of construct to a standard WAI ARIA pattern, meaning that it cannot be easily made understandable to users of assistive technologies.
+    .bd-example.bd-example-tabs
+        +tabs('myTab',[
+            {id:'home',text:'Home',active:true,content:'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'},
+            {id:'profile',text:'Profile',content: 'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'},
+            {id:'contact',text:'Contact',content: 'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'}
+        ])
+
+    figure.highlight
+        pre
+            code.js.
+                +tabs('myTab',[
+                    {id:'home',text:'Home',active:true,content:'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'},
+                    {id:'profile',text:'Profile',content: 'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'},
+                    {id:'contact',text:'Contact',content: 'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'}
+                ])
+
+    p
+        | To help fit your needs, this works with 
+        code.highlighter-rouge &lt;ul&gt;
+        | -based markup, as shown above, or with any arbitrary “roll your own” markup. Note that if you’re using 
+        code.highlighter-rouge &lt;nav&gt;
+        | , you shouldn’t add 
+        code.highlighter-rouge role="tablist"
+        |  directly to it, as this would override the element’s native role as a navigation landmark. Instead, switch to an alternative element (in the example below, a simple 
+        code.highlighter-rouge &lt;div&gt;
+        | ) and wrap the 
+        code.highlighter-rouge &lt;nav&gt;
+        |  around it.
+    .bd-example.bd-example-tabs
+        +tabs('nav-tab',[
+            {id:'nav-home',text:'Home',active:true,content:'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'},
+            {id:'nav-profile',text:'Profile',content: 'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'},
+            {id:'nav-contact',text:'Contact',content: 'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'}
+        ],'',true)
+    
+    figure.highlight
+        pre
+            code.js.
+                +tabs('nav-tab',[
+                    {id:'nav-home',text:'Home',active:true,content:'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'},
+                    {id:'nav-profile',text:'Profile',content: 'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'},
+                    {id:'nav-contact',text:'Contact',content: 'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'}
+                ],'',true)
+    
+    p The tabs plugin also works with pills.
+    .bd-example.bd-example-tabs
+        +tabs-fills('pills-tab',[
+            {id:'pills-home',text:'Home',active:true,content:'Consequat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt est duis anim sunt officia. Fugiat velit proident aliquip nisi incididunt nostrud exercitation proident est nisi. Irure magna elit commodo anim ex veniam culpa eiusmod id nostrud sit cupidatat in veniam ad. Eiusmod consequat eu adipisicing minim anim aliquip cupidatat culpa excepteur quis. Occaecat sit eu exercitation irure Lorem incididunt nostrud.'},
+            {id:'pills-profile',text:'Profile',content: 'Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex. Aute sunt incididunt amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod voluptate exercitation cillum id incididunt elit sunt. Qui minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt. Anim id labore elit adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.'},
+            {id:'pills-contact',text:'Contact',content: 'Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip dolor aliqua irure ex. Nulla ut duis ipsum nisi elit fugiat commodo sunt reprehenderit laborum veniam eu veniam. Eiusmod minim exercitation fugiat irure ex labore incididunt do fugiat commodo aliquip sit id deserunt reprehenderit aliquip nostrud. Amet ex cupidatat excepteur aute veniam incididunt mollit cupidatat esse irure officia elit do ipsum ullamco Lorem. Ullamco ut ad minim do mollit labore ipsum laboris ipsum commodo sunt tempor enim incididunt. Commodo quis sunt dolore aliquip aute tempor irure magna enim minim reprehenderit. Ullamco consectetur culpa veniam sint cillum aliqua incididunt velit ullamco sunt ullamco quis quis commodo voluptate. Mollit nulla nostrud adipisicing aliqua cupidatat aliqua pariatur mollit voluptate voluptate consequat non.'}
+        ])
+    figure.highlight
+        pre
+            code.js.
+                +tabs('pills-tab',[
+                    {id:'pills-home',text:'Home',active:true,content:'Consequat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt est duis anim sunt officia. Fugiat velit proident aliquip nisi incididunt nostrud exercitation proident est nisi. Irure magna elit commodo anim ex veniam culpa eiusmod id nostrud sit cupidatat in veniam ad. Eiusmod consequat eu adipisicing minim anim aliquip cupidatat culpa excepteur quis. Occaecat sit eu exercitation irure Lorem incididunt nostrud.'},
+                    {id:'pills-profile',text:'Profile',content: 'Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex. Aute sunt incididunt amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod voluptate exercitation cillum id incididunt elit sunt. Qui minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt. Anim id labore elit adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.'},
+                    {id:'pills-contact',text:'Contact',content: 'Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip dolor aliqua irure ex. Nulla ut duis ipsum nisi elit fugiat commodo sunt reprehenderit laborum veniam eu veniam. Eiusmod minim exercitation fugiat irure ex labore incididunt do fugiat commodo aliquip sit id deserunt reprehenderit aliquip nostrud. Amet ex cupidatat excepteur aute veniam incididunt mollit cupidatat esse irure officia elit do ipsum ullamco Lorem. Ullamco ut ad minim do mollit labore ipsum laboris ipsum commodo sunt tempor enim incididunt. Commodo quis sunt dolore aliquip aute tempor irure magna enim minim reprehenderit. Ullamco consectetur culpa veniam sint cillum aliqua incididunt velit ullamco sunt ullamco quis quis commodo voluptate. Mollit nulla nostrud adipisicing aliqua cupidatat aliqua pariatur mollit voluptate voluptate consequat non.'}
+                ],'mb-3','',true)
+
+    p And with vertical pills.
+    .bd-example.bd-example-tabs
+        +tabs-fills-vertical('v-pills-tab',[
+            {id:'v-pills-home',text:'Home',active:true,content:'Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem sint. Veniam sint duis incididunt do esse magna mollit excepteur laborum qui. Id id reprehenderit sit est eu aliqua occaecat quis et velit excepteur laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate minim reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu deserunt excepteur ea incididunt minim occaecat.'},
+            {id:'v-pills-profile',text:'Profile',content:'Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt duis pariatur mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt commodo et minim in quis laboris ipsum velit id veniam. Quis ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip labore Lorem enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui esse anim eiusmod do sint minim consectetur qui.'},
+            {id:'v-pills-messages',text:'Messages',content:'Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute qui magna. Ad proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure occaecat velit nostrud magna nulla. Velit et et proident Lorem do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna commodo est ea veniam consectetur.'},
+            {id:'v-pills-settings',text:'Settings',content:'Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.'}
+        ])
+    figure.highlight
+        pre
+            code.js.
+                +tabs-fills-vertical('v-pills-tab',[
+                    {id:'v-pills-home',text:'Home',active:true,content:'Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem sint. Veniam sint duis incididunt do esse magna mollit excepteur laborum qui. Id id reprehenderit sit est eu aliqua occaecat quis et velit excepteur laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate minim reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu deserunt excepteur ea incididunt minim occaecat.'},
+                    {id:'v-pills-profile',text:'Profile',content:'Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt duis pariatur mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt commodo et minim in quis laboris ipsum velit id veniam. Quis ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip labore Lorem enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui esse anim eiusmod do sint minim consectetur qui.'},
+                    {id:'v-pills-messages',text:'Messages',content:'Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute qui magna. Ad proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure occaecat velit nostrud magna nulla. Velit et et proident Lorem do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna commodo est ea veniam consectetur.'},
+                    {id:'v-pills-settings',text:'Settings',content:'Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.'}
+                ])
+    
+    h3#using-data-attributes Using data attributes
+    p
+        | You can activate a tab or pill navigation without writing any JavaScript by simply specifying 
+        code.highlighter-rouge data-toggle="tab"
+        |  or 
+        code.highlighter-rouge data-toggle="pill"
+        |  on an element. Use these data attributes on 
+        code.highlighter-rouge .nav-tabs
+        |  or 
+        code.highlighter-rouge .nav-pills
+        | .
+
+    figure.highlight
+        pre
+            code.css
+                | // Nav tabs
+                | ul#myTab.nav.nav-tabs(role='tablist')
+                |     li.nav-item
+                |         a#home-tab.nav-link.active(data-toggle='tab', href='#home', role='tab', aria-controls='home', aria-selected='true') Home
+                |     li.nav-item
+                |         a#profile-tab.nav-link(data-toggle='tab', href='#profile', role='tab', aria-controls='profile', aria-selected='false') Profile
+                |     li.nav-item
+                |         a#messages-tab.nav-link(data-toggle='tab', href='#messages', role='tab', aria-controls='messages', aria-selected='false') Messages
+                |     li.nav-item
+                |         a#settings-tab.nav-link(data-toggle='tab', href='#settings', role='tab', aria-controls='settings', aria-selected='false') Settings
+                | // Tab panes
+                | .tab-content
+                |     #home.tab-pane.active(role='tabpanel', aria-labelledby='home-tab') ...
+                |     #profile.tab-pane(role='tabpanel', aria-labelledby='profile-tab') ...
+                |     #messages.tab-pane(role='tabpanel', aria-labelledby='messages-tab') ...
+                |     #settings.tab-pane(role='tabpanel', aria-labelledby='settings-tab') ...
+
+    h3#via-javascript Via JavaScript
+    p
+        | Enable tabbable tabs via JavaScript (each tab needs to be activated individually):
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myTab a').on('click', function (e) {
+                |     e.preventDefault()
+                |     $(this).tab('show')
+                | })
+    
+    p You can activate individual tabs in several ways:
+    figure.highlight
+        pre
+            code.js
+                | $('#myTab a[href="#profile"]').tab('show') // Select tab by name
+                | $('#myTab li:first-child a').tab('show') // Select first tab
+                | $('#myTab li:last-child a').tab('show') // Select last tab
+                | $('#myTab li:nth-child(3) a').tab('show') // Select third tab
+    
+    h3#fade-effect Fade effect
+    p
+        | To make tabs fade in, add 
+        code.highlighter-rouge .fade
+        |  to each 
+        code.highlighter-rouge .tab-pane
+        | . The first tab pane must also have 
+        code.highlighter-rouge .show
+        |  to make the initial content visible.
+
+    figure.highlight
+        pre
+            code.css
+                | .tab-content
+                |     #home.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='home-tab') ...
+                |     #profile.tab-pane.fade(role='tabpanel', aria-labelledby='profile-tab') ...
+                |     #messages.tab-pane.fade(role='tabpanel', aria-labelledby='messages-tab') ...
+                |     #settings.tab-pane.fade(role='tabpanel', aria-labelledby='settings-tab') ...
+
+    h3#methods Methods
+    .bd-callout.bd-callout-danger
+        h4#asynchronous-methods-and-transitions Asynchronous methods and transitions
+        p
+            | All API methods are 
+            strong asynchronous
+            |  and start a 
+            strong transition
+            | . They return to the caller as soon as the transition is started but 
+            strong before it ends
+            | . In addition, a method call on a 
+            strong transitioning component will be ignored
+            | .
+        p
+            a(href='/docs/getting-started/javascript/') See our JavaScript documentation for more information.
+    h4#tab $().tab
+    p
+        | Activates a tab element and content container. Tab should have either a 
+        code.highlighter-rouge data-target
+        |  or an 
+        code.highlighter-rouge href
+        |  targeting a container node in the DOM.
+
+    figure.highlight
+        pre
+            code.css
+                | ul#myTab.nav.nav-tabs(role='tablist')
+                |     li.nav-item
+                |         a#home-tab.nav-link.active(data-toggle='tab', href='#home', role='tab', aria-controls='home', aria-selected='true') Home
+                |     li.nav-item
+                |         a#profile-tab.nav-link(data-toggle='tab', href='#profile', role='tab', aria-controls='profile', aria-selected='false') Profile
+                |     li.nav-item
+                |         a#messages-tab.nav-link(data-toggle='tab', href='#messages', role='tab', aria-controls='messages', aria-selected='false') Messages
+                |     li.nav-item
+                |         a#settings-tab.nav-link(data-toggle='tab', href='#settings', role='tab', aria-controls='settings', aria-selected='false') Settings
+                | .tab-content
+                |     #home.tab-pane.active(role='tabpanel', aria-labelledby='home-tab') ...
+                |     #profile.tab-pane(role='tabpanel', aria-labelledby='profile-tab') ...
+                |     #messages.tab-pane(role='tabpanel', aria-labelledby='messages-tab') ...
+                |     #settings.tab-pane(role='tabpanel', aria-labelledby='settings-tab') ...
+                | script.
+                |     $(function () {
+                |         $('#myTab li:last-child a').tab('show')
+                |     })
+
+    h4#tabshow .tab(‘show’)
+    p
+        | Selects the given tab and shows its associated pane. Any other tab that was previously selected becomes unselected and its associated pane is hidden. 
+        strong Returns to the caller before the tab pane has actually been shown
+        |  (i.e. before the 
+        code.highlighter-rouge shown.bs.tab
+        |  event occurs).
+
+    figure.highlight
+        pre
+            code.js
+                | $('#someTab').tab('show')
+
+    h4#tabdispose .tab(‘dispose’)
+    p Destroys an element’s tab.
+    h3#events Events
+    p When showing a new tab, the events fire in the following order:
+    ol
+        li
+            code.highlighter-rouge hide.bs.tab
+            |  (on the current active tab)
+        li
+            code.highlighter-rouge show.bs.tab
+            |  (on the to-be-shown tab)
+        li
+            code.highlighter-rouge hidden.bs.tab
+            |  (on the previous active tab, the same one as for the 
+            code.highlighter-rouge hide.bs.tab
+            |  event)
+        li
+            code.highlighter-rouge shown.bs.tab
+            |  (on the newly-active just-shown tab, the same one as for the 
+            code.highlighter-rouge show.bs.tab
+            |  event)
+    p
+        | If no tab was already active, then the 
+        code.highlighter-rouge hide.bs.tab
+        |  and 
+        code.highlighter-rouge hidden.bs.tab
+        |  events will not be fired.
+    table.table.table-bordered.table-striped
+        thead
+            tr
+                th(style='width: 150px;') Event Type
+                th Description
+        tbody
+            tr
+                td show.bs.tab
+                td
+                    | This event fires on tab show, but before the new tab has been shown. Use 
+                    code event.target
+                    |  and 
+                    code event.relatedTarget
+                    |  to target the active tab and the previous active tab (if available) respectively.
+            tr
+                td shown.bs.tab
+                td
+                    | This event fires on tab show after a tab has been shown. Use 
+                    code event.target
+                    |  and 
+                    code event.relatedTarget
+                    |  to target the active tab and the previous active tab (if available) respectively.
+            tr
+                td hide.bs.tab
+                td
+                    | This event fires when a new tab is to be shown (and thus the previous active tab is to be hidden). Use 
+                    code event.target
+                    |  and 
+                    code event.relatedTarget
+                    |  to target the current active tab and the new soon-to-be-active tab, respectively.
+            tr
+                td hidden.bs.tab
+                td
+                    | This event fires after a new tab is shown (and thus the previous active tab is hidden). Use 
+                    code event.target
+                    |  and 
+                    code event.relatedTarget
+                    |  to target the previous active tab and the new active tab, respectively.
+
+    figure.highlight
+        pre
+            code.js
+                | $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                |     e.target // newly activated tab
+                |     e.relatedTarget // previous active tab
+                | })

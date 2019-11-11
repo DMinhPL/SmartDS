@@ -1,0 +1,307 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'validate';
+    - title = "Component - Form Validate"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#getting-started') Getting Started
+
+block content 
+    h1.bd-title#content Form Validate
+    p.bd-lead A simple Form Validation Utility for Bootstrap 3 and Bootstrap 4 not depending on jQuery.
+
+    h2#getting-started Getting Started
+    h3#demo-time Demo Time
+    p Form Validation for Bootstrap couldn't be easier!
+    .bd-example
+        form#demo-form.w-50.mx-auto.rounded.border.p-4(action="" method="get")
+            +input-box('text','demousername','','Username')
+            .row
+                .col-md-6
+                    +input-box('password','demopassword','','Password')
+                .col-md-6
+                    +input-box('password','demorepassword','','Confirm password')
+            .row
+                .col-md-6
+                    +input-box('email','demoemail','jon@example.org','Email')
+                .col-md-6
+                    +selectui-box('demostate','Select a state','Select a state')
+                        +optgroup("Alaskan/Hawaiian Time Zone")
+                            +option("Alaska","AK")
+                            +option("Hawaii","HI")
+                        +optgroup("Pacific Time Zone")
+                            +option("California","CA")
+                            +option("Nevada","NV")
+                            +option("Oregon","OR")
+                            +option("Washington","WA")
+                        +optgroup("Mountain Time Zone")
+                            +option("Arizona","AZ")
+                            +option("Colorado","CO")
+                            +option("Idaho","ID")
+                            +option("Montana","MT")
+                            +option("Nebraska","NE")
+                            +option("New Mexico","NM")
+                            +option("North Dakota","ND")
+                            +option("Utah","UT")
+                            +option("Wyoming","WY")
+                        +optgroup("Central Time Zone")
+                            +option("Alabama","AL")
+                            +option("Arkansas","AR")
+                            +option("Illinois","IL")
+                            +option("Iowa","IA")
+                            +option("Kansas","KS")
+                            +option("Kentucky","KY")
+                            +option("Louisiana","LA")
+                            +option("Minnesota","MN")
+                            +option("Mississippi","MS")
+                            +option("Missouri","MO")
+                            +option("Oklahoma","OK")
+                            +option("South Dakota","SD")
+                            +option("Texas","TX")
+                            +option("Tennessee","TN")
+                            +option("Wisconsin","WI")            
+                        +optgroup("Eastern Time Zone")
+                            +option("Connecticut","CT")
+                            +option("Delaware","DE")
+                            +option("Florida","FL")
+                            +option("Georgia","GA")
+                            +option("Indiana","IN")
+                            +option("Maine","ME")
+                            +option("Maryland","MD")
+                            +option("Massachusetts","MA")
+                            +option("Michigan","MI")
+                            +option("New Hampshire","NH")
+                            +option("New Jersey","NJ")
+                            +option("New York","NY")
+                            +option("North Carolina","NC")
+                            +option("Ohio","OH")
+                            +option("Pennsylvania","PA")
+                            +option("Rhode Island","RI")
+                            +option("South Carolina","SC")
+                            +option("Vermont","VT")
+                            +option("Virginia","VA")
+                            +option("West Virginia","WV")
+            +fileui-box('demofile','Choose file','Avatar','','','image/*')
+            +checkboxui-box('Please agree to our policy','demopolicy','demopolicy','agree')
+            +btn-submit-primary('Submit')
+
+    figure.highlight
+        pre
+            code.js.
+                // Pug
+                form#demo-form.w-50.mx-auto.rounded.border.p-4(action="" method="get")
+                    +input-box('text','demousername','','Username')
+                    .row
+                        .col-md-6
+                            +input-box('password','demopassword','','Password')
+                        .col-md-6
+                            +input-box('password','demorepassword','','Confirm password')
+                    .row
+                        .col-md-6
+                            +input-box('email','demoemail','jon@example.org','Email')
+                        .col-md-6
+                            +selectui-box('demostate','Select a state','Select a state')
+                                ...
+                    +fileui-box('demofile','Choose file','Avatar','','','image/*')
+                    +checkboxui-box('Please agree to our policy','demopolicy','demopolicy','agree')
+                    +btn-submit-primary('Submit')
+
+                // Script
+                script.
+                    //- Initialize the validation object which will be called on form submit.
+                    validobj = $("#demo-form").validate({
+                        rules: {
+                            demousername: {
+                                required: true,
+                                minlength: 2
+                            },
+                            demopassword: {
+                                required: true,
+                                minlength: 5
+                            },
+                            demorepassword: {
+                                required: true,
+                                minlength: 5,
+                                equalTo: "#demopassword"
+                            },
+                            demoemail: {
+                                required: true,
+                                email: true
+                            },
+                            demostate: {
+                                required: true
+                            },
+                            demofile: {
+                                required: true
+                            },
+                            demopolicy: {
+                                required: true
+                            },
+                        },
+                        messages: {
+                            demousername: {
+                                required: "Please enter a username",
+                                minlength: "Your username must consist of at least 2 characters"
+                            },
+                            demopassword: {
+                                required: "Please provide a password",
+                                minlength: "Your password must be at least 5 characters long"
+                            },
+                            demorepassword: {
+                                required: "Please provide a password",
+                                minlength: "Your password must be at least 5 characters long",
+                                equalTo: "Please enter the same password as above"
+                            },
+                            demoemail: "Please enter a valid email address",
+                            demostate: "Please select a state",   
+                            demofile: "Please upload an avatar",                
+                            demopolicy: "Please accept our policy"
+                        },
+                        errorElement: "div",
+
+                        //- put error message behind each form element
+                        errorPlacement: function ( error, element ) {
+                            error.addClass( "invalid-feedback" );
+                            if ( element.prop( "type" ) === "checkbox" || element.prop( "type" ) === "radio" ) {
+                                if(element.hasClass('ctr-ui-input')) {
+                                    error.insertAfter( element.next( "label" ) );
+                                } else {
+                                    error.insertAfter( element.parent( "label" ) );
+                                }
+                            } else {                    
+                                if( element.hasClass('select-ui')) {                        
+                                    element.parent( "div" ).append(error)
+                                } else {
+                                    error.insertAfter( element );
+                                }
+                            }
+                        },
+                        //- When there is an error normally you just add the class to the element.
+                        highlight: function ( element, errorClass, validClass ) {
+                            
+                            if( $( element ).hasClass('select-ui')) { 
+                                $( element ).next( ".select2" ).find('.select2-selection').addClass( "is-invalid" )
+                            } else {
+                                $( element ).addClass( "is-invalid" )
+                            }
+                        },
+                        //- When removing make the same adjustments as when adding
+                        unhighlight: function (element, errorClass, validClass) {
+                            if( $( element ).hasClass('select-ui')) { 
+                                $( element ).next( ".select2" ).find('.select2-selection').removeClass( "is-invalid" )
+                            } else {
+                                $( element ).removeClass( "is-invalid" );
+                            }
+                        }
+                    });
+
+                    //- If the change event fires we want to see if the form validates.
+                    //- But we don't want to check before the form has been submitted by the user
+                    //- initially.
+                    $(document).on("change", ".select-ui", function () {
+                        if (!$.isEmptyObject(validobj.submitted)) {
+                            validobj.form();
+                        }
+                    });
+
+    
+block js
+    script.
+        //- Example
+        //- Initialize the validation object which will be called on form submit.
+        validobj = $("#demo-form").validate({
+            rules: {
+                demousername: {
+                    required: true,
+                    minlength: 2
+                },
+                demopassword: {
+                    required: true,
+                    minlength: 5
+                },
+                demorepassword: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#demopassword"
+                },
+                demoemail: {
+                    required: true,
+                    email: true
+                },
+                demostate: {
+                    required: true
+                },
+                demofile: {
+                    required: true
+                },
+                demopolicy: {
+                    required: true
+                },
+            },
+            messages: {
+                demousername: {
+                    required: "Please enter a username",
+                    minlength: "Your username must consist of at least 2 characters"
+                },
+                demopassword: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                demorepassword: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long",
+                    equalTo: "Please enter the same password as above"
+                },
+                demoemail: "Please enter a valid email address",
+                demostate: "Please select a state",   
+                demofile: "Please upload an avatar",                
+                demopolicy: "Please accept our policy"
+            },
+            errorElement: "div",
+
+            //- put error message behind each form element
+            errorPlacement: function ( error, element ) {
+                error.addClass( "invalid-feedback" );
+                if ( element.prop( "type" ) === "checkbox" || element.prop( "type" ) === "radio" ) {
+                    if(element.hasClass('ctr-ui-input')) {
+                        error.insertAfter( element.next( "label" ) );
+                    } else {
+                        error.insertAfter( element.parent( "label" ) );
+                    }
+                } else {                    
+                    if( element.hasClass('select-ui')) {                        
+                        element.parent( "div" ).append(error)
+                    } else {
+                        error.insertAfter( element );
+                    }
+                }
+            },
+            //- When there is an error normally you just add the class to the element.
+            highlight: function ( element, errorClass, validClass ) {
+                
+                if( $( element ).hasClass('select-ui')) { 
+                    $( element ).next( ".select2" ).find('.select2-selection').addClass( "is-invalid" )
+                } else {
+                    $( element ).addClass( "is-invalid" )
+                }
+            },
+            //- When removing make the same adjustments as when adding
+            unhighlight: function (element, errorClass, validClass) {
+                if( $( element ).hasClass('select-ui')) { 
+                    $( element ).next( ".select2" ).find('.select2-selection').removeClass( "is-invalid" )
+                } else {
+                    $( element ).removeClass( "is-invalid" );
+                }
+            }
+        });
+
+        //- If the change event fires we want to see if the form validates.
+        //- But we don't want to check before the form has been submitted by the user
+        //- initially.
+        $(document).on("change", ".select-ui", function () {
+            if (!$.isEmptyObject(validobj.submitted)) {
+                validobj.form();
+            }
+        });

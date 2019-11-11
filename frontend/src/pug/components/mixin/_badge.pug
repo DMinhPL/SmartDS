@@ -1,0 +1,68 @@
+//- Badges
+//- @mixin +badge(text, type, _class, link)
+//- @param {string} text: badge content
+//- @param {string} type: type of badge - primary, secondary, info, success, danger, warning, light, dark
+//- @param {string} icon: icon of badge
+//- @param {string} link: link of badge
+mixin badge(text, type, _class, link)
+    unless text
+        - var text = ''
+    unless type
+        - var type = ''
+    else 
+        - type = `badge-${type}`
+
+    unless _class
+        - var _class = ''
+    else 
+        - _class = ` ${_class}`
+    if(typeof link != "undefined" && link!='')
+        a.badge(class=`${type}${_class}` title=text href=link)
+            != text
+    else
+        span.badge(class=`${type}${_class}`)
+            != text
+
+mixin badge-primary(text, _class, link)
+    +badge(text, 'primary', _class, link)
+mixin badge-secondary(text, _class, link)
+    +badge(text, 'secondary', _class, link)
+mixin badge-info(text, _class, link)
+    +badge(text, 'info', _class, link)
+mixin badge-success(text, _class, link)
+    +badge(text, 'success', _class, link)
+mixin badge-danger(text, _class, link)
+    +badge(text, 'danger', _class, link)
+mixin badge-warning(text, _class, link)
+    +badge(text, 'warning', _class, link)
+mixin badge-light(text, _class, link)
+    +badge(text, 'light', _class, link)
+mixin badge-dark(text, _class, link)
+    +badge(text, 'dark', _class, link)
+
+
+//- Badges
+//- @mixin +badge(text, type, _class, link)
+//- @param {string} text: badge content
+//- @param {string} type: type of badge - primary, secondary, info, success, danger, warning, light, dark
+//- @param {string} icon: icon of badge
+//- @param {string} link: link of badge
+mixin badge-a(text, type, link, _class)
+    +badge(text, type, _class, link)
+
+mixin badge-a-primary(text, link, _class)
+    +badge(text, 'primary', _class, link)
+mixin badge-a-secondary(text, link, _class)
+    +badge(text, 'secondary', _class, link)
+mixin badge-a-info(text, link, _class)
+    +badge(text, 'info', _class, link)
+mixin badge-a-success(text, link, _class)
+    +badge(text, 'success', _class, link)
+mixin badge-a-danger(text, link, _class)
+    +badge(text, 'danger', _class, link)
+mixin badge-a-warning(text, link, _class)
+    +badge(text, 'warning', _class, link)
+mixin badge-a-light(text, link, _class)
+    +badge(text, 'light', _class, link)
+mixin badge-a-dark(text, link, _class)
+    +badge(text, 'dark', _class, link)

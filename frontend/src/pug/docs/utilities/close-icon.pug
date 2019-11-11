@@ -1,0 +1,27 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'close-icon';
+    - title = "Utilities - Close icon"
+
+block content 
+    h1.bd-title#content Close icon
+    p.bd-lead Use a generic close icon for dismissing content like modals and alerts.
+
+    p
+        strong Be sure to include text for screen readers
+        | , as we’ve done with 
+        code.highlighter-rouge aria-label
+        | .
+    .bd-example
+        button.close(type='button', aria-label='Close')
+            span(aria-hidden='true') ×
+
+
+    figure.highlight
+        pre
+            code.css
+                | button.close(type='button', aria-label='Close')
+                |     span(aria-hidden='true') ×
+
+    

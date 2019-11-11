@@ -1,0 +1,707 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'navbar';
+    - title = "Component - Navbar"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#how-it-works') How it works
+        li.toc-entry.toc-h2
+            a(href='#supported-content') Supported content
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#brand') Brand
+                li.toc-entry.toc-h3
+                    a(href='#nav') Nav
+                li.toc-entry.toc-h3
+                    a(href='#forms') Forms
+                li.toc-entry.toc-h3
+                    a(href='#text') Text
+        li.toc-entry.toc-h2
+            a(href='#color-schemes') Color schemes
+        li.toc-entry.toc-h2
+            a(href='#containers') Containers
+        li.toc-entry.toc-h2
+            a(href='#placement') Placement
+        li.toc-entry.toc-h2
+            a(href='#responsive-behaviors') Responsive behaviors
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#toggler') Toggler
+                li.toc-entry.toc-h3
+                    a(href='#external-content') External content
+
+
+
+block content 
+    h1.bd-title#content Navbar
+    p.bd-lead Documentation and examples for Bootstrap’s powerful, responsive navigation header, the navbar. Includes support for branding, navigation, and more, including support for our collapse plugin.
+    
+    h2#how-it-works How it works
+    p Here’s what you need to know before getting started with the navbar:
+    ul
+        li
+            | Navbars require a wrapping 
+            code.highlighter-rouge .navbar
+            |  with 
+            code.highlighter-rouge .navbar-expand{-sm|-md|-lg|-xl}
+            |  for responsive collapsing and 
+            a(href='#color-schemes') color scheme
+            |  classes.
+        li
+            | Navbars and their contents are fluid by default. Use 
+            a(href='#containers') optional containers
+            |  to limit their horizontal width.
+        li
+            | Use our 
+            a(href='/docs/utilities/spacing/') spacing
+            |  and 
+            a(href='/docs/utilities/flex/') flex
+            |  utility classes for controlling spacing and alignment within navbars.
+        li
+            | Navbars are responsive by default, but you can easily modify them to change that. Responsive behavior depends on our Collapse JavaScript plugin.
+        li
+            | Navbars are hidden by default when printing. Force them to be printed by adding 
+            code.highlighter-rouge .d-print
+            |  to the 
+            code.highlighter-rouge .navbar
+            | . See the 
+            a(href='/docs/utilities/display/') display
+            |  utility class.
+        li
+            | Ensure accessibility by using a 
+            code.highlighter-rouge &lt;nav&gt;
+            |  element or, if using a more generic element such as a 
+            code.highlighter-rouge &lt;div&gt;
+            | , add a 
+            code.highlighter-rouge role="navigation"
+            |  to every navbar to explicitly identify it as a landmark region for users of assistive technologies.
+    p Read on for an example and list of supported sub-components.
+    h2#supported-content Supported content
+    p
+        | Navbars come with built-in support for a handful of sub-components. Choose from the following as needed:
+    ul
+        li
+            code.highlighter-rouge .navbar-brand
+            |  for your company, product, or project name.
+        li
+            code.highlighter-rouge .navbar-nav
+            |  for a full-height and lightweight navigation (including support for dropdowns).
+        li
+            code.highlighter-rouge .navbar-toggler
+            |  for use with our collapse plugin and other 
+            a(href='#responsive-behaviors') navigation toggling
+            |  behaviors.
+        li
+            code.highlighter-rouge .form-inline
+            |  for any form controls and actions.
+        li
+            code.highlighter-rouge .navbar-text
+            |  for adding vertically centered strings of text.
+        li
+            code.highlighter-rouge .collapse.navbar-collapse
+            |  for grouping and hiding navbar contents by a parent breakpoint.
+    p
+        | Here’s an example of all the sub-components included in a responsive light-themed navbar that automatically collapses at the 
+        code.highlighter-rouge lg
+        |  (large) breakpoint.
+    .bd-example
+        +navbar('navbar-expand-lg navbar-light bg-light')
+            +navbar-brand('#','Navbar')
+            +navbar-menu('navbarSupportedContent')
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Link','#')
+                    +nav-item-dropdown('Dropdown','#')
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {},
+                            {text:'Something else here',data:'#'},
+                        ])
+                    +nav-item('Disabled','#','disabled')
+            form.form-inline.my-2.my-lg-0
+                +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                +btn-outline-success('Search','','submit')
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-light bg-light')
+                    +navbar-brand('#','Navbar')
+                    +navbar-menu('navbarSupportedContent')
+                        +navbar-nav('mr-auto')
+                            +nav-item('Home','#','active')
+                            +nav-item('Link','#')
+                            +nav-item-dropdown('Dropdown','#')
+                                +dropdown-menu([
+                                    {text:'Action',data:'#'},
+                                    {text:'Another action',data:'#'},
+                                    {},
+                                    {text:'Something else here',data:'#'},
+                                ])
+                            +nav-item('Disabled','#','disabled')
+                    form.form-inline.my-2.my-lg-0
+                        +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                        +btn-outline-success('Search','','submit')
+
+    p
+        | This example uses 
+        a(href='/docs/utilities/colors/') color
+        |  (
+        code.highlighter-rouge bg-light
+        | ) and 
+        a(href='/docs/utilities/spacing/') spacing
+        |  (
+        code.highlighter-rouge my-2
+        | , 
+        code.highlighter-rouge my-lg-0
+        | , 
+        code.highlighter-rouge mr-sm-0
+        | , 
+        code.highlighter-rouge my-sm-0
+        | ) utility classes.
+    h3#brand Brand
+    p
+        | The 
+        code.highlighter-rouge .navbar-brand
+        |  can be applied to most elements, but an anchor works best as some elements might require utility classes or custom styles.
+    .bd-example
+        // As a link
+        +navbar('navbar-light bg-light')
+            +navbar-brand('#','Navbar')
+        // As a heading
+        +navbar('navbar-light bg-light')
+            +navbar-brand('','Navbar')
+    figure.highlight
+        pre
+            code.js.
+                // As a link
+                +navbar('navbar-light bg-light')
+                    +navbar-brand('#','Navbar')
+
+                // As a heading
+                +navbar('navbar-light bg-light')
+                    +navbar-brand('','Navbar')
+    p
+        | Adding images to the 
+        code.highlighter-rouge .navbar-brand
+        |  will likely always require custom styles or utilities to properly size. Here are some examples to demonstrate.
+    .bd-example
+        // Just an image
+        +navbar('navbar-light bg-light')
+            +navbar-brand('#','','/assets/images/logo.png','30')
+
+    figure.highlight
+        pre
+            code.js.
+                // Just an image
+                +navbar('navbar-light bg-light')
+                    +navbar-brand('#','','/assets/images/logo.png','30')
+    
+    .bd-example
+        // Image and text
+        +navbar('navbar-light bg-light')
+            +navbar-brand('#','3Forcom','/assets/images/logo.png','30')
+    figure.highlight
+        pre
+            code.js.
+                // Image and text
+                +navbar('navbar-light bg-light')
+                    +navbar-brand('#','3Forcom','/assets/images/logo.png','30')
+    
+    h3#nav Nav
+    p
+        | Navbar navigation links build on our 
+        code.highlighter-rouge .nav
+        |  options with their own modifier class and require the use of 
+        a(href='#toggler') toggler classes
+        |  for proper responsive styling. 
+        strong
+            | Navigation in navbars will also grow to occupy as much horizontal space as possible
+        |  to keep your navbar contents securely aligned.
+    p
+        | Active states—with 
+        code.highlighter-rouge .active
+        | —to indicate the current page can be applied directly to 
+        code.highlighter-rouge .nav-link
+        | s or their immediate parent 
+        code.highlighter-rouge .nav-item
+        | s.
+    .bd-example
+        +navbar('navbar-expand-lg navbar-light bg-light')
+            +navbar-brand('#','Navbar')
+            +navbar-menu('navbarNav')
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Features','#')
+                    +nav-item('Pricing','#')
+                    +nav-item('Disabled','#','disabled')
+    
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-light bg-light')
+                    +navbar-brand('#','Navbar')
+                    +navbar-menu('navbarNav','mr-auto')
+                        +nav-item('Home','#','active')
+                        +nav-item('Features','#')
+                        +nav-item('Pricing','#')
+                        +nav-item('Disabled','#','disabled')
+
+    p
+        | And because we use classes for our navs, you can avoid the list-based approach entirely if you like.
+    .bd-example
+        +navbar('navbar-expand-lg navbar-light bg-light')
+            +navbar-brand('#','Navbar')
+            +navbar-menu('navbarNav')
+                .navbar-nav
+                    a.nav-item.nav-link.active(href='#')
+                        | Home 
+                        span.sr-only (current)
+                    a.nav-item.nav-link(href='#') Features
+                    a.nav-item.nav-link(href='#') Pricing
+                    a.nav-item.nav-link.disabled(href='#') Disabled
+    
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-light bg-light')
+                    +navbar-brand('#','Navbar')
+                    +navbar-menu('navbarNav')
+                        .navbar-nav
+                            a.nav-item.nav-link.active(href='#')
+                                | Home 
+                                span.sr-only (current)
+                            a.nav-item.nav-link(href='#') Features
+                            a.nav-item.nav-link(href='#') Pricing
+                            a.nav-item.nav-link.disabled(href='#') Disabled
+
+    p
+        | You may also utilize dropdowns in your navbar nav. Dropdown menus require a wrapping element for positioning, so be sure to use separate and nested elements for 
+        code.highlighter-rouge .nav-item
+        |  and 
+        code.highlighter-rouge .nav-link
+        |  as shown below.
+    .bd-example
+        +navbar('navbar-expand-lg navbar-light bg-light')
+            +navbar-brand('#','Navbar')
+            +navbar-menu('navbarNavDropdown')
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Features','#')
+                    +nav-item('Pricing','#')
+                    +nav-item-dropdown('Dropdown link','#')
+                        +dropdown-menu([
+                            {text:'Action',data:'#'},
+                            {text:'Another action',data:'#'},
+                            {text:'Something else here',data:'#'},
+                        ])
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-light bg-light')
+                    +navbar-brand('#','Navbar')
+                    +navbar-menu('navbarNavDropdown')
+                        +navbar-nav('mr-auto')
+                            +nav-item('Home','#','active')
+                            +nav-item('Features','#')
+                            +nav-item('Pricing','#')
+                            +nav-item-dropdown('Dropdown link','#')
+                                +dropdown-menu([
+                                    {text:'Action',data:'#'},
+                                    {text:'Another action',data:'#'},
+                                    {text:'Something else here',data:'#'},
+                                ])
+
+    h3#forms Forms
+    p
+        | Place various form controls and components within a navbar with 
+        code.highlighter-rouge .form-inline
+        | .
+    .bd-example
+        +navbar('navbar-light bg-light')
+            form.form-inline
+                +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                +btn-outline-success('Search','','submit')
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-light bg-light')
+                    form.form-inline
+                        +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                        +btn-outline-success('Search','','submit')
+
+    p
+        | Immediate children elements in 
+        code.highlighter-rouge .navbar
+        |  use flex layout and will default to 
+        code.highlighter-rouge justify-content: between
+        | . Use additional 
+        a(href='/docs/utilities/flex/') flex utilities
+        |  as needed to adjust this behavior.
+    .bd-example
+        +navbar('navbar-light bg-light')
+            +navbar-brand('#','Navbar')
+            form.form-inline
+                +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                +btn-outline-success('Search','','submit')
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-light bg-light')
+                    +navbar-brand('#','Navbar')
+                    form.form-inline
+                        +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                        +btn-outline-success('Search','','submit')
+    
+    p Input groups work, too:
+    .bd-example
+        +navbar('navbar-light bg-light')
+            form.form-inline
+                +input-group('@')
+                    +input-simple('text','textUsername','Username')
+
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-light bg-light')
+                    form.form-inline
+                        +input-group('@')
+                            +input-simple('text','textUsername','Username')
+    
+    p
+        | Various buttons are supported as part of these navbar forms, too. This is also a great reminder that vertical alignment utilities can be used to align different sized elements.
+    .bd-example
+        +navbar('navbar-light bg-light')
+            form.form-inline
+                +btn-outline-success('Main button')
+                | &nbsp;
+                +btn-outline-sm-secondary('Smaller button')
+    
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-light bg-light')
+                    form.form-inline
+                        +btn-outline-success('Main button')
+                        +btn-outline-sm-secondary('Smaller button')
+
+    h3#text Text
+    p
+        | Navbars may contain bits of text with the help of 
+        code.highlighter-rouge .navbar-text
+        | . This class adjusts vertical alignment and horizontal spacing for strings of text.
+    .bd-example
+        +navbar('navbar-light bg-light')
+            span.navbar-text Navbar text with an inline element
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-light bg-light')
+                    span.navbar-text Navbar text with an inline element
+
+    p Mix and match with other components and utilities as needed.
+    .bd-example
+        +navbar('navbar-expand-lg navbar-light bg-light')
+            +navbar-brand('#','Navbar w/ text')
+            +navbar-menu('navbarText')
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Features','#')
+                    +nav-item('Pricing','#')
+                span.navbar-text Navbar text with an inline element
+
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-light bg-light')
+                    +navbar-brand('#','Navbar w/ text')
+                    +navbar-menu('navbarText')
+                        +navbar-nav('mr-auto')
+                            +nav-item('Home','#','active')
+                            +nav-item('Features','#')
+                            +nav-item('Pricing','#')
+                        span.navbar-text Navbar text with an inline element
+    
+    h2#color-schemes Color schemes
+    p
+        | Theming the navbar has never been easier thanks to the combination of theming classes and 
+        code.highlighter-rouge background-color
+        |  utilities. Choose from 
+        code.highlighter-rouge .navbar-light
+        |  for use with light background colors, or 
+        code.highlighter-rouge .navbar-dark
+        |  for dark background colors. Then, customize with 
+        code.highlighter-rouge .bg-*
+        |  utilities.
+    .bd-example
+        +navbar('navbar-expand-lg navbar-dark bg-dark')
+            +navbar-brand('#','Navbar')
+            +navbar-menu('navbarColor01')
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Features','#')
+                    +nav-item('Pricing','#')
+                    +nav-item('About','#')
+            form.form-inline.my-2.my-lg-0
+                +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                +btn-outline-info('Search','','submit')
+
+        +navbar('navbar-expand-lg navbar-dark bg-primary')
+            +navbar-brand('#','Navbar')
+            +navbar-menu('navbarColor02')
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Features','#')
+                    +nav-item('Pricing','#')
+                    +nav-item('About','#')
+            form.form-inline.my-2.my-lg-0
+                +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                +btn-outline-light('Search','','submit')
+        
+        +navbar('navbar-expand-lg navbar-light','background-color: #e3f2fd;')
+            +navbar-brand('#','Navbar')
+            +navbar-menu('navbarColor03')
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Features','#')
+                    +nav-item('Pricing','#')
+                    +nav-item('About','#')
+            form.form-inline.my-2.my-lg-0
+                +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                +btn-outline-primary('Search','','submit')
+
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-dark bg-dark')
+                    // Navbar content
+
+                +navbar('navbar-expand-lg navbar-dark bg-primary')
+                    // Navbar content
+                
+                +navbar('navbar-expand-lg navbar-light','background-color: #e3f2fd;')
+                    // Navbar content
+    
+    h2#containers Containers
+    p
+        | Although it’s not required, you can wrap a navbar in a 
+        code.highlighter-rouge .container
+        |  to center it on a page or add one within to only center the contents of a 
+        a(href='#placement') fixed or static top navbar
+        | .
+    .bd-example
+        .container
+            +navbar('navbar-expand-lg navbar-light bg-light')
+                +navbar-brand('#','Navbar')
+
+    figure.highlight
+        pre
+            code.js.
+                .container
+                    +navbar('navbar-expand-lg navbar-light bg-light')
+                        +navbar-brand('#','Navbar')
+
+    p
+        | When the container is within your navbar, its horizontal padding is removed at breakpoints lower than your specified 
+        code.highlighter-rouge .navbar-expand{-sm|-md|-lg|-xl}
+        |  class. This ensures we’re not doubling up on padding unnecessarily on lower viewports when your navbar is collapsed.
+    .bd-example
+        +navbar('navbar-light bg-light')
+            .container
+                +navbar-brand('#','Navbar')
+
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-light bg-light')
+                    .container
+                        +navbar-brand('#','Navbar')
+    
+    h2#placement Placement
+    p
+        | Use our 
+        a(href='/docs/utilities/position/') position utilities
+        |  to place navbars in non-static positions. Choose from fixed to the top, fixed to the bottom, or stickied to the top (scrolls with the page until it reaches the top, then stays there). Fixed navbars use 
+        code.highlighter-rouge position: fixed
+        | , meaning they’re pulled from the normal flow of the DOM and may require custom CSS (e.g., 
+        code.highlighter-rouge padding-top
+        |  on the 
+        code.highlighter-rouge <body>
+        | ) to prevent overlap with other elements.
+    p
+        | Also note that 
+        strong
+            code.highlighter-rouge .sticky-top
+            |  uses 
+            code.highlighter-rouge position: sticky
+            | , which 
+            a(href='https://caniuse.com/#feat=css-sticky') isn’t fully supported in every browser
+        | .
+    .bd-example
+        +navbar('navbar-light bg-light')
+            +navbar-brand('#','Default')
+
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-light bg-light')
+                    +navbar-brand('#','Default')
+
+    .bd-example
+        +navbar('fixed-top navbar-light bg-light')
+            +navbar-brand('#','Fixed top')
+    figure.highlight
+        pre
+            code.js.
+                +navbar('fixed-top navbar-light bg-light')
+                    +navbar-brand('#','Fixed top')
+    .bd-example
+        +navbar('fixed-bottom navbar-light bg-light')
+            +navbar-brand('#','Fixed bottom')
+    figure.highlight
+        pre
+            code.js.
+                +navbar('fixed-bottom navbar-light bg-light')
+                    +navbar-brand('#','Fixed bottom')
+    .bd-example
+        +navbar('sticky-top navbar-light bg-light')
+            +navbar-brand('#','Sticky top')
+    figure.highlight
+        pre
+            code.js.
+                +navbar('sticky-top navbar-light bg-light')
+                    +navbar-brand('#','Sticky top')
+    h2#responsive-behaviors Responsive behaviors
+    p
+        | Navbars can utilize 
+        code.highlighter-rouge .navbar-toggler
+        | , 
+        code.highlighter-rouge .navbar-collapse
+        | , and 
+        code.highlighter-rouge .navbar-expand{-sm|-md|-lg|-xl}
+        |  classes to change when their content collapses behind a button. In combination with other utilities, you can easily choose when to show or hide particular elements.
+    p
+        | For navbars that never collapse, add the 
+        code.highlighter-rouge .navbar-expand
+        |  class on the navbar. For navbars that always collapse, don’t add any 
+        code.highlighter-rouge .navbar-expand
+        |  class.
+    h3#toggler Toggler
+    p
+        | Navbar togglers are left-aligned by default, but should they follow a sibling element like a 
+        code.highlighter-rouge .navbar-brand
+        | , they’ll automatically be aligned to the far right. Reversing your markup will reverse the placement of the toggler. Below are examples of different toggle styles.
+    p
+        | With no 
+        code.highlighter-rouge .navbar-brand
+        |  shown in lowest breakpoint:
+    .bd-example
+        +navbar('navbar-expand-lg navbar-light bg-light')
+            +navbar-menu('navbarTogglerDemo01')
+                +navbar-brand('#','Hidden brand')
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Link','#')
+                    +nav-item('Disabled','#','disabled')
+                form.form-inline.my-2.my-lg-0
+                    +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                    +btn-outline-success('Search','','submit')
+
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-light bg-light')
+                    +navbar-menu('navbarTogglerDemo01')
+                        +navbar-brand('#','Hidden brand')
+                        +navbar-nav('mr-auto')
+                            +nav-item('Home','#','active')
+                            +nav-item('Link','#')
+                            +nav-item('Disabled','#','disabled')
+                        form.form-inline.my-2.my-lg-0
+                            +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                            +btn-outline-success('Search','','submit')
+    
+    p With a brand name shown on the left and toggler on the right:
+    .bd-example
+        +navbar('navbar-expand-lg navbar-light bg-light')
+            +navbar-brand('#','Hidden brand')
+            +navbar-menu('navbarTogglerDemo02')                
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Link','#')
+                    +nav-item('Disabled','#','disabled')
+                form.form-inline.my-2.my-lg-0
+                    +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                    +btn-outline-success('Search','','submit')
+    
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-light bg-light')
+                    +navbar-brand('#','Hidden brand')
+                    +navbar-menu('navbarTogglerDemo02')                
+                        +navbar-nav('mr-auto')
+                            +nav-item('Home','#','active')
+                            +nav-item('Link','#')
+                            +nav-item('Disabled','#','disabled')
+                        form.form-inline.my-2.my-lg-0
+                            +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                            +btn-outline-success('Search','','submit')
+    
+    p With a toggler on the left and brand name on the right:
+    .bd-example
+        +navbar('navbar-expand-lg navbar-light bg-light')
+            +navbar-toggle('navbarTogglerDemo03')
+            +navbar-brand('#','Navbar')
+            #navbarTogglerDemo03.collapse.navbar-collapse
+                +navbar-nav('mr-auto')
+                    +nav-item('Home','#','active')
+                    +nav-item('Link','#')
+                    +nav-item('Disabled','#','disabled')
+                form.form-inline.my-2.my-lg-0
+                    +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                    +btn-outline-success('Search','','submit')
+
+    figure.highlight
+        pre
+            code.js.
+                +navbar('navbar-expand-lg navbar-light bg-light')
+                    +navbar-toggle('navbarTogglerDemo03')
+                    +navbar-brand('#','Navbar')
+                    #navbarTogglerDemo03.collapse.navbar-collapse
+                        +navbar-nav('mr-auto')
+                            +nav-item('Home','#','active')
+                            +nav-item('Link','#')
+                            +nav-item('Disabled','#','disabled')
+                        form.form-inline.my-2.my-lg-0
+                            +input-simple('search','textsearch','Search','','mr-sm-2  my-2')
+                            +btn-outline-success('Search','','submit')
+    
+    h3#external-content External content
+    p
+        | Sometimes you want to use the collapse plugin to trigger hidden content elsewhere on the page. Because our plugin works on the 
+        code.highlighter-rouge id
+        |  and 
+        code.highlighter-rouge data-target
+        |  matching, that’s easily done!
+    .bd-example
+        .pos-f-t
+            #navbarToggleExternalContent.collapse
+                .bg-dark.p-4
+                    h5.text-white.h4 Collapsed content
+                    span.text-muted Toggleable via the navbar brand.
+            +navbar('navbar-dark bg-dark')
+                +navbar-toggle('navbarToggleExternalContent')
+
+    figure.highlight
+        pre
+            code.js.
+                #navbarToggleExternalContent.collapse
+                    .bg-dark.p-4
+                        h5.text-white.h4 Collapsed content
+                        span.text-muted Toggleable via the navbar brand.
+                +navbar('navbar-dark bg-dark')
+                    +navbar-toggle('navbarToggleExternalContent')

@@ -1,0 +1,181 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'media-object';
+    - title = "Layout - Media object"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#example') Example
+        li.toc-entry.toc-h2
+            a(href='#nesting') Nesting
+        li.toc-entry.toc-h2
+            a(href='#alignment') Alignment
+        li.toc-entry.toc-h2
+            a(href='#order') Order
+        li.toc-entry.toc-h2
+            a(href='#media-list') Media list
+
+block content 
+    h1.bd-title#content  Media object
+    p.bd-lead Documentation and examples for Bootstrap’s media object to construct highly repetitive components like blog comments, tweets, and the like.
+
+    h2#example Example
+    p
+        | The 
+        a(href='http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/') media object
+        |  helps build complex and repetitive components where some media is positioned alongside content that doesn’t wrap around said media. Plus, it does this with only two required classes thanks to flexbox.
+    p
+        | Below is an example of a single media object. Only two classes are required—the wrapping 
+        code.highlighter-rouge .media
+        |  and the 
+        code.highlighter-rouge .media-body
+        |  around your content. Optional padding and margin can be controlled through 
+        a(href='/docs/utilities/spacing/') spacing utilities
+        | .
+    .bd-example
+        +media('Media heading', 'holder.js/64x64', 'Generic placeholder image')
+            +lipsum(35, 'words')
+    figure.highlight
+        pre
+            code.js.
+                +media('Media heading', 'holder.js/64x64', 'Generic placeholder image')
+                    +lipsum(35, 'words')
+    .bd-callout.bd-callout-warning
+        h5#flexbug-12-inline-elements-arent-treated-as-flex-items Flexbug #12: Inline elements aren’t treated as flex items
+        p
+            | Internet Explorer 10-11 do not render inline elements like links or images (or 
+            code.highlighter-rouge ::before
+            |  and 
+            code.highlighter-rouge ::after
+            |  pseudo-elements) as flex items. The only workaround is to set a non-inline 
+            code.highlighter-rouge display
+            |  value (e.g., 
+            code.highlighter-rouge block
+            | , 
+            code.highlighter-rouge inline-block
+            | , or 
+            code.highlighter-rouge flex
+            | ). We suggest using 
+            code.highlighter-rouge .d-flex
+            | , one of our 
+            a(href='/docs/utilities/display/') display utilities
+            | , as an easy fix.
+        p
+            strong Source:
+            a(href='https://github.com/philipwalton/flexbugs#flexbug-12') Flexbugs on GitHub
+    h2#nesting Nesting
+    p
+        | Media objects can be infinitely nested, though we suggest you stop at some point. Place nested 
+        code.highlighter-rouge .media
+        |  within the 
+        code.highlighter-rouge .media-body
+        |  of a parent media object.
+    .bd-example
+        +media('Media heading', 'holder.js/64x64', 'Generic placeholder image')
+            +lipsum(35, 'words')
+            +media('Media heading', 'holder.js/64x64', 'Generic placeholder image', 'mt-3', '#')
+                +lipsum(35, 'words')
+    
+    figure.highlight
+        pre
+            code.js.
+                +media('Media heading', 'holder.js/64x64', 'Generic placeholder image')
+                    +lipsum(35, 'words')
+                    +media('Media heading', 'holder.js/64x64', 'Generic placeholder image', 'mt-3', '#')
+                        +lipsum(35, 'words')
+    h2#alignment Alignment
+    p
+        | Media in a media object can be aligned with flexbox utilities to the top (default), middle, or end of your 
+        code.highlighter-rouge .media-body
+        |  content.
+    .bd-example
+        +media('Top-aligned media', 'holder.js/64x64', 'Generic placeholder image')
+            p
+                +lipsum(35, 'words')
+            P
+                +lipsum(35, 'words')
+    figure.highlight
+        pre
+            code.js.
+                +media('Top-aligned media', 'holder.js/64x64', 'Generic placeholder image')
+                    p
+                        +lipsum(35, 'words')
+                    P
+                        +lipsum(35, 'words')
+    .bd-example
+        +media-center('Center-aligned media', 'holder.js/64x64', 'Generic placeholder image')
+            p
+                +lipsum(35, 'words')
+            P
+                +lipsum(35, 'words')
+    figure.highlight
+        pre
+            code.js.
+                +media-center('Center-aligned media', 'holder.js/64x64', 'Generic placeholder image')
+                    p
+                        +lipsum(35, 'words')
+                    P
+                        +lipsum(35, 'words')
+    .bd-example
+        +media-end('Bottom-aligned media', 'holder.js/64x64', 'Generic placeholder image')
+            p
+                +lipsum(35, 'words')
+            P.mb-0
+                +lipsum(35, 'words')
+    figure.highlight
+        pre
+            code.js.
+                +media-end('Bottom-aligned media', 'holder.js/64x64', 'Generic placeholder image')
+                    p
+                        +lipsum(35, 'words')
+                    P
+                        +lipsum(35, 'words')
+    h2#order Order
+    p
+        | Change the order of content in media objects by modifying the HTML itself, or by adding some custom flexbox CSS to set the 
+        code.highlighter-rouge order
+        |  property (to an integer of your choosing).
+    .bd-example
+        +media-order('Media object', 'holder.js/64x64', 'Generic placeholder image')
+            +lipsum(35, 'words')
+    figure.highlight
+        pre
+            code.js.
+                +media-order('Media object', 'holder.js/64x64', 'Generic placeholder image')
+                    +lipsum(35, 'words')
+    h2#media-list Media list
+    p
+        | Because the media object has so few structural requirements, you can also use these classes on list HTML elements. On your 
+        code.highlighter-rouge &lt;ul&gt;
+        |  or 
+        code.highlighter-rouge &lt;ol&gt;
+        | , add the 
+        code.highlighter-rouge .list-unstyled
+        |  to remove any browser default list styles, and then apply 
+        code.highlighter-rouge .media
+        |  to your 
+        code.highlighter-rouge &lt;li&gt;
+        | s. As always, use spacing utilities wherever needed to fine tune.
+    .bd-example
+        ul.list-unstyled
+            +media-list('List-based media object', 'holder.js/64x64', 'Generic placeholder image')
+                +lipsum(35, 'words')
+            +media-list('List-based media object', 'holder.js/64x64', 'Generic placeholder image', 'mt-3')
+                +lipsum(35, 'words')
+            +media-list('List-based media object', 'holder.js/64x64', 'Generic placeholder image', 'mt-3')
+                +lipsum(35, 'words')
+            +media-list('List-based media object', 'holder.js/64x64', 'Generic placeholder image', 'mt-3')
+                +lipsum(35, 'words')
+    figure.highlight
+        pre
+            code.js.
+                ul.list-unstyled
+                    +media-list('List-based media object', 'holder.js/64x64', 'Generic placeholder image')
+                        +lipsum(35, 'words')
+                    +media-list('List-based media object', 'holder.js/64x64', 'Generic placeholder image', 'mt-3')
+                        +lipsum(35, 'words')
+                    +media-list('List-based media object', 'holder.js/64x64', 'Generic placeholder image', 'mt-3')
+                        +lipsum(35, 'words')
+                    +media-list('List-based media object', 'holder.js/64x64', 'Generic placeholder image', 'mt-3')
+                        +lipsum(35, 'words')

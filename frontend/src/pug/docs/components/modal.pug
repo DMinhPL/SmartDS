@@ -1,0 +1,602 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'modal';
+    - title = "Component - Modal"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#how-it-works') How it works
+        li.toc-entry.toc-h2
+            a(href='#examples') Examples
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#modal-components') Modal components
+                li.toc-entry.toc-h3
+                    a(href='#live-demo') Live demo
+                li.toc-entry.toc-h3
+                    a(href='#scrolling-long-content') Scrolling long content
+                li.toc-entry.toc-h3
+                    a(href='#tooltips-and-popovers') Tooltips and popovers
+                li.toc-entry.toc-h3
+                    a(href='#using-the-grid') Using the grid
+                li.toc-entry.toc-h3
+                    a(href='#varying-modal-content') Varying modal content
+                li.toc-entry.toc-h3
+                    a(href='#remove-animation') Remove animation
+                li.toc-entry.toc-h3
+                    a(href='#dynamic-heights') Dynamic heights
+                li.toc-entry.toc-h3
+                    a(href='#accessibility') Accessibility
+                li.toc-entry.toc-h3
+                    a(href='#embedding-youtube-videos') Embedding YouTube videos
+        li.toc-entry.toc-h2
+            a(href='#optional-sizes') Optional sizes
+        li.toc-entry.toc-h2
+            a(href='#usage') Usage
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#via-data-attributes') Via data attributes
+                li.toc-entry.toc-h3
+                    a(href='#via-javascript') Via JavaScript
+                li.toc-entry.toc-h3
+                    a(href='#options') Options
+                li.toc-entry.toc-h3
+                    a(href='#methods') Methods
+                    ul
+                        li.toc-entry.toc-h4
+                            a(href='#asynchronous-methods-and-transitions') Asynchronous methods and transitions
+                        li.toc-entry.toc-h4
+                            a(href='#modaloptions') .modal(options)
+                        li.toc-entry.toc-h4
+                            a(href='#modaltoggle') .modal('toggle')
+                        li.toc-entry.toc-h4
+                            a(href='#modalshow') .modal('show')
+                        li.toc-entry.toc-h4
+                            a(href='#modalhide') .modal('hide')
+                        li.toc-entry.toc-h4
+                            a(href='#modalhandleupdate') .modal('handleUpdate')
+                        li.toc-entry.toc-h4
+                            a(href='#modaldispose') .modal('dispose')
+                li.toc-entry.toc-h3
+                    a(href='#events') Events
+
+block content 
+    h1.bd-title#content Modal
+    p.bd-lead Use Bootstrap’s JavaScript modal plugin to add dialogs to your site for lightboxes, user notifications, or completely custom content.
+    
+    h2#how-it-works How it works
+    p
+        | Before getting started with Bootstrap’s modal component, be sure to read the following as our menu options have recently changed.
+    ul
+        li
+            | Modals are built with HTML, CSS, and JavaScript. They’re positioned over everything else in the document and remove scroll from the 
+            code.highlighter-rouge &lt;body&gt;
+            |  so that modal content scrolls instead.
+        li Clicking on the modal “backdrop” will automatically close the modal.
+        li
+            | Bootstrap only supports one modal window at a time. Nested modals aren’t supported as we believe them to be poor user experiences.
+        li
+            | Modals use 
+            code.highlighter-rouge position: fixed
+            | , which can sometimes be a bit particular about its rendering. Whenever possible, place your modal HTML in a top-level position to avoid potential interference from other elements. You’ll likely run into issues when nesting a 
+            code.highlighter-rouge .modal
+            |  within another fixed element.
+        li
+            | Once again, due to 
+            code.highlighter-rouge position: fixed
+            | , there are some caveats with using modals on mobile devices. 
+            a(href='/docs/4.1/getting-started/browsers-devices/#modals-and-dropdowns-on-mobile') See our browser support docs
+            |  for details.
+        li
+            | Due to how HTML5 defines its semantics, 
+            a(href='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autofocus')
+                | the 
+                code.highlighter-rouge autofocus
+                |  HTML attribute
+            |  has no effect in Bootstrap modals. To achieve the same effect, use some custom JavaScript:
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myModal').on('shown.bs.modal', function () {
+                |     $('#myInput').trigger('focus')
+                | })
+
+    p Keep reading for demos and usage guidelines.
+
+    h2#examples Examples
+    h3#modal-components Modal components
+    p
+        | Below is a 
+        em static
+        |  modal example (meaning its 
+        code.highlighter-rouge position
+        |  and 
+        code.highlighter-rouge display
+        |  have been overridden). Included are the modal header, modal body (required for 
+        code.highlighter-rouge padding
+        | ), and modal footer (optional). We ask that you include modal headers with dismiss actions whenever possible, or provide another explicit dismiss action.
+    .bd-example.bd-example-modal
+        +modal('Modal title')
+            .modal-body
+                p Modal body text goes here.
+            +modal-footer()
+                +btn-primary('Save changes')
+                    
+
+    figure.highlight
+        pre
+            code.js.
+                +modal('Modal title')
+                    .modal-body
+                        p Modal body text goes here.
+                    +modal-footer()
+                        +btn-primary('Save changes')
+    
+    h3#live-demo Live demo
+    p Toggle a working modal demo by clicking the button below. It will slide down and fade in from the top of the page.
+    +modal('Modal title','exampleModalLive')
+        .modal-body
+            p Woohoo, you're reading this text in a modal!
+        +modal-footer()
+            +btn-primary('Save changes')
+    .bd-example
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModalLive') Launch demo modal
+
+    figure.highlight
+        pre
+            code.js.
+                +modal('Modal title','exampleModalLive')
+                    .modal-body
+                        p Woohoo, youre reading this text in a modal!
+                    +modal-footer()
+                        +btn-primary('Save changes')
+
+    h3#scrolling-long-content Scrolling long content
+    p When modals become too long for the user’s viewport or device, they scroll independent of the page itself. Try the demo below to see what we mean.
+    +modal('Modal title','exampleModalLong')
+        .modal-body
+            +lipsum(20,'paragraphs')
+        +modal-footer()
+            +btn-primary('Save changes')
+    .bd-example
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModalLong') Launch demo modal
+
+    figure.highlight
+        pre
+            code.js.
+                +modal('Modal title','exampleModalLong')
+                    .modal-body
+                        +lipsum(20,'paragraphs')
+                    +modal-footer()
+                        +btn-primary('Save changes')
+
+    h3#tooltips-and-popovers Tooltips and popovers
+    p
+        a(href='/docs/components/tooltips/') Tooltips
+        |  and 
+        a(href='/docs/components/popovers/') popovers
+        |  can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed.
+    +modal('Modal title','exampleModalPopovers')
+        .modal-body
+            h5 Popover in a modal
+            p
+                | This 
+                a.btn.btn-secondary.popover-test(href='#', role='button', title='Popover title', data-content='Popover body content is set in this attribute.', data-container='#exampleModalPopovers') button
+                |  triggers a popover on click.
+            hr
+            h5 Tooltips in a modal
+            p
+                a.tooltip-test(href='#', title='Tooltip', data-container='#exampleModalPopovers') This link
+                |  and 
+                a.tooltip-test(href='#', title='Tooltip', data-container='#exampleModalPopovers') that link
+                |  have tooltips on hover.
+        +modal-footer()
+            +btn-primary('Save changes')
+    .bd-example
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModalPopovers') Launch demo modal
+
+    figure.highlight
+        pre
+            code.js.
+                +modal('Modal title','exampleModalPopovers')
+                    .modal-body
+                        h5 Popover in a modal
+                        p
+                            | This 
+                            a.btn.btn-secondary.popover-test(href='#', role='button', title='Popover title', data-content='Popover body content is set in this attribute.', data-container='#exampleModalPopovers') button
+                            |  triggers a popover on click.
+                        hr
+                        h5 Tooltips in a modal
+                        p
+                            a.tooltip-test(href='#', title='Tooltip', data-container='#exampleModalPopovers') This link
+                            |  and 
+                            a.tooltip-test(href='#', title='Tooltip', data-container='#exampleModalPopovers') that link
+                            |  have tooltips on hover.
+                    +modal-footer()
+                        +btn-primary('Save changes')
+
+    h3#using-the-grid Using the grid
+    p
+        | Utilize the Bootstrap grid system within a modal by nesting 
+        code.highlighter-rouge .container-fluid
+        |  within the 
+        code.highlighter-rouge .modal-body
+        | . Then, use the normal grid system classes as you would anywhere else.
+    +modal('Grids in modals','gridSystemModal')
+        .modal-body
+            .container-fluid.bd-example-row
+                .row
+                    .col-md-4 .col-md-4
+                    .col-md-4.ml-auto .col-md-4 .ml-auto
+                .row
+                    .col-md-3.ml-auto .col-md-3 .ml-auto
+                    .col-md-2.ml-auto .col-md-2 .ml-auto
+                .row
+                    .col-md-6.ml-auto .col-md-6 .ml-auto
+                .row
+                    .col-sm-9
+                        | Level 1: .col-sm-9
+                        .row
+                            .col-8.col-sm-6
+                                | Level 2: .col-8 .col-sm-6
+                            .col-4.col-sm-6
+                                | Level 2: .col-4 .col-sm-6
+        +modal-footer()
+            +btn-primary('Save changes')
+    .bd-example
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#gridSystemModal') Launch demo modal
+
+    figure.highlight
+        pre
+            code.js.
+                +modal('Grids in modals','gridSystemModal')
+                    .modal-body
+                        .container-fluid.bd-example-row
+                            .row
+                                .col-md-4 .col-md-4
+                                .col-md-4.ml-auto .col-md-4 .ml-auto
+                            .row
+                                .col-md-3.ml-auto .col-md-3 .ml-auto
+                                .col-md-2.ml-auto .col-md-2 .ml-auto
+                            .row
+                                .col-md-6.ml-auto .col-md-6 .ml-auto
+                            .row
+                                .col-sm-9
+                                    | Level 1: .col-sm-9
+                                    .row
+                                        .col-8.col-sm-6
+                                            | Level 2: .col-8 .col-sm-6
+                                        .col-4.col-sm-6
+                                            | Level 2: .col-4 .col-sm-6
+                    +modal-footer()
+                        +btn-primary('Save changes')
+
+    h3#varying-modal-content Varying modal content
+    p
+        | Have a bunch of buttons that all trigger the same modal with slightly different contents? Use 
+        code.highlighter-rouge event.relatedTarget
+        |  and 
+        a(href='https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes')
+            | HTML 
+            code.highlighter-rouge data-*
+            |  attributes
+        |  (possibly 
+        a(href='https://api.jquery.com/data/') via jQuery
+        | ) to vary the contents of the modal depending on which button was clicked.
+    p
+        | Below is a live demo followed by example HTML and JavaScript. For more information, 
+        a(href='#events') read the modal events docs
+        |  for details on 
+        code.highlighter-rouge relatedTarget
+        | .
+    .bd-example
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@mdo') Open modal for @mdo
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@fat') Open modal for @fat
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@getbootstrap') Open modal for @getbootstrap
+        +modal('New message','exampleModal')
+            .modal-body
+                 form
+                    .form-group
+                        label.col-form-label(for='recipient-name') Recipient:
+                        input#recipient-name.form-control(type='text')
+                    .form-group
+                        label.col-form-label(for='message-text') Message:
+                        textarea#message-text.form-control
+            +modal-footer()
+                +btn-primary('Save changes')
+    figure.highlight
+        pre
+            code.js.
+                button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@mdo') Open modal for @mdo
+                button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@fat') Open modal for @fat
+                button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@getbootstrap') Open modal for @getbootstrap
+                +modal('New message','exampleModal')
+                    .modal-body
+                        form
+                            .form-group
+                                label.col-form-label(for='recipient-name') Recipient:
+                                input#recipient-name.form-control(type='text')
+                            .form-group
+                                label.col-form-label(for='message-text') Message:
+                                textarea#message-text.form-control
+                    +modal-footer()
+                        +btn-primary('Save changes')
+
+    figure.highlight
+        pre
+            code.js
+                | $('#exampleModal').on('show.bs.modal', function (event) {
+                |   var button = $(event.relatedTarget) // Button that triggered the modal
+                |   var recipient = button.data('whatever') // Extract info from data-* attributes
+                |   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                |   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                |   var modal = $(this)
+                |   modal.find('.modal-title').text('New message to ' + recipient)
+                |   modal.find('.modal-body input').val(recipient)
+                | })
+
+    h3#remove-animation Remove animation
+    p
+        | For modals that simply appear rather than fade in to view, remove the 
+        code.highlighter-rouge .fade
+        |  class from your modal markup.
+
+    figure.highlight
+        pre
+            code.css
+                | .modal(tabindex='-1', role='dialog', aria-labelledby='...', aria-hidden='true')
+                |     | ...
+
+    h3#dynamic-heights Dynamic heights
+    p
+        | If the height of a modal changes while it is open, you should call 
+        code.highlighter-rouge $('#myModal').modal('handleUpdate')
+        |  to readjust the modal’s position in case a scrollbar appears.
+    h3#accessibility Accessibility
+    p
+        | Be sure to add 
+        code.highlighter-rouge role="dialog"
+        |  and 
+        code.highlighter-rouge aria-labelledby="..."
+        | , referencing the modal title, to 
+        code.highlighter-rouge .modal
+        | , and 
+        code.highlighter-rouge role="document"
+        |  to the 
+        code.highlighter-rouge .modal-dialog
+        |  itself. Additionally, you may give a description of your modal dialog with 
+        code.highlighter-rouge aria-describedby
+        |  on 
+        code.highlighter-rouge .modal
+        | .
+    h3#embedding-youtube-videos Embedding YouTube videos
+    p
+        | Embedding YouTube videos in modals requires additional JavaScript not in Bootstrap to automatically stop playback and more. 
+        a(href='https://stackoverflow.com/questions/18622508/bootstrap-3-and-youtube-in-modal') See this helpful Stack Overflow post
+        |  for more information.
+    h2#optional-sizes Optional sizes
+    p
+        | Modals have two optional sizes, available via modifier classes to be placed on a 
+        code.highlighter-rouge .modal-dialog
+        | . These sizes kick in at certain breakpoints to avoid horizontal scrollbars on narrower viewports.
+    .bd-example
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#modal-lg') Large modal
+        button.btn.btn-primary(type='button', data-toggle='modal', data-target='#modal-sm') Small modal
+
+    figure.highlight
+        pre
+            code.js.
+                +modal('Large modal','modal-lg','','lg')
+                    .modal-body
+                        +lipsum(2,'paragraphs')
+                +modal('Small modal','modal-sm','','sm')
+                    .modal-body
+                        +lipsum(1,'paragraphs')
+
+    +modal('Large modal','modal-lg','','lg')
+        .modal-body
+            +lipsum(2,'paragraphs')
+    +modal('Small modal','modal-sm','','sm')
+        .modal-body
+            +lipsum(1,'paragraphs')
+    h2#usage Usage
+    p
+        | The modal plugin toggles your hidden content on demand, via data attributes or JavaScript. It also adds 
+        code.highlighter-rouge .modal-open
+        |  to the 
+        code.highlighter-rouge <body>
+        |  to override default scrolling behavior and generates a 
+        code.highlighter-rouge .modal-backdrop
+        |  to provide a click area for dismissing shown modals when clicking outside the modal.
+    h3#via-data-attributes Via data attributes
+    p
+        | Activate a modal without writing JavaScript. Set 
+        code.highlighter-rouge data-toggle="modal"
+        |  on a controller element, like a button, along with a 
+        code.highlighter-rouge data-target="#foo"
+        |  or 
+        code.highlighter-rouge href="#foo"
+        |  to target a specific modal to toggle.
+
+    figure.highlight
+        pre
+            code.css
+                | button(type='button', data-toggle='modal', data-target='#myModal') Launch modal
+
+    h3#via-javascript Via JavaScript
+    p
+        | Call a modal with id 
+        code.highlighter-rouge myModal
+        |  with a single line of JavaScript:
+    figure.highlight
+        pre.
+    h3#options Options
+    p
+        | Options can be passed via data attributes or JavaScript. For data attributes, append the option name to 
+        code.highlighter-rouge data-
+        | , as in 
+        code.highlighter-rouge data-backdrop=""
+        | .
+    table.table.table-bordered.table-striped
+        thead
+            tr
+                th(style='width: 100px;') Name
+                th(style='width: 50px;') Type
+                th(style='width: 50px;') Default
+                th Description
+        tbody
+            tr
+                td backdrop
+                td
+                    | boolean or the string 
+                    code 'static'
+                td true
+                td
+                    | Includes a modal-backdrop element. Alternatively, specify 
+                    code static
+                    |  for a backdrop which doesn't close the modal on click.
+            tr
+                td keyboard
+                td boolean
+                td true
+                td Closes the modal when escape key is pressed
+            tr
+                td focus
+                td boolean
+                td true
+                td Puts the focus on the modal when initialized.
+            tr
+                td show
+                td boolean
+                td true
+                td Shows the modal when initialized.
+    h3#methods Methods
+    .bd-callout.bd-callout-danger
+        h4#asynchronous-methods-and-transitions Asynchronous methods and transitions
+        p
+            | All API methods are 
+            strong asynchronous
+            |  and start a 
+            strong transition
+            | . They return to the caller as soon as the transition is started but 
+            strong before it ends
+            | . In addition, a method call on a 
+            strong transitioning component will be ignored
+            | .
+        p
+            a(href='/docs/4.1/getting-started/javascript/') See our JavaScript documentation for more information.
+    h4#modaloptions
+        code.highlighter-rouge .modal(options)
+    p
+        | Activates your content as a modal. Accepts an optional options 
+        code.highlighter-rouge object
+        | .
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myModal').modal({
+                |     keyboard: false
+                | })
+
+    h4#modaltoggle
+        code.highlighter-rouge .modal('toggle')
+    p
+        | Manually toggles a modal. 
+        strong Returns to the caller before the modal has actually been shown or hidden
+        |  (i.e. before the 
+        code.highlighter-rouge shown.bs.modal
+        |  or 
+        code.highlighter-rouge hidden.bs.modal
+        |  event occurs).
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myModal').modal('toggle')
+    
+    h4#modalshow
+        code.highlighter-rouge .modal('show')
+    p
+        | Manually opens a modal. 
+        strong Returns to the caller before the modal has actually been shown
+        |  (i.e. before the 
+        code.highlighter-rouge shown.bs.modal
+        |  event occurs).
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myModal').modal('show')
+
+    h4#modalhide
+        code.highlighter-rouge .modal('hide')
+    p
+        | Manually hides a modal. 
+        strong Returns to the caller before the modal has actually been hidden
+        |  (i.e. before the 
+        code.highlighter-rouge hidden.bs.modal
+        |  event occurs).
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myModal').modal('hide')
+
+    h4#modalhandleupdate
+        code.highlighter-rouge .modal('handleUpdate')
+    p Manually readjust the modal’s position if the height of a modal changes while it is open (i.e. in case a scrollbar appears).
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myModal').modal('handleUpdate')
+
+    h4#modaldispose
+        code.highlighter-rouge .modal('dispose')
+    p Destroys an element’s modal.
+    h3#events Events
+    p
+        | Bootstrap’s modal class exposes a few events for hooking into modal functionality. All modal events are fired at the modal itself (i.e. at the 
+        code.highlighter-rouge &gt;div class="modal"&lt;
+        | ).
+    table.table.table-bordered.table-striped
+        thead
+            tr
+                th(style='width: 150px;') Event Type
+                th Description
+        tbody
+            tr
+                td show.bs.modal
+                td
+                    | This event fires immediately when the 
+                    code show
+                    |  instance method is called. If caused by a click, the clicked element is available as the 
+                    code relatedTarget
+                    |  property of the event.
+            tr
+                td shown.bs.modal
+                td
+                    | This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete). If caused by a click, the clicked element is available as the 
+                    code relatedTarget
+                    |  property of the event.
+            tr
+                td hide.bs.modal
+                td
+                    | This event is fired immediately when the 
+                    code hide
+                    |  instance method has been called.
+            tr
+                td hidden.bs.modal
+                td
+                    | This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete).
+
+    figure.highlight
+        pre
+            code.js
+                | $('#myModal').on('hidden.bs.modal', function (e) {
+                |     // do something...
+                | })

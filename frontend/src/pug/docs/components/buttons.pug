@@ -1,0 +1,351 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'buttons';
+    - title = "Component - Buttons"
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#examples') Examples
+        li.toc-entry.toc-h2
+            a(href='#button-tags') Button tags
+        li.toc-entry.toc-h2
+            a(href='#outline-buttons') Outline buttons
+        li.toc-entry.toc-h2
+            a(href='#sizes') Sizes
+        li.toc-entry.toc-h2
+            a(href='#active-state') Active state
+        li.toc-entry.toc-h2
+            a(href='#disabled-state') Disabled state
+        li.toc-entry.toc-h2
+            a(href='#button-plugin') Button plugin
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#toggle-states') Toggle states
+                li.toc-entry.toc-h3
+                    a(href='#checkbox-and-radio-buttons') Checkbox and radio buttons
+                li.toc-entry.toc-h3
+                    a(href='#methods') Methods
+block content 
+    h1.bd-title#content Buttons
+    p.bd-lead Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.
+
+    h2#examples Examples
+    p Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.
+    .bd-example
+        +btn-primary('Primary')
+        +btn-secondary('Secondary')
+        +btn-success('Success')
+        +btn-danger('Danger')
+        +btn-warning('Warning')
+        +btn-info('Info')
+        +btn-light('Light')
+        +btn-dark('Dark')
+        +btn-link('Link')
+    figure.highlight
+        pre
+            code.js.
+                +btn-primary('Primary')
+                +btn-secondary('Secondary')
+                +btn-success('Success')
+                +btn-danger('Danger')
+                +btn-warning('Warning')
+                +btn-info('Info')
+                +btn-light('Light')
+                +btn-dark('Dark')
+                +btn-link('Link')
+
+    .bd-callout.bd-callout-warning
+        h5#conveying-meaning-to-assistive-technologies Conveying meaning to assistive technologies
+        p
+            | Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the 
+            code.highlighter-rouge .sr-only
+            |  class.
+
+    h2#button-tags Button tags
+    p
+        | The 
+        code.highlighter-rouge .btn
+        |  classes are designed to be used with the 
+        code.highlighter-rouge &lt;button&gt;
+        |  element. However, you can also use these classes on 
+        code.highlighter-rouge &lt;a&gt;
+        |  or 
+        code.highlighter-rouge &lt;input&gt;
+        |  elements (though some browsers may apply a slightly different rendering).
+    p
+        | When using button classes on 
+        code.highlighter-rouge &lt;a&gt;
+        |  elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a 
+        code.highlighter-rouge role="button"
+        |  to appropriately convey their purpose to assistive technologies such as screen readers.
+    .bd-example
+        +a-btn-primary('Link','#')
+        +btn-primary('Button')
+        +input-btn-primary('Input')
+        +input-btn-primary('Submit','','submit')
+        +input-btn-primary('Reset','','Reset')
+
+    figure.highlight
+        pre
+            code.js.
+                +a-btn-primary('Link','#')
+                +btn-primary('Button')
+                +input-btn-primary('Input')
+                +input-btn-primary('Submit','','submit')
+                +input-btn-primary('Reset','','Reset')
+
+    h2#outline-buttons Outline buttons
+    p
+        | In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the 
+        code.highlighter-rouge .btn-outline-*
+        |  ones to remove all background images and colors on any button.
+    .bd-example
+        +btn-outline-primary('Primary') 
+        +btn-outline-secondary('Secondary') 
+        +btn-outline-success('Success') 
+        +btn-outline-danger('Danger') 
+        +btn-outline-warning('Warning') 
+        +btn-outline-info('Info') 
+        +btn-outline-light('Light') 
+        +btn-outline-dark('Dark')
+
+    figure.highlight
+        pre
+            code.js.
+                +btn-outline-primary('Primary') 
+                +btn-outline-secondary('Secondary') 
+                +btn-outline-success('Success') 
+                +btn-outline-danger('Danger') 
+                +btn-outline-warning('Warning') 
+                +btn-outline-info('Info') 
+                +btn-outline-light('Light') 
+                +btn-outline-dark('Dark')
+    
+    h2#sizes Sizes
+    p
+        | Fancy larger or smaller buttons? Add 
+        code.highlighter-rouge .btn-lg
+        |  or 
+        code.highlighter-rouge .btn-sm
+        |  for additional sizes.
+    .bd-example
+        +btn-lg-primary('Large button')
+        +btn-lg-secondary('Large button')
+
+    figure.highlight
+        pre
+            code.js.
+                +btn-lg-primary('Large button')
+                +btn-lg-secondary('Large button')
+
+    .bd-example
+        +btn-sm-primary('Small button')
+        +btn-sm-secondary('Small button')
+
+    figure.highlight
+        pre
+            code.js.
+                +btn-sm-primary('Small button')
+                +btn-sm-secondary('Small button')
+    p
+        | Create block level buttons—those that span the full width of a parent—by adding 
+        code.highlighter-rouge .btn-block
+        | .
+    .bd-example
+        +btn-lg-primary('Bock level button','',true)
+        +btn-lg-secondary('Bock level button','',true)
+    
+    figure.highlight
+        pre
+            code.js.
+                +btn-lg-primary('Bock level button','',true)
+                +btn-lg-secondary('Bock level button','',true)
+    
+    h2#active-state Active state
+    p
+        | Buttons will appear pressed (with a darker background, darker border, and inset shadow) when active. 
+        strong
+            | There’s no need to add a class to 
+            code.highlighter-rouge &lt;button&gt;
+            | s as they use a pseudo-class
+        | . However, you can still force the same active appearance with 
+        code.highlighter-rouge .active
+        |  (and include the 
+        code aria-pressed="true"
+        |  attribute) should you need to replicate the state programmatically.
+    .bd-example
+        +btn-lg-primary('Primary button','','',true)
+        | 
+        +btn-lg-secondary('Button','','',true)
+        br
+        br
+        +a-btn-lg-primary('Primary link','#','',true)
+        | 
+        +a-btn-lg-secondary('Link','#','',true)
+    figure.highlight
+        pre
+            code.js.
+                +btn-lg-primary('Primary button','','',true)
+                +btn-lg-secondary('Button','','',true)
+
+                +a-btn-lg-primary('Primary link','#','',true)
+                +a-btn-lg-secondary('Link','#','',true)
+                
+    h2#disabled-state Disabled state
+    p
+        | Make buttons look inactive by adding the 
+        code.highlighter-rouge disabled
+        |  boolean attribute to any 
+        code.highlighter-rouge &lt;button&gt;
+        |  element.
+    .bd-example
+        +btn-lg-primary('Primary button','','','',true)
+        +btn-lg-secondary('Button','','','',true)
+    
+    figure.highlight
+        pre
+            code.js.
+                +btn-lg-primary('Primary button','','','',true)
+                +btn-lg-secondary('Button','','','',true)
+    
+    p
+        | Disabled buttons using the 
+        code.highlighter-rouge &lt;a&gt;
+        |  element behave a bit different:
+    ul
+        li
+            code.highlighter-rouge &lt;a&gt;
+            | s don’t support the 
+            code.highlighter-rouge disabled
+            |  attribute, so you must add the 
+            code.highlighter-rouge .disabled
+            |  class to make it visually appear disabled.
+        li
+            | Some future-friendly styles are included to disable all 
+            code.highlighter-rouge pointer-events
+            |  on anchor buttons. In browsers which support that property, you won’t see the disabled cursor at all.
+        li
+            | Disabled buttons should include the 
+            code.highlighter-rouge aria-disabled="true"
+            |  attribute to indicate the state of the element to assistive technologies.
+    .bd-example
+        +a-btn-lg-primary('Primary link','#','','',true)
+        | 
+        +a-btn-lg-secondary('Link','#','','',true)
+
+    figure.highlight
+        pre
+            code.js.
+                +a-btn-lg-primary('Primary link','#','','',true)
+                +a-btn-lg-secondary('Link','#','','',true)
+
+    .bd-callout.bd-callout-warning
+        h5#link-functionality-caveat Link functionality caveat
+        p
+            | The 
+            code.highlighter-rouge .disabled
+            |  class uses 
+            code.highlighter-rouge pointer-events: none
+            |  to try to disable the link functionality of 
+            code.highlighter-rouge &lt;a&gt;
+            | s, but that CSS property is not yet standardized. In addition, even in browsers that do support 
+            code.highlighter-rouge pointer-events: none
+            | , keyboard navigation remains unaffected, meaning that sighted keyboard users and users of assistive technologies will still be able to activate these links. So to be safe, add a 
+            code.highlighter-rouge tabindex="-1"
+            |  attribute on these links (to prevent them from receiving keyboard focus) and use custom JavaScript to disable their functionality.
+    h2#button-plugin Button plugin
+    p
+        | Do more with buttons. Control button states or create groups of buttons for more components like toolbars.
+    h3#toggle-states Toggle states
+    p
+        | Add 
+        code.highlighter-rouge data-toggle="button"
+        |  to toggle a button’s 
+        code.highlighter-rouge active
+        |  state. If you’re pre-toggling a button, you must manually add the 
+        code.highlighter-rouge .active
+        |  class 
+        strong and
+        code.highlighter-rouge aria-pressed="true"
+        |  to the 
+        code.highlighter-rouge &lt;button&gt;
+        | .
+    .bd-example
+        +toggle-primary('Single toggle')
+    figure.highlight
+        pre
+            code.js.
+                +toggle-primary('Single toggle')
+
+    h3#checkbox-and-radio-buttons Checkbox and radio buttons
+    p
+        | Bootstrap’s 
+        code.highlighter-rouge .button
+        |  styles can be applied to other elements, such as 
+        code.highlighter-rouge &lt;label&gt;
+        | s, to provide checkbox or radio style button toggling. Add 
+        code.highlighter-rouge data-toggle="buttons"
+        |  to a 
+        code.highlighter-rouge .btn-group
+        |  containing those modified buttons to enable their toggling behavior via JavaScript and add 
+        code.highlighter-rouge .btn-group-toggle
+        |  to style the 
+        code.highlighter-rouge &lt;input&gt;
+        | s within your buttons. 
+        strong Note that you can create single input-powered buttons or groups of them.
+    p
+        | The checked state for these buttons is 
+        strong
+            | only updated via 
+            code.highlighter-rouge click
+            |  event
+        |  on the button. If you use another method to update the input—e.g., with 
+        code.highlighter-rouge &lt;input type="reset"&gt;
+        |  or by manually applying the input’s 
+        code.highlighter-rouge checked
+        |  property—you’ll need to toggle 
+        code.highlighter-rouge .active
+        |  on the 
+        code.highlighter-rouge &lt;label&gt;
+        |  manually.
+    p
+        | Note that pre-checked buttons require you to manually add the 
+        code.highlighter-rouge .active
+        |  class to the input’s 
+        code.highlighter-rouge &lt;label&gt;
+        | .
+    .bd-example
+        +checkbox-toggle-secondary([{caption:"Checked"}],0)
+        | <br />
+        +checkbox-toggle-secondary([{caption:"Checked"},{caption:"Checkbox"},{caption:"Checkbox"}],0)
+
+    figure.highlight
+        pre
+            code.js.
+                +checkbox-toggle-secondary([{caption:"Checked"}],0)
+                +checkbox-toggle-secondary([{caption:"Checkbox1"},{caption:"Checkbox2"},{caption:"Checkbox3"}],0)
+
+    .bd-example
+        +radio-toggle-secondary('options',[{caption:"Active"},{caption:"Radio"},{caption:"Radio"}], 0)
+
+    figure.highlight
+        pre
+            code.js.
+                +radio-toggle-secondary('options',[{caption:"Active"},{caption:"Radio"},{caption:"Radio"}], 0)
+
+    h3#methods Methods
+    table
+        thead
+            tr
+                th Method
+                th Description
+        tbody
+            tr
+                td
+                    code.highlighter-rouge $().button('toggle')
+                td Toggles push state. Gives the button the appearance that it has been activated.
+            tr
+                td
+                    code.highlighter-rouge $().button('dispose')
+                td Destroys an element’s button.

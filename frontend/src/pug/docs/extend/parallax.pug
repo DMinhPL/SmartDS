@@ -1,0 +1,256 @@
+extends ../../layouts/_layout_doc 
+block setting
+    -var mainActive = 'docs';
+    -var slideActive = 'parallax';
+    - title = "Component - Parallax"
+
+block navsection
+    ul.section-nav
+        li.toc-entry.toc-h2
+            a(href='#usage') Usage
+            ul
+                li.toc-entry.toc-h3
+                    a(href='#via-data-attributes') Via data attributes
+                li.toc-entry.toc-h3
+                    a(href='#via-javaScript') Via JavaScript
+        li.toc-entry.toc-h2
+            a(href='#demo') Demo
+        
+
+block content 
+    h1.bd-title#content Parallax
+    p.bd-lead paroller.js is a lightweight jQuery plugin that enables parallax scrolling effect on selected elements.
+    ul
+        li You can use it on elements with background property or on any other element.
+        li While scrolling elements can move: vertical, horizontal.
+        li Manipulated through html data-* attributes or jQuery options.
+        li Mobile ready.
+        li Easy to use.
+    
+    .mt-5#usage
+        h2 Usage
+        p To enable parallax scrolling effect you can use 
+            code data-paroller-* 
+            | attributes on selected elements or set 
+            strong values via jQuery. 
+            code 'factor' 
+            | sets speed and distance of element's parallax effect on scroll.
+        
+        +alert-info("Since <code>'factor'</code> is multiplier it <strong>must be set for paroller.js to have parallax effect.</strong>") 
+        figure.highlight
+            pre
+                code.js.
+                    .paroller Awesome element with parallax effect
+
+                    // initialize paroller.js and set attributes for selected elements
+                    $(".paroller, [data-paroller-factor]").paroller({
+                        factor: 0.3,            // multiplier for scrolling speed and offset
+                        factorXs: 0.1,           // multiplier for scrolling speed and offset
+                        type: 'foreground',     // background, foreground
+                        direction: 'horizontal' // vertical, horizontal
+                    });
+        
+        figure.highlight
+            pre
+                code.js.
+                    div(data-paroller-factor="-0.1"
+                        data-paroller-factor-xs="0.1"
+                        data-paroller-type="foreground"
+                        data-paroller-direction="vertical")
+                        | Awesome element with parallax effect
+
+                    // initialize paroller.js
+                    $("[data-paroller-factor]").paroller();
+
+        .mt-4#via-data-attributes
+            h3 Via data attributes
+            
+            -
+                var data = [
+                    ['<code>data-paroller-factor</code>','Sets elements offset and speed. It can be positive <code>(0.3)</code> or negative <code>(-0.3)</code>. Less means slower. <br /><code>div(data-paroller-factor="0.3")</code>'],
+                    ['<code>data-paroller-type</code>','This attribute has two values <i>background</i> and <i>foreground</i>.<br />If not set the default value is <i>background</i>. <br /><code>div(data-paroller-factor="0.3", data-paroller-type="foreground")</code>'],
+                    ['<code>data-paroller-direction</code>','This attribute hsd two values: <i>vertical</i>, <i>horizontal.</i><br />If not used the default value is set to: <i>vertical</i>. <br /><code>div(data-paroller-factor="0.3", data-paroller-direction="horizontal")</code>']
+                ]
+            +table-bordered([],data)
+
+        .mt-4#via-data-javaScript
+            h3 Via JavaScript
+
+            figure.highlight
+                pre
+                    code.js.
+                        // initialize paroller.js and set attributes for selected elements
+
+                        $(".paroller, [data-paroller-factor]").paroller({
+                            factor: 0.3,            // multiplier for scrolling speed and offset
+                            factorXs: 0.1,          // multiplier for scrolling speed and offset if window width is <576px
+                            factorSm: 0.2,          // multiplier for scrolling speed and offset if window width is <=768px
+                            factorMd: 0.2,          // multiplier for scrolling speed and offset if window width is <=1024px
+                            factorLg: 0.3,          // multiplier for scrolling speed and offset if window width is <=1200px
+                            type: 'foreground',     // background, foreground
+                            direction: 'horizontal' // vertical, horizontal
+                        });
+
+    .mt-5#demo
+        h2 Demo
+
+        .bd-example
+            h2.display-1.my-element(data-paroller-factor="0.5" data-paroller-factor-lg="0.4" data-paroller-factor-md="0.3" data-paroller-factor-sm="-0.2" data-paroller-factor-xs="-0.1" data-paroller-type="foreground" data-paroller-direction="horizontal")
+                | 👋 Heola! こんにちは! Ahoj! Cześć! Olá!
+
+        figure.highlight
+            pre
+                code.html.
+                    h2.display-1.my-element(
+                        data-paroller-factor="0.5" 
+                        data-paroller-factor-lg="0.4" 
+                        data-paroller-factor-md="0.3" 
+                        data-paroller-factor-sm="-0.2" 
+                        data-paroller-factor-xs="-0.1" 
+                        data-paroller-type="foreground" 
+                        data-paroller-direction="horizontal"
+                    )
+                        | 👋 Heola! こんにちは! Ahoj! Cześć! Olá!
+        
+        .bd-example
+            h2.display-1.paroller-example
+                | გამარჯობა! Hello! Zdravo! Привет! 你好! Ciao! !مرحبا Hallå! Χαίρετε! ¡Hola! 👋
+        figure.highlight
+            pre
+                code.html.
+                    h2.display-1.paroller-example
+                        | გამარჯობა! Hello! Zdravo! Привет! 你好! Ciao! !مرحبا Hallå! Χαίρετε! ¡Hola! 👋
+        figure.highlight
+            pre
+                code.js.
+                    $('.paroller-example').paroller({
+                        factorXs: 0.1,
+                        factorSm: 0.1,
+                        factorMd: -0.4,
+                        factorLg: -0.5,
+                        factorXl: -0.6,
+                        factor: -0.4,
+                        type: 'foreground',
+                        direction: 'horizontal'
+                    });         
+        .bd-example
+            .jumbotron(style="background: url('https://unsplash.it/1920/800?image=950') no-repeat center; background-size: cover; height: 300px" data-paroller-factor="0.5" data-paroller-factor-xs="0.2")
+
+        figure.highlight
+            pre
+                code.js.
+                    .jumbotron(
+                        style="background: url('https://unsplash.it/1920/800?image=950') no-repeat center; background-size: cover; height: 300px" 
+                        data-paroller-factor="0.5" 
+                        data-paroller-factor-xs="0.2"
+                    )
+
+        .bd-example
+            .jumbotron(style="background: url('https://unsplash.it/1920/800?image=152') repeat center; background-size: cover; height: 300px" data-paroller-factor="-0.5" data-paroller-factor-sm="-0.2" data-paroller-factor-xs="-0.1")
+
+        figure.highlight
+            pre
+                code.js.
+                    .jumbotron(
+                        style="background: url('https://unsplash.it/1920/800?image=152') repeat center; background-size: cover; height: 300px" 
+                        data-paroller-factor="-0.5" 
+                        data-paroller-factor-sm="-0.2" 
+                        data-paroller-factor-xs="-0.1"
+                    )
+
+        .bd-example
+            .jumbotron(style="background: url('https://unsplash.it/1920/500?image=974') no-repeat center; background-size: cover; height: 300px" data-paroller-factor="-0.2")
+
+        figure.highlight
+            pre
+                code.js.
+                    .jumbotron(
+                        style="background: url('https://unsplash.it/1920/500?image=974') no-repeat center; background-size: cover; height: 300px" 
+                        data-paroller-factor="-0.2"
+                    )
+        
+        .bd-example
+            .row
+                .col-12.col-md-4
+                    .image(style="background: url('https://unsplash.it/400/800?image=889') repeat center; background-size: cover; height: 300px" data-paroller-factor="0.5" data-paroller-factor-md="0.3" data-paroller-factor-sm="0.2" data-paroller-factor-xs="0.1")
+                
+                .col-12.col-md-4
+                    .image(style="background: url('https://unsplash.it/400/800?image=889') repeat center; background-size: cover; height: 300px" data-paroller-factor="-0.4")
+                
+                .col-12.col-md-4
+                    .image(style="background: url('https://unsplash.it/400/800?image=889') repeat center; background-size: cover; height: 300px" data-paroller-factor="-0.1")
+        figure.highlight
+            pre
+                code.js.
+                    .row
+                        .col-12.col-md-4
+                            .image(
+                                style="background: url('https://unsplash.it/400/800?image=889') repeat center; background-size: cover; height: 300px" 
+                                data-paroller-factor="0.5" 
+                                data-paroller-factor-md="0.3" 
+                                data-paroller-factor-sm="0.2" 
+                                data-paroller-factor-xs="0.1"
+                            )
+                        
+                        .col-12.col-md-4
+                            .image(
+                                style="background: url('https://unsplash.it/400/800?image=889') repeat center; background-size: cover; height: 300px" 
+                                data-paroller-factor="-0.4"
+                            )
+                        
+                        .col-12.col-md-4
+                            .image(
+                                style="background: url('https://unsplash.it/400/800?image=889') repeat center; background-size: cover; height: 300px" 
+                                data-paroller-factor="-0.1"
+                            )
+
+        .bd-example
+            .jumbotron(style="background: url('https://unsplash.it/1920/500?image=867') no-repeat center; background-size: cover; height: 300px" data-paroller-factor="-0.15" data-paroller-direction="horizontal")
+
+        figure.highlight
+            pre
+                code.js.
+                    .jumbotron(
+                        style="background: url('https://unsplash.it/1920/500?image=974') no-repeat center; background-size: cover; height: 300px" 
+                        data-paroller-factor="-0.15" 
+                        data-paroller-direction="horizontal"
+                    )
+        .bd-example
+            .jumbotron(style="background: url('https://unsplash.it/1920/1200?image=249') repeat bottom; background-size: cover; height: 300px" data-paroller-factor="0.3" data-paroller-direction="horizontal")
+
+        figure.highlight
+            pre
+                code.js.
+                    .jumbotron(
+                        style="background: url('https://unsplash.it/1920/1200?image=249') repeat bottom; background-size: cover; height: 300px" 
+                        data-paroller-factor="0.3"
+                        data-paroller-direction="horizontal"
+                    )
+        
+        .bd-example
+            h2.display-1.text-center.pb-5(data-paroller-factor="0.4" data-paroller-type="foreground")
+                | Scrolling is fun ✌️
+
+        figure.highlight
+            pre
+                code.html.
+                    h2.display-1.text-center(
+                        data-paroller-factor="0.4" 
+                        data-paroller-type="foreground"
+                    )
+                        | Scrolling is fun ✌️
+
+block js
+    script.
+        $(function(){
+            $('.paroller-example').paroller({
+                factorXs: 0.1,
+                factorSm: 0.1,
+                factorMd: -0.4,
+                factorLg: -0.5,
+                factorXl: -0.6,
+                factor: -0.4,
+                type: 'foreground',
+                direction: 'horizontal'
+            });
+        });
