@@ -1,10 +1,13 @@
+.breadcrumb-page{
+  background-color: $breadcrumb-bg;
+}
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
   padding: $breadcrumb-padding-y $breadcrumb-padding-x;
   margin-bottom: $breadcrumb-margin-bottom;
   list-style: none;
-  background-color: $breadcrumb-bg;
+  // background-color: $breadcrumb-bg;
   @include border-radius($breadcrumb-border-radius);
 }
 

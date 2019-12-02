@@ -66,6 +66,25 @@ mixin img-bg(_src,_alt,_class, _href)
 		a.img-bg(href=_href style=`background-image: url(${_src})`, title=_alt class=_class)
 			+img(_src, _alt)
 
+mixin img-bg-layer(_src,_alt,_class, _href, _title)
+	unless _alt
+		- var _alt = ''
+	unless _class
+		- var _class = ''
+	unless _title
+		- var _title = ''
+	else
+		- _class= ' ' + _class
+
+	unless _href
+		.img-bg(style=`background-image: url(${_src})`, class=_class)
+			+img(_src, _alt)
+			.layer-img #[=_title]
+	else
+		a.img-bg(href=_href style=`background-image: url(${_src})`, title=_alt class=_class)
+			+img(_src, _alt)
+			.layer-img #[=_title]
+
 
 //- Picture mixins
 //- @mixin +picture(head, img, imgdesc, cls)

@@ -1,0 +1,22 @@
+mixin about_skill_item(progress, name,className)
+    unless className
+        - var className=''
+    .item(class=className)
+        .progress.color.progress-bar-1
+            span.progress-left
+                span.progress-bar
+            span.progress-right
+                span.progress-bar
+            .progress-value #[=progress]
+        .progress-title
+            h5 #[=name]
+
+mixin about_member_item(imgNum,className)
+    unless className
+        - var className=''
+    .item(class=className)
+        .item-img
+            +img-bg-layer(`/images/avatar${imgNum}.jpg`,"","","#","Manager")
+        .item-text.text-center
+            .title.bigger LOREM IPSUM
+            .sub-text Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix

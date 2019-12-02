@@ -1,0 +1,73 @@
+extends layouts/_layout_default
+
+
+block setting
+    - title = "About Smart SDS"
+    - isAbout = true
+    - 
+        var data_breadcrumb = [
+            {'title': 'About', 'link':'#'}
+        ]
+
+block content 
+    //- +pre-loading
+    .drop-filter-panel
+    .page-internal-wrapper.home-wrapper
+        // HOME: BANNER
+        .banner-page-small.page-banner
+            .img-bg(style="background-image:url('images/banner-1.jpg')")
+                img(src="images/banner-1.jpg", alt="banner-home")
+            .container.text-center.floating
+                h1.banner-title(data-swiper-parallax="-300") aBOUT SMART SDS
+            .overlay-dark 
+        // BREADCRUMB
+        .breadcrumb-page
+            .container
+                +breadcrumb(data_breadcrumb, "Home")
+        //ABOUT: CONTENT
+        section.about-section-page
+            //- /ABOUT US
+            .about-us-panel.section-spacing
+                .container
+                    .row
+                        .col-xs-12.col-sm-6.col-md-6.col-lg-7
+                            .block-content
+                                .text-block
+                                    .title ABOUT US
+                                    .subtext Lorem ipsum send do tempor consectetur ipsum send do tempor.
+                                .text.smaller Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consec tetuer adipis elit, aliquam eget nibh etlibura. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consec tetuer adipis elit, aliquam eget nibh etlibura. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consec tetuer adipis elit, aliquam eget nibh etlibura.
+                                .text.smaller Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consec tetuer adipis elit, aliquam eget nibh etlibura. Aenean commodo ligula eget dolor. Aenean massa. Lorem ipsum dolor sit amet, consec tetuer adipis elit, aliquam eget nibh etlibura.
+                            .btn-sds.blue.small Learn more
+                        .col-xs-12.col-sm-6.col-md-6.col-lg-5
+            //- /OUR SKILL
+            .about-skill-panel.section-spacing
+                .block-content
+                    .text-block.text-center
+                        .title OUR SKILLS
+                        .subtext Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum ea utamur impetus fuisset nam nostrud euismod volumus ne mei.
+                .box-img#skills
+                    .inner-item
+                        .swiper-container
+                            .swiper-wrapper
+                                +about_skill_item('90%','PORTAL DEVELOPMENT','swiper-slide')
+                                +about_skill_item('75%','ENTERPRISE MOBILITY','swiper-slide')
+                                +about_skill_item('60%','START UP','swiper-slide')
+                                +about_skill_item('80%','PRODUCT DEVELOPMENT','swiper-slide')
+            //- /TEAM MEMBERS
+            .member-panel.section-spacing
+                .container
+                    .block-content
+                        .text-block.text-center
+                            .title OUR TEAM
+                                .subtext Lorem ipsum dolor sit amet sit legimus copiosae instructior ei ut vix denique fierentis ea saperet inimicu ut qui dolor oratio mnesarchum ea utamur impetus fuisset nam nostrud euismod volumus ne mei.
+                    .box-img
+                        .inner-item
+                            .swiper-container
+                                .swiper-wrapper
+                                    +about_member_item('1','swiper-slide')
+                                    +about_member_item('2','swiper-slide')
+                                    +about_member_item('3','swiper-slide')
+                                    +about_member_item('1','swiper-slide')
+
+
+

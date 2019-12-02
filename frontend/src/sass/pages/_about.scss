@@ -1,0 +1,241 @@
+.about-section-page{
+    .section-spacing{
+        padding: 50px 0;
+    }  
+    .about-us-panel{
+        .block-content{
+            .text-block{
+                margin-bottom: 20px;
+            }
+            .text.smaller{
+                padding: 5px 0;
+            }
+        }
+    }
+    .about-skill-panel{
+        background-color: #f9f9f9;
+        .block-content{
+            margin-bottom: 40px;
+            @include media-breakpoint-down(md){
+                margin-bottom: 25px;
+            }
+        }
+
+        #skills {
+            .item{
+                width: 40%;
+                @include media-breakpoint-up(lg){
+                    -webkit-box-flex: 0;
+                    flex: 0 0 25%;
+                    max-width: 25%;
+                }
+                .progress {
+                    width: 200px;
+                    height: 200px;
+                    line-height: 200px;
+                    background: none;
+                    margin: 0 auto;
+                    box-shadow: none;
+                    position: relative;
+                    margin-bottom: 20px;
+                    &:after {
+                        content: "";
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        border: 2px solid #fff;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                }
+                >span {
+                    width: 50%;
+                    height: 100%;
+                    overflow: hidden;
+                    position: absolute;
+                    top: 0;
+                    z-index: 1;
+                }
+                .progress-left {
+                    left: 0;
+                    .progress-bar {
+                        left: 100%;
+                        border-top-right-radius: 100px;
+                        border-bottom-right-radius: 100px;
+                        border-left: 0;
+                        -webkit-transform-origin: center left;
+                        transform-origin: center left;
+                    }
+                }
+                .progress-bar {
+                    width: 100%;
+                    height: 100%;
+                    background: none;
+                    border-width: 2px;
+                    border-style: solid;
+                    position: absolute;
+                    top: 0;
+                }
+                .progress-right {
+                    right: 0;
+                    .progress-bar {
+                        left: -100%;
+                        border-top-left-radius: 100px;
+                        border-bottom-left-radius: 100px;
+                        border-right: 0;
+                        -webkit-transform-origin: center right;
+                        transform-origin: center right;
+                        animation: loading-1 1.8s linear forwards;
+                    }
+                }
+                .progress-value {
+                    width: 85%;
+                    height: 85%;
+                    border-radius: 50%;
+                    border: 2px solid #ebebeb;
+                    font-size: 32px;
+                    line-height: 170px;
+                    text-align: center;
+                    position: absolute;
+                    top: 7.5%;
+                    left: 7.5%;
+                }
+                }
+                .progress-title {
+                    text-align: center;
+                }
+                .progress.progress-bar-1 {
+                    .progress-left {
+                        .progress-bar {
+                            animation: loading-2 1.5s linear forwards 1.8s;
+                        }
+                    }
+                }
+                .progress.progress-bar-2 {
+                    .progress-left {
+                        .progress-bar {
+                            animation: loading-3 1s linear forwards 1.8s;
+                        }
+                    }
+                }
+                .progress.progress-bar-3 {
+                    .progress-left {
+                        .progress-bar {
+                            animation: loading-4 0.4s linear forwards 1.8s;
+                        }
+                    }
+                }
+                .progress.progress-bar-4 {
+                    .progress-left {
+                        .progress-bar {
+                            animation: loading-5 1.2s linear forwards 1.8s;
+                        }
+                    }
+                }
+            }
+            
+            @keyframes loading-1 {
+                0% {
+                    -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+                100% {
+                    -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                }
+            }
+            @keyframes loading-2 {
+                0% {
+                    -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+                100% {
+                    -webkit-transform: rotate(144deg);
+                    transform: rotate(144deg);
+                }
+            }
+            @keyframes loading-3 {
+                0% {
+                    -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+                100% {
+                    -webkit-transform: rotate(90deg);
+                    transform: rotate(90deg);
+                }
+            }
+            @keyframes loading-4 {
+                0% {
+                    -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+                100% {
+                    -webkit-transform: rotate(36deg);
+                    transform: rotate(36deg);
+                }
+            }
+            @keyframes loading-5 {
+                0% {
+                    -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                };
+                100% {
+                    -webkit-transform: rotate(126deg);
+                    transform: rotate(126deg);
+                }
+            }
+        }
+    }
+    .member-panel{
+        .box-img{
+            padding: 15px 0;
+            .inner-item{
+                .swiper-container{
+                    padding: 20px;
+                }
+                .item{
+                    @include media-breakpoint-up(lg){
+                        -webkit-box-flex: 0;
+                        flex: 0 0 25%;
+                        max-width: 25%;
+                    }
+                    @include media-breakpoint-down(lg){
+                        width: 70%;    
+                    }
+                    &:hover{
+                        transform: translate(0px, -8px) scale(1.02);
+                        box-shadow: 0 10px 13px rgba(0, 0, 0, 0.18);
+                        .item-img{
+                            .layer-img{
+                                transform: scale(1);
+                            }
+                        }
+                    }
+                    .item-img{
+                        width: 145px;
+                        height: 145px;
+                        margin: auto;
+                        border-radius: 100%;
+                    }
+                    .layer-img{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background: rgba(0,0,0,0.5);
+                        color: #FFFFFF;
+                        font-size: 18px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-weight: 800;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        transform: scale(0);
+                        transition: 0.4s ease;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -156,6 +156,16 @@ header{
                             border-bottom: 1px solid #DBDBDB;
                         }
                     }
+                    &:hover,
+                    &.active{
+                        a{
+                            color: #FFF;
+                            background: #333333;
+                            border-bottom-width: 5px;
+                            border-bottom-style: solid;
+                            border-bottom-color: #159eee;
+                        }
+                    }
                     a{
                         font-weight: bold;
                         text-transform: uppercase;
@@ -170,13 +180,6 @@ header{
                         transition: 0.4s ease;
                         @include media-breakpoint-up(lg){
                             min-width: 80px;
-                            &:hover{
-                                color: #FFF;
-                                background: #333333;
-                                border-bottom-width: 5px;
-                                border-bottom-style: solid;
-                                border-bottom-color: #159eee;
-                            }
                         }
                         @include media-breakpoint-down(md){
                             display: block;

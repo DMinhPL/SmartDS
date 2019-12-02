@@ -47,6 +47,35 @@
         }
     }
 }
+.box-img{
+    padding: 15px 10px;
+    .inner-item{
+        .item{
+            padding: 0 8px;
+            transition: 0.4s ease;
+            .item-img{
+                position: relative;
+                .img-bg{
+                    position: relative;
+                }
+            }
+            .item-text{
+                margin-top: 20px;
+                padding: 10px;
+                .title{
+                    &.bigger{
+                        font-size: 18px;
+                        font-weight: bold;
+                    }
+                }
+                .sub-text{
+                    font-size: 14px;
+                    color: #777777;
+                }
+            }
+        }
+    }
+}
 .text-block{
     .title{
         @include media-breakpoint-up(md){
@@ -57,7 +86,7 @@
         }
     }
     .subtext{
-        font-size: 14px;
+        font-size: 16px;
         font-style: italic;
         color: $text-color-sub;
     }

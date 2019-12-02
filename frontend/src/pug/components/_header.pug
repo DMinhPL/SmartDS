@@ -40,14 +40,14 @@ header
                     //-     span.icon-bar
                     //-     span.icon-bar
                     //-     span.icon-bar
-                    a.navbar-brand(href='#')
+                    a.navbar-brand(href='index.html')
                         h1 SmartSDS
                         span Software Solutions
                 #navbar.navbar-right
                     ul.nav.navbar-nav
-                        li.active
-                            a(href='#') Home
-                        li
+                        li(class=ishomepage?"active":"")
+                            a(href='index.html') Home
+                        li(class=isAbout?"active":"")
                             a(href='about.html') About
                         li
                             a(href='features.html') Services
