@@ -150,7 +150,6 @@ input[type="button"] {
     cursor: pointer;
     display: inline-flex;
     justify-content: center;
-    border-radius: 5px;
 	outline: 0;
 	font-size: 14px;
     box-shadow: none;
@@ -192,12 +191,14 @@ input[type="button"] {
 	&.small{
 		padding: 5px 12px;
 	}
+	&.medium{
+
+	}
 	&.big{
 		padding: 15px 50px;
 		border-radius: 0px;
 		font-weight: bold;
 		text-transform: uppercase;
-		color: #FFF;
 		border-color: #159eee;
 	}
 }

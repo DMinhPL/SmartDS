@@ -1,0 +1,67 @@
+extends layouts/_layout_default
+
+
+block setting
+    - title = "Contact Smart DS"
+    - isContact = true
+    - 
+        var data_breadcrumb = [
+            {'title': 'Contact', 'link':'#'}
+        ]
+
+block content 
+    //- +pre-loading
+    .drop-filter-panel
+    .page-internal-wrapper.home-wrapper
+        // HOME: BANNER
+        .banner-page-small.page-banner
+            .img-bg(style="background-image:url('images/banner-1.jpg')")
+                img(src="images/banner-1.jpg", alt="banner-home")
+            .container.text-center.floating
+                h1.banner-title(data-swiper-parallax="-300") CONTACT SMART DS
+            .overlay-dark 
+        // BREADCRUMB
+        .breadcrumb-page
+            .container
+                +breadcrumb(data_breadcrumb, "Home")
+        //CONTACT: CONTENT
+        section.contact-section-page
+            .section-spacing
+                .container
+                    .row
+                        .col-lg-8.col-md-8.c-left
+                            .block-content
+                                .text-block
+                                    .title GET IN TOUCH
+                                    .subtext Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices ac nisl sed, lobortis porta elit. Fusce in metus ac ex venenatis ultricies at cursus mauris.
+                            .form-style
+                                form(action="#")
+                                    .form-line
+                                        label Your Name
+                                        input(type="text" placeholder="Your name")
+                                    .form-line
+                                        label Your Email
+                                        input(type="text" placeholder="Your name")
+                                    .form-line
+                                        label Subject
+                                        input(type="text" placeholder="Your name")
+                                    .form-line
+                                        label Message
+                                        textarea(name="message-contact", rows="8", placeholder="Your message...")
+                                    .form-line.line-flex-center
+                                        .btn-sds.big.blue Send
+                        .col-lg-4.col-md-4.c-right(style="background-image:url('/images/contact2.jpg')")
+                            .block-content
+                                .text-block
+                                    .title.white CONTACT INFO
+                                    .subtext.white Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique purus turpis. Maecenas vulputate.
+                            .text-block
+                                .t-line
+                                    i.fa.fa-map-marker
+                                    .subtext.white Address: Michael I. Days 9000 Preston Street Wichita, KS 87213
+                                .t-line
+                                    i.fa.fa-phone-square
+                                    .subtext.white Phone: +1-888 705 770
+                                .t-line
+                                    i.fa.fa-envelope
+                                    .subtext.white Email: info@domain.com

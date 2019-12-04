@@ -335,10 +335,20 @@ align-items: center; // Prevent shorter elements from growing to same height as 
 }
 
 .form-style{
-	.form-line{
+	padding: 20px 15px;
+	.form-line,{
 		margin-bottom: 24px;
 		@include media-breakpoint-down(md){
 			margin-bottom: 18px;
+		}
+		&.line-flex{
+			&-normal{
+				display: flex;
+			}
+			&-center{
+				display: flex;
+				justify-content: center;
+			}
 		}
 		label{
 			font-size: 14px;
@@ -360,9 +370,12 @@ align-items: center; // Prevent shorter elements from growing to same height as 
 			background-color: #fff;
 			background-image: none;
 			border: 1px solid #ccc;
-			border-radius: 4px;
+			border-radius: 0;
 			box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 			transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+			&:focus{
+				border-color:$main-color ;
+			}
 		}
 	}
 }

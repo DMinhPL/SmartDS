@@ -77,18 +77,58 @@
     }
 }
 .text-block{
+    padding: 10px 15px;
     .title{
+        font-size: 24px;
         @include media-breakpoint-up(md){
             font-size: 36px;
         }
         span{
             color: $main-color;
         }
+        &.white{
+            color: #FFF;
+        }
+    }
+    .t-line{
+        display: flex;
+        align-items: center;
+        i.fa{
+            font-size: 20px;
+            color: #FFF;
+        }
     }
     .subtext{
         font-size: 16px;
         font-style: italic;
         color: $text-color-sub;
+        &.smaller{
+            font-size: 14px;
+            font-style: normal;
+        }
+        &.white{
+            color: #FFF;
+        }
+    }
+}
+
+//CONTACT PAGE
+.contact-section-page{
+    .c-left{
+        .text-block{
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    .c-right{
+        background-size: cover;
+        background-repeat: no-repeat;
+        box-shadow: 0 3px 15px;
+        padding-left: 0;
+        padding-right: 0;
+        .block-content{
+            background: rgba(0,0,0,0.3);
+        }
     }
 }
 
@@ -96,3 +136,6 @@
 .mb-14{
     margin-bottom: 14px !important;
 }
+.section-spacing{
+    padding: 50px 0;
+} 
