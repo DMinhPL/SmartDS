@@ -1,0 +1,122 @@
+extends layouts/_layout_default
+
+
+block setting
+    - title = "Services Smart DS"
+    - isServices = true
+    - 
+        var data_breadcrumb = [
+            {'title': 'Services', 'link':'#'}
+        ]
+
+block content 
+    //- +pre-loading
+    .drop-filter-panel
+    .page-internal-wrapper
+        // HOME: BANNER
+        .banner-page-small.page-banner
+            .img-bg(style="background-image:url('images/banner-1.jpg')")
+                img(src="images/banner-1.jpg", alt="banner-home")
+            .container.text-center.floating
+                h1.banner-title(data-swiper-parallax="-300") SERVICES SMARTDS
+            .overlay-dark 
+        // BREADCRUMB
+        .breadcrumb-page
+            .container
+                +breadcrumb(data_breadcrumb, "Home")
+        //ABOUT: CONTENT
+        section.services-section-page.section-spacing
+            //- /SERVICES US
+            // Services section====================================
+            .services--header.services.spacing-services
+                .container
+                    .section-header
+                        h2
+                            | What We Do With 
+                            span.highlight
+                                strong Love
+                        h5
+                            em We design and build functional and beautiful websites
+                        .fancy
+                            span
+                                img(src='/images/favicon.ico', alt='...')
+                    .row
+                        // row
+                        .col-md-6.text-right
+                            // Left Content Col 6
+                            +services_list_item("Brand Identity","fa-venus-mars","left")
+                            +services_list_item("Graphics Design","fa-magic","left")
+                            +services_list_item("Videography","fa-camera-retro","left")
+                                // End Service #2
+                        .col-md-6
+                            +services_list_item("UI/UX Design","fa-bicycle","right")
+                            +services_list_item("Application","fa-android","right")
+                            +services_list_item("SEO/Online Marketing","fa-line-chart","right")
+                
+            // Why Us/Features Section====================================
+            .services--features.services.spacing-services
+                .container
+                    .section-header
+                        h2 Great Products and 
+                            span.highlight
+                                strong Features
+                        h5: em We design and build functional and beautiful websites
+                        .fancy
+                            span: img(src="/images/favicon.ico", alt="")
+                .gray-bg
+                    .container
+                        .row(role='tabpanel')
+                            // row
+                            .col-md-4
+                                ul.features.nav.tabs-desc.nav-pills.nav-stacked(role='tablist')
+                                    +services_features_list("fa-desktop","#f1","Internet Communication","true")
+                                    +services_features_list("fa-pencil","#f2","Branding and Development","false")
+                                    +services_features_list("fa-space-shuttle","#f3","Motion Graphics","false")
+                                    +services_features_list("fa-automobile","#f4","Mobile Application","false")
+                                    +services_features_list("fa-institution","#f5","Relaible Company Analysis","false")
+                                
+                            // end tab menu col 4
+                            .col-md-8
+                                // right content col 6
+                                // Tab panes
+                                .tab-content.features-content
+                                    // tab content wrapper
+                                    +services_features_tab_item("f1","Internet Communication","/images/tab01.png","true")
+                                    +services_features_tab_item("f2","Branding and Development","/images/tab02.png","false")
+                                    +services_features_tab_item("f3","Motion Graphics","/images/tab03.png","false")
+                                    +services_features_tab_item("f4","Mobile Application","/images/tab04.png","false")
+                                    +services_features_tab_item("f5","Relaible Company Analysis","/images/tab05.png","false")
+                                    // end tab content wrapper
+                                    // end right content col 6
+                            // end row
+            // GREAT PRODUCTS AND FEATURES Section====================================    
+            .services--products.services.spacing-services
+                .container
+                    .section-header
+                        h2 Great Products and 
+                            span.highlight
+                                strong Features
+                        h5: em We design and build functional and beautiful websites
+                        .fancy
+                            span: img(src="/images/favicon.ico", alt="")
+                    .text-center
+                        ul.list-inline.cat
+                            li
+                                a(href="#" data-filter="*").active All
+                            li
+                                a(href="#" data-filter=".brand").active Brand
+                            li
+                                a(href="#" data-filter=".app").active Apps
+
+                .container-fluid
+                    #itemsWork.row.text-center
+                        .col-xs-12.col-sm-6.col-md-3.col-lg-3.nopadding.brand.others
+                            .box
+                                .hover-bg
+                                    .hover-text-off
+                                        p asdfsdf
+                        .col-xs-12.col-sm-6.col-md-3.col-lg-3.nopadding.apps
+                            .box
+                                .hover-bg
+                                    .hover-text-off
+                                        p asdfsdf

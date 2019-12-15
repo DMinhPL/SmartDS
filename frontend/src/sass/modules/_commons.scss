@@ -93,10 +93,6 @@
     .t-line{
         display: flex;
         align-items: center;
-        i.fa{
-            font-size: 20px;
-            color: #FFF;
-        }
     }
     .subtext{
         font-size: 16px;
@@ -123,11 +119,32 @@
     .c-right{
         background-size: cover;
         background-repeat: no-repeat;
+        background-attachment: fixed;
         box-shadow: 0 3px 15px;
         padding-left: 0;
         padding-right: 0;
         .block-content{
             background: rgba(0,0,0,0.3);
+        }
+        .text-block{
+            .t-line{
+                display: block;
+                .t-icon{
+                    width: 8%;
+                    display: inline-block;
+                    font-size: 20px;
+                    vertical-align: top;
+                    i.fa{
+                        font-size: 20px;
+                        color: #FFF;
+                    }
+                }
+                .subtext{
+                    display: inline-block;
+                    width: 85%;
+                    vertical-align: top;
+                }
+            }
         }
     }
 }

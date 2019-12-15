@@ -62,3 +62,43 @@ mixin blockquote-center(text,footer,author,style)
 mixin blockquote-right(text,footer,author,style)
 	- var style = ' ' + style || ''
 	+blockquote(text,footer,author,'text-right' + style)
+	
+//SERVICES PAGE COMPONENTS
+mixin services_list_item(title, iconClass,side)
+	.media.service
+		///left side
+		if side == 'left'
+			.media-body
+				h4.media-heading #[=title]
+				p Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+			.media-right.media-middle
+				i.fa(class=iconClass)
+		else
+			.media-left.media-middle
+				i.fa(class=iconClass)
+			.media-body
+				h4.media-heading #[=title]
+				p Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+mixin services_features_list(icon, href, title, active)
+	if (active == "true")
+		li(role='presentation')
+			// feature tab menu #1
+			a.active.show(href=href, role="tab", data-toggle="tab", aria-selected="true")
+				span.fa(class=icon)
+				| #[=title]
+				br
+				small sub title here
+	else
+		li(role='presentation')
+			// feature tab menu #1
+			a(href=href, aria-controls='f1', role='tab', data-toggle='tab')
+				span.fa(class=icon)
+				| #[=title]
+mixin services_features_tab_item(id,title,urlImage,state)
+	.tab-pane(role='tabpanel', id=id, class=state=="true"?"active":"")
+		h4 #[=title]
+		p
+		| Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent.
+		.img-bg.img-responsive(style=`background-image:url('${urlImage}')`)
+			img(src=urlImage, alt='Image not found')
