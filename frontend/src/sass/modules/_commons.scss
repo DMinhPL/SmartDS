@@ -49,31 +49,32 @@
 }
 .box-img{
     padding: 15px 10px;
-    .inner-item{
-        .item{
-            padding: 0 8px;
-            transition: 0.4s ease;
-            .item-img{
+    .item{
+        padding: 0 8px;
+        transition: 0.4s ease;
+        .item-img{
+            position: relative;
+            .img-bg{
                 position: relative;
-                .img-bg{
-                    position: relative;
-                }
-            }
-            .item-text{
-                margin-top: 20px;
-                padding: 10px;
-                .title{
-                    &.bigger{
-                        font-size: 18px;
-                        font-weight: bold;
-                    }
-                }
-                .sub-text{
-                    font-size: 14px;
-                    color: #777777;
-                }
             }
         }
+        .item-text{
+            margin-top: 20px;
+            padding: 10px;
+            .title{
+                &.bigger{
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+            }
+            .sub-text{
+                font-size: 14px;
+                color: #777777;
+            }
+        }
+    }
+    .inner-item{
+
     }
 }
 .text-block{
@@ -156,3 +157,6 @@
 .section-spacing{
     padding: 50px 0;
 } 
+.nopadding{
+    padding: 0;
+}

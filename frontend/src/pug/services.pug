@@ -52,7 +52,40 @@ block content
                             +services_list_item("UI/UX Design","fa-bicycle","right")
                             +services_list_item("Application","fa-android","right")
                             +services_list_item("SEO/Online Marketing","fa-line-chart","right")
-                
+            // GREAT PRODUCTS AND FEATURES Section====================================    
+            .services--products.services.spacing-services
+                .container
+                    .section-header
+                        h2 Great Products and 
+                            span.highlight
+                                strong Features
+                        h5: em We design and build functional and beautiful websites
+                        .fancy
+                            span: img(src="/images/favicon.ico", alt="")
+                    .text-center
+                        ul.list-inline.cat
+                            li
+                                a(href="#" data-filter="*").active All
+                            li
+                                a(href="#" data-filter=".web").active Web
+                            li
+                                a(href="#" data-filter=".brand").active Branding
+                            li
+                                a(href="#" data-filter=".app").active Apps
+                            li
+                                a(href="#" data-filter=".others").active Others
+                .container-fluid
+                    #itemsWork.row.text-center
+                        //top
+                        +services_products_item("brand others","images/portfolio/03.jpg","top")
+                        +services_products_item("apps","images/portfolio/02.jpg","top")
+                        +services_products_item("others brand","images/portfolio/05.jpg","top")
+                        +services_products_item("others web","images/portfolio/01.jpg","top")
+                        //bottom
+                        +services_products_item("app","images/portfolio/04.jpg","bottom")
+                        +services_products_item("web brand","images/portfolio/08.jpg","bottom")
+                        +services_products_item("app","images/portfolio/07.jpg","bottom")
+                        +services_products_item("web others","images/portfolio/04.jpg","bottom")    
             // Why Us/Features Section====================================
             .services--features.services.spacing-services
                 .container
@@ -89,34 +122,4 @@ block content
                                     // end tab content wrapper
                                     // end right content col 6
                             // end row
-            // GREAT PRODUCTS AND FEATURES Section====================================    
-            .services--products.services.spacing-services
-                .container
-                    .section-header
-                        h2 Great Products and 
-                            span.highlight
-                                strong Features
-                        h5: em We design and build functional and beautiful websites
-                        .fancy
-                            span: img(src="/images/favicon.ico", alt="")
-                    .text-center
-                        ul.list-inline.cat
-                            li
-                                a(href="#" data-filter="*").active All
-                            li
-                                a(href="#" data-filter=".brand").active Brand
-                            li
-                                a(href="#" data-filter=".app").active Apps
-
-                .container-fluid
-                    #itemsWork.row.text-center
-                        .col-xs-12.col-sm-6.col-md-3.col-lg-3.nopadding.brand.others
-                            .box
-                                .hover-bg
-                                    .hover-text-off
-                                        p asdfsdf
-                        .col-xs-12.col-sm-6.col-md-3.col-lg-3.nopadding.apps
-                            .box
-                                .hover-bg
-                                    .hover-text-off
-                                        p asdfsdf
+            

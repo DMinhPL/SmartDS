@@ -87,8 +87,6 @@ mixin services_features_list(icon, href, title, active)
 			a.active.show(href=href, role="tab", data-toggle="tab", aria-selected="true")
 				span.fa(class=icon)
 				| #[=title]
-				br
-				small sub title here
 	else
 		li(role='presentation')
 			// feature tab menu #1
@@ -102,3 +100,21 @@ mixin services_features_tab_item(id,title,urlImage,state)
 		| Vel donec et scelerisque vestibulum. Condimentum aliquam, mollit magna velit nec, tempor cursus vitae sit aliquet neque purus. Ultrices lacus proin conubia dictum tempus, tempor pede vitae faucibus, sem auctor, molestie diam dictum aliquam. Dolor leo, ridiculus est ut cubilia nec, fermentum arcu praesent.
 		.img-bg.img-responsive(style=`background-image:url('${urlImage}')`)
 			img(src=urlImage, alt='Image not found')
+
+mixin services_products_item(className, urlImg,side)
+	if side == "top"
+		.col-xs-12.col-sm-6.col-md-3.col-lg-3.nopadding(class=className)
+			.box-img
+				.item
+					.item-img
+						.img-bg(style=`background-image:url("${urlImg}")`)
+							img(src=urlImg, alt="Image not found")
+							.bg-hover
+	else
+		.col-xs-12.col-sm-6.col-md-3.nopadding(class=className)
+			.box-img
+				.item
+					.item-img
+						.img-bg(style=`background-image:url("${urlImg}")`)
+							img(src=urlImg, alt="Image not found")
+							.bg-hover
