@@ -145,13 +145,19 @@
 
     //Set height default for banner
     function banner_default_height(){
-        // var $banner = $(".home-wrapper .banner-home");
-        // var $nav = $("header .navbar").outerHeight();
-        // var $tophead = $("section#top-header").outerHeight();
-        // console.log(100% - $nav);
-        // $banner.css({
-        //     "height": $tophead +$nav
-        // })
+        let $banner = $(".home-wrapper .banner-home");
+        let $tophead = $("#top-header");
+        var _resize =()=>{
+            if($(window).outerWidth()<=992){
+                $banner.css({"height":$(window).height() - $tophead.outerHeight()});
+                console.log( $tophead.height());
+            }
+            else{
+                $banner.css({'height':''});
+            }
+        }
+        $(window).on('resize',_resize);
+        _resize();
     }
 
     $(function(){

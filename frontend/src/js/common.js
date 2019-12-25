@@ -57,10 +57,28 @@
             return false;
         });
     }
-
+    // fix mavbar top header
+    function ui_nav_fix_top(){
+        let $top = $('#top-header');
+        let $page = $('.wrapper');
+        let $w = $(window);
+        var _resize = ()=>{
+            if($w.outerWidth() <= 992){
+                $top.addClass('fixed');
+                $page.css({'margin-top':$top.outerHeight()});
+            }
+            else{
+                $top.removeClass('fixed');
+                $page.css({'margin-top':''});
+            }
+        }
+        $w.on('resize',_resize);
+        _resize();
+    }
     $(function(){
         ui();
         ui_nav_main();
         isotope_gallery_services();
+        ui_nav_fix_top();
     })
 })(jQuery);

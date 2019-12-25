@@ -10,13 +10,11 @@ $h: 1px/800px*100vh;
     &.banner-home{
         height: calc(100vh - 139px);
         min-height: 540px;
-        @include media-breakpoint-down(md){
-            height: 100vh;
-        }
     }
     &.page-banner {
         .img-bg:after {
-            padding-top: 487/1920*100%;
+            // padding-top: 487/1920*100%;
+            padding-top: 40.38462%;
             @include media-breakpoint-down(md) {
                 padding-top: 50.36458%;
             }

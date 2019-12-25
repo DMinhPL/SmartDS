@@ -3,6 +3,13 @@
     color: #fff;
     padding: 5px 0px;
     position: relative;
+    &.fixed{
+        position: fixed;
+        top: 0;
+        z-index: 99;
+        left: 0;
+        right: 0;
+    }
     .container{
         @include media-breakpoint-down(md){
             text-align: right;
@@ -72,6 +79,12 @@ header{
     }
     .navbar{
         padding: 0;
+        position: absolute;
+        z-index: 9;
+        top: 34px;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.12);
         @include media-breakpoint-down(md){
             position: fixed;
             top: 0;
@@ -84,6 +97,9 @@ header{
             transition: 0.4s ease;
             &.open{
                 transform: translateX(0);
+                @include media-breakpoint-up(md){
+                    max-width: 50%;
+                }
             }
         }
         .container{
@@ -95,10 +111,10 @@ header{
         }
     }
     .main-header{
+        width: 100%;
         @include media-breakpoint-up(lg){
             display: flex;
             justify-content: space-between;
-            width: 100%;
         }
         a.close-nav{
             position: relative;
@@ -132,6 +148,10 @@ header{
                 font-size: 18px;
                 text-align: center;
                 color: #333333;
+                border-top-left-radius: 45%;
+                border-bottom-right-radius: 45%;
+                background-color: rgb(255, 255, 255);
+                // animation: jackInTheBox 1.4s forwards;
                 h1{
                     margin-bottom: 0;
                     color: $main-color;
@@ -159,11 +179,17 @@ header{
                     &:hover,
                     &.active{
                         a{
-                            color: #FFF;
-                            background: #333333;
+                            // color: #FFF;
+                            // background: #333333;
+                            color: #ffffff;
+                            text-shadow: 0 3px 15px rgba(236, 255, 230, 0.96);
                             border-bottom-width: 5px;
                             border-bottom-style: solid;
                             border-bottom-color: #159eee;
+                            @include media-breakpoint-down(md){
+                                color: $main-color;
+                                border-bottom-width: 2px;
+                            }
                         }
                     }
                     a{
@@ -173,7 +199,8 @@ header{
                         align-items: center;
                         justify-content: center;
                         position: relative;
-                        color: #333333;
+                        // color: #333333;
+                        color: #FFFFFF;
                         padding: 10px 15px;
                         height: 100%;
                         text-decoration: none;
@@ -183,6 +210,7 @@ header{
                         }
                         @include media-breakpoint-down(md){
                             display: block;
+                            color: #333333;
                         }
                         
                     }
